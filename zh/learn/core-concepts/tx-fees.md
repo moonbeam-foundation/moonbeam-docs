@@ -128,39 +128,20 @@ MBIP-5 引入了对 Moonbeam 的费用机制的更改，该机制考虑了网络
 要亲身体验此 MBIP 如何区分 Moonbeam 和以太坊，您可以估算两个不同合约交互在两个网络上的 Gas：一个修改链状态中的项目，另一个不修改。例如，您可以使用一个问候合约，该合约允许您存储一个名称，然后使用该名称来说“Hello”。
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.30;
-
-contract SayHello {
-    mapping(address => string) public addressToName;
-
-    constructor(string memory _name) {
-        addressToName[msg.sender] = _name;
-    }
-
-    // Store a name associated to the address of the sender
-    function setName(string memory _name) public {
-        addressToName[msg.sender] = _name;
-    } 
-
-    // Use the name in storage associated to the sender
-    function sayHello() external view returns (string memory) {
-        return string(abi.encodePacked("Hello ", addressToName[msg.sender]));
-    }
-}
+--8<-- 'code/learn/core-concepts/tx-fees/1.sol'
 ```
 您可以在 Moonriver 和以太坊上，或在 Moonbeam 的测试网 Moonbase Alpha 和以太坊的测试网 Sepolia 上部署此合约。上述合约已部署到 Moonbase Alpha 和 Sepolia。您可以随意访问以下地址的这些合约：
 
 === "Moonbase Alpha"
 
     ```text
-    0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd
+    --8<-- 'code/learn/core-concepts/tx-fees/2.txt'
     ```
 
 === "Sepolia"
 
     ```text
-    0x8D0C059d191011E90b963156569A8299d7fE777d
+    --8<-- 'code/learn/core-concepts/tx-fees/3.txt'
     ```
 
 接下来，您可以使用 `eth_estimateGas` 方法来检查在每个网络上调用 `setName` 和 `sayHello` 函数的 Gas 估算值。为此，您需要每个交易的字节码，其中包括函数选择器，以及 `setName` 函数的要设置的名称。此示例字节码将名称设置为“Chloe”：
@@ -168,7 +149,7 @@ contract SayHello {
 === "设置名称"
 
     ```text
-    0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000
+    --8<-- 'code/learn/core-concepts/tx-fees/4.txt'
     ```
 
 === "打招呼"
@@ -182,31 +163,13 @@ contract SayHello {
 === "设置名称"
 
     ```sh
-    curl {{ networks.moonbase.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd",
-            "data": "0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/5.sh'
     ```
 
 === "打招呼"
 
     ```sh
-    curl {{ networks.moonbase.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd",
-            "data": "0xef5fb05b"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/6.sh'
     ```
 
 然后在 Sepolia 上，您可以对 `data` 使用相同的字节码，并修改 RPC URL 和合约地址以定位部署到 Sepolia 的合约：
@@ -214,31 +177,13 @@ contract SayHello {
 === "设置名称"
 
     ```sh
-    curl https://sepolia.publicgoods.network -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0x8D0C059d191011E90b963156569A8299d7fE777d",
-            "data": "0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/7.sh'
     ```
 
 === "打招呼"
 
     ```sh
-    curl https://sepolia.publicgoods.network -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0x8D0C059d191011E90b963156569A8299d7fE777d",
-            "data": "0xef5fb05b"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/8.sh'
     ```
 
 在撰写本文时，两个网络的 Gas 估算值如下：
@@ -426,55 +371,23 @@ Moonbeam 网络实现了 [`eth_feeHistory`](https://www.alchemy.com/docs/node/et
 === "Moonbeam"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.moonbeam.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/9.sh'
     ```
     
 === "Moonriver"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.moonriver.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/10.sh'
     ``` 
 === "Moonbase Alpha"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.moonbase.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/11.sh'
     ```
 === "Moonbeam Dev Node"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.development.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/12.sh'
     ```
 
 ### 用于计算交易费的示例代码 {: #sample-code }

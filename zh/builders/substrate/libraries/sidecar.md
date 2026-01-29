@@ -26,7 +26,7 @@ Substrate API Sidecar 允许应用程序通过 REST API 访问基于 Substrate �
 要在当前目录中本地安装 Substrate API Sidecar，请运行：
 
 ```bash
-npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.stable_version }}
+--8<-- 'code/builders/substrate/libraries/sidecar/1.sh'
 ```
 
 !!! note
@@ -36,7 +36,7 @@ npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.st
 Substrate API Sidecar v{{ networks.moonbase.substrate_api_sidecar.stable_version }} 是已在 Moonbeam 网络上测试过的稳定版本。安装完成后可通过以下命令验证：
 
 ```bash
-node_modules/.bin/substrate-api-sidecar --version
+--8<-- 'code/builders/substrate/libraries/sidecar/2.sh'
 ```
 
 ## 设置 Substrate API Sidecar {: #setting-up-the-substrate-api-sidecar }
@@ -46,25 +46,25 @@ node_modules/.bin/substrate-api-sidecar --version
 === "Moonbeam"
 
     ```bash
-    export SAS_SUBSTRATE_URL=wss://wss.api.moonbeam.network
+    --8<-- 'code/builders/substrate/libraries/sidecar/3.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    export SAS_SUBSTRATE_URL=wss://wss.api.moonriver.moonbeam.network
+    --8<-- 'code/builders/substrate/libraries/sidecar/4.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    export SAS_SUBSTRATE_URL=wss://wss.api.moonbase.moonbeam.network
+    --8<-- 'code/builders/substrate/libraries/sidecar/5.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    export SAS_SUBSTRATE_URL=ws://127.0.0.1:9944
+    --8<-- 'code/builders/substrate/libraries/sidecar/6.sh'
     ```
 
 请参考 [公共端点](/builders/get-started/endpoints/) 页面以获取 Moonbeam 网络端点的完整列表。
@@ -72,7 +72,7 @@ node_modules/.bin/substrate-api-sidecar --version
 设置环境变量后，您可以使用 `echo` 命令检查环境变量是否已正确设置，方法是输入：
 
 ```bash
-echo $SAS_SUBSTRATE_URL
+--8<-- 'code/builders/substrate/libraries/sidecar/7.sh'
 ```
 
 它应该显示您刚刚设置的网络端点。
@@ -84,7 +84,7 @@ Moonbeam 引入了一些自定义类型。为了让 Substrate API Sidecar 正确
 首先安装 Parity 的 `generate-types-bundle` 工具：
 
 ```bash
-npm install -g @substrate/generate-type-bundle
+--8<-- 'code/builders/substrate/libraries/sidecar/8.sh'
 ```
 
 然后为目标网络生成类型包：
@@ -92,25 +92,25 @@ npm install -g @substrate/generate-type-bundle
 === "Moonbeam"
 
     ```bash
-    generate-type-bundle -p "$(pwd)" -s moonbeam
+    --8<-- 'code/builders/substrate/libraries/sidecar/9.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    generate-type-bundle -p "$(pwd)" -s moonriver
+    --8<-- 'code/builders/substrate/libraries/sidecar/10.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    generate-type-bundle -p "$(pwd)" -s moonbase
+    --8<-- 'code/builders/substrate/libraries/sidecar/11.sh'
     ```
 
 生成后，将 `typesBundle.json` 路径导出给 Sidecar：
 
 ```bash
-export SAS_SUBSTRATE_TYPES_BUNDLE="$(pwd)/typesBundle.json"
+--8<-- 'code/builders/substrate/libraries/sidecar/12.sh'
 ```
 
 可以用 `echo $SAS_SUBSTRATE_TYPES_BUNDLE` 验证是否设置正确。重新生成类型包会覆盖现有文件，如有重命名请使用对应文件名。
@@ -120,7 +120,7 @@ export SAS_SUBSTRATE_TYPES_BUNDLE="$(pwd)/typesBundle.json"
 设置网络端点环境变量后，从安装目录根目录运行：
 
 ```bash
-node_modules/.bin/substrate-api-sidecar
+--8<-- 'code/builders/substrate/libraries/sidecar/14.sh'
 ```
 
 如果安装和配置成功，您应该在控制台中看到以下输出：

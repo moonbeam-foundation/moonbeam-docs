@@ -24,13 +24,13 @@ categories: Precompiles, Ethereum Toolkit
 在撰写本指南时，分别使用的版本为 15.2.1 和 7.0.8。您还需要通过执行以下命令来安装 [Web3](https://web3js.readthedocs.io/en/latest){target=\_blank} 包：
 
 ```bash
-npm install --save web3
+--8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/1.sh'
 ```
 
 要验证已安装的 Web3 版本，您可以使用 `ls` 命令：
 
 ```bash
-npm ls web3
+--8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/2.sh'
 ```
 
 在撰写本指南时，使用的版本是 1.3.0。您还将使用 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}，通过 [MetaMask](/tokens/connect/metamask/){target=\_blank} 连接到 Moonbase Alpha 测试网。

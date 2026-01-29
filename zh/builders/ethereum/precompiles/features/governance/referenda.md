@@ -108,14 +108,7 @@ Referenda Precompile 位于以下地址：
 
         ReferendumStatus枚举：
         ```solidity
-        enum ReferendumStatus {
-             Ongoing,
-             Approved,
-             Rejected,
-             Cancelled,
-             TimedOut,
-             Killed
-        }
+        --8<-- 'code/builders/ethereum/precompiles/features/governance/referenda/1.sol'
         ```
 
 ??? function "**ongoingReferendumInfo**(*uint32* referendumIndex) - 一个只读函数，返回与正在进行的全民公投有关的信息"

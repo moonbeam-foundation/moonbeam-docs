@@ -77,16 +77,7 @@ Moonbeam 上的代理预编译允许帐户设置代理帐户，该帐户可以�
 `proxyType` 参数由以下 `ProxyType` 枚举定义，其中值从 `0` 开始，代表最宽松的代理类型，并表示为 `uint8` 值：
 
 ```solidity
-enum ProxyType {
-    Any,
-    NonTransfer,
-    Governance,
-    Staking,
-    CancelProxy,
-    Balances,
-    AuthorMapping,
-    IdentityJudgement
-}
+--8<-- 'code/builders/ethereum/precompiles/account/proxy/1.sol'
 ```
 
 ## 代理类型 {: #proxy-types }

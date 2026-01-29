@@ -202,8 +202,7 @@ XCM Transactor Pallet 包含以下只读存储方法：
         表示给定资产每秒费用的值的数字。此值的返回格式可能因链及其存储数据的方式而异。您可以使用 `@polkadot/util` 库进行各种转换，例如，使用 `hexToBigInt` 方法将十六进制值转换为大整数。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        10000000000000
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/1.js'
         ```
         
     
@@ -224,8 +223,7 @@ XCM Transactor Pallet 包含以下只读存储方法：
         表示 pallet 当前版本的数字。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        0
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/2.js'
         ```
 
     === "Polkadot.js API 示例"
@@ -245,12 +243,7 @@ XCM Transactor Pallet 包含以下只读存储方法：
         事务信息对象。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        {
-          transactExtraWeight: { refTime: 3000000000, proofSize: 131072 },
-          maxWeight: { refTime: 20000000000, proofSize: 131072 },
-          transactExtraWeightSigned: { refTime: 4000000000, proofSize: 131072 },
-        }
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/3.js'
         ```
     
     === "Polkadot.js API 示例"
@@ -270,8 +263,7 @@ XCM 交易器 Pallet 包含以下只读函数来获取 pallet 常量：
         基本 XCM 权重对象。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        { refTime: 200000000, proofSize: 0 }
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/4.js'
         ```
 
     === "Polkadot.js API 示例"
@@ -287,8 +279,7 @@ XCM 交易器 Pallet 包含以下只读函数来获取 pallet 常量：
         自定位 multilocation 对象。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        { parents: 0, interior: { here: null } }
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/5.js'
         ```
 
     === "Polkadot.js API 示例"
@@ -348,12 +339,7 @@ XCM 交易器 Pallet 包含以下只读函数来获取 pallet 常量：
     === "Local XC-20s"
 
         ```js
-        const fee = {
-          currency: {
-            AsCurrencyId: { Erc20: { contractAddress: ERC_20_ADDRESS} },
-          },
-          feeAmount: 50000000000000000n,
-        };
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/6.js'
         ```
 
 3. 定义将在目标链中执行的 `call`，它是要调用的 pallet、方法和输入的编码调用数据。 它可以在 [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank}（必须连接到目标链）或使用 [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} 构建。 对于此示例，内部调用是将目标链的 1 个代币简单余额转移到 Alice 在那里的帐户

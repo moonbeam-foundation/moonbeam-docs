@@ -66,26 +66,14 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
         使用 `tracer_config`：
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-        '{
-          "jsonrpc":"2.0",
-          "id": 1,
-          "method": "debug_traceTransaction",
-          "params": ["INSERT_TRANSACTION_HASH", {"tracer": "callTracer"}]
-        }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/1.sh'
         ```
 
         <br>
         使用默认的 opcode logger：
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-        '{
-          "jsonrpc":"2.0",
-          "id": 1,
-          "method": "debug_traceTransaction",
-          "params": ["INSERT_TRANSACTION_HASH"]
-        }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/2.sh'
         ```
 
 ???+ function "debug_traceBlockByNumber"
@@ -121,13 +109,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
     === "示例"
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "debug_traceBlockByNumber",
-            "params": ["INSERT_BLOCK_NUMBER", {"tracer": "callTracer"}]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/3.sh'
         ```
 
 ???+ function "debug_traceBlockByHash"
@@ -163,13 +145,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
     === "示例"
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "debug_traceBlockByHash",
-            "params": ["INSERT_BLOCK_HASH", {"tracer": "callTracer"}]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/4.sh'
         ```
 
 ???+ function "debug_traceCall"
@@ -190,17 +166,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
     === "示例"
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "debug_traceCall",
-            "params": [{
-                "from": "INSERT_FROM_ADDRESS",
-                "to":"INSERT_TO_ADDRESS",
-                "data":"INSERT_CALL_DATA"
-                }, "INSERT_BLOCK_HASH"]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/5.sh'
         ```
 
 ???+ function "trace_filter"
@@ -267,19 +233,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
         以下示例从零偏移开始，返回前 20 条追踪：
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "trace_filter", "params": 
-            [{
-              "fromBlock": "INSERT_FROM_BLOCK",
-              "toBlock": "INSERT_TO_BLOCK",
-              "toAddress": ["INSERT_ADDRESS_TO_FILTER"],
-              "after": 0,
-              "count": 20
-            }]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/6.sh'
         ```
 
 ???+ function "txpool_content"
@@ -330,12 +284,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
     === "示例"
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "txpool_content", "params":[]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/7.sh'
         ```
 
 ???+ function "txpool_inspect"
@@ -358,12 +307,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
     === "示例"
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "txpool_inspect", "params":[]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/8.sh'
         ```
 
 ???+ function "txpool_status"
@@ -384,10 +328,5 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
     === "示例"
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "txpool_status", "params":[]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/9.sh'
         ```

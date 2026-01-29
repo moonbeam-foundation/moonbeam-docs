@@ -37,13 +37,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
     === "示例"
 
         ```bash
-        wscat -c {{ networks.moonbase.wss_url }} -x '
-          {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_subscribe",
-            "params": ["INSERT_SUBSCRIPTION_NAME"]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/pubsub/1.sh'
         ```
         
 
@@ -62,13 +56,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
     === "示例"
 
         ```bash
-        wscat -c {{ networks.moonbase.wss_url }} -x '
-          {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_unsubscribe",
-            "params": ["INSERT_SUBSCRIPTION_ID"]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/pubsub/2.sh'
         ```
 
 ## 使用以太坊库订阅事件 {: #subscribe-to-events }
@@ -86,7 +74,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 - 安装 Ethers.js 或您选择的 Ethereum 库。您可以通过 npm 安装 Ethers.js：
 
     ```bash
-    npm install ethers
+    --8<-- 'code/builders/ethereum/json-rpc/pubsub/3.sh'
     ```
 
 ### 订阅事件日志 {: #subscribing-to-event-logs-in-moonbase-alpha }
@@ -108,7 +96,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 - 侦听器通过签名来过滤 `Transfer` 事件，签名可以按如下方式计算：
 
     ```js
-    EventSignature = keccak256(Transfer(address,address,uint256))
+    --8<-- 'code/builders/ethereum/json-rpc/pubsub/4.js'
     ```
 
     这转换为 `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef`，并用作订阅过滤器中的第一个主题。

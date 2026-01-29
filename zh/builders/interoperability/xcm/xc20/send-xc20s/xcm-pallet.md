@@ -115,12 +115,7 @@ Polkadot XCM Pallet 包含以下只读存储方法。请注意，这并非详尽
     === "返回值"
         返回一个 `U32`（无符号 32 位整数），表示资产在此哈希位置被困的次数。
         ```js
-        // Example return values showing hash → count mappings
-        [
-          [[0x0140f264543926e689aeefed15a8379f6e75a8c6884b0cef0832bb913a343b53], 1],
-          [[0x0d14fd8859d8ff15dfe4d4002b402395129cdc4b69dea5575efa1dc205b96020], 425],
-          [[0x166f82439fd2b25b28b82224e82ad9f26f2da26b8257e047182a6a7031accc9a], 3]
-        ]
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/1.js'
         ```
     === "Polkadot.js API 示例"
         ```js
@@ -184,8 +179,7 @@ Polkadot XCM Pallet 包含以下只读存储方法。请注意，这并非详尽
         表示 pallet 当前版本的数字。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        0
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/2.js'
         ```
 
     === "Polkadot.js API 示例"

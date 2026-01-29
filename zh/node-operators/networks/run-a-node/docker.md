@@ -28,19 +28,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        mkdir {{ networks.moonbeam.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/docker/1.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        mkdir {{ networks.moonriver.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/docker/2.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mkdir {{ networks.moonbase.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/docker/3.sh'
         ```
 
 2. 设置存储链数据的本地目录的所有权和权限。您可以为特定用户或当前用户设置权限（将 `INSERT_DOCKER_USER` 替换为将运行 `docker` 命令的实际用户）
@@ -48,31 +48,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        # chown to a specific user
-        chown INSERT_DOCKER_USER {{ networks.moonbeam.node_directory }}
-
-        # chown to current user
-        sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/docker/4.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        # chown to a specific user
-        chown INSERT_DOCKER_USER {{ networks.moonriver.node_directory }}
-
-        # chown to current user
-        sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/docker/5.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        # chown to a specific user
-        chown INSERT_DOCKER_USER {{ networks.moonbase.node_directory }}
-
-        # chown to current user
-        sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/docker/6.sh'
         ```
 
 ## 启动命令 {: #start-up-commands }
@@ -90,11 +78,11 @@ categories: 节点运营者和整理者
     如果 Docker 命令在 Apple Silicon 上失败或行为异常，请在 Docker Desktop 设置中启用 **Use Rosetta for x86_64/amd64 emulation on Apple Silicon**，并对 pull 和 run 命令使用 `amd64` 平台。 例如：
 
     ```bash
-    docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }}
+    --8<-- 'code/node-operators/networks/run-a-node/docker/7.sh'
     ```
 
     ```bash
-    docker run --platform=linux/amd64 ...
+    --8<-- 'code/node-operators/networks/run-a-node/docker/8.sh'
     ```
 
 ### 完整节点 {: #full-node }
@@ -104,55 +92,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonbeam.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/9.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonriver.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/10.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonbase.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/11.sh'
         ```
 
 ??? code "MacOS 代码片段"
@@ -160,52 +112,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain moonbeam \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/12.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path /data \
-        --chain moonriver \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/13.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path /data \
-        --chain alphanet \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/14.sh'
         ```
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/external-access.md'
@@ -215,38 +134,13 @@ categories: 节点运营者和整理者
     === "Linux"
 
         ```bash hl_lines="11"
-        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonbeam.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        --unsafe-rpc-external \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/15.sh'
         ```
 
     === "MacOS"
 
         ```bash hl_lines="10"
-        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain moonbeam \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        --unsafe-rpc-external \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/16.sh'
         ```
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/sql-backend.md'
@@ -256,39 +150,13 @@ categories: 节点运营者和整理者
     === "Linux"
 
         ```bash hl_lines="12"
-        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonbeam.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        # This is a comment
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        --frontier-backend-type sql \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/17.sh'
         ```
 
     === "MacOS"
 
         ```bash hl_lines="10"
-        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain moonbeam \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --state-pruning archive \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        --frontier-backend-type sql \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/18.sh'
         ```
 
 ### Collator 节点
@@ -300,25 +168,19 @@ categories: 节点运营者和整理者
 === "Moonbeam"
 
     ```bash
-    docker run --network="host" -v "/var/lib/moonbeam-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam 
+    --8<-- 'code/node-operators/networks/run-a-node/docker/19.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    docker run --network="host" -v "/var/lib/moonriver-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver 
+    --8<-- 'code/node-operators/networks/run-a-node/docker/20.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    docker run --network="host" -v "/var/lib/alphanet-data:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet && sudo chown -R moonbase_service  /var/lib/alphanet-data
+    --8<-- 'code/node-operators/networks/run-a-node/docker/21.sh'
     ```
 
 !!! note
@@ -331,55 +193,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonbeam.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --collator \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/22.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonriver.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --collator \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/23.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path /data \
-        --chain {{ networks.moonbase.chain_spec }} \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --collator \
-        --trie-cache-size 1073741824 \
-        --db-cache INSERT_RAM_IN_MB \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/24.sh'
         ```
 
 ??? code "MacOS snippets"
@@ -387,52 +213,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-        --base-path /data \
-        --chain moonbeam \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --collator \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/25.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-        --base-path /data \
-        --chain moonriver \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --collator \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/26.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
-        -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-        --base-path /data \
-        --chain alphanet \
-        --name "INSERT_YOUR_NODE_NAME" \
-        --collator \
-        --trie-cache-size 1073741824 \
-        --pool-type=fork-aware \
-        -- \
-        --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-        --sync fast
+        --8<-- 'code/node-operators/networks/run-a-node/docker/27.sh'
         ```
 
 ## 同步您的节点 {: #syncing-your-node }
@@ -457,7 +250,7 @@ categories: 节点运营者和整理者
 1. 停止 Docker 容器：
 
     ```bash
-    sudo docker stop INSERT_CONTAINER_ID
+    --8<-- 'code/node-operators/networks/run-a-node/docker/28.sh'
     ```
 
 2. 通过 [Moonbeam GitHub 版本](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} 页面获取最新版本的 Moonbeam
@@ -472,7 +265,7 @@ categories: 节点运营者和整理者
 您首先需要停止 Docker 容器：
 
 ```bash
-sudo docker stop INSERT_CONTAINER_ID
+--8<-- 'code/node-operators/networks/run-a-node/docker/28.sh'
 ```
 
 如果您在启动节点时未使用 `-v` 标志来指定用于存储链数据的本地目录，则数据文件夹与 Docker 容器本身相关。因此，删除 Docker 容器将删除链数据。
@@ -482,19 +275,19 @@ sudo docker stop INSERT_CONTAINER_ID
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/30.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/31.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/32.sh'
     ```
 
 要仅删除特定链的平行链数据，您可以运行：
@@ -502,19 +295,19 @@ sudo docker stop INSERT_CONTAINER_ID
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/33.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/34.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/35.sh'
     ```
 
 类似地，要仅删除中继链数据，您可以运行：
@@ -522,19 +315,19 @@ sudo docker stop INSERT_CONTAINER_ID
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/36.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/37.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/docker/38.sh'
     ```
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/post-purge.md'

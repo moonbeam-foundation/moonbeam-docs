@@ -30,7 +30,7 @@ categories: Libraries and SDKs, Ethereum Toolkit
 要开始使用，你需要启动一个基本的 JavaScript 项目。首先，创建一个目录来存储你将在本指南中创建的所有文件，并使用以下命令初始化项目：
 
 ```bash
-mkdir ethers-examples && cd ethers-examples && npm init --y
+--8<-- 'code/builders/ethereum/libraries/ethersjs/1.sh'
 ```
 
 对于本指南，你需要安装 Ethers.js 库和 Solidity 编译器。要安装这两个 NPM 包，你可以运行以下命令：
@@ -38,13 +38,13 @@ mkdir ethers-examples && cd ethers-examples && npm init --y
 === "npm"
 
     ```bash
-    npm install ethers solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/2.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn add ethers solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/3.sh'
     ```
 
 ## 设置 Ethers Provider {: #setting-up-the-ethers-provider }
@@ -62,85 +62,25 @@ mkdir ethers-examples && cd ethers-examples && npm init --y
 === "Moonbeam"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      moonbeam: {
-        name: 'moonbeam',
-        rpc: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
-        chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
-      chainId: providerRPC.moonbeam.chainId,
-      name: providerRPC.moonbeam.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/4.js'
     ```
 
 === "Moonriver"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      moonriver: {
-        name: 'moonriver',
-        rpc: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
-        chainId: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.moonriver.rpc, {
-      chainId: providerRPC.moonriver.chainId,
-      name: providerRPC.moonriver.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/5.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      moonbase: {
-        name: 'moonbase-alpha',
-        rpc: '{{ networks.moonbase.rpc_url }}',
-        chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
-      chainId: providerRPC.moonbase.chainId,
-      name: providerRPC.moonbase.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/6.js'
     ```
 
 === "Moonbeam Dev Node"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      dev: {
-        name: 'moonbeam-development',
-        rpc: '{{ networks.development.rpc_url }}',
-        chainId: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.dev.rpc, {
-      chainId: providerRPC.dev.chainId,
-      name: providerRPC.dev.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/7.js'
     ```
 
 保存此代码段，因为您将在以下各节中使用的脚本中需要它。
@@ -156,7 +96,7 @@ mkdir ethers-examples && cd ethers-examples && npm init --y
 您只需要一个文件即可在交易发送前后检查两个地址的余额。首先，可以通过运行以下命令创建一个 `balances.js` 文件：
 
 ```bash
-touch balances.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/8.sh'
 ```
 
 接下来，创建该文件的脚本并完成以下步骤：
@@ -168,25 +108,7 @@ touch balances.js
 1. 最后，运行 `balances` 函数
 
 ```js
-// 1. Add the Ethers provider logic here:
-// {...}
-
-// 2. Create address variables
-const addressFrom = 'INSERT_FROM_ADDRESS';
-const addressTo = 'INSERT_TO_ADDRESS';
-
-// 3. Create balances function
-const balances = async () => {
-  // 4. Fetch balances
-  const balanceFrom = ethers.formatEther(await provider.getBalance(addressFrom));
-  const balanceTo = ethers.formatEther(await provider.getBalance(addressTo));
-
-  console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
-  console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
-};
-
-// 5. Call the balances function
-balances();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/9.js'
 ```
 
 ??? code "查看完整脚本"
@@ -198,7 +120,7 @@ balances();
 要运行脚本并获取账户余额，可以运行以下命令：
 
 ```bash
-node balances.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/10.sh'
 ```
 
 如果成功，源地址和接收地址的余额将在终端中以 DEV 显示。
@@ -208,7 +130,7 @@ node balances.js
 您只需要一个文件即可在账户间执行交易。此示例将从源地址（您拥有其私钥）向另一个地址转账 1 个 DEV 代币。首先，可以通过运行以下命令创建 `transaction.js` 文件：
 
 ```bash
-touch transaction.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/11.sh'
 ```
 
 接下来，创建该文件的脚本并完成以下步骤：
@@ -222,36 +144,7 @@ touch transaction.js
 1. 最后，运行 `send` 函数
 
 ```js
-// 1. Add the Ethers provider logic here:
-// {...}
-
-// 2. Create account variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-const addressTo = 'INSERT_TO_ADDRESS';
-
-// 3. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 4. Create send function
-const send = async () => {
-  console.log(`Attempting to send transaction from ${wallet.address} to ${addressTo}`);
-
-  // 5. Create tx object
-  const tx = {
-    to: addressTo,
-    value: ethers.parseEther('1'),
-  };
-
-  // 6. Sign and send tx - wait for receipt
-  const createReceipt = await wallet.sendTransaction(tx);
-  await createReceipt.wait();
-  console.log(`Transaction successful with hash: ${createReceipt.hash}`);
-};
-
-// 7. Call the send function
-send();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/12.js'
 ```
 
 ??? code "查看完整脚本"
@@ -263,7 +156,7 @@ send();
 要运行该脚本，您可以在终端中运行以下命令：
 
 ```bash
-node transaction.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/13.sh'
 ```
 
 如果交易成功，您会在终端中看到交易哈希被打印出来。
@@ -291,7 +184,7 @@ node transaction.js
 有了编译 `Incrementer.sol` 合约的脚本，您就可以使用结果发送一个已签名的交易来部署它。为此，您可以创建一个名为 `deploy.js` 的部署脚本文件：
 
 ```bash
-touch deploy.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/14.sh'
 ```
 
 接下来，您将创建这个文件的脚本并完成以下步骤：
@@ -307,40 +200,7 @@ touch deploy.js
 1. 最后，运行 `deploy` 函数
 
 ```js
-// 1. Import the contract file
-const contractFile = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Create account variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-
-// 4. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 5. Load contract information
-const bytecode = contractFile.evm.bytecode.object;
-const abi = contractFile.abi;
-
-// 6. Create contract instance with signer
-const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
-
-// 7. Create deploy function
-const deploy = async () => {
-  console.log(`Attempting to deploy from account: ${wallet.address}`);
-
-  // 8. Send tx (initial value set to 5) and wait for receipt
-  const contract = await incrementer.deploy(5);
-  const txReceipt = await contract.deploymentTransaction().wait();
-
-  console.log(`Contract deployed at address: ${txReceipt.contractAddress}`);
-};
-
-// 9. Call the deploy function
-deploy();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/15.js'
 ```
 
 ??? code "查看完整脚本"
@@ -352,7 +212,7 @@ deploy();
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-node deploy.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/16.sh'
 ```
 
 如果成功，合约的地址将显示在终端中。
@@ -366,7 +226,7 @@ node deploy.js
 要开始，您可以创建一个文件并将其命名为 `get.js`：
 
 ```bash
-touch get.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/17.sh'
 ```
 
 然后，您可以按照以下步骤创建脚本：
@@ -380,30 +240,7 @@ touch get.js
 1. 最后，调用 `get` 函数
 
 ```js
-// 1. Import the ABI
-const { abi } = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Contract address variable
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-
-// 4. Create contract instance
-const incrementer = new ethers.Contract(contractAddress, abi, provider);
-
-// 5. Create get function
-const get = async () => {
-  console.log(`Making a call to contract at address: ${contractAddress}`);
-
-  // 6. Call contract 
-  const data = await incrementer.number();
-
-  console.log(`The current number stored is: ${data}`);
-};
-
-// 7. Call get function
-get();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/18.js'
 ```
 
 ??? code "查看完整脚本"
@@ -415,7 +252,7 @@ get();
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-node get.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/19.sh'
 ```
 
 如果成功，该值将显示在终端中。
@@ -425,7 +262,7 @@ node get.js
 发送方法是修改合约存储（更改变量）的交互类型，这意味着需要签名并发送交易。在本节中，您将创建两个脚本：一个用于递增，一个用于重置递增器。要开始，您可以为每个脚本创建一个文件，并将它们命名为 `increment.js` 和 `reset.js`：
 
 ```bash
-touch increment.js reset.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/20.sh'
 ```
 
 打开 `increment.js` 文件，并按照以下步骤创建脚本：
@@ -440,40 +277,7 @@ touch increment.js reset.js
 1. 最后，调用 `increment` 函数
 
 ```js
-// 1. Import the contract ABI
-const { abi } = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Create variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-const _value = 3;
-
-// 4. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 5. Create contract instance with signer
-const incrementer = new ethers.Contract(contractAddress, abi, wallet);
-
-// 6. Create increment function
-const increment = async () => {
-  console.log(
-    `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
-  );
-
-  // 7. Sign and send tx and wait for receipt
-  const createReceipt = await incrementer.increment(_value);
-  await createReceipt.wait();
-
-  console.log(`Tx successful with hash: ${createReceipt.hash}`);
-};
-
-// 8. Call the increment function
-increment();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/21.js'
 ```
 
 ??? code "查看完整脚本"
@@ -485,7 +289,7 @@ increment();
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-node increment.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/22.sh'
 ```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.js` 脚本与 `increment.js` 脚本一起使用，以确保值按预期更改：
@@ -504,39 +308,7 @@ node increment.js
 1. 最后，调用 `reset` 函数
 
 ```js
-// 1. Import the contract ABI
-const { abi } = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Create variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-
-// 4. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 5. Create contract instance with signer
-const incrementer = new ethers.Contract(contractAddress, abi, wallet);
-
-// 6. Create reset function
-const reset = async () => {
-  console.log(
-    `Calling the reset function in contract at address: ${contractAddress}`
-  );
-
-  // 7. sign and send tx and wait for receipt
-  const createReceipt = await incrementer.reset();
-  await createReceipt.wait();
-
-  console.log(`Tx successful with hash: ${createReceipt.hash}`);
-};
-
-// 8. Call the reset function
-reset();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/23.js'
 ```
 
 ??? code "查看完整脚本"
@@ -548,7 +320,7 @@ reset();
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-node reset.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/24.sh'
 ```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.js` 脚本与 `reset.js` 脚本一起使用，以确保值按预期更改：

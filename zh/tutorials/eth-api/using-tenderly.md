@@ -86,7 +86,7 @@ Tenderly 提供的多数服务均可免费使用，但是您需要订阅付费�
 在顶部的搜索栏中，您可以粘贴合约地址或交易哈希。请记住，Tenderly 支持 Moonbeam 和 Moonriver，但目前不支持 Moonbase Alpha。这是一个 GLMR / FRAX 在 StellaSwap 上进行交换的交易哈希示例：
 
 ```text
-0x80c87ab47e077ca491045047389e6bd88a748ca24971a288d09608834a3bda07
+--8<-- 'code/tutorials/eth-api/using-tenderly/1.txt'
 ```
 
 找到交易哈希后，您会在顶部看到有关交易的所有典型统计信息，例如状态、gas 价格、gas 使用量等。接下来，您将看到已传输的代币的细目分类。在底部，您将看到每个函数调用的长列表。鉴于交换是一个相对复杂的交互，并且鉴于 StellaSwap 使用可升级的代理合约，您将在此示例中看到一个相当长的列表。

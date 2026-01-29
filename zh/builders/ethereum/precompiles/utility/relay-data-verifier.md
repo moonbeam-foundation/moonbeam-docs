@@ -74,8 +74,7 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
         在 `verifyEntry` 函数上执行[静态调用](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank}时，您可以查看与十六进制格式的密钥关联的返回值。
 
         ```js
-         
-        '0x01000000040000000100000000000000f88ce384dca20000000000000000000000370589030a0000000000000000000000203d88792d0000000000000000000000000000000000000000000000000080'
+        --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/1.js'
         ```
 
 ??? function "**verifyEntries**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes[]_ callData keys) — 验证中继链中的一组条目，并返回相应的值。此函数接受中继区块号、存储证明和要验证的存储密钥数组。它返回与密钥关联的值数组，顺序与密钥相同"
@@ -99,8 +98,7 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
         在 `verifyEntries` 函数上执行[静态调用](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank}时，您可以查看包含映射到各自密钥的相应值的数组，以十六进制格式表示。
 
         ```js
-         
-        ['0x01000000040000000100000000000000f88ce384dca20000000000000000000000370589030a0000000000000000000000203d88792d0000000000000000000000000000000000000000000000000080']
+        --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/2.js'
         ```
 
 ## 与Solidity接口交互 {: #interact-with-the-solidity-interface }

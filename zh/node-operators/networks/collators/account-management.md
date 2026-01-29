@@ -102,12 +102,7 @@ categories: Node Operators and Collators
 要使用 `mappingWithDeposit` 方法检查特定整理人的映射，您需要获取 Nimbus ID。为此，您可以取串联公钥的前 64 个十六进制字符作为 Nimbus ID。要验证 Nimbus ID 是否正确，您可以运行以下命令，并将前 64 个字符传入 `params` 数组：
 
 ```bash
-curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d   '{
-  "jsonrpc":"2.0",
-  "id":1,
-  "method":"author_hasKey",
-  "params": ["72c7ca7ef07941a3caeb520806576b52cb085f7577cc12cd36c2d64dbf73757a", "nmbs"]
-}'
+--8<-- 'code/node-operators/networks/collators/account-management/1.sh'
 ```
 
 如果 Nimbus ID 正确，响应应返回 `"result": true`。

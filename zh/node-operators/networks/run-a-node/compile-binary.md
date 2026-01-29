@@ -23,14 +23,13 @@ categories: 节点运营商和收集人
 1. 克隆 Moonbeam 存储库。
 
     ```bash
-    git clone https://github.com/moonbeam-foundation/moonbeam
-    cd moonbeam
+    --8<-- 'code/node-operators/networks/run-a-node/compile-binary/1.sh'
     ```
 
 2. 检查最新版本。
 
     ```bash
-    git checkout tags/$(git describe --tags)
+    --8<-- 'code/node-operators/networks/run-a-node/compile-binary/2.sh'
     ```
 
 3. 如果您已经安装了 Rust，请跳过接下来的两个步骤。否则，[通过 Rust 推荐的方法](https://rust-lang.org/tools/install/){target=\_blank} 安装 Rust 及其先决条件。
@@ -51,11 +50,11 @@ categories: 节点运营商和收集人
         如果您使用的是 Ubuntu 20.04 或 22.04，则需要在构建二进制文件之前安装这些额外的依赖项：
 
         ```bash
-        apt install clang protobuf-compiler libprotobuf-dev pkg-config libssl-dev -y 
+        --8<-- 'code/node-operators/networks/run-a-node/compile-binary/3.sh'
         ```
 
     ```bash
-    cargo build --release
+    --8<-- 'code/node-operators/networks/run-a-node/compile-binary/4.sh'
     ```
 
 ![编译二进制文件](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-1.webp)

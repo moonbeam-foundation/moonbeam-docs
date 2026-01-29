@@ -30,7 +30,7 @@ categories: 库和 SDK, Ethereum Toolkit
 要开始使用，您需要创建一个基本的 TypeScript 项目。首先，创建一个目录来存储您将在本指南中创建的所有文件，并使用以下命令初始化项目：
 
 ```bash
-mkdir viem-examples && cd viem-examples && npm init --y
+--8<-- 'code/builders/ethereum/libraries/viem/1.sh'
 ```
 
 对于本指南，您需要安装 viem 库和 Solidity 编译器。要安装这两个软件包，您可以运行以下命令：
@@ -38,19 +38,19 @@ mkdir viem-examples && cd viem-examples && npm init --y
 === "npm"
 
     ```bash
-    npm install typescript ts-node viem solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/viem/2.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn add typescript ts-node viem solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/viem/3.sh'
     ```
 
 您可以通过运行以下命令来创建 TypeScript 配置文件：
 
 ```bash
-npx tsc --init
+--8<-- 'code/builders/ethereum/libraries/viem/4.sh'
 ```
 
 !!! note
@@ -75,53 +75,25 @@ npx tsc --init
 === "Moonbeam"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonbeam } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.moonbeam.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonbeam,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/5.ts'
     ```
 
 === "Moonriver"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonriver } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.moonriver.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonriver,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/6.ts'
     ```
 
 === "Moonbase Alpha"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonbaseAlpha } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.moonbase.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonbaseAlpha,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/7.ts'
     ```
 
 === "Moonbeam Dev Node"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonbeamDev } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.development.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonbeamDev,
-      transport: http(rpcUrl),
-    })
+    --8<-- 'code/builders/ethereum/libraries/viem/8.ts'
     ```
 
 ### 用于写入链数据 {: #for-writing-chain-data }
@@ -139,65 +111,25 @@ npx tsc --init
 === "Moonbeam"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonbeam } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.moonbeam.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbeam,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/9.ts'
     ```
 
 === "Moonriver"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonriver } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.moonriver.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonriver,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/10.ts'
     ```
 
 === "Moonbase Alpha"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonbaseAlpha } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.moonbase.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbaseAlpha,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/11.ts'
     ```
 
 === "Moonbeam Dev Node"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonbeamDev } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.development.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbeamDev,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/12.ts'
     ```
 
 !!! note
@@ -205,14 +137,7 @@ npx tsc --init
     要与基于浏览器的钱包进行交互，您可以使用以下代码创建一个帐户：
 
     ```ts
-    const [account] = await window.ethereum.request({
-      method: 'eth_requestAccounts',
-    });
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbeam,
-      transport: custom(window.ethereum),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/13.ts'
     ```
 
 ## 发送交易 {: #send-transaction }
@@ -226,7 +151,7 @@ npx tsc --init
 您只需要一个文件即可在发送交易之前和之后检查两个地址的余额。要开始，您可以通过运行以下命令创建一个 `balances.ts` 文件：
 
 ```bash
-touch balances.ts
+--8<-- 'code/builders/ethereum/libraries/viem/14.sh'
 ```
 
 接下来，您将为此文件创建脚本并完成以下步骤：
@@ -245,7 +170,7 @@ touch balances.ts
 要运行脚本并获取帐户余额，您可以运行以下命令：
 
 ```bash
-npx ts-node balances.ts
+--8<-- 'code/builders/ethereum/libraries/viem/15.sh'
 ```
 
 如果成功，则原始地址和接收地址的余额将以 DEV 形式显示在您的终端中。
@@ -257,7 +182,7 @@ npx ts-node balances.ts
 您只需要一个文件即可在账户之间执行交易。本示例将从源地址（您持有其私钥）向另一个地址转账 1 个 DEV 代币。首先，可以通过运行以下命令创建 `transaction.ts` 文件：
 
 ```bash
-touch transaction.ts
+--8<-- 'code/builders/ethereum/libraries/viem/16.sh'
 ```
 
 接下来，创建该文件的脚本并完成以下步骤：
@@ -278,7 +203,7 @@ touch transaction.ts
 要运行该脚本，您可以在终端中运行以下命令：
 
 ```bash
-npx ts-node transaction.ts
+--8<-- 'code/builders/ethereum/libraries/viem/17.sh'
 ```
 
 如果交易成功，您会在终端中看到交易哈希被打印出来。
@@ -309,7 +234,7 @@ npx ts-node transaction.ts
 有了用于编译 `Incrementer.sol` 合约的脚本，您就可以使用结果发送已签名的交易来部署它。为此，您可以创建一个名为 `deploy.ts` 的部署脚本文件：
 
 ```bash
-touch deploy.ts
+--8<-- 'code/builders/ethereum/libraries/viem/18.sh'
 ```
 
 接下来，您将为此文件创建脚本并完成以下步骤：
@@ -330,7 +255,7 @@ touch deploy.ts
 要运行脚本，您可以在终端中输入以下命令：
 
 ```bash
-npx ts-node deploy.ts
+--8<-- 'code/builders/ethereum/libraries/viem/19.sh'
 ```
 
 如果成功，合约的地址将显示在终端中。
@@ -344,7 +269,7 @@ npx ts-node deploy.ts
 要开始，您可以创建一个文件并命名为 `get.ts`：
 
 ```bash
-touch get.ts
+--8<-- 'code/builders/ethereum/libraries/viem/20.sh'
 ```
 
 然后按照以下步骤创建脚本：
@@ -363,7 +288,7 @@ touch get.ts
 要运行脚本，您可以在终端中输入以下命令：
 
 ```bash
-npx ts-node get.ts
+--8<-- 'code/builders/ethereum/libraries/viem/21.sh'
 ```
 
 如果成功，该值将显示在终端中。
@@ -375,7 +300,7 @@ npx ts-node get.ts
 发送方法是修改合约存储（更改变量）的交互类型，这意味着需要签名并发送交易。在本节中，您将创建两个脚本：一个用于递增，一个用于重置递增器。要开始，您可以为每个脚本创建一个文件，并将它们命名为 `increment.ts` 和 `reset.ts`：
 
 ```bash
-touch increment.ts reset.ts
+--8<-- 'code/builders/ethereum/libraries/viem/22.sh'
 ```
 
 打开 `increment.ts` 文件，并按照以下步骤创建脚本：
@@ -396,7 +321,7 @@ touch increment.ts reset.ts
 要运行脚本，您可以在终端中输入以下命令：
 
 ```bash
-npx ts-node increment.ts
+--8<-- 'code/builders/ethereum/libraries/viem/23.sh'
 ```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.ts` 脚本与 `increment.ts` 脚本一起使用，以确保该值按预期更改。
@@ -421,7 +346,7 @@ npx ts-node increment.ts
 要运行脚本，您可以在终端中输入以下命令：
 
 ```bash
-npx ts-node reset.ts
+--8<-- 'code/builders/ethereum/libraries/viem/24.sh'
 ```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.ts` 脚本与 `reset.ts` 脚本一起使用，以确保该值按预期更改。

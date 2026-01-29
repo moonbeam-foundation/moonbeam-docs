@@ -160,13 +160,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 状态覆盖文件应定义您要覆盖的相应托盘、存储项和值，如下所示：
 
 ```json
-[
- {
-     "pallet": "System",
-     "storage": "SelectedCandidates",
-     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
- }
-]
+--8<-- 'code/builders/get-started/endpoints/1.json'
 ```
 
 #### 覆盖账户的可用余额
@@ -174,14 +168,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 要覆盖特定账户的余额，您可以按照以下方式覆盖相应账户的系统 pallet 的账户存储项：
 
 ```json
-[
-  {
-    "pallet": "System",
-    "storage": "Account",
-    "key": "TARGET_ADDRESS",
-    "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
-  }
-]
+--8<-- 'code/builders/get-started/endpoints/2.json'
 ```
 
 ??? note "关于覆盖账户余额的详细信息"
@@ -206,13 +193,13 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
     虽然这可以作为参考，但您要查找的信息是编码的存储键，即使不提交链状态查询也可以访问该键。在本例中，对应于系统 pallet 和所选账户 `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` 的编码存储键为：
 
     ```text
-    0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9b882fedb4f75b055c709ec5b66b5d9933b939fead1557c741ff06492fd0127bd287a421e
+    --8<-- 'code/builders/get-started/endpoints/3.txt'
     ```
 
     请注意，此编码存储键将随着任何输入更改而更改，例如查询不同的账户。然后，转到 [Polkadot.js 应用程序](https://polkadot.js.org/apps/#/chainstate/raw){target=\_blank} 上的 **Raw Storage** 选项卡。输入上述存储键并提交查询。响应是 SCALE 编码的账户结构，其中的一部分包含可用余额信息，将在本示例中修改：
 
     ```text
-    0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
+    --8<-- 'code/builders/get-started/endpoints/4.txt'
     ```
 
     值字段中编码了相当多的数据，因为它是一个由多个值组成的复杂结构。该结构包括：
@@ -235,22 +222,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
     您可以将 SCALE 编码结构的每个部分与它所代表的 Alice 账户信息的相应部分相关联：
 
     ```text
-    0x460c0000        // nonce (u32): 3,142 
-    02000000          // consumers (u32): 2
-    01000000          // providers (u32): 1  
-    06000000          // sufficients (u32): 6
-
-    a4d92a6a4e6b3a5045000000000000000
-    // free (u128): 1,278,606,392,142,175,328,676
-
-    40a556b0e032de1200000000000000000
-    // reserved (u128): 348,052,500,000,000,000,000  
-
-    4083a09e15c74c1b01000000000000000
-    // frozen (u128): 20,413,910,106,633,175,872
-
-    00000000000000000000000000000080
-    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    --8<-- 'code/builders/get-started/endpoints/5.txt'
     ```
 
     请记住，这些值是小端编码的。要将十六进制小端编码值转换为十进制，您可以使用 [Substrate Utilities 转换器](https://www.shawntabrizi.com/substrate-js-utilities/){target=\_blank}，使用 **Balance to Hex (Little Endian)** 转换器。
@@ -258,47 +230,25 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
     在本示例中，现有的可用余额 `1,278,606,392,142,175,328,676` Wei 或大约 `1278.60` DEV 是 `a4d92a6a4e6b3a5045`。以下示例会将值更改为 `500,000` DEV，即 `500,000,000,000,000,000,000,000` Wei 或 `0x000080d07666e70de169` 编码为十六进制小端值。正确填充以适合 SCALE 编码的存储值时，它变为 `69e10de76676d08000000000000000000`，因此该表现在如下所示：
 
     ```text
-    0x460c0000        // nonce (u32): 3,142 
-    02000000          // consumers (u32): 2
-    01000000          // providers (u32): 1  
-    06000000          // sufficients (u32): 6
-
-    69e10de76676d08000000000000000000
-    // free (u128): 500,000,000,000,000,000,000,000
-
-    40a556b0e032de1200000000000000000
-    // reserved (u128): 348,052,500,000,000,000,000  
-
-    4083a09e15c74c1b01000000000000000
-    // frozen (u128): 20,413,910,106,633,175,872
-
-    00000000000000000000000000000080
-    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    --8<-- 'code/builders/get-started/endpoints/6.txt'
     ```
 
     因此，SCALE 编码的覆盖值如下：
 
     ```text
-    0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080
+    --8<-- 'code/builders/get-started/endpoints/7.txt'
     ```
 
     您现在可以在 `state-overrides.json` 文件中指定 SCALE 编码的覆盖值，如下所示：
 
     ```json
-    [
-      {
-        "pallet": "System",
-        "storage": "Account",
-        "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
-      }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/8.json'
     ```
 
     要使用余额状态覆盖运行延迟加载，您可以使用以下命令：
 
     ```bash
-    --lazy-loading-remote-rpc 'INSERT_RPC_URL' --lazy-loading-state-overrides ./state-overrides.json
+    --8<-- 'code/builders/get-started/endpoints/9.sh'
     ```
 
 #### 覆盖 ERC-20 代币余额
@@ -308,17 +258,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 在下面的示例中，我们将帐户 `0x3b939fead1557c741ff06492fd0127bd287a421e` 的 [Wormhole USDC 合约 (`0x931715FEE2d06333043d11F658C8CE934aC61D0c`)](https://moonscan.io/address/0x931715FEE2d06333043d11F658C8CE934aC61D0c){target=\_blank} 的代币余额覆盖为 5,000 美元 USDC。由于 Wormhole USDC 使用 6 位小数，因此 5,000 美元对应于整数形式的 `5000000000`，即十六进制的 `0x12a05f200`。
 
 ```json
-[
-    {
-        "pallet": "EVM",
-        "storage": "AccountStorages",
-        "key": [
-            "0x931715FEE2d06333043d11F658C8CE934aC61D0c",
-            "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
-        ],
-        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-    }
-]
+--8<-- 'code/builders/get-started/endpoints/10.json'
 ```
 
 您可以使用以下脚本计算要覆盖的帐户的精确存储槽：
@@ -352,33 +292,13 @@ console.log(getBalanceSlot(address));
 ??? code "示例：覆盖 Wormhole BTC 代币余额"
 
     ```json
-    [
-        {
-            "pallet": "EVM",
-            "storage": "AccountStorages",
-            "key": [
-                "0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D",
-                "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
-            ],
-            "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-        }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/12.json'
     ```
 
 ??? code "示例：覆盖 Wormhole ETH 代币余额"
 
     ```json
-    [
-        {
-            "pallet": "EVM",
-            "storage": "AccountStorages",
-            "key": [
-                "0xab3f0245B83feB11d15AAffeFD7AD465a59817eD",
-                "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
-            ],
-            "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-        }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/13.json'
     ```
 
 ??? code "示例：覆盖 WELL 代币余额"
@@ -411,17 +331,7 @@ console.log(getBalanceSlot(address));
     因此，存储覆盖将是：
 
     ```json
-    [
-        {
-            "pallet": "EVM",
-            "storage": "AccountStorages",
-            "key": [
-                "0x511aB53F793683763E5a8829738301368a2411E3",
-                "0x728d3daf4878939a6bb58cbc263f39655bb57ea15db7daa0b306f3bf2c3f1227"
-            ],
-            "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-        }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/15.json'
     ```
 
 ## Tracing RPC 端点供应商 {: #tracing-providers }

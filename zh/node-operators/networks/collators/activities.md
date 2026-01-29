@@ -60,9 +60,7 @@ categories: 节点运营者和排序人
 首先，您需要获取 `candidatePool` 的大小（这可以通过治理来更改），因为您需要在稍后的交易中提交此参数。为此，您必须从 [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank} 中运行以下 JavaScript 代码片段：
 
 ```js
-// Simple script to get candidate pool size
-const candidatePool = await api.query.parachainStaking.candidatePool();
-console.log(`Candidate pool size is: ${candidatePool.length}`);
+--8<-- 'code/node-operators/networks/collators/activities/1.js'
 ```
 
 前往 **Developer** 选项卡，从下拉列表中选择 **JavaScript**，然后执行以下步骤：

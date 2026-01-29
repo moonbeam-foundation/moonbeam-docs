@@ -19,9 +19,7 @@ categories: XCM, Integrations
 本指南中的所有示例都使用一个用于简化整个流程的 CLI 工具，您可以在 [xcm-tools GitHub 仓库](https://github.com/Moonsong-Labs/xcm-tools){target=\\_blank} 中找到。
 
 ```bash
-git clone https://github.com/Moonsong-Labs/xcm-tools && \
-cd xcm-tools && \
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/1.sh'
 ```
 
 ## Moonbase Alpha XCM 集成概述 {: #moonbase-alpha-xcm }
@@ -72,7 +70,7 @@ Moonriver/Moonbeam XCM 集成的第一步是通过 Alphanet 中继链与 Moonbas
 例如，可以使用以下方法获取 Moonbase Alpha 的中继链和其他平行链的主权账户：
 
 ```bash
-yarn calculate-sovereign-account --p 1000 --r moonbase
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/2.sh'
 ```
 
 这应该会产生以下响应：
@@ -143,9 +141,7 @@ Sovereign Account Address on Moonbase Alpha: 0x7369626ce803000000000000000000000
 您可能会使用 Polkadot.js Apps 为 HRMP 操作生成 calldata，但 [xcm-tools GitHub 存储库](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} 可以为您构建它，并且是此过程的推荐工具。
 
 ```bash
-git clone https://github.com/Moonsong-Labs/xcm-tools && \
-cd xcm-tools && \
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/1.sh'
 ```
 
 xcm-tools 存储库有一个用于 HRMP 交互的特定脚本，称为 [`hrmp-channel-manipulator.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=\_blank}。此命令为特定的 HRMP 操作生成编码的 calldata，前提是它具有正确的详细信息。该脚本使用 DepositAsset XCM 指令构建 XCM 消息，但不使用 RefundSurplus。
@@ -169,28 +165,19 @@ xcm-tools 存储库有一个用于 HRMP 交互的特定脚本，称为 [`hrmp-ch
 === "Moonbeam"
 
     ```bash
-yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbeam.network  \
-    --relay-ws-provider wss://rpc.polkadot.io \
-    --hrmp-action accept
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/4.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonriver.moonbeam.network  \
-    --relay-ws-provider wss://kusama-rpc.polkadot.io \
-    --hrmp-action accept
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/5.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbase.moonbeam.network  \
-    --relay-ws-provider wss://relay.api.moonbase.moonbeam.network \
-    --hrmp-action accept
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/6.sh'
     ```
 
 !!! note
@@ -219,31 +206,19 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 === "Moonbeam"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbeam.network  \
-    --relay-ws-provider wss://rpc.polkadot.io \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonriver.moonbeam.network  \
-    --relay-ws-provider wss://kusama-rpc.polkadot.io \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/8.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbase.moonbeam.network  \
-    --relay-ws-provider wss://relay.api.moonbase.moonbeam.network \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/9.sh'
     ```
 
 !!! note
@@ -280,28 +255,19 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 === "Moonbeam"
 
     ```bash
-yarn generic-call-propose -w wss://wss.api.moonbeam.network \
-    --call "OPEN_CHANNEL_CALL" \
-    --call "ACCEPT_INCOMING_CALL" \
-    --call "REGISTER_ASSET_CALL" \
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/10.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-yarn generic-call-propose -w wss://wss.api.moonriver.moonbeam.network \
-    --call "OPEN_CHANNEL_CALL" \
-    --call "ACCEPT_INCOMING_CALL" \
-    --call "REGISTER_ASSET_CALL" \
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/11.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-yarn generic-call-propose -w wss://wss.api.moonbase.moonbeam.network  \
-    --call "OPEN_CHANNEL_CALL" \
-    --call "ACCEPT_INCOMING_CALL" \
-    --call "REGISTER_ASSET_CALL" \
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/12.sh'
     ```
 
 !!! note
@@ -312,10 +278,7 @@ yarn generic-call-propose -w wss://wss.api.moonbase.moonbeam.network  \
 如果您想直接从 CLI 发送治理提案，您需要使用以下附加标志：
 
 ```bash
---account-priv-key YOUR_PRIVATE_KEY \
---send-preimage-hash true \
---send-proposal-as v2 \
---track '{ "Origins": "GeneralAdmin" }'
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/13.sh'
 ```
 
 对于 Moonbase Alpha，您无需提供私钥或通过治理。相反，您可以使用 `--sudo` 标志，并将输出提供给 Moonbeam 团队，以便可以通过 sudo 快速添加资产和通道。

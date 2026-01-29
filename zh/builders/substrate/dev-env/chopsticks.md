@@ -17,13 +17,13 @@ categories: Substrate 工具包，开发环境
 要使用 Chopsticks，您可以将其作为软件包通过 [Node package manager](https://nodejs.org/en){target=\_blank} 或 [Yarn](https://yarnpkg.com){target=\_blank} 安装：
 
 ```bash
-npm i @acala-network/chopsticks@latest
+--8<-- 'code/builders/substrate/dev-env/chopsticks/1.sh'
 ```
 
 安装完成后，您可以使用 Node package executor 运行命令。例如，以下命令运行 Chopsticks 的基本命令：
 
 ```bash
-npx @acala-network/chopsticks@latest
+--8<-- 'code/builders/substrate/dev-env/chopsticks/2.sh'
 ```
 
 要运行 Chopsticks，您需要某种配置，通常是通过文件。Chopsticks 的源代码仓库包含一组 [YAML](https://yaml.org){target=\_blank} 配置文件，可用于创建各种 Substrate 链的本地副本。 您可以从[源代码仓库的 `configs` 文件夹](https://github.com/AcalaNetwork/chopsticks){target=\_blank}下载配置文件。
@@ -33,81 +33,19 @@ Moonbeam、Moonriver 和 Moonbase Alpha 都有可用的默认文件：
 === "Moonbeam"
 
     ```yaml
-    endpoint: wss://wss.api.moonbeam.network
-    mock-signature-host: true
-    db: ./db.sqlite
-
-    import-storage:
-      System:
-        Account:
-          -
-            -
-              - "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-            - data:
-                free: "100000000000000000000000"
-      TechCommitteeCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      CouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      TreasuryCouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      AuthorFilter:
-        EligibleRatio: 100
-        EligibleCount: 100
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/3.yml'
     ```
 
 === "Moonriver"
 
     ```yaml
-    endpoint: wss://wss.moonriver.moonbeam.network
-    mock-signature-host: true
-    db: ./db.sqlite
-
-    import-storage:
-      System:
-        Account:
-          -
-            -
-              - "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-            - data:
-                free: "100000000000000000000000"
-      TechCommitteeCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      CouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      TreasuryCouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      AuthorFilter:
-        EligibleRatio: 100
-        EligibleCount: 100
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/4.yml'
     ```
 
 === "Moonbase Alpha"
 
     ```yaml
-    endpoint: wss://wss.api.moonbase.moonbeam.network
-    mock-signature-host: true
-    db: ./db.sqlite
-
-    import-storage:
-      System:
-        Account:
-          -
-            -
-              - "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-            - data:
-                free: "100000000000000000000000"
-      TechCommitteeCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      CouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      TreasuryCouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      Sudo:
-        Key: "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-      AuthorFilter:
-        EligibleRatio: 100
-        EligibleCount: 100
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/5.yml'
     ```
 
 以下是可以包含在配置文件中的设置：
@@ -135,20 +73,19 @@ Moonbeam、Moonriver 和 Moonbase Alpha 都有可用的默认文件：
 === "Chain Name"
 
     ```bash
-    npx @acala-network/chopsticks@latest --config=moonbeam
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/6.sh'
     ```
 
 === "GitHub URL"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/7.sh'
     ```
 
 === "Local File Path"
 
     ```bash
-    npx @acala-network/chopsticks@latest --config=configs/moonbeam.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/8.sh'
     ```
 
 !!! note
@@ -158,7 +95,7 @@ Moonbeam、Moonriver 和 Moonbase Alpha 都有可用的默认文件：
 但是，配置文件不是必需的。所有设置（除了 `genesis` 和 `timestamp`）也可以作为标志传递，以在命令行中完全配置环境。例如，以下命令在区块 100 处分叉 Moonbase Alpha。
 
 ```bash
-npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.wss_url }} --block 100
+--8<-- 'code/builders/substrate/dev-env/chopsticks/9.sh'
 ```
 
 ### 快速入门 {: #quickstart }
@@ -168,22 +105,19 @@ npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.wss_url }} 
 === "Moonbeam"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/11.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/12.sh'
     ```
 
 ### 与分叉交互 {: #interacting-with-a-fork }
@@ -241,24 +175,13 @@ npx @acala-network/chopsticks@latest run-block \
 要测试不同网络之间的 XCM 消息，你可以在本地 fork 多条平行链和一条中继链。例如，在你已下载源 GitHub 仓库中的 [`configs` 目录](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=\_blank} 的前提下，以下命令会 fork Moonriver、Karura 和 Kusama：
 
 ```bash
-npx @acala-network/chopsticks@latest xcm \
---r=kusama.yml \
---p=moonriver.yml \
---p=karura.yml
+--8<-- 'code/builders/substrate/dev-env/chopsticks/14.sh'
 ```
 
 你应该会看到类似下面的输出：
 
 ```text
-[13:50:57.807] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
-[13:50:59.655] INFO (rpc/64805): Moonriver RPC listening on port 8000
-[13:50:59.656] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/karura.yml
-[13:51:03.275] INFO (rpc/64805): Karura RPC listening on port 8001
-[13:51:03.586] INFO (xcm/64805): Connected parachains [2000,2023]
-[13:51:03.586] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/kusama.yml
-[13:51:07.241] INFO (rpc/64805): Kusama RPC listening on port 8002
-[13:51:07.700] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Moonriver'
-[13:51:08.386] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Karura'
+--8<-- 'code/builders/substrate/dev-env/chopsticks/15.txt'
 ```
 
 是否包含 `r`（指定中继链）是可选的，因为 Chopsticks 会在网络之间自动模拟一条中继链。你也可以使用原始 GitHub URL 或某个常用分支名称，方式与基础命令类似。
@@ -293,12 +216,7 @@ Chopsticks的内部websocket服务器具有特殊的端点，允许操作本地S
 每个方法都可以通过连接到websocket（默认为 `ws://localhost:8000`）并以下列格式发送数据和参数来调用。将 `METHOD_NAME` 替换为方法的名称，并将 `PARAMETER_1` 和 `PARAMETER_2` 替换为与该方法相关的参数数据，或将其删除：
 
 ```json
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "METHOD_NAME",
-    "params": ["PARAMETER_1", "PARAMETER_2", "..."]
-}
+--8<-- 'code/builders/substrate/dev-env/chopsticks/16.json'
 ```
 
 --8<-- 'zh/text/_disclaimers/third-party-content.md'

@@ -29,13 +29,13 @@ categories: Substrate Toolkit, Libraries and SDKs
 === "npm"
 
     ```bash
-    npm i @polkadot/api
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/1.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn add @polkadot/api
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/2.sh'
     ```
 
 该库还包括其他核心组件，如用于帐户管理的 Keyring，或本指南中使用的某些实用程序。
@@ -49,77 +49,25 @@ categories: Substrate Toolkit, Libraries and SDKs
 === "Moonbeam"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.moonbeam.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/3.js'
     ```
 
 === "Moonriver"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.moonriver.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/4.js'
     ```
 
 === "Moonbase Alpha"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.moonbase.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/5.js'
     ```
 
 === "Moonbeam Dev Node"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.development.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/6.js'
     ```
 
 
@@ -151,24 +99,13 @@ api.<类型>.<模块>.<部分>
 这类查询检索与链的当前状态相关的信息。这些端点通常采用 `api.query.<module>.<method>` 的形式，其中模块和方法装饰通过元数据生成。您可以通过检查 `api.query` 对象来查看所有可用端点的列表，例如通过：
 
 ```javascript
-console.log(api.query);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/7.js'
 ```
 
 假设您已[初始化 API](#creating-an-API-provider-instance)，这是一个检索给定地址的基本帐户信息的代码示例：
 
 ```javascript
-// Define wallet address
-const addr = 'INSERT_ADDRESS';
-
-// Retrieve the last timestamp
-const now = await api.query.timestamp.now();
-
-// Retrieve the account balance & current nonce via the system module
-const { nonce, data: balance } = await api.query.system.account(addr);
-
-console.log(
-  `${now}: balance of ${balance.free} and a current nonce of ${nonce}`
-);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/8.js'
 ```
 
 ??? code "View the complete script"
@@ -182,22 +119,13 @@ console.log(
 RPC 调用为节点之间的数据传输提供了主干。这意味着所有 API 端点（如 `api.query`、`api.tx` 或 `api.derive`）都只是对 RPC 调用的包装，以节点期望的编码格式提供信息。您可以通过检查 `api.rpc` 对象来查看所有可用端点的列表，例如通过：
 
 ```javascript
-console.log(api.rpc);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/9.js'
 ```
 
 `api.rpc` 接口遵循与 `api.query` 类似的格式，例如：
 
 ```javascript
-// Retrieve the chain name
-const chain = await api.rpc.system.chain();
-
-// Retrieve the latest header
-const lastHeader = await api.rpc.chain.getHeader();
-
-// Log the information
-console.log(
-  `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
-);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/10.js'
 ```
 
 ??? code "查看完整脚本"
@@ -211,16 +139,7 @@ console.log(
 `rpc` API 也为订阅提供了端点。您可以调整前面的示例，开始使用订阅来侦听新区块。请注意，使用订阅时需要删除 API 断开连接，以避免 WSS 连接的正常关闭。
 
 ```javascript
-// Retrieve the chain name
-const chain = await api.rpc.system.chain();
-
-// Subscribe to the new headers
-await api.rpc.chain.subscribeNewHeads((lastHeader) => {
-  console.log(
-    `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
-  );
-});
-// Remove await api.disconnect()!
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/11.js'
 ```
 
 `api.rpc.subscribe*` 函数的通用模式是将回调传递到订阅函数中，这将会在每次导入新条目时触发。
@@ -228,17 +147,7 @@ await api.rpc.chain.subscribeNewHeads((lastHeader) => {
 `api.query.*` 下的其他调用可以以类似的方式进行修改以使用订阅，包括具有参数的调用。以下是如何订阅帐户中的余额更改的示例：
 
 ```javascript
-// Define wallet address
-const addr = 'INSERT_ADDRESS';
-
-// Subscribe to balance changes for a specified account
-await api.query.system.account(addr, ({ nonce, data: balance }) => {
-  console.log(
-    `Free balance is ${balance.free} with ${balance.reserved} reserved and a nonce of ${nonce}`
-  );
-});
-
-// Remove await api.disconnect()!
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/12.js'
 ```
 
 ??? code "查看完整脚本"
@@ -256,11 +165,7 @@ await api.query.system.account(addr, ({ nonce, data: balance }) => {
 您可以通过仅创建 Keyring 类的实例，并指定所使用的默认钱包地址类型来创建实例。对于 Moonbeam 网络，默认钱包类型应为 `ethereum`。
 
 ```javascript
-// Import the keyring as required
-import Keyring from '@polkadot/keyring';
-
-// Create a keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/13.js'
 ```
 
 ### 向密钥环添加帐户 {: #adding-accounts }
@@ -286,18 +191,7 @@ Dry Run API 是一种简便的方法，用于测试调用的完整性，而不�
 此方法将 origin 和调用数据作为参数，并返回执行结果和其他事件数据。
 
 ```javascript
-const testAccount = api.createType(
-  'AccountId20',
-  '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
-);
-const callData =
-  '0x030088bce0b038effa09e58fe6d24fde4b5af21aa79813000064a7b3b6e00d';
-const callDataU8a = hexToU8a(callData);
-
-const result = await api.call.dryRunApi.dryRunCall(
-  { system: { Signed: testAccount } },
-  callDataU8a
-);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/14.js'
 ```
 
 ??? code "查看完整脚本"
@@ -321,7 +215,7 @@ const result = await api.call.dryRunApi.dryRunCall(
 交易端点通常以 `api.tx.<module>.<method>` 的形式暴露，其中模块（module）和方法（method）的装饰信息由元数据生成。通过这些端点，你可以提交交易以被打包进区块，例如转账、与各类 pallet 交互，或任何 Moonbeam 支持的操作。你可以通过查看 `api.tx` 对象来获取所有可用端点的列表，例如：
 
 ```javascript
-console.log(api.tx);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/15.js'
 ```
 
 ### 发送交易 {: #sending-basic-transactions }
@@ -329,23 +223,7 @@ console.log(api.tx);
 Polkadot.js API 库可用于向网络发送交易。例如，假设你已经[初始化了 API](#creating-an-API-provider-instance) 并创建了 [keyring 实例](#creating-a-keyring-instance)，你可以使用以下代码片段来发送一笔基础交易（该示例在提交后还会获取交易的已编码 calldata，以及交易哈希）：
 
 ```javascript
-// Initialize wallet key pairs
-const alice = keyring.addFromUri('INSERT_ALICES_PRIVATE_KEY');
-const bob = 'INSERT_BOBS_ADDRESS';
-
-// Form the transaction
-const tx = await api.tx.balances.transferAllowDeath(bob, 12345n);
-
-// Retrieve the encoded calldata of the transaction
-const encodedCalldata = tx.method.toHex();
-console.log(`Encoded calldata: ${encodedCallData}`);
-
-// Sign and send the transaction
-const txHash = await tx
-  .signAndSend(alice);
-
-// Show the transaction hash
-console.log(`Submitted with hash ${txHash}`);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/16.js'
 ```
 
 ??? code "查看完整脚本"
@@ -368,14 +246,7 @@ console.log(`Submitted with hash ${txHash}`);
 例如，假设你已经[初始化了 API](#creating-an-API-provider-instance)，下面的代码片段展示了如何获取两个账户之间一次简单余额转账的 weight 信息：
 
 ```javascript
-// Transaction to get weight information
-const tx = api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345));
-
-// Get weight info
-const { partialFee, weight } = await tx.paymentInfo('INSERT_SENDERS_ADDRESS');
-
-console.log(`Transaction weight: ${weight}`);
-console.log(`Transaction fee: ${partialFee.toHuman()}`);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/17.js'
 ```
 ??? code "查看完整脚本"
 
@@ -398,28 +269,7 @@ Polkadot.js API 允许通过 `api.tx.utility.batch` 方法批量处理交易。�
 例如，假设您已[初始化 API](#creating-an-API-provider-instance)、一个 [密钥环实例](#creating-a-keyring-instance) 并[添加了一个帐户](#adding-accounts)，以下示例进行了几个转账，并且还使用了 `api.tx.parachainStaking` 模块来安排一个请求，以减少特定 collator 候选者的绑定：
 
 ```javascript
-// Construct a list of transactions to batch
-const collator = 'INSERT_COLLATORS_ADDRESS';
-const txs = [
-  api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345)),
-  api.tx.balances.transferAllowDeath('INSERT_CHARLEYS_ADDRESS', BigInt(12345)),
-  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, BigInt(12345)),
-];
-
-// Estimate the fees as RuntimeDispatchInfo, using the signer (either
-// address or locked/unlocked keypair)
-const info = await api.tx.utility.batch(txs).paymentInfo(alice);
-
-console.log(`Estimated fees: ${info}`);
-
-// Construct the batch and send the transactions
-api.tx.utility.batch(txs).signAndSend(alice, ({ status }) => {
-  if (status.isInBlock) {
-    console.log(`included in ${status.asInBlock}`);
-
-    // Disconnect API here!
-  }
-});
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/18.js'
 ```
 
 ??? code "查看完整脚本"
@@ -443,14 +293,7 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
     - **返回值** - 节点公开的 RPC 方法列表
 
     ```bash
-      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
-      --header 'Content-Type: application/json' \
-      --data-raw '{
-        "jsonrpc":"2.0",
-        "id":1,
-        "method":"rpc_methods",
-        "params": []
-      }'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/19.sh'
     ```
 
 - **[`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=\_blank}**
@@ -459,14 +302,7 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
     - **返回值** - 由块哈希参数指定的块的头部和主体
 
     ```bash
-      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
-      --header 'Content-Type: application/json' \
-      --data-raw '{
-        "jsonrpc":"2.0",
-        "id":1,
-        "method":"chain_getBlock",
-        "params": ["0x870ad0935a27ed8684048860ffb341d469e091abc2518ea109b4d26b8c88dd96"]
-      }'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/20.sh'
     ```
 
 - **[`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=\_blank}**
@@ -475,14 +311,7 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
     - **返回值** 规范链中最后一个最终确定块的块哈希值
 
     ```bash
-      curl --location --request POST '{{ networks.moonbase.rpc_url }}' \
-      --header 'Content-Type: application/json' \
-      --data-raw '{
-        "jsonrpc":"2.0",
-        "id":1,
-        "method":"chain_getHeader",
-        "params": []
-      }'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/21.sh'
     ```
 
 [共识和最终性页面](/learn/core-concepts/consensus-finality/){target=\_blank} 包含用于使用公开的自定义和 Substrate RPC 调用来检查给定交易的最终性的示例代码。
@@ -494,33 +323,7 @@ Polkadot.js API 还包括许多实用程序库，用于计算常用的加密原�
 以下示例通过首先计算其 RLP（[递归长度前缀](https://ethereum.org/developers/docs/data-structures-and-encoding/rlp/){target=\_blank}）编码，然后使用 keccak256 对结果进行哈希，来计算原始以太坊旧版交易的确定性交易哈希。
 
 ```javascript
-import { encode } from '@polkadot/util-rlp';
-import { keccakAsHex } from '@polkadot/util-crypto';
-import { numberToHex } from '@polkadot/util';
-
-// Define the raw signed transaction
-const txData = {
-  nonce: numberToHex(1),
-  gasPrice: numberToHex(21000000000),
-  gasLimit: numberToHex(21000),
-  to: '0xc390cC49a32736a58733Cf46bE42f734dD4f53cb',
-  value: numberToHex(1000000000000000000),
-  data: '',
-  v: '0507',
-  r: '0x5ab2f48bdc6752191440ce62088b9e42f20215ee4305403579aa2e1eba615ce8',
-  s: '0x3b172e53874422756d48b449438407e5478c985680d4aaa39d762fe0d1a11683',
-};
-
-// Extract the values to an array
-var txDataArray = Object.keys(txData).map(function (key) {
-  return txData[key];
-});
-
-// Calculate the RLP encoded transaction
-var encoded_tx = encode(txDataArray);
-
-// Hash the encoded transaction using keccak256
-console.log(keccakAsHex(encoded_tx));
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/22.js'
 ```
 
 您可以查看相应的 [NPM 存储库页面](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=\_blank}，以获取 `@polkadot/util-crypto` 库中可用方法及其描述的列表。

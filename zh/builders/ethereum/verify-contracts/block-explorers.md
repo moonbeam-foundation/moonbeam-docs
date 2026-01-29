@@ -34,7 +34,7 @@ categories: Ethereum Toolkit
 2. 记下在 Solidity 源文件开头使用的任何 SPDX 许可证标识符（此示例使用 MIT 许可证）：
 
     ```solidity
-    // SPDX-License-Identifier: MIT
+    --8<-- 'code/builders/ethereum/verify-contracts/block-explorers/1.sol'
     ```
 
 3. （可选）如果在编译期间启用了优化，请记下优化运行参数的值

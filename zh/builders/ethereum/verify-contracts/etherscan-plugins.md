@@ -51,7 +51,7 @@ Hardhat 插件可以无缝集成到您的 [Hardhat](https://hardhat.org){target=
 要开始使用 Hardhat Etherscan 插件，您首先需要安装插件库：
 
 ```bash
-npm install --save-dev @nomicfoundation/hardhat-verify
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/1.sh'
 ```
 
 您可以将您的 Etherscan API 密钥添加到 `hardhat.config.js` 文件中。
@@ -59,28 +59,13 @@ npm install --save-dev @nomicfoundation/hardhat-verify
 在您的 Hardhat 项目中，打开您的 `hardhat.config.js` 文件。您需要导入 `hardhat-verify` 插件、您的 Etherscan API 密钥，并添加 Etherscan 的配置：
 
 ```js
-require('@nomicfoundation/hardhat-verify');
-
-module.exports = {
-  networks: {
-    moonbeam: { ... },
-    moonriver: { ... },
-    moonbaseAlpha: { ... }
-  },
-  etherscan: {
-    apiKey: {
-      moonbeam: 'INSERT_ETHERSCAN_API_KEY',
-      moonriver: 'INSERT_ETHERSCAN_API_KEY',
-      moonbaseAlpha: 'INSERT_ETHERSCAN_API_KEY', 
-    },
-  },
-};
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/2.js'
 ```
 
 要验证合约，您将运行 `verify` 命令，并传入已部署合约的地址以及部署的网络：
 
 ```bash
-npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/3.sh'
 ```
 
 在您的终端中，您应该看到您的合约的源代码已成功提交以进行验证。如果验证成功，您应该看到 **Successfully verified contract**，并且在 [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io){target=\_blank} 上会有一个指向合约代码的链接。
@@ -90,7 +75,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
 如果您要验证的合约具有构造函数参数，您需要运行上述命令，并在命令末尾添加用于部署合约的构造函数参数。例如：
 
 ```bash
-npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS INSERT_CONSTRUCTOR_ARGS
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/4.sh'
 ```
 
 请参阅 [Hardhat Verify 文档](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify){target=\_blank} 以获取有关其他用例的帮助，例如：
@@ -110,7 +95,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS INSERT_CONSTRUCTOR
 如果您已经部署了示例合约，您可以使用 `verify-contract` 命令来验证它。在验证合约之前，您需要对构造函数参数进行 ABI 编码。要对示例合约执行此操作，您可以运行以下命令：
 
 ```bash
-cast abi-encode "constructor(uint256)" 100
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/5.sh'
 ```
 
 结果应为 `0x0000000000000000000000000000000000000000000000000000000000000064`。然后，您可以使用以下命令验证合约：

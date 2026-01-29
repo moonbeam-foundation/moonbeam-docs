@@ -52,15 +52,7 @@ categories: Tokens and Accounts
 您可以前往 [Remix](https://remix.ethereum.org){target=\_blank} 并为以下 `SetText.sol` 合约创建一个新文件：
 
 ```solidity
-pragma solidity ^0.8.30;
-
-contract SetText {
-    string public text;
-    
-    function setTextData(string calldata _text) public {
-        text = _text;
-    }
-}
+--8<-- 'code/tokens/manage/multisig-safe/1.sol'
 ```
 
 这是一个简单的合约，只有一个函数 `setTextData`，它接受一个字符串并用它来设置 `text` 变量。

@@ -79,41 +79,13 @@ Moonbeam 的 GMP 协议需要一个多位置来表示流动性路由的目的地
 === "AccountId32"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { Parachain: 'INSERT_PARACHAIN_ID' },
-            {
-              AccountId32: {
-                id: 'INSERT_ADDRESS',
-              },
-            },
-          ],
-        },
-      },
-    };
+    --8<-- 'code/builders/ethereum/precompiles/interoperability/gmp/1.js'
     ```
 
 === "AccountKey20"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { Parachain: 'INSERT_PARACHAIN_ID' },
-            {
-              AccountKey20: {
-                key: 'INSERT_ADDRESS',
-              },
-            },
-          ],
-        },
-      }
-    };
+    --8<-- 'code/builders/ethereum/precompiles/interoperability/gmp/2.js'
     ```
 
 如果没有合适的工具，正确地 SCALE 编码整个有效负载可能具有挑战性，这主要是由于 [预编译所需的自定义类型](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=\_blank}。幸运的是，Polkadot.js API 可以帮助解决这个问题。

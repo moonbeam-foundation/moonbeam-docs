@@ -42,7 +42,7 @@ categories: Tutorials
 在项目的根目录中创建一个包含以下内容的 `.env` 文件：
 
 ```bash
---8<-- 'zh/code/tutorials/integrations/0xgasless/5.sh'
+--8<-- '/code/tutorials/integrations/0xgasless/5.sh'
 ```
 
 为什么要在 `.env` 中指定私钥？虽然此交易是无 Gas 的，但您仍然需要一个私钥来签署交易。与此私钥关联的帐户：
@@ -58,13 +58,13 @@ categories: Tutorials
 另外，请确保您已安装 0xGasless SDK 以及支持的 `ethers` 和 `dotenv` 包：
 
 ```bash
---8<-- 'zh/code/tutorials/integrations/0xgasless/4.sh'
+--8<-- '/code/tutorials/integrations/0xgasless/4.sh'
 ```
 
 首先，我们将按如下方式导入所需的包：
 
 ```js
---8<-- 'zh/code/tutorials/integrations/0xgasless/3.js'
+--8<-- '/code/tutorials/integrations/0xgasless/3.js'
 ```
 
 接下来，我们将设置关键常量。我们必须定义 `CHAIN_ID`、`BUNDLER_URL` 和 `PAYMASTER_URL`。您可以从 [0xGasless 仪表板](https://dashboard.0xgasless.com/paymaster){target=\_blank}上的支付方获取唯一的支付方 URL。
@@ -72,7 +72,7 @@ categories: Tutorials
 我们在此处定义的合约地址是 Moonbeam 上的 [Incrementer 合约](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213) 的地址，我们将调用函数选择器指定的 increment 函数。这个简单的合约将使我们能够轻松地看到无 Gas 交易是否已成功分派。
 
 ```js
---8<-- 'zh/code/tutorials/integrations/0xgasless/2.js'
+--8<-- '/code/tutorials/integrations/0xgasless/2.js'
 ```
 
 !!! warning
@@ -101,7 +101,7 @@ categories: Tutorials
 该函数会返回一个包含哈希的 UserOperation 响应。您可以使用 `waitForUserOpReceipt()` 辅助函数等待交易回执，该函数会以可配置的超时（默认为 60 秒）轮询交易完成情况。
 
 ```javascript
---8<-- 'zh/code/tutorials/integrations/0xgasless/1.js'
+--8<-- '/code/tutorials/integrations/0xgasless/1.js'
 ```
 
 将这些内容整合在一起，并添加更多日志与错误处理以便调试，完整脚本如下：

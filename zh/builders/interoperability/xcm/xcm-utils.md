@@ -55,32 +55,7 @@ XCM 实用程序预编译允许用户从 Ethereum JSON-RPC 读取数据，而无
 对于 `multilocationToAddress`，一个用例是通过将其他平行链的计算来源地址列入白名单来允许源自其他平行链的交易。用户可以通过计算和存储地址来将多位置列入白名单。EVM 交易可以通过[远程 EVM 调用](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank}源自其他平行链。
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.3;
-
-import "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol";
-
-contract MultilocationWhitelistExample {
-    XcmUtils xcmutils = XcmUtils(0x000000000000000000000000000000000000080C);
-    mapping(address => bool) public whitelistedAddresses;
-
-    modifier onlyWhitelisted(address addr) {
-        _;
-        require(whitelistedAddresses[addr], "Address not whitelisted!");
-        _;
-    }
-
-    function addWhitelistedMultilocation(
-        XcmUtils.Multilocation calldata externalMultilocation
-    ) external onlyWhitelisted(msg.sender) {
-        address derivedAddress = xcmutils.multilocationToAddress(
-            externalMultilocation
-        );
-        whitelistedAddresses[derivedAddress] = true;
-    }
-
-    ...
-}
+--8<-- 'code/builders/interoperability/xcm/xcm-utils/1.sol'
 ```
 
 要查看如何使用 `xcmExecute` 函数在本地执行自定义 XCM 消息的示例，请参阅[创建和执行自定义 XCM 消息](/builders/interoperability/xcm/send-execute-xcm/#execute-xcm-utils-precompile){target=\_blank}指南。

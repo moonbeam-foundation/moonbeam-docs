@@ -30,13 +30,13 @@ categories: Precompiles, Ethereum Toolkit
 本示例中使用的版本为 v20.15.0 (Node.js) 和 10.7.0 (npm)。您还需要通过执行以下命令安装 [Web3](https://web3js.readthedocs.io/en/latest){target=\_blank} 包：
 
 ```bash
-npm install --save web3
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/1.sh'
 ```
 
 要验证已安装的 Web3 版本，您可以使用 `npm ls` 命令：
 
 ```bash
-npm ls web3
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/2.sh'
 ```
 本示例使用 4.11.1 版本。您还将使用 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}，通过 [MetaMask](/tokens/connect/metamask/){target=\_blank} 将其连接到 Moonbase Alpha TestNet。
 
@@ -49,7 +49,7 @@ npm ls web3
 在您的项目目录中创建一个名为 `signMessage.js` 的新文件：
 
 ```bash
-touch signMessage.js
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/3.sh'
 ```
 
 在您的代码编辑器中打开 `signMessage.js`，并添加以下脚本以使用 Moonbase Alpha TestNet 初始化 Web3，对消息进行签名和哈希处理，并返回签名值：
@@ -61,7 +61,7 @@ touch signMessage.js
 返回到您的终端命令行，使用以下命令运行脚本：
 
 ```bash
-node signMessage.js
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/4.sh'
 ```
 
 此代码将在终端中返回以下对象：

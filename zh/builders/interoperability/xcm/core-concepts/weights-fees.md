@@ -207,9 +207,7 @@ XCM 支付 API 方法提供了各种有用的方法来计算费用、评估可�
 此函数将XCM版本作为参数，并以多重定位形式返回可接受的手续费资产列表。
 
 ```js
-const allowedAssets =
-  await api.call.xcmPaymentApi.queryAcceptablePaymentAssets(3);
-console.log(allowedAssets);
+--8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/1.js'
 ```
 
 ??? code "查看完整脚本"
@@ -223,19 +221,7 @@ console.log(allowedAssets);
 此方法将权重转换为指定资产的费用。它接受权重和资产多重定位作为参数，并返回相应的费用金额。
 
 ```js
-const fee = await api.call.xcmPaymentApi.queryWeightToAssetFee(
-  {
-    refTime: 10_000_000_000n,
-    proofSize: 0n,
-  },
-  {
-    V3: {
-      Concrete: { parents: 1, interior: 'Here' },
-    },
-  }
-);
-
-console.log(fee);
+--8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/2.js'
 ```
 
 ??? code "查看完整脚本"
@@ -249,10 +235,7 @@ console.log(fee);
 此方法将 XCM 消息作为参数，并返回消息的权重。
 
 ```js
-const message = { V3: [instr1, instr2] };
-
-const theWeight = await api.call.xcmPaymentApi.queryXcmWeight(message);
-console.log(theWeight);
+--8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/3.js'
 ```
 
 ??? code "查看完整脚本"

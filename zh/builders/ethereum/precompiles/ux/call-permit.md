@@ -95,20 +95,7 @@ Moonbeam 上的调用许可预编译允许用户为任何 EVM 调用签署许可
 `SetMessage.sol` 合约将用作使用调用许可的示例，但实际上，可以与任何合约进行交互。
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
-pragma solidity 0.8.7;
-
-contract SetMessage {
-    string storedMessage;
-
-    function set(string calldata x) public {
-        storedMessage = x;
-    }
-
-    function get() public view returns (string memory) {
-        return storedMessage;
-    }
-}
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/1.sol'
 ```
 
 ### Remix 设置 {: #remix-set-up }
@@ -228,20 +215,19 @@ Ethers.js 的 CDN 将出现在 **Resources** 下的库列表中。
 要使用 JavaScript 和 MetaMask 的 [`@metamask/eth-sig-util` npm 包](https://www.npmjs.com/package/@metamask/eth-sig-util){target=\_blank} 生成调用许可签名，首先需要在本地创建一个项目。可以使用以下命令完成：
 
 ```bash
-mkdir call-permit-example && cd call-permit-example && touch getSignature.js
-npm init -y
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/3.sh'
 ```
 
 此时你应该有一个可以编写脚本的文件以及一个 `package.json` 文件。打开 `package.json`，在 `"dependencies"` 部分下面添加：
 
 ```json
-"type": "module"
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/4.json'
 ```
 
 接下来，安装 MetaMask 签名库和 [Ethers.js](https://docs.ethers.org/v6){target=\_blank}：
 
 ```bash
-npm i @metamask/eth-sig-util ethers
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/5.sh'
 ```
 
 !!! note
@@ -257,7 +243,7 @@ npm i @metamask/eth-sig-util ethers
 运行脚本：
 
 ```bash
-node getSignature.js
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/6.sh'
 ```
 
 在控制台中，你应该会看到连接签名以及包含 `v`、`r` 和 `s` 的值。在后续与调用许可预编译交互时需要用到这些值，请复制保存。
@@ -280,7 +266,7 @@ node getSignature.js
 
 1. 输入 `set` 函数的函数选择器的十六进制表示形式，以及您想要设置为 `SetMessage.sol` 合约消息的字符串。对于此示例，可以使用 `hello world`：
     ```text
-    0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
+    --8<-- 'code/builders/ethereum/precompiles/ux/call-permit/2.txt'
     ```
 
 1. 在 **gasLimit** 字段中输入 `100000`

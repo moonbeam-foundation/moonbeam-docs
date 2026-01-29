@@ -15,9 +15,7 @@ categories: XC-20
 本指南中的示例使用了一个 CLI 工具，该工具旨在简化整个过程，您可以在 [xcm-tools GitHub 存储库](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} 中找到它。
 
 ```bash
-git clone https://github.com/Moonsong-Labs/xcm-tools && \
-cd xcm-tools && \
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/1.sh'
 ```
 
 ## 在 Moonbeam 上注册外部 XC-20 {: #register-xc-20s }
@@ -58,19 +56,19 @@ yarn
 首先，通过运行以下命令确保您已安装所需的依赖项：
 
 ```bash
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/2.sh'
 ```
 
 执行脚本，确保提供您要注册的资产的美元价格、它的小数位数以及您在其上注册资产的网络（GLMR 或 MOVR）：
 
 ```bash
-yarn calculate-relative-price INSERT_ASSET_PRICE INSERT_DECIMALS GLMR
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/3.sh'
 ```
 
 例如，如果您要注册的资产的美元价格为 0.25 美元，并且有 12 个小数位，并且您要在 Moonbeam 网络上注册该资产，您将运行：
 
 ```bash
-yarn calculate-relative-price 0.25 12 GLMR
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/4.sh'
 ```
 
 这指示脚本计算有多少最小单位的资产（价格为 0.25 美元，有 12 个小数位）对应于 1 个 GLMR 代币。
@@ -82,7 +80,7 @@ yarn calculate-relative-price 0.25 12 GLMR
 有关更多信息、使用详情或查看实际示例，您可以通过运行以下命令来调用帮助命令：
 
 ```bash
-yarn calculate-relative-price --help
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/5.sh'
 ```
 
 ### 生成用于资产注册的编码 calldata {: #generate-encoded-calldata-for-asset-registration }
@@ -102,12 +100,7 @@ yarn calculate-relative-price --help
 您也可以使用 [xcm-asset-registrator 脚本](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} 来生成所需的 calldata，例如：
 
 ```bash
-yarn register-asset --w wss://wss.api.moonbeam.network  \
---asset "INSERT_MULTILOCATION" \
---symbol "INSERT_ASSET_SYMBOL" \
---decimals INSERT_DECIMALS \
---name "INSERT_ASSET_NAME" \
---relative-price INSERT_RELATIVE_PRICE
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/6.sh'
 ```
 
 使用相关参数运行脚本后，您将看到类似如下的输出：
@@ -144,11 +137,7 @@ yarn register-asset --w wss://wss.api.moonbeam.network  \
 如果您更倾向于使用脚本方式，并且熟悉 XCM tools 仓库中的脚本，您可以使用 [generic call proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank}，将所需的调用（包括 XCM 通道的接受与提案，以及资产注册）作为参数传入。该脚本可以帮助您组装多个必需的调用，例如：
 
 ```bash
-yarn generic-call-propose \
-  --call INSERT_CALLDATA_INCOMING_XCM_CHANNEL \
-  --call INSERT_CALLDATA_OUTGOING_XCM_CHANNEL \
-  --call INSERT_CALLDATA_BATCH_ASSET_REGISTRATION \
-  --ws-provider INSERT_WSS_PROVIDER
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/7.sh'
 ```
 
 ### 在 Moonbeam 上测试资产注册 {: #test-asset-registration }
@@ -266,61 +255,19 @@ Moonbeam 原生资产的多重定位包括 Moonbeam 网络的平行链 ID 和 Mo
 === "Moonbeam"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { 
-              Parachain: 2004
-            },
-            {
-              PalletInstance: 10
-            }
-          ]
-        }
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/8.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { 
-              Parachain: 2023
-            },
-            {
-              PalletInstance: 10
-            }
-          ]
-        }
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/9.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { 
-              Parachain: 1000
-            },
-            {
-              PalletInstance: 3
-            }
-          ]
-        }
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/10.js'
     ```
 
 ### 在另一个链上注册本地 XC-20 {: #register-local-xc20 }
@@ -330,7 +277,7 @@ Moonbeam 原生资产的多重定位包括 Moonbeam 网络的平行链 ID 和 Mo
 **要在其他链上注册，本地 XC-20 必须严格遵守 [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} 中描述的标准 ERC-20 接口。特别是，[`transfer` 函数](https://eips.ethereum.org/EIPS/eip-20#transfer){target=\_blank} 必须如 EIP-20 中所述：**
 
 ```js
-function transfer(address _to, uint256 _value) public returns (bool success)
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/11.js'
 ```
 
 如果 `transfer` 函数的函数选择器偏离标准，则跨链传输将失败。
@@ -340,70 +287,19 @@ function transfer(address _to, uint256 _value) public returns (bool success)
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X3: [
-          {
-            Parachain: 2004
-          },
-          {
-            PalletInstance: 110
-          },
-          {
-            AccountKey20: {
-              key: 'INSERT_ERC20_ADDRESS'
-            }
-          }
-        ]
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/12.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X3: [
-          {
-            Parachain: 2023
-          },
-          {
-            PalletInstance: 110
-          },
-          {
-            AccountKey20: {
-              key: 'INSERT_ERC20_ADDRESS'
-            }
-          }
-        ]
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/13.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X3: [
-          {
-            Parachain: 1000
-          },
-          {
-            PalletInstance: 48
-          },
-          {
-            AccountKey20: {
-              key: 'INSERT_ERC20_ADDRESS'
-            }
-          }
-        ]
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/14.js'
     ```
 
 由于本地 XC-20 是 Moonbeam 上的 ERC-20，因此在 Moonbeam 上创建 ERC-20 不需要任何存款。 但是，可能需要存款才能在另一个平行链上注册资产。 请咨询您希望注册资产的平行链团队以获取更多信息。

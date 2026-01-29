@@ -30,19 +30,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        mkdir {{ networks.moonbeam.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/1.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        mkdir {{ networks.moonriver.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/2.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mkdir {{ networks.moonbase.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/3.sh'
         ```
 
 2. 使用 `wget` 获取最新的[发布版本二进制文件](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank}，并将其输出到上一步创建的目录中
@@ -50,22 +50,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam \
-        -O {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/4.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam \
-        -O {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/5.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam \
-        -O {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/6.sh'
         ```
 
 3. 要验证您是否下载了正确的版本，可以在终端中运行以下命令
@@ -73,19 +70,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        sha256sum {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/7.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        sha256sum {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/8.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        sha256sum {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/9.sh'
         ```
 
     您应该收到以下输出：
@@ -117,19 +114,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        adduser moonbeam_service --system --no-create-home
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/10.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        adduser moonriver_service --system --no-create-home
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/11.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        adduser moonbase_service --system --no-create-home
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/12.sh'
         ```
 
 2. 确保你正确配置了用于存储链数据的本地目录的所有权和权限，并且还记得授予二进制文件执行权限
@@ -137,22 +134,19 @@ categories: 节点运营者和整理者
     === "Moonbeam"
 
         ```bash
-        sudo chown -R moonbeam_service {{ networks.moonbeam.node_directory }}
-        sudo chmod +x {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/13.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        sudo chown -R moonriver_service {{ networks.moonriver.node_directory }}
-        sudo chmod +x {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/14.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        sudo chown -R moonbase_service {{ networks.moonbase.node_directory }}
-        sudo chmod +x {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/15.sh'
         ```
 
 ## 创建配置文件 {: #create-the-configuration-file }
@@ -175,94 +169,19 @@ categories: 节点运营者和整理者
 === "Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/16.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/17.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    [Unit]
-    Description="Moonbase Alpha systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbase_service
-    SyslogIdentifier=moonbase
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbase.node_directory }} \
-         --chain {{ networks.moonbase.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/18.sh'
     ```
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/external-access.md'
@@ -270,33 +189,7 @@ categories: 节点运营者和整理者
 ??? code "Moonbeam 启动命令示例"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         --unsafe-rpc-external \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/19.sh'
     ```
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/sql-backend.md'
@@ -304,33 +197,7 @@ categories: 节点运营者和整理者
 ??? code "Moonbeam 启动命令示例"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         --frontier-backend-type sql \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/20.sh'
     ```
 
 ### Collator {: #collator }
@@ -342,19 +209,19 @@ categories: 节点运营者和整理者
 === "Moonbeam"
 
     ```bash
-    /var/lib/moonbeam-data/moonbeam key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam && sudo chown -R moonbeam_service /var/lib/moonbeam-data
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/21.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    /var/lib/moonriver-data/moonbeam key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver && sudo chown -R moonriver_service /var/lib/moonriver-data
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/22.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    /var/lib/alphanet-data/moonbeam key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet  && sudo chown -R moonbase_service  /var/lib/alphanet-data
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/23.sh'
     ```
 
 !!! note
@@ -365,94 +232,19 @@ categories: 节点运营者和整理者
 === "Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --collator \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/24.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --collator \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/25.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    [Unit]
-    Description="Moonbase Alpha systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbase_service
-    SyslogIdentifier=moonbase
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --collator \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbase.node_directory }} \
-         --chain {{ networks.moonbase.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/26.sh'
     ```
 
 ## 运行服务 {: #run-the-service }
@@ -464,7 +256,7 @@ categories: 节点运营者和整理者
 您也可以通过运行以下命令查看日志：
 
 ```bash
-journalctl -f -u moonbeam.service
+--8<-- 'code/node-operators/networks/run-a-node/systemd/27.sh'
 ```
 
 --8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/logs.md'
@@ -477,7 +269,7 @@ journalctl -f -u moonbeam.service
 如果您出于任何原因需要停止服务，可以运行：
 
 ```bash
-systemctl stop moonbeam.service
+--8<-- 'code/node-operators/networks/run-a-node/systemd/28.sh'
 ```
 
 ## 维护您的节点 {: #maintain-your-node }
@@ -489,7 +281,7 @@ systemctl stop moonbeam.service
 1. 停止 systemd 服务
 
     ```bash
-    sudo systemctl stop moonbeam.service
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/29.sh'
     ```
 
 2. 删除旧的二进制文件
@@ -497,19 +289,19 @@ systemctl stop moonbeam.service
     === "Moonbeam"
 
         ```bash
-        rm {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/30.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        rm {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/31.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        rm {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/32.sh'
         ```
 
 3. 从 [GitHub 上的 Moonbeam 发布二进制文件](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} 获取最新版本，并运行以下命令以更新到该版本
@@ -517,22 +309,19 @@ systemctl stop moonbeam.service
     === "Moonbeam"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
-        -O {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/33.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
-        -O {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/34.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
-        -O {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/35.sh'
         ```
 
     !!! note
@@ -543,28 +332,25 @@ systemctl stop moonbeam.service
     === "Moonbeam"
 
         ```bash
-        chmod +x {{ networks.moonbeam.node_directory }}/moonbeam
-        chown moonbeam_service {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/36.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        chmod +x {{ networks.moonriver.node_directory }}/moonbeam
-        chown moonriver_service {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/37.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        chmod +x {{ networks.moonbase.node_directory }}/moonbeam
-        chown moonbase_service {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/38.sh'
         ```
 
 5. 启动您的服务
 
     ```bash
-    systemctl start moonbeam.service
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/39.sh'
     ```
 
 要检查服务的状态和/或日志，您可以参考[之前的命令](#run-the-service)。
@@ -576,7 +362,7 @@ systemctl stop moonbeam.service
 您首先需要停止 systemd 服务：
 
 ```bash
-sudo systemctl stop moonbeam
+--8<-- 'code/node-operators/networks/run-a-node/systemd/40.sh'
 ```
 
 要清理您的平行链和中继链数据，您可以运行以下命令：
@@ -584,19 +370,19 @@ sudo systemctl stop moonbeam
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/41.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/42.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/43.sh'
     ```
 
 要仅删除特定链的平行链数据，您可以运行：
@@ -604,19 +390,19 @@ sudo systemctl stop moonbeam
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/44.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/45.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/46.sh'
     ```
 
 类似地，要仅删除中继链数据，您可以运行：
@@ -624,19 +410,19 @@ sudo systemctl stop moonbeam
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/47.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/48.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/49.sh'
     ```
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/post-purge.md'

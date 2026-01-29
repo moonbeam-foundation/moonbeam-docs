@@ -34,7 +34,7 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 1. 通过运行以下命令，创建一个基于 Substrate 模板的 SQD 项目：
 
     ```bash
-    sqd init INSERT_SQUID_NAME --template substrate
+    --8<-- 'code/builders/integrations/indexers/subsquid/1.sh'
     ```
 
     有关开始使用此模板的更多信息，请查看 SQD 文档站点上的 [快速入门：Substrate 链](http://docs.sqd.ai/quickstart/quickstart-substrate/){target=\_blank} 指南。
@@ -42,7 +42,7 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 2. 导航到您的 Squid 项目的根目录，并通过运行以下命令安装依赖项：
 
     ```bash
-    npm ci
+    --8<-- 'code/builders/integrations/indexers/subsquid/2.sh'
     ```
 
 3. 要配置您的 SQD 项目以在 Moonbeam 上运行，您需要更新 `typegen.json` 文件。`typegen.json` 文件负责为您的数据生成 TypeScript 接口类。根据您在其上索引数据的网络，`typegen.json` 文件中的 `specVersions` 值应配置如下：
@@ -50,19 +50,19 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
     === "Moonbeam"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbeam",
+        --8<-- 'code/builders/integrations/indexers/subsquid/3.json'
         ```
 
     === "Moonriver"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/metadata/moonriver",
+        --8<-- 'code/builders/integrations/indexers/subsquid/4.json'
         ```
 
     === "Moonbase Alpha"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbase",
+        --8<-- 'code/builders/integrations/indexers/subsquid/5.json'
         ```
 
 4. 修改 `src/processor.ts` 文件，Squids 在其中实例化处理器、配置处理器并附加处理函数。处理器从 [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank} 中提取历史链上数据，这是一个专门的数据湖。您需要配置您的处理器以从与您正在索引数据的 [网络](http://docs.sqd.ai/substrate-indexing/supported-networks/){target=\_blank} 对应的 Archive 中提取数据：
@@ -70,34 +70,19 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
     === "Moonbeam"
 
         ```ts
-        const processor = new SubstrateBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbeam.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
-          archive: lookupArchive('moonbeam', {type: 'Substrate', release: 'ArrowSquid'}),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/6.ts'
         ```
 
     === "Moonriver"
 
         ```ts
-        const processor = new SubstrateBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonriver.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
-          archive: lookupArchive('moonriver', {type: 'Substrate', release: 'ArrowSquid'}),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/7.ts'
         ```
 
     === "Moonbase Alpha"
 
         ```ts
-        const processor = new SubstrateBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbase.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
-          archive: lookupArchive('moonbase', {type: 'Substrate', release: 'ArrowSquid'}),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/8.ts'
         ```
 
     !!! note
@@ -106,15 +91,13 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 5. 还有一项快速更改需要对模板进行。SQD Substrate 模板配置为处理 Substrate 帐户类型，但 Moonbeam 使用以太坊样式的帐户。`src/main.ts` 文件中的 `getTransferEvents` 函数将迭代 `processor.ts` 提取的事件，并将相关的 `transfer` 事件存储在数据库中。在 `getTransferEvents` 函数中，删除 `from` 和 `to` 字段的 ss58 编码。在未修改的 Substrate 模板中，`from` 和 `to` 字段按如下所示进行 ss58 编码：
 
     ```ts
-    from: ss58.codec('kusama').encode(rec.from),
-    to: ss58.codec('kusama').encode(rec.to),
+    --8<-- 'code/builders/integrations/indexers/subsquid/9.ts'
     ```
 
     删除 ss58 编码后，相应的行是：
 
     ```ts
-    from: rec.from, 
-    to: rec.to, 
+    --8<-- 'code/builders/integrations/indexers/subsquid/10.ts'
     ```
 
 这就是配置您的 SQD 项目以在 Moonbeam 上索引 Substrate 数据所需要做的全部工作！现在，您可以更新 `schema.graphql`、`typegen.json`、`src/main.ts` 和 `src/processor.ts` 文件，以索引您的项目所需的数据！接下来，按照 [运行您的索引器](#run-your-indexer) 部分中的步骤运行您的索引器并查询您的 Squid。
@@ -128,13 +111,13 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
     === "EVM"
 
         ```bash
-        sqd init INSERT_SQUID_NAME --template evm
+        --8<-- 'code/builders/integrations/indexers/subsquid/11.sh'
         ```
 
     === "ABI"
 
         ```bash
-        sqd init INSERT_SQUID_NAME --template abi
+        --8<-- 'code/builders/integrations/indexers/subsquid/12.sh'
         ```
 
     有关开始使用这两个模板的更多信息，请查看以下 SQD 文档：
@@ -145,7 +128,7 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 2. 导航到您的 Squid 项目的根目录，并通过运行以下命令安装依赖项：
 
     ```bash
-    npm ci
+    --8<-- 'code/builders/integrations/indexers/subsquid/2.sh'
     ```
 
 3. 修改 `src/processor.ts` 文件，Squid 在其中实例化处理器、配置处理器并附加处理函数。处理器从 [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank} 中获取历史链上数据，这是一个专门的数据湖。您需要配置您的处理器以从与您正在索引数据的 [网络](http://docs.sqd.ai/evm-indexing/supported-networks/){target=\_blank} 对应的 Archive 中提取数据：
@@ -153,34 +136,19 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
    === "Moonbeam"
 
         ```ts
-        const processor = new EvmBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbeam.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
-          archive: lookupArchive('moonbeam', { type: 'EVM' })
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/14.ts'
         ```
 
     === "Moonriver"
 
         ```ts
-        const processor = new EvmBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonriver.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
-          archive: lookupArchive('moonriver', { type: 'EVM' }),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/15.ts'
         ```
 
     === "Moonbase Alpha"
 
         ```ts
-        const processor = new EvmBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbase.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
-          archive: lookupArchive('moonbase', { type: 'EVM' }),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/16.ts'
         ```
 
     !!! note
@@ -195,19 +163,19 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
 1. 通过运行以下命令启动 Postgres：
 
     ```bash
-    sqd up
+    --8<-- 'code/builders/integrations/indexers/subsquid/17.sh'
     ```
 
 2. 检查并运行处理器：
 
     ```bash
-    sqd process
+    --8<-- 'code/builders/integrations/indexers/subsquid/18.sh'
     ```
 
 3. 在同一目录中打开一个单独的终端窗口，然后启动 GraphQL 服务器：
 
     ```bash
-    sqd serve
+    --8<-- 'code/builders/integrations/indexers/subsquid/19.sh'
     ```
 
 4. 您可以使用以下示例查询查询您的模板 Substrate 或 EVM Squid。如果您修改了模板 Squid 来索引不同的数据，则需要相应地修改此查询
@@ -215,25 +183,13 @@ SQD 本身完全支持以太坊虚拟机（EVM）和 Substrate 数据。由于 M
     === "Substrate 索引器"
 
         ```graphql
-        query MyQuery {
-          accountsConnection(orderBy: id_ASC) {
-            totalCount
-          }
-        }
+        --8<-- 'code/builders/integrations/indexers/subsquid/20.graphql'
         ```
 
     === "EVM 索引器"
 
         ```graphql
-        query MyQuery {
-          burns(orderBy: value_DESC) {
-            address
-            block
-            id
-            txHash
-            value
-          }
-        }
+        --8<-- 'code/builders/integrations/indexers/subsquid/21.graphql'
         ```
 
 有关其他示例和工作流程，请参阅 [SQD 文档](https://docs.sqd.dev/){target=\_blank}。

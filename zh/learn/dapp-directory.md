@@ -115,7 +115,7 @@ TVL 数据来自 [DefiLlama](https://defillama.com){target=\_blank}，因此您�
 或者，您也可以在本地克隆该仓库，并使用您喜欢的代码编辑器进行修改。您可以使用以下命令克隆仓库：
 
 ```bash
-git clone https://github.com/moonbeam-foundation/app-directory-data.git
+--8<-- 'code/learn/dapp-directory/1.sh'
 ```
 
 克隆项目后，您可以创建一个新的分支，并在该分支上提交您的所有更改。要在基于浏览器的编辑器中创建新分支，请按照以下步骤操作：
@@ -348,7 +348,7 @@ DApp 目录中列出的每个项目的所有配置都存储在 `projects` 文件
 DApp Directory 还提供了一个可查询的 API，您可以使用它将 Moonbeam 的 DApp Directory 中的数据集成到您的应用程序中。该 API 是公开的，目前不需要身份验证。该 API 的基本 URL 如下：
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/
+--8<-- 'code/learn/dapp-directory/2.sh'
 ```
 
 ### 查询项目 {: #query-a-project}
@@ -356,19 +356,19 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/
 您可以通过将`/projects/INSERT_PROJECT_NAME`附加到基本 URL 来检索特定项目的所有信息。如果您需要明确项目名称，您可以省略项目名称，如下所示，以检索每个列出项目的数据并在响应中找到该项目。
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/projects
+--8<-- 'code/learn/dapp-directory/3.sh'
 ```
 
 这是一个查询 StellaSwap 的 API 的示例，它返回项目描述、社交媒体信息、用户计数、相关智能合约地址、市场数据、图像等。
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap
+--8<-- 'code/learn/dapp-directory/4.sh'
 ```
 
 您可以使用像 Postman 这样的工具在浏览器中访问查询 URL 目录，或直接从命令行使用 Curl，如下所示：
 
 ```bash
-curl -H "Content-Type: application/json" -X GET 'https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap'
+--8<-- 'code/learn/dapp-directory/5.sh'
 ```
 
 ??? code "查询 StellaSwap 的 API 响应"
@@ -382,7 +382,7 @@ curl -H "Content-Type: application/json" -X GET 'https://apps.moonbeam.network/a
 您还可以通过[类别](#category-and-tags)查询 API。例如，您可以使用以下查询检索有关所有 NFT 项目的信息：
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
+--8<-- 'code/learn/dapp-directory/6.sh'
 ```
 
 ??? code "用于查询 NFT 项目的 API 响应"
@@ -413,13 +413,13 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
 === "Moonbeam"
 
     ```bash
-    https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonbeam
+    --8<-- 'code/learn/dapp-directory/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonriver
+    --8<-- 'code/learn/dapp-directory/8.sh'
     ```
 
 <div class="page-disclaimer">

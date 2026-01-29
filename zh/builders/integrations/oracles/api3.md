@@ -32,64 +32,7 @@ API3 是一个去中心化解决方案，旨在以易于访问和可扩展的方
 以下是从 Airnode 请求数据的基本请求者合约的示例：
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.9;
-
-import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
-import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
-
-// A Requester that will return the requested data by calling the specified Airnode.
-contract Requester is RrpRequesterV0, Ownable {
-    mapping(bytes32 => bool) public incomingFulfillments;
-    mapping(bytes32 => int256) public fulfilledData;
-
-    // Make sure you specify the right _rrpAddress for your chain while deploying the contract.
-    constructor(address _rrpAddress) RrpRequesterV0(_rrpAddress) {}
-
-    // To receive funds from the sponsor wallet and send them to the owner.
-    receive() external payable {
-        payable(owner()).transfer(address(this).balance);
-    }
-
-    // The main makeRequest function that will trigger the Airnode request.
-    function makeRequest(
-        address airnode,
-        bytes32 endpointId,
-        address sponsor,
-        address sponsorWallet,
-        bytes calldata parameters
-
-    ) external {
-        bytes32 requestId = airnodeRrp.makeFullRequest(
-            airnode,                        // airnode address
-            endpointId,                     // endpointId
-            sponsor,                        // sponsor's address
-            sponsorWallet,                  // sponsorWallet
-            address(this),                  // fulfillAddress
-            this.fulfill.selector,          // fulfillFunctionId
-            parameters                      // encoded API parameters
-        );
-        incomingFulfillments[requestId] = true;
-    }
-    
-    function fulfill(bytes32 requestId, bytes calldata data)
-        external
-        onlyAirnodeRrp
-    {
-        require(incomingFulfillments[requestId], "No such request made");
-        delete incomingFulfillments[requestId];
-        int256 decodedData = abi.decode(data, (int256));
-        fulfilledData[requestId] = decodedData;
-    }
-
-    // To withdraw funds from the sponsor wallet to the contract.
-    function withdraw(address airnode, address sponsorWallet) external onlyOwner {
-        airnodeRrp.requestWithdrawal(
-        airnode,
-        sponsorWallet
-        );
-    }
-}
+--8<-- 'code/builders/integrations/oracles/api3/1.sol'
 ```
 
 您还可以尝试[在 Remix 上部署示例合约](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js){target=\_blank}。
@@ -187,34 +130,7 @@ dAPI 支持的参数包括：
 有了代理地址，您就可以将 dAPI 集成到智能合约中。这是一个从 dAPI 读取数据的基本合约示例：
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
-
-import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
-import "@api3/contracts/api3-server-v1/proxies/interfaces/IProxy.sol";
-
-contract DataFeedReaderExample is Ownable {
-    // The proxy contract address obtained from the API3 Market UI
-    address public proxyAddress;
-
-    // Updating the proxy contract address is a security-critical
-    // action. In this example, only the owner is allowed to do so
-    function setProxyAddress(address _proxyAddress) public onlyOwner {
-        proxyAddress = _proxyAddress;
-    }
-
-    function readDataFeed()
-        external
-        view
-        returns (int224 value, uint256 timestamp)
-    {
-        // Use the IProxy interface to read a dAPI via its
-        // proxy contract
-        (value, timestamp) = IProxy(proxyAddress).read();
-        // If you have any assumptions about `value` and `timestamp`,
-        // make sure to validate them after reading from the proxy
-    }
-}
+--8<-- 'code/builders/integrations/oracles/api3/2.sol'
 ```
 
 示例合约包含两个函数：

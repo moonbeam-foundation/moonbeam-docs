@@ -65,18 +65,7 @@ Polkadot XCM Pallet 包含以下相关的只读存储方法：
         asset 被捕获的次数。如果省略了哈希值，则返回所有哈希值的数组以及每个 asset 被捕获的次数。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the value
-        // If hash was provided:
-        10
-
-        // If hash was omitted:
-        [
-          [
-            0xf7d4341888be30c6a842a77c52617423e8109aa249e88779019cf731ed772fb7
-          ],
-          10
-        ],
-        ...
+        --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/1.js'
         ```
 
     === "Polkadot.js API 示例"
@@ -96,8 +85,7 @@ Polkadot XCM Pallet 包含以下相关的只读存储方法：
         一个表示 pallet 当前版本的数字。
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        0
+        --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/2.js'
         ```
 
     === "Polkadot.js API 示例"
@@ -190,18 +178,7 @@ XCM Dry Run API 是一种简单方便的方式来测试 XCM 消息的完整性�
 此方法将 origin 和调用数据作为参数，并返回执行结果、实际权重和事件数据。
 
 ```js
-const testAccount = api.createType(
-  'AccountId20',
-  '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
-);
-const callData =
-  '0x1c030408000400010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e007803822b001ba2e0100';
-const callDataU8a = hexToU8a(callData);
-
-const result = await api.call.dryRunApi.dryRunCall(
-  { system: { Signed: testAccount } },
-  callDataU8a
-);
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/3.js'
 ```
 
 ??? code "查看完整脚本"
@@ -225,13 +202,7 @@ XCM Dry Run API 的 `dryRunXCM` 方法将完整的 XCM 消息作为参数，而�
 `dryRunXCM` 将来源和 XCM 消息作为参数，并返回执行结果、实际权重和事件数据。
 
 ```js
-// Define the origin
-const origin = { V4: { parents: 1, interior: 'Here' } };
-
-const message = []; // Insert XCM Message Here
-
-// Perform the dry run XCM call
-const result = await api.call.dryRunApi.dryRunXcm(origin, message);
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/4.js'
 ```
 
 ??? code "查看完整脚本"
@@ -428,10 +399,7 @@ Polkadot XCM Pallet 的 `send` 函数接受两个参数：`dest` 和 `message`�
 在您可以发送 XCM 消息之前，您还需要构建目标的多重位置。在本例中，您将以 Moonbase Alpha 作为原始链来定位中继链：
 
 ```js
-const dest = [
-  1, // Parents: 1 
-  [] // Interior: Here
-];
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/5.js'
 ```
 
 现在您有了 SCALE 编码的 XCM 消息和目标多重位置，您可以使用以下代码片段以编程方式调用 XCM Utilities Precompile 的 `xcmSend` 函数，方法是使用您选择的 [Ethereum 库](/builders/ethereum/libraries/){target=\_blank}。一般来说，您需要执行以下步骤：

@@ -32,64 +32,56 @@ categories: XCM
 - `Parachain` - 使用平行链的 ID 描述平行链
 
     ```js
-    { Parachain: INSERT_PARACHAIN_ID }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/1.js'
     ```
 
 - `AccountId32` - 描述一个 32 字节的 Substrate 风格账户。接受一个可选的 `network` 参数，可以是以下之一：`Any`、`Named`、`Polkadot` 或 `Kusama`
 
     ```js
-    { AccountId32: { id: INSERT_ADDRESS, network: INSERT_NETWORK } }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/2.js'
     ```
 
 - `AccountIndex64` - 描述一个 64 位（8 字节）的账户索引。接受一个可选的 `network` 参数，可以是以下之一：`Any`、`Named`、`Polkadot` 或 `Kusama`
 
     ```js
-    { AccountIndex64: { index: INSERT_ACCOUNT_INDEX, network: INSERT_NETWORK } }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/3.js'
     ```
 
 - `AccountKey20` - 描述一个 20 字节的 Ethereum 风格账户，就像在 Moonbeam 中使用的一样。接受一个可选的 `network` 参数，可以是以下之一：`Any`、`Named`、`Polkadot` 或 `Kusama`
 
     ```js
-    { AccountKey20: { key: INSERT_ADDRESS, network: INSERT_NETWORK } }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/4.js'
     ```
 
 - `PalletInstance` - 描述目标链上的 pallet 的索引
 
     ```js
-    { PalletInstance: INSERT_PALLET_INSTANCE_INDEX }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/5.js'
     ```
 
 - `GeneralIndex` - 描述一个非描述性的索引，可用于定位以键值格式存储的数据
 
     ```js
-    { GeneralIndex: INSERT_GENERAL_INDEX }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/6.js'
     ```
 
 - `GeneralKey` - 描述一个非描述性的键，可用于定位更复杂的数据结构。这需要您指定数据的 `data` 和 `length`
 
     ```js
-    { GeneralKey: { length: INSERT_LENGTH_OF_DATA, data: [INSERT_DATA] } }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/7.js'
     ```
 
 - `OnlyChild` - 描述位置的子项（如果父项和子项之间只有一对一的关系）。当前，除了在派生上下文时作为后备之外，不使用此项
 - `Plurality` - 描述满足特定条件或共享共同特征的多个元素。这要求您指定 Junction 表示的 [Body ID](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L150-L176){target=\_blank} 和 [Body Part](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/src/v3/junction.rs#L222-L251){target=\_blank}
 
     ```js
-    { Plurality: { id: INSERT_BODY_ID, part: INSERT_BODY_PART } }
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/8.js'
     ```
 
 使用连接点时，您将使用 `XN`，其中 `N` 是到达目标位置所需的连接点数。例如，如果您要从平行链定位 Moonbeam 上的帐户，则需要将 `parents` 设置为 `1`，并且需要定义两个连接点，即 `Parachain` 和 `AccountKey20`，因此您将使用 `X2`，它是一个将包含每个连接点的数组：
 
 ```js
-{
-  parents: 1,
-  interior: {
-    X2: [
-      { Parachain: 2004 },
-      { AccountKey20: { key: 'INSERT_MOONBEAM_ADDRESS' } },
-    ],
-  },
-};
+--8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/9.js'
 ```
 
 ## Multilocations 示例 {: #example-multilocations }
@@ -101,34 +93,19 @@ categories: XCM
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X1: [{ Parachain: 2004 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/10.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X1: [{ Parachain: 2023 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/11.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X1: [{ Parachain: 1000 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/12.js'
     ```
 
 ### 从另一个平行链定位 Moonbeam 上的帐户 {: #target-account-moonbeam-from-parachain }
@@ -138,43 +115,19 @@ categories: XCM
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 2004 },
-          { AccountKey20: { key: 'INSERT_MOONBEAM_ADDRESS' } },
-        ],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/9.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 2023 },
-          { AccountKey20: { key: 'INSERT_MOONBEAM_ADDRESS' } },
-        ],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/14.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 1000 },
-          { AccountKey20: { key: 'INSERT_MOONBEAM_ADDRESS' } },
-        ],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/15.js'
     ```
 
 ### 从另一个平行链定位 Moonbeam 的原生资产 {: #target-moonbeam-native-asset-from-parachain }
@@ -184,43 +137,19 @@ categories: XCM
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 2004 },
-          { PalletInstance: 10 }, // Index of the Balances Pallet on Moonbeam
-        ],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/16.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 2023 },
-          { PalletInstance: 10 }, // Index of the Balances Pallet on Moonriver
-        ],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/17.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: 1000 },
-          { PalletInstance: 3 }, // Index of the Balances Pallet on Moonbase Alpha
-        ],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/18.js'
     ```
 
 ### 从中继链定位 Moonbeam {: #target-moonbeam-from-relay }
@@ -230,34 +159,19 @@ categories: XCM
 === "Moonbeam"
 
     ```js
-    {
-      parents: 0,
-      interior: {
-        X1: [{ Parachain: 2004 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/19.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 0,
-      interior: {
-        X1: [{ Parachain: 2023 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/20.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 0,
-      interior: {
-        X1: [{ Parachain: 1000 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/21.js'
     ```
 
 ### 从 Moonbeam 定位中继链 {: #target-relay-from-moonbeam }
@@ -267,28 +181,19 @@ categories: XCM
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: Here,
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/22.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: Here,
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/22.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: Here,
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/22.js'
     ```
 
 ### 从 Moonbeam 定位中继链上的帐户 {: #target-account-relay-from-moonbeam }
@@ -298,28 +203,19 @@ categories: XCM
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: { X1: { AccountId32: { id: INSERT_RELAY_ADDRESS } } },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/25.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: { X1: { AccountId32: { id: INSERT_RELAY_ADDRESS } } },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/25.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: { X1: { AccountId32: { id: INSERT_RELAY_ADDRESS } } },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/25.js'
     ```
 
 ### 从 Moonbeam 定位另一个平行链 {: #target-parachain-from-moonbeam }
@@ -329,34 +225,19 @@ categories: XCM
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X1: [{ Parachain: 1234 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/28.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X1: [{ Parachain: 1234 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/28.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X1: [{ Parachain: 1234 }],
-      },
-    };
+    --8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/28.js'
     ```
 
 ### Location to Account API {: #location-to-account-api }
@@ -381,5 +262,5 @@ console.log('转换结果：', result.toHuman());
 该方法将返回与提供的多重位置对应的 `AccountID20` 地址，如下所示：
 
 ```bash
-Conversion result: { Ok: '0x506172656E740000000000000000000000000000' }
+--8<-- 'code/builders/interoperability/xcm/core-concepts/multilocations/32.sh'
 ```

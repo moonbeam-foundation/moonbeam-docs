@@ -95,9 +95,7 @@ Wormhole 建议在其连接的合约中包含一个白名单系统，在尝试�
 要添加列入白名单的合约，您必须调用 `addTrustedAddress(bytes32 sender, uint16 _chainId)` 函数，该函数需要一个 *bytes32* 格式的地址和一个链 ID。您可以在[上表](#deploying-the-wormhole-contract-with-remix-on-moonbase-alpha)和 [Wormhole 的文档](https://wormhole.com/docs/products/reference/supported-networks/){target=\_blank}中找到链 ID。
 
 ```solidity
-function addTrustedAddress(bytes32 sender, uint16 _chainId) external {
-    myTrustedContracts[sender][_chainId] = true;
-}
+--8<-- 'code/builders/interoperability/protocols/wormhole/1.sol'
 ```
 
 请注意，`sender` 参数是 `bytes32` 类型，而不是 `address` 类型。Wormhole 的 VAA 以 `bytes32` 的形式提供发射器（源）地址，因此它们以 `bytes32` 的形式存储和检查。要将 `address` 类型转换为 `bytes32`，您需要填充额外的 24 个零。这是因为 `address` 值为 20 字节，小于 `bytes32` 的 32 字节。每个字节都有 2 个十六进制字符，因此：
@@ -110,7 +108,7 @@ zeros to add = 24
 例如，如果您的连接合约的地址是 `0xaf108eF646c8214c9DD9C13CBC5fadf964Bbe293`，您将在 Remix 中输入以下内容：
 
 ```text
-0x000000000000000000000000af108ef646c8214c9dd9c13cbc5fadf964bbe293
+--8<-- 'code/builders/interoperability/protocols/wormhole/2.txt'
 ```
 
 现在使用 Remix 确保您的两个连接合约彼此信任。如果您打算来回发送消息，则必须在您已部署的两个合约上执行此操作。要在不同链上的合约之间切换，请通过 MetaMask 连接到目标网络。
@@ -145,9 +143,7 @@ zeros to add = 24
 首先进行环境配置。使用 npm 包管理器通过命令行安装依赖项（例如 ethers 以及 relayer engine 本身）：
 
 ```bash
-npm install
-cd plugins/simplegeneralmessage_plugin
-npm install
+--8<-- 'code/builders/interoperability/protocols/wormhole/3.sh'
 ```
 
 完成后，你可以查看一下不同的文件夹结构。这里有三个文件夹：`src`、`relay-engine-config`和 `plugins`。
@@ -180,7 +176,7 @@ npm install
 启动 Docker 容器的命令较长。为简化操作，它已被添加为该仓库根目录下的一个 npm 脚本。只需运行：
 
 ```bash
-npm run testnet-spy
+--8<-- 'code/builders/interoperability/protocols/wormhole/4.sh'
 ```
 
 首先，你会看到一些来自 Docker 容器启动过程的日志。随后，控制台会开始刷大量日志。这些都是在 Wormhole TestNet 上传递的 VAA，而且数量非常多。
@@ -204,15 +200,7 @@ npm run testnet-spy
 如果开发人员想要向过滤器添加其他逻辑，他们可以在此处添加，但就您的目的而言，仅列出一些硬编码的地址即可。
 
 ```ts
- // How the relayer injects the VAA filters.
- // This is the default implementation provided by the dummy plugin.
- getFilters(): ContractFilter[] {
-   if (this.pluginConfig.spyServiceFilters) {
-     return this.pluginConfig.spyServiceFilters;
-   }
-   this.logger.error('Contract filters not specified in config');
-   throw new Error('Contract filters not specified in config');
- }
+--8<-- 'code/builders/interoperability/protocols/wormhole/6.ts'
 ```
 
 过滤后，监听器需要使用下面的 `consumeEvent(vaa, stagingArea)` 函数将工作流数据写入 Redis 数据库。
@@ -250,7 +238,7 @@ npm run testnet-spy
 如果您还记得组件列表，则第三个是 Redis 数据库组件。 与数据库有关的大部分代码都隐藏在用户面前，因为 `relayer-engine` 包将从中写入和读取数据，然后将任何相关数据注入回插件代码中。 要运行 Redis 数据库，只需在父目录中运行以下命令：
 
 ```bash
-npm run redis
+--8<-- 'code/builders/interoperability/protocols/wormhole/8.sh'
 ```
 
 ### 设置 Executor 组件 {: #setting-up-the-executor-component }
@@ -266,26 +254,7 @@ npm run redis
 请谨慎管理你的密钥，因为一旦泄露可能导致资金损失。虽然在该仓库中 `executor.json` 已被 git 忽略，但为安全起见，请确保你在 TestNet 上使用的钱包不包含任何 MainNet 资金。
 
 ```json
-{
-   "privateKeys": {
-       "16": [
-           "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
-       ],
-       "2": [
-           "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
-       ],
-       "5": [
-           "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
-       ],
-       "6": [
-           "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
-       ],
-       "10": [
-           "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
-       ],
-
-   }
-}
+--8<-- 'code/builders/interoperability/protocols/wormhole/9.json'
 ```
 
 如果 `privateKeys` 对象中的某些条目对应的链并未使用，请将这些条目移除。
@@ -293,9 +262,7 @@ npm run redis
 如果你使用的链未包含在上面的 EVM TestNet 表中，你需要自行添加一个数组。该数组的键（key）应为你此前选择部署的其它 EVM 的 Wormhole 链 ID。例如，如果你部署在 Fantom TestNet 上，由于 Fantom TestNet 的 Wormhole 链 ID 为 `10`，你需要添加如下对象：
 
 ```json
-"10": [
-    "INSERT_YOUR_PRIVATE_KEY"
-]
+--8<-- 'code/builders/interoperability/protocols/wormhole/10.json'
 ```
 
 现在 executor 的钱包已经配置完成，请查看 executor 本身的代码，它位于 `plugins/simplegeneralmessage_plugin/src/plugin.ts` 文件中。如果你之前没有跟着操作，也可以在其 [GitHub 仓库](https://github.com/jboetticher/relayer-engine-docs-example/blob/main/plugins/simplegeneralmessage_plugin/src/plugin.ts){target=\_blank} 中访问该文件的完整内容。
@@ -311,55 +278,7 @@ npm run redis
 通过 Ethers 解码得到的数据，就可以判断该 payload 将被发送到哪个合约以及哪个链，因为这些信息在消息中已被打包。该函数会检查指定的目标链 ID 是否属于 EVM；如果是，则会使用前面提到的 `execute.onEVM(options)` 函数来执行。否则，它会记录一条错误日志，因为为简化起见，该系统预期不会与非 EVM 链进行交互。
 
 ```ts
-// Consumes a workflow for execution
-async handleWorkflow(
-  workflow: Workflow,
-  providers: Providers,
-  execute: ActionExecutor
-): Promise<void> {
-  this.logger.info(`Workflow ${workflow.id} received...`);
-
-  const { vaa } = this.parseWorkflowPayload(workflow);
-  const parsed = wh.parseVaa(vaa);
-  this.logger.info(`Parsed VAA. seq: ${parsed.sequence}`);
-
-  // Here we are parsing the payload so that we can send it to the right recipient
-  const hexPayload = parsed.payload.toString('hex');
-  let [recipient, destID, sender, message] =
-    ethers.utils.defaultAbiCoder.decode(
-      ['bytes32', 'uint16', 'bytes32', 'string'],
-      '0x' + hexPayload
-    );
-  recipient = this.formatAddress(recipient);
-  sender = this.formatAddress(sender);
-  const destChainID = destID as ChainId;
-  this.logger.info(
-    `VAA: ${sender} sent "${message}" to ${recipient} on chain ${destID}.`
-  );
-
-  // Execution logic
-  if (wh.isEVMChain(destChainID)) {
-    // This is where you do all of the EVM execution.
-    // Add your own private wallet for the executor to inject in 
-    // relayer-engine-config/executor.json
-    await execute.onEVM({
-      chainId: destChainID,
-      f: async (wallet, chainId) => {
-        const contract = new ethers.Contract(recipient, abi, wallet.wallet);
-        const result = await contract.processMyMessage(vaa);
-        this.logger.info(result);
-      },
-    });
-  } else {
-    // The relayer plugin has a built-in Solana wallet handler, which you could use
-    // here. NEAR & Algorand are supported by Wormhole, but they're not supported by
-    // the relayer plugin. If you want to interact with NEAR or Algorand you'd have
-    // to make your own wallet management system, that's all
-    this.logger.error(
-      'Requested chainID is not an EVM chain, which is currently unsupported.'
-    );
-  }
-};
+--8<-- 'code/builders/interoperability/protocols/wormhole/11.ts'
 ```
 
 在回调函数中，它会使用 Ethers 包创建一个 [合约对象](https://docs.ethers.org/v6/api/contract/#Contract){target=\_blank}。其导入的 ABI 来自 `SimpleGeneralMessage` 合约编译产物的导出内容，因此这段代码假设：VAA 中指定的消息接收方是一个 `SimpleGeneralMessage` 合约，或继承自 `SimpleGeneralMessage` 合约。
@@ -367,14 +286,7 @@ async handleWorkflow(
 接着，代码会尝试使用该 VAA 调用 `processMyMessage(bytes32 VAA)` 函数；该函数此前被定义为消息要被中继到的目标函数。请回顾一下，这个函数名是在智能合约中任意选取的，因为中继器可以指定要调用的任意函数。开发者能够修改该中继器的代码，正体现了这种自由度。
 
 ```ts
-await execute.onEVM({
-  chainId: destChainID,
-  f: async (wallet, chainId) => {
-    const contract = new ethers.Contract(recipient, abi, wallet.wallet);
-    const result = await contract.processMyMessage(vaa);
-    this.logger.info(result);
-  },
-});
+--8<-- 'code/builders/interoperability/protocols/wormhole/12.ts'
 ```
 
 最后一步是检查 `relayer-engine-config/common.json`。该配置文件控制整个中继器（relayer）的执行。请确保你正在使用的 TestNet EVM 已列在该文件的 `supportedChains` 对象中；如果未列出，插件将无法正常运行。如果你使用的某条链未在列表中，你需要将 [Wormhole 开发者文档](https://wormhole.com/docs/products/reference/supported-networks/){target=\_blank} 中的数据按如下格式导入到该配置文件中。
@@ -382,21 +294,12 @@ await execute.onEVM({
 该中继器还有其它可选配置。例如，`mode` 字符串被设置为 `"BOTH"`，以确保同时使用 listener 和 executor 插件，但开发者也可以根据需要选择只运行其中一个。此外，还可以指定多个日志级别，例如 `"error"` 仅输出错误信息。不过，在本演示中，请保持配置不变即可。
 
 ```json
- "mode": "BOTH",
- "logLevel": "debug",
- ...
-    {
-        "chainId": 16,
-        "chainName": "Moonbase Alpha",
-        "nodeUrl": "https://rpc.api.moonbase.moonbeam.network",
-        "bridgeAddress": "0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901",
-        "tokenBridgeAddress": "0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96"
-    },
+--8<-- 'code/builders/interoperability/protocols/wormhole/13.json'
 ```
 配置到这里就完成了！接下来开始运行。在你的终端窗口中（不要使用正在运行 spy 节点的那个终端），切换到项目的父目录，然后运行以下命令：
 
 ```bash
-npm run start
+--8<-- 'code/builders/interoperability/protocols/wormhole/14.sh'
 ```
 
 你应该会在控制台中看到类似于下方的日志输出。

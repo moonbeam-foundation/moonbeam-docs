@@ -27,7 +27,7 @@ categories: Substrate Toolkit, Libraries and SDKs
 您可以通过 `pip` 为您的项目安装 Python Substrate 接口库。在您的项目目录中运行以下命令：
 
 ```bash
-pip install substrate-interface
+--8<-- 'code/builders/substrate/libraries/py-substrate-interface/1.sh'
 ```
 
 ## 创建 API 提供程序实例 {: #creating-an-API-provider-instance }
@@ -39,49 +39,25 @@ pip install substrate-interface
 === "Moonbeam"
 
     ```py
-    # Imports
-    from substrateinterface import SubstrateInterface
-
-    # Construct the API provider
-    ws_provider = SubstrateInterface(
-        url="{{ networks.moonbeam.wss_url }}",
-    )
+    --8<-- 'code/builders/substrate/libraries/py-substrate-interface/2.py'
     ```
 
 === "Moonriver"
 
     ```py
-    # Imports
-    from substrateinterface import SubstrateInterface
-
-    # Construct the API provider
-    ws_provider = SubstrateInterface(
-        url="{{ networks.moonriver.wss_url }}",
-    )
+    --8<-- 'code/builders/substrate/libraries/py-substrate-interface/3.py'
     ```
 
 === "Moonbase Alpha"
 
     ```py
-    # Imports
-    from substrateinterface import SubstrateInterface
-
-    # Construct the API provider
-    ws_provider = SubstrateInterface(
-        url="{{ networks.moonbase.wss_url }}",
-    )
+    --8<-- 'code/builders/substrate/libraries/py-substrate-interface/4.py'
     ```
 
 === "Moonbeam Dev Node"
 
     ```py
-    # Import
-    from substrateinterface import SubstrateInterface
-
-    # Construct the API provider
-    ws_provider = SubstrateInterface(
-        url="{{ networks.development.wss_url }}",
-    )
+    --8<-- 'code/builders/substrate/libraries/py-substrate-interface/5.py'
     ```
 
 ## 查询信息 {: #querying-for-information }
@@ -95,21 +71,7 @@ pip install substrate-interface
 可以通过 [`get_constant`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.get_constant){target=\_blank} 方法查询元数据中可用的运行时常量。
 
 ```py
-# Imports
-from substrateinterface import SubstrateInterface
-
-# Construct the API provider
-ws_provider = SubstrateInterface(
-    url="{{ networks.moonbase.wss_url }}",
-)
-
-# List of available runtime constants in the metadata
-constant_list = ws_provider.get_metadata_constants()
-print(constant_list)
-
-# Retrieve the Existential Deposit constant on Moonbeam, which is 0
-constant = ws_provider.get_constant("Balances", "ExistentialDeposit")
-print(constant.value)
+--8<-- 'code/builders/substrate/libraries/py-substrate-interface/6.py'
 ```
 
 ### 检索区块和外部操作 {: #retrieving-blocks-and-extrinsics }
@@ -233,20 +195,7 @@ Python Substrate Interface 中的密钥对对象用于对所有数据进行签�
 您可以从简短格式私钥或助记词创建密钥对实例。对于 Moonbeam 网络，您还需要将 `KeypairType` 指定为 `KeypairType.ECDSA`。
 
 ```py
-# Imports
-from substrateinterface import Keypair, KeypairType
-
-# Define the shortform private key
-privatekey = bytes.fromhex("INSERT_PRIVATE_KEY_WITHOUT_0X_PREFIX")
-
-# Define the account mnemonic
-mnemonic = "INSERT_MNEMONIC"
-
-# Generate the keypair from shortform private key
-keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
-
-# Generate the keypair from mnemonic
-keypair = Keypair.create_from_mnemonic(mnemonic, crypto_type=KeypairType.ECDSA)
+--8<-- 'code/builders/substrate/libraries/py-substrate-interface/10.py'
 ```
 
 ### 构建和发送交易 {: #forming-and-sending-a-transaction }
@@ -309,84 +258,19 @@ except SubstrateRequestException as e:
 1. 首先，在在线机器上生成签名负载：
 
     ```py
-    # Imports
-    from substrateinterface import SubstrateInterface
-
-    # Construct the API provider
-    ws_provider = SubstrateInterface(
-        url="{{ networks.moonbase.wss_url }}",
-    )
-
-    # Construct a transaction call
-    call = ws_provider.compose_call(
-        call_module="Balances",
-        call_function="transfer_allow_death",
-        call_params={
-            "dest": "0x44236223aB4291b93EEd10E4B511B37a398DEE55",
-            "value": 1 * 10**18,
-        },
-    )
-
-    # Generate the signature payload
-    signature_payload = ws_provider.generate_signature_payload(call=call)
+    --8<-- 'code/builders/substrate/libraries/py-substrate-interface/12.py'
     ```
 
 2. 在离线机器上，使用发送帐户的私钥创建一个密钥对，并对签名负载进行签名：
 
     ```py
-    # Imports
-    from substrateinterface import Keypair, KeypairType
-
-    # Define the signature payload from the offline machine
-    signature_payload = "INSERT_SIGNATURE_PAYLOAD"
-
-    # Define the shortform private key of the sender account
-    privatekey = bytes.fromhex("INSERT_PRIVATE_KEY_WITHOUT_0X_PREFIX")
-
-    # Generate the keypair from shortform private key
-    keypair = Keypair.create_from_private_key(privatekey, crypto_type=KeypairType.ECDSA)
-
-    # Sign the signature_payload 
-    signature = keypair.sign(signature_payload)
+    --8<-- 'code/builders/substrate/libraries/py-substrate-interface/13.py'
     ```
 
 3. 在在线机器上，使用发送帐户的公钥创建一个密钥对，然后使用从离线机器生成的签名提交外部交易：
 
     ```py
-    # Imports
-    from substrateinterface import SubstrateInterface, Keypair, KeypairType
-
-    # Construct the API provider
-    ws_provider = SubstrateInterface(
-        url="{{ networks.moonbase.wss_url }}",
-    )
-
-    # Define the signature from the offline machine
-    signature_payload = "INSERT_SIGNATURE_PAYLOAD"
-
-    # Construct a keypair with the Ethereum style wallet address of the sending account
-    keypair = Keypair(public_key="INSERT_ADDRESS_WITHOUT_0X", crypto_type=KeypairType.ECDSA)
-
-    # Construct the same transaction call that was signed
-    call = ws_provider.compose_call(
-        call_module="Balances",
-        call_function="transfer_allow_death",
-        call_params={
-            "dest": "0x44236223aB4291b93EEd10E4B511B37a398DEE55",
-            "value": 1 * 10**18,
-        },
-    )
-
-    # Construct the signed extrinsic with the generated signature
-    extrinsic = ws_provider.create_signed_extrinsic(
-        call=call, keypair=keypair, signature=signature
-    )
-
-    # Submit the signed extrinsic
-    result = ws_provider.submit_extrinsic(extrinsic=extrinsic)
-
-    # Print the execution result
-    print(result.extrinsic_hash)
+    --8<-- 'code/builders/substrate/libraries/py-substrate-interface/14.py'
     ```
 
 ## 自定义 RPC 请求 {: #custom-rpc-requests }

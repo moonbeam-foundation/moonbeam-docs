@@ -54,10 +54,7 @@ Moonbeam 引入了一个新的专用 Origin，名为 `ForeignAssetOwnerOrigin`�
 * **`Name`**: 一个人类可读的名称，例如 `Test Token`。
 
 ```typescript
-const ASSET_ID = 42259045809535163221576417993425387648n;
-const DECIMALS = 18n;
-const SYMBOL   = "xcTEST";
-const NAME     = "Test Token";
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/1.ts'
 ```
 
 ### 如何计算资产 ID {: #calculate-asset-id }
@@ -69,9 +66,7 @@ const NAME     = "Test Token";
 XCM 工具仓库中有一个有用的[计算外部资产信息脚本](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank}，您可以使用该脚本以编程方式生成资产 ID。该脚本接受两个参数，即资产的多重定位和目标网络（Moonbeam 或 Moonriver）。使用您资产的多重定位和目标网络调用 `calculate-external-asset-info.ts` 助手脚本，如下所示，以轻松生成其资产 ID。
 
 ```bash
-ts-node scripts/calculate-external-asset-info.ts \
-  --asset '{"parents":1,"interior":{"X3":[{"Parachain":4},{"PalletInstance":12},{"GeneralIndex":15}]}}' \
-  --network moonbeam
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/3.sh'
 ```
 
 该脚本将返回 `assetID`，您现在可以将其传递给 `evmForeignAssets.createForeignAsset`。
@@ -89,13 +84,13 @@ xcDOT 的 XC-20 地址示例可以这样计算：
 === "公式"
 
 ```ts
-const xc20Address = `0xFFFFFFFF${hex(assetId).padStart(32, "0")}`;
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/4.ts'
 ```
 
 === "示例"
 
 ```bash
-0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/5.sh'
 ```
 
 ## 生成编码的调用数据 {: #generate-the-encoded-call-data }
@@ -121,10 +116,7 @@ Transact {
 通过 `xcmPallet.send` 发送 transact 指令，目标平行链对于 Moonbeam 为 `2004`（对于 Moonriver 为 `2023`）。
 
 ```rust
-xcmPallet.send(
-  dest: { Parachain: 2004 },
-  message: VersionedXcm::V4(INSERT_TRANSACT_INSTRUCTION)
-);
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/6.rs'
 ```
 
 最后，在 Moonbeam 上查找以下成功发出的事件：

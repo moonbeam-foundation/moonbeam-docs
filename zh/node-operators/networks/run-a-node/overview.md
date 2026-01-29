@@ -113,13 +113,7 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 状态覆盖文件应定义您要覆盖的相应 pallet、存储项和值，如下所示：
 
 ```json
-[
- {
-     "pallet": "System",
-     "storage": "SelectedCandidates",
-     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
- }
-]
+--8<-- 'code/node-operators/networks/run-a-node/overview/1.json'
 ```
 
 ## 日志和故障排除 {: #logs-and-troubleshooting }

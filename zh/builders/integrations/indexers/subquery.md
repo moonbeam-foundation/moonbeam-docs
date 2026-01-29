@@ -37,13 +37,13 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
     === "npm"
 
         ```bash
-        npm install -g @subql/cli
+        --8<-- 'code/builders/integrations/indexers/subquery/1.sh'
         ```
 
     === "yarn"
 
         ```bash
-        yarn global add @subql/cli
+        --8<-- 'code/builders/integrations/indexers/subquery/2.sh'
         ```
 
 !!! note
@@ -52,7 +52,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 2. 使用以下命令初始化您的SubQuery项目：
 
     ```bash
-    subql init PROJECT_NAME
+    --8<-- 'code/builders/integrations/indexers/subquery/3.sh'
     ```
 
 3. 系统将提示您回答一系列问题：
@@ -99,13 +99,13 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
     === "npm"
 
         ```bash
-        cd PROJECT_NAME && npm install
+        --8<-- 'code/builders/integrations/indexers/subquery/4.sh'
         ```
 
     === "yarn"
 
         ```bash
-        cd PROJECT_NAME && yarn install
+        --8<-- 'code/builders/integrations/indexers/subquery/5.sh'
         ```
 
 ## 配置网络 {: #configure-the-network }
@@ -117,38 +117,19 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 === "Moonbeam"
 
     ```ts
-    network: {
-      chainId: 
-        '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d',
-      endpoint: ['{{ networks.moonbeam.rpc_url }}'],
-      chaintypes: {
-        file: ./dist/chaintypes.js,
-      },
-    },
+    --8<-- 'code/builders/integrations/indexers/subquery/6.ts'
     ```
 
 === "Moonriver"
 
     ```ts
-    network: {
-      chainId: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b',
-      endpoint: ['{{ networks.moonriver.rpc_url }}'],
-      chaintypes: {
-        file: ./dist/chaintypes.js,
-      },
-    },
+    --8<-- 'code/builders/integrations/indexers/subquery/7.ts'
     ```
 
 === "Moonbase Alpha"
 
     ```ts
-    network: {
-      chainId: '0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527',
-      endpoint: ['{{ networks.moonbase.rpc_url }}'],
-      chaintypes: {
-        file: ./dist/chaintypes.js,
-      },
-    },
+    --8<-- 'code/builders/integrations/indexers/subquery/8.ts'
     ```
 
  --8<-- 'zh/text/_common/endpoint-examples.md'
@@ -160,13 +141,13 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 === "npm"
 
     ```bash
-    npm run codegen
+    --8<-- 'code/builders/integrations/indexers/subquery/9.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn codegen
+    --8<-- 'code/builders/integrations/indexers/subquery/10.sh'
     ```
 
 --8<-- 'code/builders/integrations/indexers/subquery/terminal/codegen.md'
@@ -183,7 +164,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 要索引 Substrate 数据，您需要确保 `project` 的类型为 `SubstrateProject`。
 
 ```ts
-const project: SubstrateProject = { ... }
+--8<-- 'code/builders/integrations/indexers/subquery/11.ts'
 ```
 
 ### Substrate 数据源 {: #the-substrate-data-source }
@@ -191,25 +172,7 @@ const project: SubstrateProject = { ... }
 在 `project.dataSources` 数组中，您将定义 Substrate 数据源和要索引的数据。数据源的格式如下：
 
 ```ts
-datasources: [
-  {
-    kind: 'substrate/Runtime',
-    startBlock: INSERT_START_BLOCK,
-    endBlock: INSERT_END_BLOCK,
-    mapping: {
-      file: './dist/index.js',
-      handlers: [
-        {
-          kind: 'INSERT_HANDLER_KIND',
-          handler: 'INSERT_HANDLER_FUNCTION_NAME',
-          filter: {
-            'INSERT_FILTER_TYPE': 'INSERT_FILTER',
-          },
-        },
-      ],
-    },
-  },
-],
+--8<-- 'code/builders/integrations/indexers/subquery/12.ts'
 ```
 
 每个属性可以定义如下：
@@ -259,7 +222,7 @@ The `project.ts` file is the entry point into your indexer; it defines what type
 To index Substrate data, you'll need to ensure that the type of the `project` is `SubstrateProject<FrontierEvmDatasource>`.
 
 ```ts
-const project: SubstrateProject<FrontierEvmDatasource> = { ... }
+--8<-- 'code/builders/integrations/indexers/subquery/13.ts'
 ```
 
 ### EVM数据源 {: #the-evm-data-source }
@@ -269,33 +232,7 @@ const project: SubstrateProject<FrontierEvmDatasource> = { ... }
 数据源的格式如下：
 
 ```ts
-datasources: [
-  {
-    kind: 'substrate/FrontierEvm',
-    startBlock: INSERT_START_BLOCK,
-    endBlock: INSERT_END_BLOCK,
-    processor: {
-      file: './node_modules/@subql/frontier-evm-processor/dist/bundle.js',
-      options: {
-        abi: '',
-        address: '',
-      },
-    },
-    assets: ''
-    mapping: {
-      file: './dist/index.js',
-      handlers: [
-        {
-          kind: 'INSERT_HANDLER_KIND',
-          handler: 'INSERT_HANDLER_FUNCTION_NAME',
-          filter: {
-            'INSERT_FILTER_TYPE': 'INSERT_FILTER',
-          },
-        },
-      ],
-    },
-  },
-],
+--8<-- 'code/builders/integrations/indexers/subquery/14.ts'
 ```
 
 每个属性可以定义如下：
@@ -341,13 +278,13 @@ datasources: [
     === "npm"
 
         ```bash
-        npm run build
+        --8<-- 'code/builders/integrations/indexers/subquery/15.sh'
         ```
 
     === "yarn"
 
         ```bash
-        yarn build
+        --8<-- 'code/builders/integrations/indexers/subquery/16.sh'
         ```
 
     --8<-- 'code/builders/integrations/indexers/subquery/terminal/npm-run-build.md'
@@ -360,13 +297,13 @@ datasources: [
     === "npm"
 
         ```bash
-        npm run start:docker
+        --8<-- 'code/builders/integrations/indexers/subquery/17.sh'
         ```
 
     === "yarn"
 
         ```bash
-        yarn start:docker
+        --8<-- 'code/builders/integrations/indexers/subquery/18.sh'
         ```
 
     --8<-- 'code/builders/integrations/indexers/subquery/terminal/logs.md'
@@ -377,7 +314,7 @@ datasources: [
         GraphQL 服务器可能需要几分钟才能准备好。在看到以下日志后，你就可以访问 playground：
 
         ```bash
-        substrate-demo-graphql-engine-1  | <subql-query> INFO Started playground at `http://localhost:3000`
+        --8<-- 'code/builders/integrations/indexers/subquery/19.sh'
         ```
 
     ![浏览器中的 GraphQL playground。](/images/builders/integrations/indexers/subquery/subquery-1.webp)

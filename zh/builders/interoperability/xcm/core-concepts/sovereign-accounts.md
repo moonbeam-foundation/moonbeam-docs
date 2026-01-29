@@ -24,7 +24,7 @@ categories: XCM
 例如，要计算 Moonbase Alpha 测试网上平行链 `1000` 的主权账户地址：
 
 ```bash
-yarn calculate-sovereign-account --p 1000 --r moonbase
+--8<-- 'code/builders/interoperability/xcm/core-concepts/sovereign-accounts/1.sh'
 ```
 
 运行该脚本将生成如下输出：

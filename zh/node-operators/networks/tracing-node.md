@@ -48,19 +48,19 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 === "Moonbeam"
 
     ```bash
-    mkdir {{ networks.moonbeam.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/1.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    mkdir {{ networks.moonriver.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/2.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    mkdir {{ networks.moonbase.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/3.sh'
     ```
 
 在开始之前，您需要为特定用户或当前用户设置必要的权限（将 `INSERT_DOCKER_USER` 替换为将运行 `docker` 命令的实际用户）：
@@ -68,31 +68,19 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 === "Moonbeam"
 
     ```bash
-    # chown to a specific user
-    chown INSERT_DOCKER_USER {{ networks.moonbeam.node_directory }}
-
-    # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/4.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    # chown to a specific user
-    chown INSERT_DOCKER_USER {{ networks.moonriver.node_directory }}
-
-    # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/5.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    # chown to a specific user
-    chown INSERT_DOCKER_USER {{ networks.moonbase.node_directory }}
-
-    # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/6.sh'
     ```
 
 您需要使用 `moonbeamfoundation/moonbeam-tracing` 镜像，而不是标准的 `moonbeamfoundation/moonbeam` Docker 镜像。最新受支持的版本可以在 [`moonbeam-tracing` 镜像的 Docker Hub](https://hub.docker.com/r/moonbeamfoundation/moonbeam-tracing/tags){target=\_blank} 上找到。
@@ -109,71 +97,25 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 === "Moonbeam"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonbeam.tracing_tag }} \
-    --base-path /data \
-    --chain {{ networks.moonbeam.chain_spec }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache INSERT_RAM_IN_MB \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonbeam-substitutes-tracing \
-    --runtime-cache-size 64 \
-    -- \
-    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --8<-- 'code/node-operators/networks/tracing-node/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonriver.tracing_tag }} \
-    --base-path /data \
-    --chain {{ networks.moonriver.chain_spec }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache INSERT_RAM_IN_MB \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonriver-substitutes-tracing \
-    --runtime-cache-size 64 \
-    -- \
-    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --8<-- 'code/node-operators/networks/tracing-node/8.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonbase.tracing_tag }} \
-    --base-path /data \
-    --chain {{ networks.moonbase.chain_spec }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache INSERT_RAM_IN_MB \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
-    --runtime-cache-size 64 \
-    -- \
-    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --8<-- 'code/node-operators/networks/tracing-node/9.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    docker run --network="host" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.development.tracing_tag }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
-    --runtime-cache-size 64 \
-    --dev
+    --8<-- 'code/node-operators/networks/tracing-node/10.sh'
     ```
 
 如果您启动了一个 Moonbase Alpha 追踪节点，您应该会看到类似于以下内容的终端日志：
@@ -198,7 +140,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 1. 克隆 [Moonbeam 运行时覆盖存储库](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides){target=\_blank}
 
     ```bash
-    git clone https://github.com/moonbeam-foundation/moonbeam-runtime-overrides.git
+    --8<-- 'code/node-operators/networks/tracing-node/11.sh'
     ```
 
 2. 将 Wasm 覆盖移动到您的链上数据目录中：
@@ -206,19 +148,19 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
     === "Moonbeam"
 
         ```bash
-        mv moonbeam-runtime-overrides/wasm {{ networks.moonbeam.node_directory }}
+        --8<-- 'code/node-operators/networks/tracing-node/12.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        mv moonbeam-runtime-overrides/wasm {{ networks.moonriver.node_directory }}
+        --8<-- 'code/node-operators/networks/tracing-node/13.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mv moonbeam-runtime-overrides/wasm {{ networks.moonbase.node_directory }}
+        --8<-- 'code/node-operators/networks/tracing-node/14.sh'
         ```
 
 3. 删除您未运行的网络的覆盖文件
@@ -226,19 +168,19 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
     === "Moonbeam"
 
         ```bash
-        rm {{ networks.moonbeam.node_directory }}/wasm/moonriver-runtime-* &&  rm {{ networks.moonbeam.node_directory }}/wasm/moonbase-runtime-*
+        --8<-- 'code/node-operators/networks/tracing-node/15.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        rm {{ networks.moonriver.node_directory }}/wasm/moonbeam-runtime-* &&  rm {{ networks.moonriver.node_directory }}/wasm/moonbase-runtime-*
+        --8<-- 'code/node-operators/networks/tracing-node/16.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        rm {{ networks.moonbase.node_directory }}/wasm/moonbeam-runtime-* &&  rm {{ networks.moonbase.node_directory }}/wasm/moonriver-runtime-*
+        --8<-- 'code/node-operators/networks/tracing-node/17.sh'
         ```
 
 4. 设置覆盖的用户权限：
@@ -246,22 +188,19 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
     === "Moonbeam"
 
         ```bash
-        chmod +x {{ networks.moonbeam.node_directory }}/wasm/*
-        chown moonbeam_service {{ networks.moonbeam.node_directory }}/wasm/*
+        --8<-- 'code/node-operators/networks/tracing-node/18.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        chmod +x {{ networks.moonriver.node_directory }}/wasm/*
-        chown moonriver_service {{ networks.moonriver.node_directory }}/wasm/*
+        --8<-- 'code/node-operators/networks/tracing-node/19.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        chmod +x {{ networks.moonbase.node_directory }}/wasm/*
-        chown moonbase_service {{ networks.moonbase.node_directory }}/wasm/*
+        --8<-- 'code/node-operators/networks/tracing-node/20.sh'
         ```
 
 ### 创建配置文件 {: #create-the-configuration-file }
@@ -279,100 +218,19 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 === "Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --ethapi debug,trace,txpool \
-         --wasm-runtime-overrides {{ networks.moonbeam.node_directory }}/wasm \
-         --runtime-cache-size 64 \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/tracing-node/21.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --ethapi debug,trace,txpool \
-         --wasm-runtime-overrides {{ networks.moonriver.node_directory }}/wasm \
-         --runtime-cache-size 64 \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/tracing-node/22.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    [Unit]
-    Description="Moonbase Alpha systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbase_service
-    SyslogIdentifier=moonbase
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbase.node_directory }} \
-         --ethapi debug,trace,txpool \
-         --wasm-runtime-overrides {{ networks.moonbase.node_directory }}/wasm \
-         --runtime-cache-size 64 \
-         --chain {{ networks.moonbase.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
-        
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/tracing-node/23.sh'
     ```
 
 !!! note
@@ -387,7 +245,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 您也可以运行以下命令来查看追踪节点启动时的日志：
 
 ```bash
-journalctl -f -u moonbeam.service
+--8<-- 'code/node-operators/networks/tracing-node/24.sh'
 ```
 
 您的终端应显示类似于以下内容的日志：

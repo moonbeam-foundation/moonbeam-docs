@@ -39,21 +39,19 @@ Foundry 由四个工具组成：
 1. 如果您还没有安装 Foundry，请安装它。 如果在 Linux 或 MacOS 上，您可以运行以下命令：
 
     ```bash
-    curl -L https://foundry.paradigm.xyz | bash
-    foundryup
+    --8<-- 'code/builders/ethereum/dev-env/foundry/1.sh'
     ```
 
     如果在 Windows 上，您必须先安装 Rust，然后从源代码构建 Foundry：
 
     ```bash
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh
-    cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
+    --8<-- 'code/builders/ethereum/dev-env/foundry/2.sh'
     ```
 
 1. 创建项目，这将创建一个包含三个文件夹的文件夹，并打开它：
 
     ```bash
-    forge init foundry && cd foundry
+    --8<-- 'code/builders/ethereum/dev-env/foundry/3.sh'
     ```
 
 创建默认项目后，您应该看到三个文件夹。
@@ -69,8 +67,7 @@ Foundry 由四个工具组成：
 `src` 文件夹中可能已经包含 `Counter.sol`，这是一个最小化的 Solidity 合约。你可以将其删除。为避免报错，你还应删除 `scripts` 文件夹中的 `Counter.s.sol` 文件，以及 `test` 文件夹中的 `Counter.t.sol` 文件。在接下来的步骤中，你将部署一个 ERC-20 合约。在 `contracts` 目录中，你可以创建 `MyToken.sol` 文件：
 
 ```bash
-cd src
-touch MyToken.sol
+--8<-- 'code/builders/ethereum/dev-env/foundry/4.sh'
 ```
 
 打开该文件并将以下合约内容添加进去：
@@ -82,14 +79,14 @@ touch MyToken.sol
 在尝试编译之前，请先安装 OpenZeppelin 合约作为依赖项。你可能需要先将之前的更改提交到 git。默认情况下，Foundry 使用 git 子模块（submodules）而不是 npm 包，因此不会使用传统的 npm 导入路径和命令。相反，请使用 OpenZeppelin 的 GitHub 仓库名称：
 
 ```bash
-forge install OpenZeppelin/openzeppelin-contracts
+--8<-- 'code/builders/ethereum/dev-env/foundry/5.sh'
 ```
 ## 编译 Solidity {: #compiling-solidity }
 
 当所有依赖项都安装完成后，你可以编译该合约：
 
 ```bash
-forge build
+--8<-- 'code/builders/ethereum/dev-env/foundry/6.sh'
 ```
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/compile.md'
@@ -105,7 +102,7 @@ forge build
 在部署之前，您需要通过导入您的私钥来设置您的密钥库。您可以使用 `cast wallet import` 命令，如下所示：
 
 ```bash
-cast wallet import deployer --interactive
+--8<-- 'code/builders/ethereum/dev-env/foundry/7.sh'
 ```
 
 这将提示您：
@@ -120,41 +117,25 @@ cast wallet import deployer --interactive
 === "Moonbeam"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/8.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.moonriver.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/9.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.moonbase.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/10.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.development.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/11.sh'
     ```
 
 部署合约并在几秒钟后，您应该在终端中看到该地址。
@@ -185,7 +166,7 @@ cast wallet import deployer --interactive
 在本示例中，Foundry 会在部署合约之前，先尝试进行本地模拟，然后再对提供的 RPC 进行模拟。请记住，它会按顺序执行所有相关步骤。如果任一模拟失败，Foundry 将不会继续部署。你可以使用以下命令部署 `MyToken.sol` 合约：
 
 ```bash
-forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast --account deployer
+--8<-- 'code/builders/ethereum/dev-env/foundry/12.sh'
 ```
 
 如果脚本执行成功，你的终端输出应类似于下方内容。
@@ -204,31 +185,31 @@ Foundry 包含 cast，这是一个用于执行以太坊 RPC 调用的 CLI。
 === "Moonbeam"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/13.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonriver.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/14.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbase.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/15.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.development.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/16.sh'
     ```
 
 您应该以十六进制格式获取此数据：
 
 ```text
-0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
+--8<-- 'code/builders/ethereum/dev-env/foundry/17.txt'
 ```
 
 这远非可读，但您可以使用 Cast 将其转换为所需的格式。 在这种情况下，数据是文本，因此您可以将其转换为 ASCII 字符以查看“My Token”：
@@ -236,7 +217,7 @@ Foundry 包含 cast，这是一个用于执行以太坊 RPC 调用的 CLI。
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/cast.md'
 
 ```bash
-cast --to-ascii 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
+--8<-- 'code/builders/ethereum/dev-env/foundry/18.sh'
 ```
 
 您也可以使用 cast 改变数据。 尝试通过将令牌发送到零地址来销毁令牌。
@@ -300,19 +281,19 @@ cast --to-ascii 0x00000000000000000000000000000000000000000000000000000000000000
 === "Moonbeam"
 
     ```bash
-    anvil --fork-url {{ networks.moonbeam.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/23.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    anvil --fork-url {{ networks.moonriver.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/24.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    anvil --fork-url {{ networks.moonbase.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/25.sh'
     ```
 
 您的 fork 实例将拥有 10 个预先注资 10,000 个测试 token 的开发账户。fork 实例可在 `http://127.0.0.1:8545/` 上使用。终端中的输出应类似于以下内容：
@@ -322,7 +303,7 @@ cast --to-ascii 0x00000000000000000000000000000000000000000000000000000000000000
 要验证您是否已 fork 网络，可以查询最新的区块号：
 
 ```bash
-curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
+--8<-- 'code/builders/ethereum/dev-env/foundry/26.sh'
 ```
 
 如果您将 `result` 从 [十六进制转换为十进制](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}，您应该获得从您 fork 网络时开始的最新区块号。您可以使用 [区块浏览器](/builders/get-started/explorers/){target=\_blank} 交叉引用区块号。
@@ -330,7 +311,7 @@ curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H
 从这里，您可以将新合约部署到您的 Moonbeam fork 实例，或者与已经部署的合约进行交互。在此指南的前一个示例的基础上，您可以使用 Cast 进行调用，以检查您部署合约的账户中已铸造的 MYTOK token 的余额：
 
 ```bash
-cast call INSERT_CONTRACT_ADDRESS  "balanceOf(address)(uint256)" INSERT_YOUR_ADDRESS --rpc-url http://localhost:8545
+--8<-- 'code/builders/ethereum/dev-env/foundry/27.sh'
 ```
 
 ## 使用 Chisel {: #using-chisel }
@@ -342,19 +323,19 @@ Chisel 是一个 Solidity REPL 或 shell。它允许开发者直接在控制台�
 在本示例中，您将测试 Solidity 中 `abi` 的一些功能，因为它足够复杂，能展示 Chisel 的用途。要开始使用 Chisel，请在命令行运行以下命令以启动 shell：
 
 ```bash
-chisel
+--8<-- 'code/builders/ethereum/dev-env/foundry/28.sh'
 ```
 
 在 shell 中，您可以像在函数内运行一样编写 Solidity 代码：
 
 ```solidity
-bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
+--8<-- 'code/builders/ethereum/dev-env/foundry/29.sol'
 ```
 
 假设您想了解 `abi` 如何编码数据，因为您在研究如何更高效地在区块链上存储数据从而节省 gas。要查看 `myData` 在内存中的存储方式，可以在 Chisel shell 中使用以下命令：
 
 ```bash
-!memdump
+--8<-- 'code/builders/ethereum/dev-env/foundry/30.sh'
 ```
 
 `memdump` 会导出当前会话中的所有数据。您很可能会看到类似下面的输出。如果您不擅长阅读十六进制，或者不了解 ABI 编码的工作方式，可能无法找到 `myData` 变量存储的位置。
@@ -364,7 +345,7 @@ bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
 幸运的是，Chisel 可以轻松帮您找出这些信息存储的位置。使用 `!rawstack` 命令，可以找到变量值在栈中的位置：
 
 ```bash
-!rawstack myData
+--8<-- 'code/builders/ethereum/dev-env/foundry/31.sh'
 ```
 
 在这种情况下，由于 bytes 超过 32 字节，显示的是内存指针。但这正是所需信息，因为您已经通过 `!memdump` 命令了解了整个栈的内容。
@@ -387,13 +368,13 @@ bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
 完成这段代码后，您可以清理 Chisel 的状态，避免干扰后续想要尝试的逻辑（在同一 Chisel 实例内运行）：
 
 ```bash
-!clear
+--8<-- 'code/builders/ethereum/dev-env/foundry/32.sh'
 ```
 
 使用 Chisel 还有更简单的测试方法。当代码以分号（`;`）结尾时，Chisel 会将其作为语句运行，并将其值存储在 Chisel 的运行时状态中。但如果您只需要查看 ABI 编码数据的表示形式，那么可以直接将代码作为表达式运行。要用相同的 `abi` 示例试试看，请在 Chisel shell 中输入：
 
 ```bash
-abi.encode(100, true, "Develop on Moonbeam")
+--8<-- 'code/builders/ethereum/dev-env/foundry/33.sh'
 ```
 
 您应该会看到类似下面的内容：
@@ -407,19 +388,19 @@ abi.encode(100, true, "Develop on Moonbeam")
 1. 在 Chisel 中存储一个 `uint256`
 
     ```bash
-    uint256 myNumber = 101;
+    --8<-- 'code/builders/ethereum/dev-env/foundry/34.sh'
     ```
 
 1. 使用 `!save` 保存会话。在此示例中，可以使用数字 `1` 作为保存 ID
 
     ```bash
-    !save 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/35.sh'
     ```
 
 1. 退出会话
 
     ```bash
-    !quit
+    --8<-- 'code/builders/ethereum/dev-env/foundry/36.sh'
     ```
 
 然后，要查看和操作已保存的 Chisel 状态，可以执行以下步骤：
@@ -427,19 +408,19 @@ abi.encode(100, true, "Develop on Moonbeam")
 1. 查看已保存的 Chisel 状态列表
 
     ```bash
-    chisel list
+    --8<-- 'code/builders/ethereum/dev-env/foundry/37.sh'
     ```
 
 1. 加载已保存的状态
 
     ```bash
-    chisel load 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/38.sh'
     ```
 
 1. 查看前面步骤中保存在 Chisel 中的 `uint256`
 
     ```bash
-    !rawstack myNumber
+    --8<-- 'code/builders/ethereum/dev-env/foundry/39.sh'
     ```
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/save-state.md'
@@ -447,7 +428,7 @@ abi.encode(100, true, "Develop on Moonbeam")
 您甚至可以在使用 Chisel 时 fork 网络：
 
 ```bash
-!fork {{ networks.moonbase.rpc_url }}
+--8<-- 'code/builders/ethereum/dev-env/foundry/40.sh'
 ```
 
 例如，可以查询 Moonbase Alpha 某个候选节点的余额：
@@ -467,9 +448,7 @@ abi.encode(100, true, "Develop on Moonbeam")
 要将现有的 Foundry 项目转换为混合项目，本质上需要在同一文件夹中安装一个 Hardhat 项目：
 
 ```bash
-npm init
-npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
-npx hardhat init
+--8<-- 'code/builders/ethereum/dev-env/foundry/41.sh'
 ```
 
 更多信息请参考我们关于[创建 Hardhat 项目](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank}的文档。
@@ -479,7 +458,7 @@ npx hardhat init
 1. 编辑仓库中的 `hardhat.config.js` 文件。打开它并在顶部添加以下内容：
 
     ```javascript
-    require("@nomicfoundation/hardhat-foundry");
+    --8<-- 'code/builders/ethereum/dev-env/foundry/42.js'
     ```
 
     添加 `hardhat-foundry` 插件后，Hardhat 的常规 `contracts` 文件夹将无法使用，因为此时 Hardhat 期望所有智能合约都存储在 Foundry 的 `src` 文件夹中
@@ -489,12 +468,7 @@ npx hardhat init
 1. 编辑 `foundry.toml` 文件，确保通过 Git 子模块和 npm 安装的依赖项都能被 Forge 编译。编辑 `profile.default`，确保 `libs` 项同时包含 `lib` 和 `node_modules`：
 
     ```toml
-    [profile.default]
-    src = 'src'
-    out = 'out'
-    libs = ['lib', 'node_modules']
-    solc = '0.8.20'
-    evm_version = 'london'
+    --8<-- 'code/builders/ethereum/dev-env/foundry/43.toml'
     ```
 
 现在，无论依赖项来自哪里，`forge build` 和 `npx hardhat compile` 都可以正常运行。
@@ -502,15 +476,13 @@ npx hardhat init
 `forge test` 和 `npx hardhat test` 此时都可以访问所有智能合约和依赖项。`forge test` 只会运行 Solidity 测试，而 `npx hardhat test` 只会运行 JavaScript 测试。如果想配合使用，可以在 `package.json` 中创建一个新的脚本：
 
 ```json
-"scripts": {
-    "test": "npx hardhat test && forge test"
-}
+--8<-- 'code/builders/ethereum/dev-env/foundry/44.json'
 ```
 
 您可以通过以下命令运行该脚本：
 
 ```bash
-npm run test
+--8<-- 'code/builders/ethereum/dev-env/foundry/45.sh'
 ```
 
 最后，虽然非必需，但可以将 `scripts` 文件夹中的所有 JavaScript 脚本移到 Foundry 的 `script` 文件夹，并删除 `scripts` 文件夹，以避免有两个用途相同的文件夹。

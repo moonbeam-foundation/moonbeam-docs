@@ -76,7 +76,7 @@ categories: 节点运营商和区块收集人
 对于基于 Linux 的系统（如 Ubuntu），打开终端并转到 moonkey 二进制文件所在的文件夹。到达那里后，您可以使用 sha256sum 工具来计算 SHA256 哈希值：
 
 ```text
-019c3de832ded3fccffae950835bb455482fca92714448cc0086a7c5f3d48d3e
+--8<-- 'code/node-operators/networks/collators/requirements/1.txt'
 ```
 
 验证哈希后，建议将二进制文件移动到气隙机器（无网络接口）。您也可以直接在气隙设备中检查文件的哈希值。

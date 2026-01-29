@@ -104,12 +104,7 @@ categories: Staking
 自动复利委托计数是已配置自动复利的委托数量。要确定设置了自动复利的委托数量，您可以使用以下代码段在 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank} 上查询候选人的自动复利委托：
 
 ```js
-// Simple script to get the number of auto-compounding delegations for a given candidate.
-// Remember to replace INSERT_CANDIDATE_ADDRESS with the candidate's address you want to delegate.
-const candidateAccount = 'INSERT_CANDIDATE_ADDRESS';
-const autoCompoundingDelegations =
-  await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
-console.log(autoCompoundingDelegations.toHuman().length);
+--8<-- 'code/tokens/staking/stake/1.js'
 ```
 
 要运行此代码段，请确保您位于 Polkadot.js Apps 的 **JavaScript** 页面（可以从**开发者**下拉菜单中选择），并执行以下步骤：
@@ -126,17 +121,7 @@ console.log(autoCompoundingDelegations.toHuman().length);
 如果您从未使用该地址进行过委托，您可以跳过本节。不过，如果您不确定自己已有多少条委托记录，建议在 [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank} 中运行以下 JavaScript 代码片段，以获取 `delegationCount`：
 
 ```js
-// Simple script to get your number of existing delegations.
-// Remember to replace INSERT_YOUR_ADDRESS with your delegator address.
-const yourDelegatorAccount = 'INSERT_YOUR_ADDRESS'; 
-const delegatorInfo = 
-  await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
-
-if (delegatorInfo.toHuman()) {
-  console.log(delegatorInfo.toHuman()['delegations'].length);
-} else {
-  console.log(0);
-}
+--8<-- 'code/tokens/staking/stake/2.js'
 ```
 
 前往 **开发者** 选项卡并单击 **JavaScript**，然后按以下步骤操作：

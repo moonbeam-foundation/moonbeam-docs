@@ -23,41 +23,19 @@ categories: XCM 远程执行
 例如，从 relay 链，[`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} 指令由 [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=\_blank} 本地注入。对于 Moonbase Alpha 的 relay 链（基于 Westend）而言，它具有以下格式（多位置连接）：
 
 ```js
-{
-  DescendOrigin: {
-    X1: {
-      AccountId32: {
-        network: { westend: null },
-        id: decodedAddress,
-      },
-    },
-  },
-}
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/1.js'
 ```
 
 其中 `decodedAddress` 对应于在 relay 链上签署交易的帐户的地址（以解码的 32 字节格式）。您可以使用以下代码段来确保您的地址已正确解码，如果需要，它将解码地址，如果不需要，则忽略它：
 
 ```js
-import { decodeAddress } from '@polkadot/util-crypto';
-const decodedAddress = decodeAddress('INSERT_ADDRESS');
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/2.js'
 ```
 
 当 XCM 指令在 Moonbeam（本例中为 Moonbase Alpha）中执行时，原始地址将变异为以下多位置：
 
 ```js
-{
-  DescendOrigin: {
-    parents: 1,
-    interior: {
-      X1: {
-        AccountId32: {
-          network: { westend: null },
-          id: decodedAddress,
-        },
-      },
-    },
-  },
-}
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/3.js'
 ```
 
 ## 如何计算导出的原始地址 {: #calculate-computed-origin }
@@ -78,11 +56,7 @@ const decodedAddress = decodeAddress('INSERT_ADDRESS');
 3. 运行脚本
 
     ```bash
-    yarn calculate-multilocation-derivative-account \
-    --ws-provider INSERT_RPC_ENDPOINT \
-    --address INSERT_ORIGIN_ACCOUNT \
-    --para-id INSERT_ORIGIN_PARACHAIN_ID_IF_APPLIES \
-    --parents INSERT_PARENTS_VALUE_IF_APPLIES
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/4.sh'
     ```
 
 您还可以使用 [XCM 实用程序预编译](/builders/interoperability/xcm/xcm-utils/){target=\_blank} 的 `multilocationToAddress` 函数来计算导出的原始地址帐户。
@@ -92,10 +66,7 @@ const decodedAddress = decodeAddress('INSERT_ADDRESS');
 例如，要在 Moonbase Alpha 上计算 Alice 的中继链账户的计算来源，该账户为 `5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT`，您可以使用以下命令来运行脚本：
 
 ```bash
-yarn calculate-multilocation-derivative-account \
---ws-provider wss://wss.api.moonbase.moonbeam.network \
---address 5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT \
---parents 1
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/5.sh'
 ```
 
 !!! note

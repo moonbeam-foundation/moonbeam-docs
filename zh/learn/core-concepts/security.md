@@ -40,24 +40,13 @@ categories: Basics
 要获取编码的调用数据，您可以使用 [Solidity 文档中概述的任何 ABI 编码函数](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#abi-encoding-and-decoding-functions){target=\_blank}，包括 `abi.encodeWithSelector`，如下面的函数所示：
 
 ```solidity
-function getBytes(address _erc20Contract, address _arbitraryCallContract, address _to) public view returns (bytes memory) {
-    // Load ERC-20 interface of contract
-    IERC20 erc20 = IERC20(_erc20Contract);
-    // Get amount to transfer
-    uint256 amount = erc20.balanceOf(_arbitraryCallContract);
-    // Build the encoded call data
-    return abi.encodeWithSelector(IERC20.transfer.selector, _to, amount);
-}
+--8<-- 'code/learn/core-concepts/security/1.sol'
 ```
 
 获得编码的调用数据后，您可以对 [原生 ERC-20 预编译合约](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} 进行任意调用，将调用的值设置为 `0`，并将调用数据以字节形式传入：
 
 ```solidity
-function makeArbitraryCall(address _target, bytes calldata _bytes) public {
-    // Value: 0 does not protect against native ERC-20 precompile calls or XCM precompiles
-    (bool success,) = _target.call{value: 0}(_bytes);
-    require(success);
-}
+--8<-- 'code/learn/core-concepts/security/2.sol'
 ```
 
 `0` 的值将被编码的调用数据中指定的要转移的金额覆盖，在本例中，该金额是合约的余额。
@@ -71,20 +60,7 @@ function makeArbitraryCall(address _target, bytes calldata _bytes) public {
 获得白名单函数选择器后，您可以使用内联汇编从编码的调用数据中获取函数选择器，并使用 [require 函数](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank}比较这两个选择器。如果编码的调用数据中的函数选择器与白名单函数选择器匹配，则可以进行调用。否则，将抛出异常。
 
 ```solidity
-function makeArbitraryCall(address _target, bytes calldata _bytes) public {
-    // Get the function selector from the encoded call data
-    bytes4 selector;
-    assembly {
-        selector := calldataload(_bytes.offset)
-    }
-
-    // Ensure the call data calls an approved and safe function
-    require(selector == INSERT_WHITELISTED_FUNCTION_SELECTOR);
-
-    // Arbitrary call
-    (bool success,) = _target.call(_bytes);
-    require(success);
-}
+--8<-- 'code/learn/core-concepts/security/3.sol'
 ```
 
 ### 将安全合约列入白名单 {: #whitelisting-safe-contracts}
@@ -96,14 +72,7 @@ function makeArbitraryCall(address _target, bytes calldata _bytes) public {
 要将给定的合约列入白名单，您可以使用 [require 函数](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank}，它将目标合约地址与白名单中的合约地址进行比较。如果地址匹配，则可以执行该调用。否则，将抛出异常。
 
 ```solidity
-function makeArbitraryCall(address _target, bytes calldata _bytes) public {
-    // Ensure the contract address is safe
-    require(_target == INSERT_CONTRACT_ADDRESS);
-
-    // Arbitrary call
-    (bool success,) = _target.call(_bytes);
-    require(success);
-}
+--8<-- 'code/learn/core-concepts/security/4.sol'
 ```
 
 ## 预编译可以绕过发送者与 Origin 检查 {: #bypass-sender-origin-checks }
@@ -118,10 +87,7 @@ function makeArbitraryCall(address _target, bytes calldata _bytes) public {
 您可以使用 [require 函数](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank} 比较 `tx.origin` 和 `msg.sender`。如果它们是相同的地址，则表示您正在确保只有 EOA 才能调用该函数。如果 `msg.sender` 是合约地址，则会抛出异常。
 
 ```solidity
-function transferFunds(address payable _target) payable public {
-    require(tx.origin == msg.sender);
-    _target.call{value: msg.value};
-}
+--8<-- 'code/learn/core-concepts/security/5.sol'
 ```
 
 在以太坊上，您可以使用此检查来确保给定的合约函数只能由 EOA 调用一次。这是因为在以太坊上，EOA 在每次交易中只能与合约交互一次。但是，Moonbeam **并非如此**，因为 EOA 可以通过使用预编译合约（例如 [batch](/builders/ethereum/precompiles/ux/batch/){target=\_blank} 和 [call permit](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank} 预编译）一次与合约交互多次。

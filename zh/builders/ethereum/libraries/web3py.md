@@ -32,13 +32,13 @@ categories: 库和 SDK，以太坊工具包
 首先，您可以创建一个目录来存储您将在本指南中创建的所有文件：
 
 ```bash
-mkdir web3-examples && cd web3-examples
+--8<-- 'code/builders/ethereum/libraries/web3py/1.sh'
 ```
 
 对于本指南，您需要安装 Web3.py 库和 Solidity 编译器。 要安装这两个软件包，您可以运行以下命令：
 
 ```bash
-pip3 install web3 py-solc-x solc-select
+--8<-- 'code/builders/ethereum/libraries/web3py/2.sh'
 ```
 
 ## 使用 Moonbeam 设置 Web3.py {: #setup-web3-with-moonbeam }
@@ -55,41 +55,25 @@ pip3 install web3 py-solc-x solc-select
 === "Moonbeam"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbeam.rpc_url }}")) # Insert your RPC URL here
+    --8<-- 'code/builders/ethereum/libraries/web3py/3.py'
     ```
 
 === "Moonriver"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.moonriver.rpc_url }}")) # Insert your RPC URL here
+    --8<-- 'code/builders/ethereum/libraries/web3py/4.py'
     ```
 
 === "Moonbase Alpha"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbase.rpc_url }}"))
+    --8<-- 'code/builders/ethereum/libraries/web3py/5.py'
     ```
 
 === "Moonbeam Dev Node"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.development.rpc_url }}"))
+    --8<-- 'code/builders/ethereum/libraries/web3py/6.py'
     ```
 
 保存此代码段，因为您将在以下部分中使用的脚本中用到它。
@@ -105,7 +89,7 @@ pip3 install web3 py-solc-x solc-select
 您只需要一个文件来检查交易发送前后两个地址的余额。要开始，您可以运行以下命令创建一个 `balances.py` 文件：
 
 ```bash
-touch balances.py
+--8<-- 'code/builders/ethereum/libraries/web3py/7.sh'
 ```
 
 接下来，您将为此文件创建脚本并完成以下步骤：
@@ -120,7 +104,7 @@ touch balances.py
 要运行脚本并获取帐户余额，您可以运行以下命令：
 
 ```bash
-python3 balances.py
+--8<-- 'code/builders/ethereum/libraries/web3py/8.sh'
 ```
 
 如果成功，原始地址和接收地址的余额将以 ETH 显示在您的终端中。
@@ -130,7 +114,7 @@ python3 balances.py
 您只需要一个文件即可在账户之间执行交易。此示例将从源地址（您持有其私钥）向另一个地址转账 1 个 DEV 代币。首先，可以通过运行以下命令创建 `transaction.py` 文件：
 
 ```bash
-touch transaction.py
+--8<-- 'code/builders/ethereum/libraries/web3py/9.sh'
 ```
 
 接下来，为该文件创建脚本并完成以下步骤：
@@ -149,7 +133,7 @@ touch transaction.py
 要运行该脚本，您可以在终端中运行以下命令：
 
 ```bash
-python3 transaction.py
+--8<-- 'code/builders/ethereum/libraries/web3py/10.sh'
 ```
 
 如果交易成功，您会在终端中看到交易哈希被打印出来。
@@ -167,7 +151,7 @@ python3 transaction.py
 在本节中，您将创建一个脚本，使用 Solidity 编译器输出 `Incrementer.sol` 合约的字节码和接口（ABI）。首先，可以通过运行以下命令创建 `compile.py` 文件：
 
 ```bash
-touch compile.py
+--8<-- 'code/builders/ethereum/libraries/web3py/11.sh'
 ```
 
 接下来，为该文件创建脚本并完成以下步骤：
@@ -190,7 +174,7 @@ touch compile.py
 有了用于编译 `Incrementer.sol` 合约的脚本，您可以使用结果发送一个已签名的交易来部署它。为此，您可以创建一个名为 `deploy.py` 的部署脚本文件：
 
 ```bash
-touch deploy.py
+--8<-- 'code/builders/ethereum/libraries/web3py/12.sh'
 ```
 
 接下来，您将为该文件创建脚本并完成以下步骤：
@@ -208,7 +192,7 @@ touch deploy.py
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-python3 deploy.py
+--8<-- 'code/builders/ethereum/libraries/web3py/13.sh'
 ```
 
 如果成功，合约的地址将显示在终端中。
@@ -222,7 +206,7 @@ python3 deploy.py
 要开始，您可以创建一个文件并命名为 `get.py`：
 
 ```bash
-touch get.py
+--8<-- 'code/builders/ethereum/libraries/web3py/14.sh'
 ```
 
 然后，您可以按照以下步骤创建脚本：
@@ -240,7 +224,7 @@ touch get.py
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-python3 get.py
+--8<-- 'code/builders/ethereum/libraries/web3py/15.sh'
 ```
 
 如果成功，该值将显示在终端中。
@@ -250,7 +234,7 @@ python3 get.py
 发送方法是修改合约存储（更改变量）的交互类型，这意味着需要签名并发送交易。在本节中，您将创建两个脚本：一个用于递增，另一个用于重置递增器。要开始，您可以为每个脚本创建一个文件，并将它们命名为 `increment.py` 和 `reset.py`：
 
 ```bash
-touch increment.py reset.py
+--8<-- 'code/builders/ethereum/libraries/web3py/16.sh'
 ```
 
 打开 `increment.py` 文件，并按照以下步骤创建脚本：
@@ -268,7 +252,7 @@ touch increment.py reset.py
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-python3 increment.py
+--8<-- 'code/builders/ethereum/libraries/web3py/17.sh'
 ```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.py` 脚本与 `increment.py` 脚本一起使用，以确保该值按预期更改：
@@ -290,7 +274,7 @@ python3 increment.py
 要运行该脚本，您可以在终端中输入以下命令：
 
 ```bash
-python3 reset.py
+--8<-- 'code/builders/ethereum/libraries/web3py/18.sh'
 ```
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.py` 脚本与 `reset.py` 脚本一起使用，以确保该值按预期更改：

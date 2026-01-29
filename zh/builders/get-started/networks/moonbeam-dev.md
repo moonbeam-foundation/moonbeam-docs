@@ -34,7 +34,7 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 1. 执行以下命令来下载最新的 Moonbeam 镜像：
 
     ```bash
-    docker pull moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/1.sh'
     ```
 
     控制台日志的尾部应如下所示：
@@ -46,17 +46,13 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
     === "Ubuntu"
         
         ```bash
-        docker run --rm --name {{ networks.development.container_name }} --network host \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/2.sh'
         ```
 
     === "MacOS"
 
         ```bash
-        docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/3.sh'
         ```
 
     === "Windows"
@@ -72,7 +68,7 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
         如果 Docker 命令在 Apple Silicon 上失败或行为异常，请在 Docker Desktop 设置中启用 **Use Rosetta for x86_64/amd64 emulation on Apple Silicon**，并对 pull 和 run 命令使用 `amd64` 平台：
 
         ```bash
-        docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/5.sh'
         ```
 
         ```bash
@@ -110,8 +106,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 1. 克隆 Moonbeam 仓库的特定标签，您可以在 [Moonbeam GitHub 仓库](https://github.com/moonbeam-foundation/moonbeam){target=\_blank} 上找到它：
 
     ```bash
-    git clone -b {{ networks.development.build_tag }} https://github.com/moonbeam-foundation/moonbeam
-    cd moonbeam
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/8.sh'
     ```
 
     !!! note
@@ -137,14 +132,13 @@ docker run --rm --name {{ networks.development.container_name }} \
         如果您使用的是 Ubuntu 20.04 或 22.04，那么您需要确保在构建二进制文件之前安装了这些额外的依赖项：
 
         ```bash
-        apt install clang protobuf-compiler libprotobuf-dev pkg-config libssl-dev -y
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/9.sh'
         ```
 
         对于 MacOS 用户，可以通过 Homebrew 安装这些依赖项：
 
         ```bash
-        brew install llvm
-        brew install protobuf
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/10.sh'
         ```
 
     ```bash
@@ -176,7 +170,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 有关示例中使用的一些标志和选项的更多信息，请查看 [标志](#node-flags) 和 [选项](#node-options)。如果您想查看所有标志、选项和子命令的完整列表，请通过运行以下命令打开帮助菜单：
 
 ```bash
-./target/release/moonbeam --help
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/11.sh'
 ```
 
 ## 配置您的 Moonbeam 开发节点 {: #configure-moonbeam-dev-node }
@@ -324,13 +318,13 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 
 ```bash
-sudo rm -rf {{ networks.moonbase.node_directory }}/*
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/13.sh'
 ```
 
 如果你按照本指南的说明操作且未使用 `-v` 标志，你可以停止并移除 Docker 容器。相关数据也会随之一起删除。为此，你可以运行以下命令：
 
 ```bash
-sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/14.sh'
 ```
 ### 清除通过二进制文件启动的节点 {: #purge-binary-node }
 
@@ -338,7 +332,7 @@ sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
 
 
 ```bash
-./target/release/moonbeam purge-chain --dev -y
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/15.sh'
 ```
 
 这将删除数据文件夹。请注意，所有链数据都会因此丢失。如需了解所有可用的 `purge-chain` 命令，请参阅我们文档中的 [清除二进制数据](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary){target=\_blank} 部分。

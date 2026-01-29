@@ -98,19 +98,19 @@ Wormhole 依赖于一组分布式节点，这些节点监控多个区块链上�
 1. 创建一个新目录并进入该目录
 
     ```bash
-    mkdir wormhole-mrl-demo && cd wormhole-mrl-demo
+    --8<-- 'code/builders/interoperability/mrl/1.sh'
     ```
 
 2. 创建一个 `package.json` 文件：
 
     ```bash
-    npm init -y
+    --8<-- 'code/builders/interoperability/mrl/2.sh'
     ```
 
 3. 安装构建远程 EVM 调用和 XCM extrinsic 所需的软件包
 
     ```bash
-    npm i @polkadot/api ethers
+    --8<-- 'code/builders/interoperability/mrl/3.sh'
     ```
 
 4. 创建本指南所需的文件：
@@ -121,14 +121,13 @@ Wormhole 依赖于一组分布式节点，这些节点监控多个区块链上�
     - `send-batch-transaction.js` - 用于组装和发送资产转移和远程 EVM 调用的批量交易
 
     ```bash
-    touch build-transfer-multiassets.js build-remote-calldata.js \
-    build-remote-evm-call.js send-batch-transaction.js
+    --8<-- 'code/builders/interoperability/mrl/4.sh'
     ```
 
 5. 为您在本指南中将要使用的每个合约的 ABI 创建一个目录和文件：
 
     ```bash
-    mkdir abi && touch abi/ERC20.js abi/TokenRelayer.js abi/Batch.js
+    --8<-- 'code/builders/interoperability/mrl/5.sh'
     ```
 
     ??? code "ERC-20 接口 ABI"
@@ -187,11 +186,11 @@ Wormhole 依赖于一组分布式节点，这些节点监控多个区块链上�
 
     === "Moonbeam"
         ```text
-        0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca
+        --8<-- 'code/builders/interoperability/mrl/6.txt'
         ```
     === "Moonbase Alpha"
         ```text
-        0x9563a59c15842a6f322b10f69d1dd88b41f2e97b
+        --8<-- 'code/builders/interoperability/mrl/7.txt'
         ```
 
 2. 使用 Ether 的 `encodeFunctionData` 函数获取批量交易中两个调用的编码调用数据：`approve` 交易和 `transferTokensWithRelay` 交易
