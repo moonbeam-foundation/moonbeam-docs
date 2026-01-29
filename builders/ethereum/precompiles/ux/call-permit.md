@@ -101,20 +101,7 @@ To follow along with this tutorial, you will need to have:
 The `SetMessage.sol` contract will be used as an example of using a call permit, but in practice, any contract can be interacted with.
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0
-pragma solidity 0.8.7;
-
-contract SetMessage {
-    string storedMessage;
-
-    function set(string calldata x) public {
-        storedMessage = x;
-    }
-
-    function get() public view returns (string memory) {
-        return storedMessage;
-    }
-}
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/1.sol'
 ```
 
 ### Remix Set Up {: #remix-set-up }
@@ -190,7 +177,7 @@ In order to get the signature arguments (`v`, `r`, and `s`), you'll need to sign
 - `value` - can be `0` for this example as you'll just be setting a message instead of transferring any funds
 - `data` - you can send any message you would like, you'll just need the hex representation of the message you want to set using the `SetMessage.sol` contract. This will contain the function selector of the `set` function and the string of the message. For this example, you can send `hello world`. To do so, you can use this hex representation:
     ```text
-    0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
+    --8<-- 'code/builders/ethereum/precompiles/ux/call-permit/2.txt'
     ```
 - `gasLimit` - `100000` will be enough to send the dispatched call
 - `deadline` - you can get the current time in UNIX seconds by running `console.log(Math.floor(Date.now() / 1000))` in a JavaScript script or a browser console. Once you have the current time, you can add additional time in seconds to represent when the call permit will expire
@@ -234,20 +221,19 @@ Once you've signed the message, go back to JSFiddle and if the console isn't alr
 To generate the call permit signature using JavaScript and MetaMask's [`@metamask/eth-sig-util` npm package](https://www.npmjs.com/package/@metamask/eth-sig-util){target=\_blank}, you'll first need to create a project locally. You can do so with the following commands:
 
 ```bash
-mkdir call-permit-example && cd call-permit-example && touch getSignature.js
-npm init -y
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/3.sh'
 ```
 
 You should now have a file where you can create the script to get the signature along with a `package.json` file. Open the `package.json` file, and below the `"dependencies"` section, add:
 
 ```json
-"type": "module"
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/4.json'
 ```
 
 Next, you can install the MetaMask signing library and [Ethers.js](https://docs.ethers.org/v6){target=\_blank}:
 
 ```bash
-npm i @metamask/eth-sig-util ethers
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/5.sh'
 ```
 
 !!! note
@@ -263,7 +249,7 @@ In the `getSignature.js` file, you can copy the following code snippet:
 To run the script, use the following command:
 
 ```bash
-node getSignature.js
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/6.sh'
 ```
 
 In the console, you should see the concatenated signature along with the values for the signature including the `v`, `r`, and `s` values. Copy these values as you'll need them when interacting with the Call Permit Precompile in the following sections.
@@ -283,7 +269,7 @@ When you send the `dispatch` function, you'll need the same arguments as you use
 1. Enter `0` for the **value** field
 1. Enter the hex representation of the function selector for the `set` function and the string you want to set as the message for the `SetMessage.sol` contract. For this example, `hello world` can be used:
     ```text
-    0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
+    --8<-- 'code/builders/ethereum/precompiles/ux/call-permit/7.txt'
     ```
 1. Enter `100000` for the **gasLimit** field
 1. Enter the `deadline` you used when signing the call permit

@@ -1,0 +1,1 @@
+yarn calculate-relative-price INSERT_ASSET_PRICE INSERT_DECIMALS GLMR

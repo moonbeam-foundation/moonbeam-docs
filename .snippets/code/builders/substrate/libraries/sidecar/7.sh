@@ -1,0 +1,1 @@
+echo $SAS_SUBSTRATE_URL

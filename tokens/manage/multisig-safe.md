@@ -52,15 +52,7 @@ Towards the end of this guide, you will be learning how to interact with a smart
 You can head to [Remix](https://remix.ethereum.org){target=\_blank} and create a new file for the following `SetText.sol` contract:
 
 ```solidity
-pragma solidity ^0.8.30;
-
-contract SetText {
-    string public text;
-    
-    function setTextData(string calldata _text) public {
-        text = _text;
-    }
-}
+--8<-- 'code/tokens/manage/multisig-safe/1.sol'
 ```
 
 This is a simple contract with a single function, `setTextData`, that accepts a string and uses it to set the `text` variable.

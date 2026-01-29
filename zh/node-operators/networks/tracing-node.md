@@ -178,7 +178,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
 如果您启动了一个 Moonbase Alpha 追踪节点，您应该会看到类似于以下内容的终端日志：
 
---8<-- 'zh/code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
+--8<-- 'code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
 
 ## 使用 Systemd 运行追踪节点 {: #run-a-tracing-node-with-systemd }
 
@@ -382,7 +382,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/systemd/run-service.md'
 
---8<-- 'zh/code/node-operators/networks/tracing-node/terminal/status.md'
+--8<-- 'code/node-operators/networks/tracing-node/terminal/status.md'
 
 您也可以运行以下命令来查看追踪节点启动时的日志：
 
@@ -392,7 +392,7 @@ journalctl -f -u moonbeam.service
 
 您的终端应显示类似于以下内容的日志：
 
---8<-- 'zh/code/node-operators/networks/tracing-node/terminal/logs.md'
+--8<-- 'code/node-operators/networks/tracing-node/terminal/logs.md'
 
 ## 使用追踪节点 {: #using-a-tracing-node }
 

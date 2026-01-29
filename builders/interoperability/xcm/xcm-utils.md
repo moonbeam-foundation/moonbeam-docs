@@ -61,32 +61,7 @@ The XCM Utilities precompile allows users to read data off of the Ethereum JSON-
 For `multilocationToAddress`, one example use case is being able to allow transactions that originate from other parachains by whitelisting their Computed Origin addresses. A user can whitelist a multilocation by calculating and storing an address. EVM transactions can originate from other parachains via [remote EVM calls](/builders/interoperability/xcm/remote-execution/remote-evm-calls/){target=\_blank}.  
 
 ```solidity
-// SPDX-License-Identifier: GPL-3.0-only
-pragma solidity >=0.8.3;
-
-import "https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/xcm-utils/XcmUtils.sol";
-
-contract MultilocationWhitelistExample {
-    XcmUtils xcmutils = XcmUtils(0x000000000000000000000000000000000000080C);
-    mapping(address => bool) public whitelistedAddresses;
-
-    modifier onlyWhitelisted(address addr) {
-        _;
-        require(whitelistedAddresses[addr], "Address not whitelisted!");
-        _;
-    }
-
-    function addWhitelistedMultilocation(
-        XcmUtils.Multilocation calldata externalMultilocation
-    ) external onlyWhitelisted(msg.sender) {
-        address derivedAddress = xcmutils.multilocationToAddress(
-            externalMultilocation
-        );
-        whitelistedAddresses[derivedAddress] = true;
-    }
-
-    ...
-}
+--8<-- 'code/builders/interoperability/xcm/xcm-utils/1.sol'
 ```
 
 To check out an example of how to use the `xcmExecute` function to execute a custom XCM message locally, please refer to the [Create and Execute Custom XCM Messages](/builders/interoperability/xcm/send-execute-xcm/#execute-xcm-utils-precompile){target=\_blank} guide.

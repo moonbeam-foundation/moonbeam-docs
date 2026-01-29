@@ -113,6 +113,21 @@ msgstr ""
 msgid "disclaimer.user_generated_content"
 msgstr "您有责任检查并验证所有内容的准确性和真实性。您还应自行尽调以了解适用的风险，包括任何第三方信息的选择、表现、安全性、准确性或使用。本文包含的所有信息如有更改，恕不另行通知。"
 
+msgid "error_modal.header"
+msgstr "连接钱包时出现问题"
+
+msgid "external_link_modal.cancel"
+msgstr "取消"
+
+msgid "external_link_modal.continue"
+msgstr "继续访问外部网站"
+
+msgid "external_link_modal.header"
+msgstr "您将离开 Moonbeam 文档网站"
+
+msgid "external_link_modal.message"
+msgstr "将打开一个新的标签页，您将被转到一个独立的不隶属于 Moonbeam 或 Moonbeam Foundation 的第三方网站。"
+
 msgid "footer.next"
 msgstr "下一个"
 
@@ -313,6 +328,18 @@ msgstr "测试代币"
 
 msgid "nav"
 msgstr "导航"
+
+msgid "network_modal.header"
+msgstr "请选择要连接到以太坊兼容钱包的网络："
+
+msgid "network_modal.moonbase"
+msgstr "Moonbase Alpha 测试网"
+
+msgid "network_modal.moonbeam"
+msgstr "Moonbeam"
+
+msgid "network_modal.moonriver"
+msgstr "Moonriver"
 
 msgid "search"
 msgstr "搜索"

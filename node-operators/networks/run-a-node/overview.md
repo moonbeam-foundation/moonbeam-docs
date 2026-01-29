@@ -113,13 +113,7 @@ You can further customize your use of the lazy loading functionality with the fo
 The state overrides file should define the respective pallet, storage item, and value that you seek to override as follows:
 
 ```json
-[
- {
-     "pallet": "System",
-     "storage": "SelectedCandidates",
-     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
- }
-]
+--8<-- 'code/node-operators/networks/run-a-node/overview/1.json'
 ```
 
 ## Logs and Troubleshooting {: #logs-and-troubleshooting }

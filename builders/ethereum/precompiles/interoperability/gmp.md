@@ -78,41 +78,13 @@ The following multilocation templates target accounts on other parachains with M
 === "AccountId32"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { Parachain: 'INSERT_PARACHAIN_ID' },
-            {
-              AccountId32: {
-                id: 'INSERT_ADDRESS',
-              },
-            },
-          ],
-        },
-      },
-    };
+    --8<-- 'code/builders/ethereum/precompiles/interoperability/gmp/1.js'
     ```
 
 === "AccountKey20"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { Parachain: 'INSERT_PARACHAIN_ID' },
-            {
-              AccountKey20: {
-                key: 'INSERT_ADDRESS',
-              },
-            },
-          ],
-        },
-      }
-    };
+    --8<-- 'code/builders/ethereum/precompiles/interoperability/gmp/2.js'
     ```
 
 It can be challenging to correctly SCALE encode the entire payload without the right tools, mainly due to the [custom types expected by the precompile](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbase.spec_version }}/precompiles/gmp/src/types.rs#L25-L48){target=\_blank}. Fortunately, the Polkadot.js API can assist with this.

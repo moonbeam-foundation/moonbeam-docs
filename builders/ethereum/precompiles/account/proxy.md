@@ -77,16 +77,7 @@ The interface includes the following functions:
 The `proxyType` parameter is defined by the following `ProxyType` enum, where the values start at `0` with the most permissive proxy type and are represented as `uint8` values:
 
 ```solidity
-enum ProxyType {
-    Any,
-    NonTransfer,
-    Governance,
-    Staking,
-    CancelProxy,
-    Balances,
-    AuthorMapping,
-    IdentityJudgement
-}
+--8<-- 'code/builders/ethereum/precompiles/account/proxy/1.sol'
 ```
 
 ## Proxy Types {: #proxy-types }

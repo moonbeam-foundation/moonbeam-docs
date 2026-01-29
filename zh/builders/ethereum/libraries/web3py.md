@@ -115,7 +115,7 @@ touch balances.py
 1. 使用 `web3.eth.get_balance` 函数获取帐户余额，并使用 `web3.from_wei` 格式化结果
 
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/balances.py'
+--8<-- 'code/builders/ethereum/libraries/web3-py/balances.py'
 
 要运行脚本并获取帐户余额，您可以运行以下命令：
 
@@ -156,7 +156,7 @@ python3 transaction.py
 
 您还可以使用 `balances.py` 脚本来检查源账户和接收账户的余额是否已更改。整个工作流程如下所示：
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/terminal/transaction.md'
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/transaction.md'
 
 ## 部署合约 {: #deploy-a-contract }
 
@@ -203,7 +203,7 @@ touch deploy.py
 1. 使用 `web3.eth.account.sign_transaction` 函数签署交易，并传入构造函数交易和发送者的 `private_key`
 1. 使用已签名的交易，您可以使用 `web3.eth.send_raw_transaction` 函数发送它，并使用 `web3.eth.wait_for_transaction_receipt` 函数等待交易回执
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/deploy.py'
+--8<-- 'code/builders/ethereum/libraries/web3-py/deploy.py'
 
 要运行该脚本，您可以在终端中输入以下命令：
 
@@ -213,7 +213,7 @@ python3 deploy.py
 
 如果成功，合约的地址将显示在终端中。
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/terminal/deploy.md'
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/deploy.md'
 
 ### 读取合约数据（调用方法）{: #read-contract-data }
 
@@ -263,7 +263,7 @@ touch increment.py reset.py
 1. 使用 `web3.eth.account.sign_transaction` 函数签署交易，并传入递增交易和发送方的 `private_key`
 1. 使用已签名的交易，您可以使用 `web3.eth.send_raw_transaction` 函数发送它，并使用 `web3.eth.wait_for_transaction_receipt` 函数等待交易收据
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/increment.py'
+--8<-- 'code/builders/ethereum/libraries/web3-py/increment.py'
 
 要运行该脚本，您可以在终端中输入以下命令：
 
@@ -273,7 +273,7 @@ python3 increment.py
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.py` 脚本与 `increment.py` 脚本一起使用，以确保该值按预期更改：
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/terminal/increment.md'
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/increment.md'
 
 接下来，您可以打开 `reset.py` 文件，并按照以下步骤创建脚本：
 
@@ -285,7 +285,7 @@ python3 increment.py
 1. 使用 `web3.eth.account.sign_transaction` 函数签署交易，并传入重置交易和发送方的 `private_key`
 1. 使用已签名的交易，您可以使用 `web3.eth.send_raw_transaction` 函数发送它，并使用 `web3.eth.wait_for_transaction_receipt` 函数等待交易收据
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/reset.py'
+--8<-- 'code/builders/ethereum/libraries/web3-py/reset.py'
 
 要运行该脚本，您可以在终端中输入以下命令：
 
@@ -295,6 +295,6 @@ python3 reset.py
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.py` 脚本与 `reset.py` 脚本一起使用，以确保该值按预期更改：
 
---8<-- 'zh/code/builders/ethereum/libraries/web3-py/terminal/reset.md'
+--8<-- 'code/builders/ethereum/libraries/web3-py/terminal/reset.md'
 
 --8<-- 'zh/text/_disclaimers/third-party-content.md'

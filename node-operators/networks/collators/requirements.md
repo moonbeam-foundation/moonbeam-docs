@@ -76,7 +76,7 @@ Once you’ve downloaded the tool, ensure you have the correct access permission
 For Linux-based systems such as Ubuntu, open the terminal and head to the folder where the moonkey binary file is located. Once there, you can use the sha256sum tool to calculate the SHA256 hash:
 
 ```text
-019c3de832ded3fccffae950835bb455482fca92714448cc0086a7c5f3d48d3e
+--8<-- 'code/node-operators/networks/collators/requirements/1.txt'
 ```
 
 After you’ve verified the hash, it is recommended to move the binary file to an air-gapped machine (no network interfaces). You can also check the hash of the file in the air-gapped device directly.

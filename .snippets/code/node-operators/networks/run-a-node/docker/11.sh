@@ -1,0 +1,13 @@
+docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
+-u $(id -u ${USER}):$(id -g ${USER}) \
+moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+--base-path /data \
+--chain {{ networks.moonbase.chain_spec }} \
+--name "INSERT_YOUR_NODE_NAME" \
+--state-pruning archive \
+--trie-cache-size 1073741824 \
+--db-cache INSERT_RAM_IN_MB \
+--pool-type=fork-aware \
+-- \
+--name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
+--sync fast

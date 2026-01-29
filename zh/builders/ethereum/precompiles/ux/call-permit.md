@@ -262,7 +262,7 @@ node getSignature.js
 
 在控制台中，你应该会看到连接签名以及包含 `v`、`r` 和 `s` 的值。在后续与调用许可预编译交互时需要用到这些值，请复制保存。
 
---8<-- 'zh/code/builders/ethereum/precompiles/ux/call-permit/signature-output.md'
+--8<-- 'code/builders/ethereum/precompiles/ux/call-permit/signature-output.md'
 
 ## 与Solidity接口交互 {: #interact-with-the-solidity-interface }
 

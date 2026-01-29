@@ -104,12 +104,7 @@ First, you need to get the `candidateInfo`, which will contain the delegator cou
 The auto-compounding delegation count is the amount of delegations that have auto-compounding configured. To determine the number of delegations that have auto-compounding set up, you can query the auto-compounding delegations for the candidate on [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank} using the following snippet:
 
 ```js
-// Simple script to get the number of auto-compounding delegations for a given candidate.
-// Remember to replace INSERT_CANDIDATE_ADDRESS with the candidate's address you want to delegate.
-const candidateAccount = 'INSERT_CANDIDATE_ADDRESS';
-const autoCompoundingDelegations =
-  await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
-console.log(autoCompoundingDelegations.toHuman().length);
+--8<-- 'code/tokens/staking/stake/1.js'
 ```
 
 To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js Apps (which can be selected from the **Developer** dropdown), and take the following steps:
@@ -126,17 +121,7 @@ To run the snippet, make sure you're on the **JavaScript** page of Polkadot.js A
 If you've never made a delegation from your address you can skip this section. However, if you're unsure how many existing delegations you have, you'll want to run the following JavaScript code snippet to get `delegationCount` from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank}:
 
 ```js
-// Simple script to get your number of existing delegations.
-// Remember to replace INSERT_YOUR_ADDRESS with your delegator address.
-const yourDelegatorAccount = 'INSERT_YOUR_ADDRESS'; 
-const delegatorInfo = 
-  await api.query.parachainStaking.delegatorState(yourDelegatorAccount);
-
-if (delegatorInfo.toHuman()) {
-  console.log(delegatorInfo.toHuman()['delegations'].length);
-} else {
-  console.log(0);
-}
+--8<-- 'code/tokens/staking/stake/2.js'
 ```
 
 Head to the **Developer** tab and click on **JavaScript**. Then take the following steps:
@@ -193,19 +178,7 @@ You can follow the same steps as described to delegate other candidates in the n
 If you want to verify the percentage of rewards that are set to auto-compound for a specific delegation, you can use the following script that will query the `autoCompoundingDelegations` extrinsic and filter the results based on the delegator's address:
 
 ```js
-// Simple script to verify your auto-compounding percentage for a given candidate.
-// Remember to replace INSERT_CANDIDATE_ADDRESS with the candidate's address you
-// want to delegate and replace INSERT_DELEGATOR_ADDRESS with the address used to 
-// delegate with
-const candidateAccount = 'INSERT_CANDIDATE_ADDRESS';
-const delegationAccount = 'INSERT_DELEGATOR_ADDRESS';
-const autoCompoundingDelegations =
-  await api.query.parachainStaking.autoCompoundingDelegations(candidateAccount);
-const delegation = autoCompoundingDelegations.find(
-  (del) => del.delegator == delegationAccount
-);
-
-console.log(`${delegation.value}%`);
+--8<-- 'code/tokens/staking/stake/3.js'
 ```
 
 In Polkadot.js Apps, you can head to the **Developer** tab and select **JavaScript** from the dropdown. Then you can take the following steps:

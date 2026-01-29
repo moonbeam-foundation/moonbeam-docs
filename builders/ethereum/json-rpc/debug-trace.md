@@ -67,26 +67,14 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
         Using the `tracer_config`:
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-        '{
-          "jsonrpc":"2.0",
-          "id": 1,
-          "method": "debug_traceTransaction",
-          "params": ["INSERT_TRANSACTION_HASH", {"tracer": "callTracer"}]
-        }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/1.sh'
         ```
 
         <br>
         Using the default opcode logger:
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-        '{
-          "jsonrpc":"2.0",
-          "id": 1,
-          "method": "debug_traceTransaction",
-          "params": ["INSERT_TRANSACTION_HASH"]
-        }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/2.sh'
         ```
 
 ???+ function "debug_traceBlockByNumber"
@@ -122,13 +110,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Example"
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "debug_traceBlockByNumber",
-            "params": ["INSERT_BLOCK_NUMBER", {"tracer": "callTracer"}]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/3.sh'
         ```
 
 ???+ function "debug_traceBlockByHash"
@@ -164,13 +146,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Example"
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "debug_traceBlockByHash",
-            "params": ["INSERT_BLOCK_HASH", {"tracer": "callTracer"}]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/4.sh'
         ```
 
 ???+ function "debug_traceCall"
@@ -191,17 +167,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Example"
 
         ```bash
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "debug_traceCall",
-            "params": [{
-                "from": "INSERT_FROM_ADDRESS",
-                "to":"INSERT_TO_ADDRESS",
-                "data":"INSERT_CALL_DATA"
-                }, "INSERT_BLOCK_HASH"]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/5.sh'
         ```
 
 ???+ function "trace_filter"
@@ -268,19 +234,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
         This example starts with a zero offset and provides the first 20 traces:
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "trace_filter", "params": 
-            [{
-              "fromBlock": "INSERT_FROM_BLOCK",
-              "toBlock": "INSERT_TO_BLOCK",
-              "toAddress": ["INSERT_ADDRESS_TO_FILTER"],
-              "after": 0,
-              "count": 20
-            }]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/6.sh'
         ```
 
 ???+ function "txpool_content"
@@ -331,12 +285,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Example"
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "txpool_content", "params":[]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/7.sh'
         ```
 
 ???+ function "txpool_inspect"
@@ -359,12 +308,7 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Example"
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "txpool_inspect", "params":[]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/8.sh'
         ```
 
 ???+ function "txpool_status"
@@ -385,10 +329,5 @@ If you wish to set up your own tracing node, you can follow the [Running a Traci
     === "Example"
 
         ```sh
-        curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-          '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "txpool_status", "params":[]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/debug-trace/9.sh'
         ```

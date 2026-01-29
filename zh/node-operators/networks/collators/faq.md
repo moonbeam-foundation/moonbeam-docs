@@ -143,7 +143,7 @@ categories: 节点运营者和收集人
 
 一个常见的问题是在您的节点同步之前加入池。您将无法生产任何区块或获得任何奖励。在加入候选池之前，请等待直到您同步并空闲。
 
---8<-- 'zh/code/node-operators/networks/run-a-node/docker/terminal/logs.md'
+--8<-- 'code/node-operators/networks/run-a-node/docker/terminal/logs.md'
 
 中继链的同步时间比平行链长得多。在同步中继链之前，您将看不到任何最终确定的区块。
 

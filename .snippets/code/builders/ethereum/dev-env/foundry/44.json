@@ -1,0 +1,3 @@
+"scripts": {
+    "test": "npx hardhat test && forge test"
+}

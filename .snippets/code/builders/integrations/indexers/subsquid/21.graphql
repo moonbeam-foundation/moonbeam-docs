@@ -1,0 +1,9 @@
+query MyQuery {
+  burns(orderBy: value_DESC) {
+    address
+    block
+    id
+    txHash
+    value
+  }
+}

@@ -202,8 +202,7 @@ The XCM Transactor Pallet includes the following read-only storage method:
         A number representing the value for fee per second of the given asset. This value may be returned in a different format depending on the chain and how they store their data. You can use the `@polkadot/util` library for a variety of conversions, for example, to convert a hex value to a big integer using the `hexToBigInt` method.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        10000000000000
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/1.js'
         ```
     
     === "Polkadot.js API Example"
@@ -223,8 +222,7 @@ The XCM Transactor Pallet includes the following read-only storage method:
         A number representing the current version of the pallet.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        0
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/2.js'
         ```
 
     === "Polkadot.js API Example"
@@ -244,12 +242,7 @@ The XCM Transactor Pallet includes the following read-only storage method:
         The transact information object.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        {
-          transactExtraWeight: { refTime: 3000000000, proofSize: 131072 },
-          maxWeight: { refTime: 20000000000, proofSize: 131072 },
-          transactExtraWeightSigned: { refTime: 4000000000, proofSize: 131072 },
-        }
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/3.js'
         ```
     
     === "Polkadot.js API Example"
@@ -269,8 +262,7 @@ The XCM Transactor Pallet includes the following read-only functions to obtain p
         The base XCM weight object.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        { refTime: 200000000, proofSize: 0 }
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/4.js'
         ```
 
     === "Polkadot.js API Example"
@@ -286,8 +278,7 @@ The XCM Transactor Pallet includes the following read-only functions to obtain p
         The self-location multilocation object.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        { parents: 0, interior: { here: null } }
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/5.js'
         ```
 
     === "Polkadot.js API Example"
@@ -347,12 +338,7 @@ Since you'll be interacting with the `transactThroughSigned` function of the XCM
     === "Local XC-20s"
 
         ```js
-        const fee = {
-          currency: {
-            AsCurrencyId: { Erc20: { contractAddress: ERC_20_ADDRESS} },
-          },
-          feeAmount: 50000000000000000n,
-        };
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/6.js'
         ```
 
 3. Define the `call` that will be executed in the destination chain, which is the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there

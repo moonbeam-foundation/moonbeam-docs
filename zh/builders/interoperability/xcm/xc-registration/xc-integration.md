@@ -198,7 +198,7 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 
 运行脚本后，您将看到如下所示的输出：
 
---8<-- 'zh/code/builders/interoperability/xcm/xc-registration/integration/terminal/accept.md'
+--8<-- 'code/builders/interoperability/xcm/xc-registration/integration/terminal/accept.md'
 
 如上所示运行脚本将返回编码后的 calldata，以接受 HRMP 通道。您还可以使用该脚本在链上为给定的 HRMP 操作创建并提交预映像和提案。对于 Moonbeam 和 Moonriver，提案必须通过 General Admin Track 提交。
 
@@ -251,7 +251,7 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 
 运行脚本后，您将看到如下所示的输出：
 
---8<-- 'zh/code/builders/interoperability/xcm/xc-registration/integration/terminal/propose.md'
+--8<-- 'code/builders/interoperability/xcm/xc-registration/integration/terminal/propose.md'
 
 如上所示运行脚本将返回编码的 calldata，以打开 HRMP 通道。您还可以使用该脚本为给定的 HRMP 操作创建和提交链上的 preimage 和提案。对于 Moonbeam 和 Moonriver，提案必须通过 General Admin Track 提交。
 

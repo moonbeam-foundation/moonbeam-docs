@@ -34,13 +34,13 @@ For the examples in this guide, you will need to have the following:
 To get started, you can create a directory to store all of the files you'll be creating throughout this guide:
 
 ```bash
-mkdir web3-examples && cd web3-examples
+--8<-- 'code/builders/ethereum/libraries/web3py/1.sh'
 ```
 
 For this guide, you'll need to install the Web3.py library and the Solidity compiler. To install both packages, you can run the following command:
 
 ```bash
-pip3 install web3 py-solc-x solc-select
+--8<-- 'code/builders/ethereum/libraries/web3py/2.sh'
 ```
 
 ## Setup Web3.py with Moonbeam {: #setup-web3-with-moonbeam }
@@ -57,41 +57,25 @@ To create a provider, you can take the following steps:
 === "Moonbeam"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbeam.rpc_url }}")) # Insert your RPC URL here
+    --8<-- 'code/builders/ethereum/libraries/web3py/3.py'
     ```
 
 === "Moonriver"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.moonriver.rpc_url }}")) # Insert your RPC URL here
+    --8<-- 'code/builders/ethereum/libraries/web3py/4.py'
     ```
 
 === "Moonbase Alpha"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.moonbase.rpc_url }}"))
+    --8<-- 'code/builders/ethereum/libraries/web3py/5.py'
     ```
 
 === "Moonbeam Dev Node"
 
     ```python
-    # 1. Import web3.py
-    from web3 import Web3
-
-    # 2. Create web3.py provider
-    web3 = Web3(Web3.HTTPProvider("{{ networks.development.rpc_url }}"))
+    --8<-- 'code/builders/ethereum/libraries/web3py/6.py'
     ```
 
 Save this code snippet, as you'll need it for the scripts that are used in the following sections.
@@ -107,7 +91,7 @@ You can also use the balance script to check the account balances after the tran
 You'll only need one file to check the balances of both addresses before and after the transaction is sent. To get started, you can create a `balances.py` file by running:
 
 ```bash
-touch balances.py
+--8<-- 'code/builders/ethereum/libraries/web3py/7.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -123,7 +107,7 @@ Next, you will create the script for this file and complete the following steps:
 To run the script and fetch the account balances, you can run the following command:
 
 ```bash
-python3 balances.py
+--8<-- 'code/builders/ethereum/libraries/web3py/8.sh'
 ```
 
 If successful, the balances for the origin and receiving address will be displayed in your terminal in ETH.
@@ -133,7 +117,7 @@ If successful, the balances for the origin and receiving address will be display
 You'll only need one file for executing a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.py` file by running:
 
 ```bash
-touch transaction.py
+--8<-- 'code/builders/ethereum/libraries/web3py/9.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -152,7 +136,7 @@ Next, you will create the script for this file and complete the following steps:
 To run the script, you can run the following command in your terminal:
 
 ```bash
-python3 transaction.py
+--8<-- 'code/builders/ethereum/libraries/web3py/10.sh'
 ```
 
 If the transaction was successful, in your terminal you'll see the transaction hash has been printed out.
@@ -170,7 +154,7 @@ You can also use the `balances.py` script to check that the balances for the ori
 In this section, you'll create a script that uses the Solidity compiler to output the bytecode and interface (ABI) for the `Incrementer.sol` contract. To get started, you can create a `compile.py` file by running:
 
 ```bash
-touch compile.py
+--8<-- 'code/builders/ethereum/libraries/web3py/11.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -193,7 +177,7 @@ Next, you will create the script for this file and complete the following steps:
 With the script for compiling the `Incrementer.sol` contract in place, you can then use the results to send a signed transaction that deploys it. To do so, you can create a file for the deployment script called `deploy.py`:
 
 ```bash
-touch deploy.py
+--8<-- 'code/builders/ethereum/libraries/web3py/12.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -213,7 +197,7 @@ Next, you will create the script for this file and complete the following steps:
 To run the script, you can enter the following command into your terminal:
 
 ```bash
-python3 deploy.py
+--8<-- 'code/builders/ethereum/libraries/web3py/13.sh'
 ```
 
 If successful, the contract's address will be displayed in the terminal.
@@ -227,7 +211,7 @@ Call methods are the type of interaction that don't modify the contract's storag
 To get started, you can create a file and name it `get.py`:
 
 ```bash
-touch get.py
+--8<-- 'code/builders/ethereum/libraries/web3py/14.sh'
 ```
 
 Then you can take the following steps to create the script:
@@ -245,7 +229,7 @@ Then you can take the following steps to create the script:
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-python3 get.py
+--8<-- 'code/builders/ethereum/libraries/web3py/15.sh'
 ```
 
 If successful, the value will be displayed in the terminal.
@@ -255,7 +239,7 @@ If successful, the value will be displayed in the terminal.
 Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.py` and `reset.py`:
 
 ```bash
-touch increment.py reset.py
+--8<-- 'code/builders/ethereum/libraries/web3py/16.sh'
 ```
 
 Open the `increment.py` file and take the following steps to create the script:
@@ -275,7 +259,7 @@ Open the `increment.py` file and take the following steps to create the script:
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-python3 increment.py
+--8<-- 'code/builders/ethereum/libraries/web3py/17.sh'
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.py` script alongside the `increment.py` script to make sure that value is changing as expected:
@@ -299,7 +283,7 @@ Next you can open the `reset.py` file and take the following steps to create the
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-python3 reset.py
+--8<-- 'code/builders/ethereum/libraries/web3py/18.sh'
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.py` script alongside the `reset.py` script to make sure that value is changing as expected:

@@ -158,7 +158,7 @@ To follow along with the examples in this guide, you need to have the following:
     To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=\_blank} to MetaMask with the following address:
 
     ```text
-    0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+    --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/1.txt'
     ```
 
 !!! note

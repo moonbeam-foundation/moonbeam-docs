@@ -39,7 +39,7 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 
     控制台日志的尾部应如下所示：
 
-    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/docker-pull.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/docker-pull.md'
 
 1. 运行以下 Docker 命令启动 Moonbeam 开发节点，该命令将以即时密封模式启动节点以进行本地测试，以便在收到交易时立即生成区块：
 
@@ -85,7 +85,7 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 
 如果成功，您应该看到一个输出，显示一个空闲状态，等待区块被生成：
 
---8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/docker-run.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/docker-run.md'
 
 有关示例中使用的一些标志和选项的更多信息，请查看 [Flags](#node-flags) 和 [Options](#node-options)。如果您想查看所有标志、选项和子命令的完整列表，请运行以下命令打开帮助菜单：
 
@@ -153,7 +153,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 
     以下是构建输出的尾部应显示的内容：
 
-    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/compile.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/compile.md'
 
 !!! note
 
@@ -171,7 +171,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 
 您应该会看到如下所示的输出，显示一个空闲状态，等待生成区块：
 
---8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/run-binary.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/run-binary.md'
 
 有关示例中使用的一些标志和选项的更多信息，请查看 [标志](#node-flags) 和 [选项](#node-options)。如果您想查看所有标志、选项和子命令的完整列表，请通过运行以下命令打开帮助菜单：
 
@@ -277,11 +277,11 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 ??? note "开发账户地址和私钥"
 
-    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
 开发节点还包含一个用于测试目的的额外预充值帐户：
 
---8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
 您可以使用这些账户的私钥将它们连接到 [MetaMask](/tokens/connect/metamask/){target=\_blank}、[Talisman](/tokens/connect/talisman/){target=\_blank}、[Polkadot.js Apps](/tokens/connect/polkadotjs/){target=\_blank} 等。
 

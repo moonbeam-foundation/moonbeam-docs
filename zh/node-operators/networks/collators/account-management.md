@@ -112,7 +112,7 @@ curl {{ networks.development.rpc_url }} -H "Content-Type:application/json;charse
 
 如果 Nimbus ID 正确，响应应返回 `"result": true`。
 
---8<-- 'zh/code/node-operators/networks/collators/account-management/check-nimbus-key.md'
+--8<-- 'code/node-operators/networks/collators/account-management/check-nimbus-key.md'
 
 在 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/assets){target=\_blank} 中，单击页面顶部的 **Developer**，然后从下拉菜单中选择 **Chain State**，并按照以下步骤操作：
 

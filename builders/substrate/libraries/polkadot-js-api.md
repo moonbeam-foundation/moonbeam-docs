@@ -29,13 +29,13 @@ First, you need to install the Polkadot.js API library for your project through 
 === "npm"
 
     ```bash
-    npm i @polkadot/api
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/1.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn add @polkadot/api
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/2.sh'
     ```
 
 The library also includes other core components like Keyring for account management, or some utilities that are used throughout this guide.
@@ -49,77 +49,25 @@ Similar to [Ethereum API libraries](/builders/ethereum/libraries/){target=\_blan
 === "Moonbeam"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.moonbeam.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/3.js'
     ```
 
 === "Moonriver"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.moonriver.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/4.js'
     ```
 
 === "Moonbase Alpha"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.moonbase.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/5.js'
     ```
 
 === "Moonbeam Dev Node"
 
     ```javascript
-    // Import
-    import { ApiPromise, WsProvider } from '@polkadot/api';
-
-    const main = async () => {
-      // Construct API provider
-      const wsProvider = new WsProvider('{{ networks.development.wss_url }}');
-      const api = await ApiPromise.create({ provider: wsProvider });
-
-      // Code goes here
-
-      await api.disconnect();
-    }
-
-    main();
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/6.js'
     ```
 
 ### Metadata and Dynamic API Decoration {: #metadata-and-dynamic-api-decoration }
@@ -150,24 +98,13 @@ In this section, you will learn how to query for on-chain information using the 
 This category of queries retrieves information related to the current state of the chain. These endpoints are generally of the form `api.query.<module>.<method>`, where the module and method decorations are generated through metadata. You can see a list of all available endpoints by examining the `api.query` object, for example via:
 
 ```javascript
-console.log(api.query);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/7.js'
 ```
 
 Assuming you've [initialized the API](#creating-an-API-provider-instance), here is a code sample for retrieving basic account information given its address :
 
 ```javascript
-// Define wallet address
-const addr = 'INSERT_ADDRESS';
-
-// Retrieve the last timestamp
-const now = await api.query.timestamp.now();
-
-// Retrieve the account balance & current nonce via the system module
-const { nonce, data: balance } = await api.query.system.account(addr);
-
-console.log(
-  `${now}: balance of ${balance.free} and a current nonce of ${nonce}`
-);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/8.js'
 ```
 
 ??? code "View the complete script"
@@ -181,22 +118,13 @@ console.log(
 The RPC calls provide the backbone for the transmission of data to and from the node. This means that all API endpoints such as `api.query`, `api.tx` or `api.derive` just wrap RPC calls, providing information in the encoded format as expected by the node. You can see a list of all available endpoints by examining the `api.rpc` object, for example via:
 
 ```javascript
-console.log(api.rpc);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/9.js'
 ```
 
 The `api.rpc` interface follows the a similar format to `api.query`, for instance:
 
 ```javascript
-// Retrieve the chain name
-const chain = await api.rpc.system.chain();
-
-// Retrieve the latest header
-const lastHeader = await api.rpc.chain.getHeader();
-
-// Log the information
-console.log(
-  `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
-);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/10.js'
 ```
 
 ??? code "View the complete script"
@@ -210,16 +138,7 @@ console.log(
 The `rpc` API also provide endpoints for subscriptions. You can adapt the previous example to start using subscriptions to listen to new blocks. Note that you need to remove the API disconnect when using subscriptions, to avoid normal closures of the WSS connection.
 
 ```javascript
-// Retrieve the chain name
-const chain = await api.rpc.system.chain();
-
-// Subscribe to the new headers
-await api.rpc.chain.subscribeNewHeads((lastHeader) => {
-  console.log(
-    `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
-  );
-});
-// Remove await api.disconnect()!
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/11.js'
 ```
 
 The general pattern for `api.rpc.subscribe*` functions is to pass a callback into the subscription function, and this will be triggered on each new entry as they are imported.
@@ -227,17 +146,7 @@ The general pattern for `api.rpc.subscribe*` functions is to pass a callback int
 Other calls under `api.query.*` can be modified in a similar fashion to use subscription, including calls that have parameters. Here is an example of how to subscribe to balance changes in an account:
 
 ```javascript
-// Define wallet address
-const addr = 'INSERT_ADDRESS';
-
-// Subscribe to balance changes for a specified account
-await api.query.system.account(addr, ({ nonce, data: balance }) => {
-  console.log(
-    `Free balance is ${balance.free} with ${balance.reserved} reserved and a nonce of ${nonce}`
-  );
-});
-
-// Remove await api.disconnect()!
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/12.js'
 ```
 
 ??? code "View the complete script"
@@ -255,11 +164,7 @@ The Keyring object is used for maintaining key pairs, and the signing of any dat
 You can create an instance by just creating an instance of the Keyring class, and specifying the default type of wallet address used. For Moonbeam networks, the default wallet type should be `ethereum`.
 
 ```javascript
-// Import the keyring as required
-import Keyring from '@polkadot/keyring';
-
-// Create a keyring instance
-const keyring = new Keyring({ type: 'ethereum' });
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/13.js'
 ```
 
 ### Add an Account to a Keyring {: #adding-accounts }
@@ -285,18 +190,7 @@ The Dry Run API is an easy and convenient way to test the integrity of a call wi
 This method takes the origin and call data as parameters and returns an execution result and additional event data. 
 
 ```javascript
-const testAccount = api.createType(
-  'AccountId20',
-  '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
-);
-const callData =
-  '0x030088bce0b038effa09e58fe6d24fde4b5af21aa79813000064a7b3b6e00d';
-const callDataU8a = hexToU8a(callData);
-
-const result = await api.call.dryRunApi.dryRunCall(
-  { system: { Signed: testAccount } },
-  callDataU8a
-);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/14.js'
 ```
 
 ??? code "View the complete script"
@@ -318,7 +212,7 @@ Upon calling the Dry Run API, the method will tell you whether the call would be
 Transaction endpoints are exposed on endpoints generally of the form `api.tx.<module>.<method>`, where the module and method decorations are generated through metadata. These allow you to submit transactions for inclusion in blocks, be it transfers, interacting with pallets, or anything else Moonbeam supports. You can see a list of all available endpoints by examining the `api.tx` object, for example via:
 
 ```javascript
-console.log(api.tx);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/15.js'
 ```
 
 ### Send a Transaction {: #sending-basic-transactions }
@@ -326,23 +220,7 @@ console.log(api.tx);
 The Polkadot.js API library can be used to send transactions to the network. For example, assuming you've [initialized the API](#creating-an-API-provider-instance) and a [keyring instance](#creating-a-keyring-instance), you can use the following snippet to send a basic transaction (this code sample will also retrieve the encoded calldata of the transaction as well as the transaction hash after submitting):
 
 ```javascript
-// Initialize wallet key pairs
-const alice = keyring.addFromUri('INSERT_ALICES_PRIVATE_KEY');
-const bob = 'INSERT_BOBS_ADDRESS';
-
-// Form the transaction
-const tx = await api.tx.balances.transferAllowDeath(bob, 12345n);
-
-// Retrieve the encoded calldata of the transaction
-const encodedCalldata = tx.method.toHex();
-console.log(`Encoded calldata: ${encodedCallData}`);
-
-// Sign and send the transaction
-const txHash = await tx
-  .signAndSend(alice);
-
-// Show the transaction hash
-console.log(`Submitted with hash ${txHash}`);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/16.js'
 ```
 
 ??? code "View the complete script"
@@ -365,14 +243,7 @@ The `paymentInfo` function returns weight information in terms of `refTime` and 
 For example, assuming you've [initialized the API](#creating-an-API-provider-instance), the following snippet shows how you can get the weight information for a simple balance transfer between two accounts:
 
 ```javascript
-// Transaction to get weight information
-const tx = api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345));
-
-// Get weight info
-const { partialFee, weight } = await tx.paymentInfo('INSERT_SENDERS_ADDRESS');
-
-console.log(`Transaction weight: ${weight}`);
-console.log(`Transaction fee: ${partialFee.toHuman()}`);
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/17.js'
 ```
 
 ??? code "View the complete script"
@@ -396,28 +267,7 @@ The Polkadot.js API allows transactions to be batch processed via the `api.tx.ut
 For example, assuming you've [initialized the API](#creating-an-API-provider-instance), a [keyring instance](#creating-a-keyring-instance) and [added an account](#adding-accounts), the following example makes a couple of transfers and also uses the `api.tx.parachainStaking` module to schedule a request to decrease the bond of a specific collator candidate:
 
 ```javascript
-// Construct a list of transactions to batch
-const collator = 'INSERT_COLLATORS_ADDRESS';
-const txs = [
-  api.tx.balances.transferAllowDeath('INSERT_BOBS_ADDRESS', BigInt(12345)),
-  api.tx.balances.transferAllowDeath('INSERT_CHARLEYS_ADDRESS', BigInt(12345)),
-  api.tx.parachainStaking.scheduleDelegatorBondLess(collator, BigInt(12345)),
-];
-
-// Estimate the fees as RuntimeDispatchInfo, using the signer (either
-// address or locked/unlocked keypair)
-const info = await api.tx.utility.batch(txs).paymentInfo(alice);
-
-console.log(`Estimated fees: ${info}`);
-
-// Construct the batch and send the transactions
-api.tx.utility.batch(txs).signAndSend(alice, ({ status }) => {
-  if (status.isInBlock) {
-    console.log(`included in ${status.asInBlock}`);
-
-    // Disconnect API here!
-  }
-});
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/18.js'
 ```
 
 ??? code "View the complete script"
@@ -441,14 +291,7 @@ Some of the methods available through the Polkadot.js API interface are also ava
     - **Returns** - The list of RPC methods that are exposed by the node
 
     ```bash
-      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
-      --header 'Content-Type: application/json' \
-      --data-raw '{
-        "jsonrpc":"2.0",
-        "id":1,
-        "method":"rpc_methods",
-        "params": []
-      }'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/19.sh'
     ```
 
 - **[`getBlock(hash?: BlockHash)`](https://polkadot.js.org/docs/substrate/rpc/#getblockhash-blockhash-signedblock){target=\_blank}**
@@ -457,14 +300,7 @@ Some of the methods available through the Polkadot.js API interface are also ava
     - **Returns** - The header and body of a block as specified by the block hash parameter
 
     ```bash
-      curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
-      --header 'Content-Type: application/json' \
-      --data-raw '{
-        "jsonrpc":"2.0",
-        "id":1,
-        "method":"chain_getBlock",
-        "params": ["0x870ad0935a27ed8684048860ffb341d469e091abc2518ea109b4d26b8c88dd96"]
-      }'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/20.sh'
     ```
 
 - **[`getFinalizedHead()`](https://polkadot.js.org/docs/substrate/rpc/#getfinalizedhead-blockhash){target=\_blank}**
@@ -473,14 +309,7 @@ Some of the methods available through the Polkadot.js API interface are also ava
     - **Returns** The block hash of the last finalized block in the canonical chain
 
     ```bash
-      curl --location --request POST '{{ networks.moonbase.rpc_url }}' \
-      --header 'Content-Type: application/json' \
-      --data-raw '{
-        "jsonrpc":"2.0",
-        "id":1,
-        "method":"chain_getHeader",
-        "params": []
-      }'
+    --8<-- 'code/builders/substrate/libraries/polkadot-js-api/21.sh'
     ```
 
 The [Consensus and Finality page](/learn/core-concepts/consensus-finality/){target=\_blank} has sample code for using the exposed custom and Substrate RPC calls to check the finality of a given transaction.
@@ -492,33 +321,7 @@ The Polkadot.js API also includes a number of utility libraries for computing co
 The following example computes the deterministic transaction hash of a raw Ethereum legacy transaction by first computing its RLP ([Recursive Length Prefix](https://ethereum.org/developers/docs/data-structures-and-encoding/rlp/){target=\_blank}) encoding, then hashing the result with keccak256.
 
 ```javascript
-import { encode } from '@polkadot/util-rlp';
-import { keccakAsHex } from '@polkadot/util-crypto';
-import { numberToHex } from '@polkadot/util';
-
-// Define the raw signed transaction
-const txData = {
-  nonce: numberToHex(1),
-  gasPrice: numberToHex(21000000000),
-  gasLimit: numberToHex(21000),
-  to: '0xc390cC49a32736a58733Cf46bE42f734dD4f53cb',
-  value: numberToHex(1000000000000000000),
-  data: '',
-  v: '0507',
-  r: '0x5ab2f48bdc6752191440ce62088b9e42f20215ee4305403579aa2e1eba615ce8',
-  s: '0x3b172e53874422756d48b449438407e5478c985680d4aaa39d762fe0d1a11683',
-};
-
-// Extract the values to an array
-var txDataArray = Object.keys(txData).map(function (key) {
-  return txData[key];
-});
-
-// Calculate the RLP encoded transaction
-var encoded_tx = encode(txDataArray);
-
-// Hash the encoded transaction using keccak256
-console.log(keccakAsHex(encoded_tx));
+--8<-- 'code/builders/substrate/libraries/polkadot-js-api/22.js'
 ```
 
 You can check the respective [NPM repository page](https://www.npmjs.com/package/@polkadot/util-crypto/v/0.32.19){target=\_blank} for a list of available methods in the `@polkadot/util-crypto` library and their descriptions.

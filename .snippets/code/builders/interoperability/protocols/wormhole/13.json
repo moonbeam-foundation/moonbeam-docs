@@ -1,0 +1,10 @@
+ "mode": "BOTH",
+ "logLevel": "debug",
+ ...
+    {
+        "chainId": 16,
+        "chainName": "Moonbase Alpha",
+        "nodeUrl": "https://rpc.api.moonbase.moonbeam.network",
+        "bridgeAddress": "0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901",
+        "tokenBridgeAddress": "0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96"
+    },

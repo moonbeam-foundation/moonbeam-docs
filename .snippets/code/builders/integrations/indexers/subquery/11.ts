@@ -1,0 +1,1 @@
+const project: SubstrateProject = { ... }

@@ -24,7 +24,7 @@ The parachain ID you need can be found on the respective relay chain’s [Polkad
 For example, to calculate the sovereign account address for parachain `1000` on the Moonbase Alpha testnet:
 
 ```bash
-yarn calculate-sovereign-account --p 1000 --r moonbase
+--8<-- 'code/builders/interoperability/xcm/core-concepts/sovereign-accounts/1.sh'
 ```
 
 Running the script will generate output like the following:

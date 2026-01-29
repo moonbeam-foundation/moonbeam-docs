@@ -60,9 +60,7 @@ Before getting started, it's important to note some of the timing of different a
 First, you need to get the `candidatePool` size (this can change through governance), as you'll need to submit this parameter in a later transaction. To do so, you'll have to run the following JavaScript code snippet from within [Polkadot.js](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/js){target=\_blank}:
 
 ```js
-// Simple script to get candidate pool size
-const candidatePool = await api.query.parachainStaking.candidatePool();
-console.log(`Candidate pool size is: ${candidatePool.length}`);
+--8<-- 'code/node-operators/networks/collators/activities/1.js'
 ```
 
 Head to the **Developer** tab, select **JavaScript** from the dropdown, and take the following steps:

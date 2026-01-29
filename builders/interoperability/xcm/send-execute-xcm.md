@@ -65,18 +65,7 @@ The Polkadot XCM Pallet includes the following relevant read-only storage method
         The number of times an asset has been trapped. If the hash was omitted, it returns an array of all of the hashes and the number of times each asset has been trapped.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the value
-        // If hash was provided:
-        10
-
-        // If hash was omitted:
-        [
-          [
-            0xf7d4341888be30c6a842a77c52617423e8109aa249e88779019cf731ed772fb7
-          ],
-          10
-        ],
-        ...
+        --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/1.js'
         ```
 
     === "Polkadot.js API Example"
@@ -96,8 +85,7 @@ The Polkadot XCM Pallet includes the following relevant read-only storage method
         A number representing the current version of the pallet.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        0
+        --8<-- 'code/builders/interoperability/xcm/send-execute-xcm/2.js'
         ```
 
     === "Polkadot.js API Example"
@@ -191,18 +179,7 @@ The XCM Dry Run API is an easy and convenient way to test the integrity of your 
 This method takes as a parameter the origin and the call data and returns an execution result, actual weight, and event data.  
 
 ```javascript
-const testAccount = api.createType(
-  'AccountId20',
-  '0x88bcE0b038eFFa09e58fE6d24fDe4b5Af21aa798'
-);
-const callData =
-  '0x1c030408000400010403001300008a5d784563010d010204000103003cd0a705a2dc65e5b1e1205896baa2be8a07c6e007803822b001ba2e0100';
-const callDataU8a = hexToU8a(callData);
-
-const result = await api.call.dryRunApi.dryRunCall(
-  { system: { Signed: testAccount } },
-  callDataU8a
-);
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/3.js'
 ```
 
 ??? code "View the complete script"
@@ -226,13 +203,7 @@ The `dryRunXCM` method of the XCM Dry Run API takes a full XCM message as a para
 `dryRunXCM` takes as a parameter the origin and the XCM message and returns an execution result, actual weight, and event data.  
 
 ```javascript
-// Define the origin
-const origin = { V4: { parents: 1, interior: 'Here' } };
-
-const message = []; // Insert XCM Message Here
-
-// Perform the dry run XCM call
-const result = await api.call.dryRunApi.dryRunXcm(origin, message);
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/4.js'
 ```
 
 ??? code "View the complete script"
@@ -429,10 +400,7 @@ The entire script is as follows:
 Before you can send the XCM message, you'll also need to build the multilocation of the destination. For this example, you'll target the relay chain with Moonbase Alpha as the origin chain:
 
 ```js
-const dest = [
-  1, // Parents: 1 
-  [] // Interior: Here
-];
+--8<-- 'code/builders/interoperability/xcm/send-execute-xcm/5.js'
 ```
 
 Now that you have the SCALE encoded XCM message and the destination multilocation, you can use the following code snippets to programmatically call the `xcmSend` function of the XCM Utilities Precompile using your [Ethereum library](/builders/ethereum/libraries/){target=\_blank} of choice. Generally speaking, you'll take the following steps:

@@ -36,25 +36,25 @@ You will need to create a Hardhat project if you don't already have one. You can
 1. Create a directory for your project.
 
     ```sh
-    mkdir hardhat && cd hardhat
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/1.sh'
     ```
 
 2. Initialize the project, which will create a `package.json` file.
 
     ```sh
-    npm init -y
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/2.sh'
     ```
 
 3. Install Hardhat.
 
     ```sh
-    npm install --save-dev hardhat
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/3.sh'
     ```
 
 4. Create a Hardhat project.
 
     ```sh
-    npx hardhat --init
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/4.sh'
     ```
 
     !!! note
@@ -88,11 +88,7 @@ The Hardhat configuration file is the entry point into your Hardhat project. It 
 If you are using JavaScript, keep `"type": "module"` in your `package.json`. A minimal `hardhat.config.js` looks like:
 
 ```js
-import { defineConfig } from 'hardhat/config';
-
-export default defineConfig({
-  solidity: '0.8.28',
-});
+--8<-- 'code/builders/ethereum/dev-env/hardhat/5.js'
 ```
 
 If you chose a TypeScript template, the file will be `hardhat.config.ts`, and the config content will be the same. For this example, you can keep the Solidity compiler version at `0.8.28`; however, if you are using a contract that requires a newer version, don't forget to update it here.
@@ -100,7 +96,7 @@ If you chose a TypeScript template, the file will be `hardhat.config.ts`, and th
 Install the plugins and libraries used in this guide if your project template did not add them:
 
 ```bash
-npm install --save-dev @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-ignition-ethers @nomicfoundation/hardhat-keystore ethers
+--8<-- 'code/builders/ethereum/dev-env/hardhat/6.sh'
 ```
 
 Next, you'll need to modify your configuration file to add the network configurations for the network you want to deploy your contract to. For Moonbeam networks, you'll need to specify the following:
@@ -116,29 +112,25 @@ Hardhat includes an encrypted secrets manager via the `@nomicfoundation/hardhat-
 === "Moonbeam"
 
     ```bash
-    npx hardhat keystore set MOONBEAM_RPC_URL
-    npx hardhat keystore set MOONBEAM_PRIVATE_KEY
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    npx hardhat keystore set MOONRIVER_RPC_URL
-    npx hardhat keystore set MOONRIVER_PRIVATE_KEY
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/8.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    npx hardhat keystore set MOONBASE_RPC_URL
-    npx hardhat keystore set MOONBASE_PRIVATE_KEY
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/9.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    npx hardhat keystore set DEV_RPC_URL
-    npx hardhat keystore set DEV_PRIVATE_KEY
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/10.sh'
     ```
 
 !!! warning
@@ -149,93 +141,25 @@ Then, update your configuration file to use the encrypted secrets and ESM syntax
 === "Moonbeam"
 
     ```js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
-
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        moonbeam: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('MOONBEAM_RPC_URL'),
-          chainId: {{ networks.moonbeam.chain_id }}, // (hex: {{ networks.moonbeam.hex_chain_id }}),
-          accounts: [configVariable('MOONBEAM_PRIVATE_KEY')],
-        },
-      },
-    });
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/11.js'
     ```
 
 === "Moonriver"
 
     ```js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
-
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        moonriver: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('MOONRIVER_RPC_URL'),
-          chainId: {{ networks.moonriver.chain_id }}, // (hex: {{ networks.moonriver.hex_chain_id }}),
-          accounts: [configVariable('MOONRIVER_PRIVATE_KEY')],
-        },
-      },
-    });
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/12.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
-
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        moonbase: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('MOONBASE_RPC_URL'),
-          chainId: {{ networks.moonbase.chain_id }}, // (hex: {{ networks.moonbase.hex_chain_id }}),
-          accounts: [configVariable('MOONBASE_PRIVATE_KEY')],
-        },
-      },
-    });
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/13.js'
     ```
 
 === "Moonbeam Dev Node"
 
     ```js
-    import hardhatEthers from '@nomicfoundation/hardhat-ethers';
-    import hardhatIgnitionEthers from '@nomicfoundation/hardhat-ignition-ethers';
-    import hardhatKeystore from '@nomicfoundation/hardhat-keystore';
-    import { configVariable, defineConfig } from 'hardhat/config';
-
-    export default defineConfig({
-      plugins: [hardhatEthers, hardhatIgnitionEthers, hardhatKeystore],
-      solidity: '0.8.28',
-      networks: {
-        dev: {
-          type: 'http',
-          chainType: 'l1',
-          url: configVariable('DEV_RPC_URL'),
-          chainId: {{ networks.development.chain_id }}, // (hex: {{ networks.development.hex_chain_id }}),
-          accounts: [configVariable('DEV_PRIVATE_KEY')],
-        },
-      },
-    });
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/14.js'
     ```
 
 When you run tasks that require these secrets, Hardhat will prompt you for the password to decrypt them. The secrets are only decrypted when needed, meaning you only need to enter the password if a Hardhat task uses a secret.
@@ -253,39 +177,19 @@ To add the contract, you'll take the following steps:
 1. Change into the `contracts` directory.
 
     ```sh
-    cd contracts
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/15.sh'
     ```
 
 2. Create a `Box.sol` file.
 
     ```sh
-    touch Box.sol
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/16.sh'
     ```
 
 3. Open the file and add the following contract to it:
 
     ```solidity
-    // contracts/Box.sol
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.1;
-
-    contract Box {
-        uint256 private value;
-
-        // Emitted when the stored value changes
-        event ValueChanged(uint256 newValue);
-
-        // Stores a new value in the contract
-        function store(uint256 newValue) public {
-            value = newValue;
-            emit ValueChanged(newValue);
-        }
-
-        // Reads the last stored value
-        function retrieve() public view returns (uint256) {
-            return value;
-        }
-    }
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/17.sol'
     ```
 
 ## Compile the Contract {: #compiling-solidity }
@@ -295,7 +199,7 @@ The next step is to compile the `Box.sol` smart contract. For this, you can use 
 To use the `compile` task, all you have to do is run:
 
 ```sh
-npx hardhat compile
+--8<-- 'code/builders/ethereum/dev-env/hardhat/18.sh'
 ```
 
 --8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/compile.md'
@@ -311,7 +215,7 @@ To deploy the contract, you'll use Hardhat Ignition, a declarative framework for
 To set up the proper file structure for your Ignition module, create a folder named `ignition` and a subdirectory called `modules`. Then add a new file to it called `Box.js`. You can take all three of these steps with the following command:
 
 ```sh
-cd ignition/modules && touch Box.js
+--8<-- 'code/builders/ethereum/dev-env/hardhat/19.sh'
 ```
 
 Next, you can write your Hardhat Ignition module. To get started, take the following steps:
@@ -323,29 +227,13 @@ Next, you can write your Hardhat Ignition module. To get started, take the follo
 5. Return an object from the module. This makes the `Box` contract accessible for interaction in Hardhat tests and scripts.
 
 ```js
-// 1. Import the `buildModule` function from the Hardhat Ignition module
-import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
-
-// 2. Export a module using `buildModule`
-// Use `export default` instead of `module.exports`
-export default buildModule('BoxModule', (m) => {
-  // 3. Use the `getAccount` method to select the deployer account
-  const deployer = m.getAccount(0);
-  
-  // 4. Deploy the `Box` contract
-  const box = m.contract('Box', [], {
-    from: deployer, 
-  });
-  
-  // 5. Return an object from the module
-  return { box };
-});
+--8<-- 'code/builders/ethereum/dev-env/hardhat/20.js'
 ```
 
 To run the script and deploy the `Box.sol` contract, use the following command, which requires you to specify the network name as defined in your Hardhat config file. If you don't specify a network, hardhat will deploy the contract to a local Hardhat network by default. 
 
 ```sh
-npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
+--8<-- 'code/builders/ethereum/dev-env/hardhat/21.sh'
 ```
 
 !!! note
@@ -368,7 +256,7 @@ Similarly to the deployment script, you can create a lightweight helper that mir
 To get started, create a `box-console.ts` file in the `scripts` directory:
 
 ```sh
-cd scripts && touch box-console.ts
+--8<-- 'code/builders/ethereum/dev-env/hardhat/22.sh'
 ```
 
 Update the script with your deployed contract address before running it. The full helper looks like this:
@@ -386,7 +274,7 @@ Replace `INSERT_CONTRACT_ADDRESS` with the address printed by Hardhat Ignition a
 Use the `run` task to execute the helper script against your deployed `Box` contract so you can verify the keystore unlock flow works and confirm the contract stores the new value on Moonbase Alpha.
 
 ```sh
-npx hardhat run --network moonbase scripts/box-console.ts
+--8<-- 'code/builders/ethereum/dev-env/hardhat/23.sh'
 ```
 
 You'll be prompted for the Hardhat keystore password (if you're using encrypted secrets), after which the script connects to Moonbase Alpha, attaches to your deployed `Box` contract, and logs the values stored before and after calling `store(5n)`. Upon running it, you should see output similar to:
@@ -411,19 +299,19 @@ To fork Moonbeam from the command line, you can run the following command from w
 === "Moonbeam"
 
     ```sh
-    npx hardhat node --fork {{ networks.moonbeam.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/24.sh'
     ```
 
 === "Moonriver"
 
     ```sh
-    npx hardhat node --fork {{ networks.moonriver.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/25.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```sh
-    npx hardhat node --fork {{ networks.moonbase.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/26.sh'
     ```
 
 If you prefer to configure your Hardhat project, you can update your Hardhat config file with the following configurations:
@@ -431,43 +319,19 @@ If you prefer to configure your Hardhat project, you can update your Hardhat con
 === "Moonbeam"
 
     ```js
-    ...
-    networks: {
-      hardhat: {
-        forking: {
-          url: '{{ networks.moonbeam.rpc_url }}',
-        },
-      },
-    },
-    ...
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/27.js'
     ```
 
 === "Moonriver"
 
     ```js
-    ...
-    networks: {
-      hardhat: {
-        forking: {
-          url: '{{ networks.moonriver.rpc_url }}',
-        },
-      },
-    },
-    ...
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/28.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    ...
-    networks: {
-      hardhat: {
-        forking: {
-          url: '{{ networks.moonbase.rpc_url }}',
-        },
-      },
-    },
-    ...
+    --8<-- 'code/builders/ethereum/dev-env/hardhat/29.js'
     ```
 
 When you spin up the Hardhat fork, you'll have 20 development accounts that are pre-funded with 10,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
@@ -477,7 +341,7 @@ When you spin up the Hardhat fork, you'll have 20 development accounts that are 
 To verify you have forked the network, you can query the latest block number:
 
 ```sh
-curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
+--8<-- 'code/builders/ethereum/dev-env/hardhat/30.sh'
 ```
 
 If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}, you should get the latest block number from the time you forked the network. You can cross-reference the block number using a [block explorer](/builders/get-started/explorers/){target=\_blank}.
@@ -487,22 +351,7 @@ From here, you can deploy new contracts to your forked instance of Moonbeam or i
 To interact with an already deployed contract, you can create a new script in the `scripts` directory using `ethers`. Because you'll be running it with Hardhat, you can import `ethers` directly from the Hardhat runtime without extra setup. Inside the script, you can access a live contract on the network using the following snippet:
 
 ```js
-import { ethers } from 'hardhat';
-
-async function main() {
-  const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545/');
-
-  const contract = new ethers.Contract(
-    'INSERT_CONTRACT_ADDRESS',
-    'INSERT_CONTRACT_ABI',
-    provider
-  );
-}
-
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+--8<-- 'code/builders/ethereum/dev-env/hardhat/31.js'
 ```
 
 --8<-- 'text/_disclaimers/third-party-content.md'

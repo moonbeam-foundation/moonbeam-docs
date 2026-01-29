@@ -326,49 +326,13 @@ As mentioned before, there are some [differences between regular and remote XCM 
 To do so, you first need to retrieve the transaction hash you want to query. For this example, you can use the transaction hash from the [previous section](#build-remote-evm-call-xcm), which is [0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f](https://moonbase.moonscan.io/tx/0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f){target=\_blank}. Open the terminal, and execute the following command:
 
 ```sh
-curl --location --request POST 'https://rpc.api.moonbase.moonbeam.network' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "jsonrpc":"2.0",
-    "id":1,
-    "method":"eth_getTransactionByHash",
-    "params": ["0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f"]
-  }
-'
+--8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/1.sh'
 ```
 
 If the JSON-RPC request is sent correctly, the response should look like this:
 
 ```json
-{
-    "jsonrpc": "2.0",
-    "result": {
-        "hash": "0x753588d6e59030eeffd31aabccdd0fb7c92db836fcaa8ad71512cf3a7d0cb97f",
-        "nonce": "0x129",
-        "blockHash": "0xeb8222567e434215f472f0c53f68a606c77ea8f475e5fbc3a5b715db6cce8887",
-        "blockNumber": "0x46c268",
-        "transactionIndex": "0x0",
-        "from": "0xdd2399f3b5ca0fc584c4637283cda4d73f6f87c0",
-        "to": "0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8",
-        "value": "0x0",
-        "gasPrice": "0x0",
-        "maxFeePerGas": "0x0",
-        "maxPriorityFeePerGas": "0x0",
-        "gas": "0x25d78",
-        "input": "0xd09de08a",
-        "creates": null,
-        "raw": "0x02eb820507820129808083025d7894a72f549a1a12b9b49f30a7f3aeb1f4e96389c5d88084d09de08ac0010101",
-        "publicKey": "0x14745b9075ac0f0426c61c9a2895f130ea6f3b964e8f49cefdb4e2d248306f19396361d877f8b9ad60a94a5ec28325a1b9baa2ae59e7a9f6fe1731caec130ab4",
-        "chainId": "0x507",
-        "standardV": "0x1",
-        "v": "0x1",
-        "r": "0x1",
-        "s": "0x1",
-        "accessList": [],
-        "type": "0x2"
-    },
-    "id": 1
-}
+--8<-- 'code/builders/interoperability/xcm/remote-execution/remote-evm-calls/2.json'
 ```
 
 Note that the `v-r-s` values are set to `0x1`, and the gas price-related fields are set to `0x0`. In addition, the `nonce` field corresponds to a global nonce of the [Ethereum XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank}, and not the transaction count of the dispatcher account.

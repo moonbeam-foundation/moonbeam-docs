@@ -23,14 +23,13 @@ The following commands will build the latest release of the Moonbeam parachain.
 1. Clone the Moonbeam repo.
 
     ```bash
-    git clone https://github.com/moonbeam-foundation/moonbeam
-    cd moonbeam
+    --8<-- 'code/node-operators/networks/run-a-node/compile-binary/1.sh'
     ```
 
 2. Check out the latest release.
 
     ```bash
-    git checkout tags/$(git describe --tags)
+    --8<-- 'code/node-operators/networks/run-a-node/compile-binary/2.sh'
     ```
 
 3. Skip the next two steps if you already have Rust installed. Otherwise, install Rust and its prerequisites [via Rust's recommended method](https://rust-lang.org/tools/install/){target=\_blank}.
@@ -51,11 +50,11 @@ The following commands will build the latest release of the Moonbeam parachain.
         If you are using Ubuntu 20.04 or 22.04, then you will need to install these additional dependencies before building the binary:
 
         ```bash
-        apt install clang protobuf-compiler libprotobuf-dev pkg-config libssl-dev -y 
+        --8<-- 'code/node-operators/networks/run-a-node/compile-binary/3.sh'
         ```
 
     ```bash
-    cargo build --release
+    --8<-- 'code/node-operators/networks/run-a-node/compile-binary/4.sh'
     ```
 
 ![Compiling Binary](/images/node-operators/networks/run-a-node/compile-binary/full-node-binary-1.webp)

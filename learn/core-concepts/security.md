@@ -40,24 +40,13 @@ For example, if you have a contract that allows arbitrary code execution and you
 To get the encoded call data, you can use any of the [ABI encoding functions outlined in the Solidity docs](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#abi-encoding-and-decoding-functions){target=\_blank}, including `abi.encodeWithSelector` as seen in the following function:
 
 ```solidity
-function getBytes(address _erc20Contract, address _arbitraryCallContract, address _to) public view returns (bytes memory) {
-    // Load ERC-20 interface of contract
-    IERC20 erc20 = IERC20(_erc20Contract);
-    // Get amount to transfer
-    uint256 amount = erc20.balanceOf(_arbitraryCallContract);
-    // Build the encoded call data
-    return abi.encodeWithSelector(IERC20.transfer.selector, _to, amount);
-}
+--8<-- 'code/learn/core-concepts/security/1.sol'
 ```
 
 Once you have the encoded call data, you could make an arbitrary call to the [native ERC-20 precompile contract](/builders/ethereum/precompiles/ux/erc20/){target=\_blank}, set the value of the call to `0`, and pass in the call data in bytes:
 
 ```solidity
-function makeArbitraryCall(address _target, bytes calldata _bytes) public {
-    // Value: 0 does not protect against native ERC-20 precompile calls or XCM precompiles
-    (bool success,) = _target.call{value: 0}(_bytes);
-    require(success);
-}
+--8<-- 'code/learn/core-concepts/security/2.sol'
 ```
 
 The value of `0` will be overridden by the amount to be transferred as specified in the encoded call data, which in this example is the balance of the contract.
@@ -71,20 +60,7 @@ To get the function selector to whitelist, you can [keccack256 hash](https://emn
 Once you have the whitelisted function selector, you can use inline assembly to get the function selector from the encoded call data and compare the two selectors using the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank}. If the function selector from the encoded call data matches the whitelisted function selector, you can make the call. Otherwise, an exception will be thrown.
 
 ```solidity
-function makeArbitraryCall(address _target, bytes calldata _bytes) public {
-    // Get the function selector from the encoded call data
-    bytes4 selector;
-    assembly {
-        selector := calldataload(_bytes.offset)
-    }
-
-    // Ensure the call data calls an approved and safe function
-    require(selector == INSERT_WHITELISTED_FUNCTION_SELECTOR);
-
-    // Arbitrary call
-    (bool success,) = _target.call(_bytes);
-    require(success);
-}
+--8<-- 'code/learn/core-concepts/security/3.sol'
 ```
 
 ### Whitelisting Safe Contracts {: #whitelisting-safe-contracts}
@@ -96,14 +72,7 @@ Blacklisting contracts from arbitrary code execution is not considered safe, as 
 To whitelist a given contract, you can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank}, which will compare the target contract address to the whitelisted contract address. If the addresses match, the call can be executed. Otherwise, an exception will be thrown.
 
 ```solidity
-function makeArbitraryCall(address _target, bytes calldata _bytes) public {
-    // Ensure the contract address is safe
-    require(_target == INSERT_CONTRACT_ADDRESS);
-
-    // Arbitrary call
-    (bool success,) = _target.call(_bytes);
-    require(success);
-}
+--8<-- 'code/learn/core-concepts/security/4.sol'
 ```
 
 ## Precompiles Can Bypass Sender vs Origin Checks {: #bypass-sender-origin-checks }
@@ -118,10 +87,7 @@ For example, if Alice calls a function in contract A that then calls a function 
 You can use the [require function](https://docs.soliditylang.org/en/v0.8.17/control-structures.html#panic-via-assert-and-error-via-require){target=\_blank} to compare the `tx.origin` and `msg.sender`. If they are the same address, you're ensuring that only EOAs can call the function. If the `msg.sender` is a contract address, an exception will be thrown.
 
 ```solidity
-function transferFunds(address payable _target) payable public {
-    require(tx.origin == msg.sender);
-    _target.call{value: msg.value};
-}
+--8<-- 'code/learn/core-concepts/security/5.sol'
 ```
 
 On Ethereum, you can use this check to ensure that a given contract function can only be called once by an EOA. This is because on Ethereum, EOAs can only interact with a contract once per transaction. However, **this is not the case** on Moonbeam, as EOAs can interact with a contract multiple times at once by using precompiled contracts, such as the [batch](/builders/ethereum/precompiles/ux/batch/){target=\_blank} and [call permit](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank} precompiles.

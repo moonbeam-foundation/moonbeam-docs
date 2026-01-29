@@ -30,7 +30,7 @@ For the examples in this guide, you will need to have the following:
 To get started, you'll need to start a basic JavaScript project. First, create a directory to store all of the files you'll be creating throughout this guide and initialize the project with the following command:
 
 ```bash
-mkdir ethers-examples && cd ethers-examples && npm init --y
+--8<-- 'code/builders/ethereum/libraries/ethersjs/1.sh'
 ```
 
 For this guide, you'll need to install the Ethers.js library and the Solidity compiler. To install both NPM packages, you can run the following command:
@@ -38,13 +38,13 @@ For this guide, you'll need to install the Ethers.js library and the Solidity co
 === "npm"
 
     ```bash
-    npm install ethers solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/2.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn add ethers solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/3.sh'
     ```
 
 ## Setting up the Ethers Provider {: #setting-up-the-ethers-provider }
@@ -62,85 +62,25 @@ To create a provider, you can take the following steps:
 === "Moonbeam"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      moonbeam: {
-        name: 'moonbeam',
-        rpc: '{{ networks.moonbeam.rpc_url }}', // Insert your RPC URL here
-        chainId: {{ networks.moonbeam.chain_id }}, // {{ networks.moonbeam.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.moonbeam.rpc, {
-      chainId: providerRPC.moonbeam.chainId,
-      name: providerRPC.moonbeam.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/4.js'
     ```
 
 === "Moonriver"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      moonriver: {
-        name: 'moonriver',
-        rpc: '{{ networks.moonriver.rpc_url }}', // Insert your RPC URL here
-        chainId: {{ networks.moonriver.chain_id }}, // {{ networks.moonriver.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.moonriver.rpc, {
-      chainId: providerRPC.moonriver.chainId,
-      name: providerRPC.moonriver.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/5.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      moonbase: {
-        name: 'moonbase-alpha',
-        rpc: '{{ networks.moonbase.rpc_url }}',
-        chainId: {{ networks.moonbase.chain_id }}, // {{ networks.moonbase.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.moonbase.rpc, {
-      chainId: providerRPC.moonbase.chainId,
-      name: providerRPC.moonbase.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/6.js'
     ```
 
 === "Moonbeam Dev Node"
 
     ```js
-    // 1. Import ethers
-    const ethers = require('ethers');
-
-    // 2. Define network configurations
-    const providerRPC = {
-      dev: {
-        name: 'moonbeam-development',
-        rpc: '{{ networks.development.rpc_url }}',
-        chainId: {{ networks.development.chain_id }}, // {{ networks.development.hex_chain_id }} in hex,
-      },
-    };
-    // 3. Create ethers provider
-    const provider = new ethers.JsonRpcProvider(providerRPC.dev.rpc, {
-      chainId: providerRPC.dev.chainId,
-      name: providerRPC.dev.name,
-    });
+    --8<-- 'code/builders/ethereum/libraries/ethersjs/7.js'
     ```
 
 Save this code snippet as you'll need it for the scripts that are used in the following sections.
@@ -156,7 +96,7 @@ You can also use the balance script to check the account balances after the tran
 You'll only need one file to check the balances of both addresses before and after the transaction is sent. To get started, you can create a `balances.js` file by running:
 
 ```bash
-touch balances.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/8.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -168,25 +108,7 @@ Next, you will create the script for this file and complete the following steps:
 1. Lastly, run the `balances` function
 
 ```js
-// 1. Add the Ethers provider logic here:
-// {...}
-
-// 2. Create address variables
-const addressFrom = 'INSERT_FROM_ADDRESS';
-const addressTo = 'INSERT_TO_ADDRESS';
-
-// 3. Create balances function
-const balances = async () => {
-  // 4. Fetch balances
-  const balanceFrom = ethers.formatEther(await provider.getBalance(addressFrom));
-  const balanceTo = ethers.formatEther(await provider.getBalance(addressTo));
-
-  console.log(`The balance of ${addressFrom} is: ${balanceFrom} DEV`);
-  console.log(`The balance of ${addressTo} is: ${balanceTo} DEV`);
-};
-
-// 5. Call the balances function
-balances();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/9.js'
 ```
 
 ??? code "View the complete script"
@@ -198,7 +120,7 @@ balances();
 To run the script and fetch the account balances, you can run the following command:
 
 ```bash
-node balances.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/10.sh'
 ```
 
 If successful, the balances for the origin and receiving address will be displayed in your terminal in DEV.
@@ -208,7 +130,7 @@ If successful, the balances for the origin and receiving address will be display
 You'll only need one file for executing a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.js` file by running:
 
 ```bash
-touch transaction.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/11.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -222,36 +144,7 @@ Next, you will create the script for this file and complete the following steps:
 1. Lastly, run the `send` function
 
 ```js
-// 1. Add the Ethers provider logic here:
-// {...}
-
-// 2. Create account variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-const addressTo = 'INSERT_TO_ADDRESS';
-
-// 3. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 4. Create send function
-const send = async () => {
-  console.log(`Attempting to send transaction from ${wallet.address} to ${addressTo}`);
-
-  // 5. Create tx object
-  const tx = {
-    to: addressTo,
-    value: ethers.parseEther('1'),
-  };
-
-  // 6. Sign and send tx - wait for receipt
-  const createReceipt = await wallet.sendTransaction(tx);
-  await createReceipt.wait();
-  console.log(`Transaction successful with hash: ${createReceipt.hash}`);
-};
-
-// 7. Call the send function
-send();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/12.js'
 ```
 
 ??? code "View the complete script"
@@ -263,7 +156,7 @@ send();
 To run the script, you can run the following command in your terminal:
 
 ```bash
-node transaction.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/13.sh'
 ```
 
 If the transaction was successful, in your terminal you'll see the transaction hash has been printed out.
@@ -291,7 +184,7 @@ You can also use the `balances.js` script to check that the balances for the ori
 With the script for compiling the `Incrementer.sol` contract in place, you can then use the results to send a signed transaction that deploys it. To do so, you can create a file for the deployment script called `deploy.js`:
 
 ```bash
-touch deploy.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/14.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -307,40 +200,7 @@ Next, you will create the script for this file and complete the following steps:
 1. Lastly, run the `deploy` function
 
 ```js
-// 1. Import the contract file
-const contractFile = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Create account variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-
-// 4. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 5. Load contract information
-const bytecode = contractFile.evm.bytecode.object;
-const abi = contractFile.abi;
-
-// 6. Create contract instance with signer
-const incrementer = new ethers.ContractFactory(abi, bytecode, wallet);
-
-// 7. Create deploy function
-const deploy = async () => {
-  console.log(`Attempting to deploy from account: ${wallet.address}`);
-
-  // 8. Send tx (initial value set to 5) and wait for receipt
-  const contract = await incrementer.deploy(5);
-  const txReceipt = await contract.deploymentTransaction().wait();
-
-  console.log(`Contract deployed at address: ${txReceipt.contractAddress}`);
-};
-
-// 9. Call the deploy function
-deploy();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/15.js'
 ```
 
 ??? code "View the complete script"
@@ -352,7 +212,7 @@ deploy();
 To run the script, you can enter the following command into your terminal:
 
 ```bash
-node deploy.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/16.sh'
 ```
 
 If successful, the contract's address will be displayed in the terminal.
@@ -366,7 +226,7 @@ Call methods are the type of interaction that don't modify the contract's storag
 To get started, you can create a file and name it `get.js`:
 
 ```bash
-touch get.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/17.sh'
 ```
 
 Then you can take the following steps to create the script:
@@ -380,30 +240,7 @@ Then you can take the following steps to create the script:
 1. Lastly, call the `get` function
 
 ```js
-// 1. Import the ABI
-const { abi } = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Contract address variable
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-
-// 4. Create contract instance
-const incrementer = new ethers.Contract(contractAddress, abi, provider);
-
-// 5. Create get function
-const get = async () => {
-  console.log(`Making a call to contract at address: ${contractAddress}`);
-
-  // 6. Call contract 
-  const data = await incrementer.number();
-
-  console.log(`The current number stored is: ${data}`);
-};
-
-// 7. Call get function
-get();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/18.js'
 ```
 
 ??? code "View the complete script"
@@ -415,7 +252,7 @@ get();
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-node get.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/19.sh'
 ```
 
 If successful, the value will be displayed in the terminal.
@@ -425,7 +262,7 @@ If successful, the value will be displayed in the terminal.
 Send methods are the type of interaction that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.js` and `reset.js`:
 
 ```bash
-touch increment.js reset.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/20.sh'
 ```
 
 Open the `increment.js` file and take the following steps to create the script:
@@ -440,40 +277,7 @@ Open the `increment.js` file and take the following steps to create the script:
 1. Lastly, call the `increment` function
 
 ```js
-// 1. Import the contract ABI
-const { abi } = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Create variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-const _value = 3;
-
-// 4. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 5. Create contract instance with signer
-const incrementer = new ethers.Contract(contractAddress, abi, wallet);
-
-// 6. Create increment function
-const increment = async () => {
-  console.log(
-    `Calling the increment by ${_value} function in contract at address: ${contractAddress}`
-  );
-
-  // 7. Sign and send tx and wait for receipt
-  const createReceipt = await incrementer.increment(_value);
-  await createReceipt.wait();
-
-  console.log(`Tx successful with hash: ${createReceipt.hash}`);
-};
-
-// 8. Call the increment function
-increment();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/21.js'
 ```
 
 ??? code "View the complete script"
@@ -485,7 +289,7 @@ increment();
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-node increment.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/22.sh'
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `increment.js` script to make sure that value is changing as expected:
@@ -504,39 +308,7 @@ Next you can open the `reset.js` file and take the following steps to create the
 1. Lastly, call the `reset` function
 
 ```js
-// 1. Import the contract ABI
-const { abi } = require('./compile');
-
-// 2. Add the Ethers provider logic here:
-// {...}
-
-// 3. Create variables
-const accountFrom = {
-  privateKey: 'INSERT_YOUR_PRIVATE_KEY',
-};
-const contractAddress = 'INSERT_CONTRACT_ADDRESS';
-
-// 4. Create wallet
-let wallet = new ethers.Wallet(accountFrom.privateKey, provider);
-
-// 5. Create contract instance with signer
-const incrementer = new ethers.Contract(contractAddress, abi, wallet);
-
-// 6. Create reset function
-const reset = async () => {
-  console.log(
-    `Calling the reset function in contract at address: ${contractAddress}`
-  );
-
-  // 7. sign and send tx and wait for receipt
-  const createReceipt = await incrementer.reset();
-  await createReceipt.wait();
-
-  console.log(`Tx successful with hash: ${createReceipt.hash}`);
-};
-
-// 8. Call the reset function
-reset();
+--8<-- 'code/builders/ethereum/libraries/ethersjs/23.js'
 ```
 
 ??? code "View the complete script"
@@ -548,7 +320,7 @@ reset();
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-node reset.js
+--8<-- 'code/builders/ethereum/libraries/ethersjs/24.sh'
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.js` script alongside the `reset.js` script to make sure that value is changing as expected:

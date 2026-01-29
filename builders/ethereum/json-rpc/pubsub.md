@@ -37,13 +37,7 @@ Please note that the examples in this section require installing [wscat](https:/
     === "Example"
 
         ```bash
-        wscat -c {{ networks.moonbase.wss_url }} -x '
-          {
-            "jsonrpc": "2.0", 
-            "id": 1, 
-            "method": "eth_subscribe", 
-            "params": ["INSERT_SUBSCRIPTION_NAME"]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/pubsub/1.sh'
         ```
 
 ???+ function "eth_unsubscribe"
@@ -61,13 +55,7 @@ Please note that the examples in this section require installing [wscat](https:/
     === "Example"
 
         ```bash
-        wscat -c {{ networks.moonbase.wss_url }} -x '
-          {
-            "jsonrpc": "2.0", 
-            "id": 1, 
-            "method": "eth_unsubscribe", 
-            "params": ["INSERT_SUBSCRIPTION_ID"]
-          }'
+        --8<-- 'code/builders/ethereum/json-rpc/pubsub/2.sh'
         ```
 
 ## Subscribe to Events Using Ethereum Libraries {: #subscribe-to-events }
@@ -85,7 +73,7 @@ The examples in this guide are based on an Ubuntu 22.04 environment. You will al
 - Ethers.js or the Ethereum library of your choice installed. You can install Ethers.js via npm:
 
     ```bash
-    npm install ethers
+    --8<-- 'code/builders/ethereum/json-rpc/pubsub/3.sh'
     ```
 
 ### Subscribe to Event Logs {: #subscribing-to-event-logs-in-moonbase-alpha }
@@ -107,7 +95,7 @@ In the provided code:
 - The listener filters for the `Transfer` event by signature, which can be calculated as follows:
 
     ```js
-    EventSignature = keccak256(Transfer(address,address,uint256))
+    --8<-- 'code/builders/ethereum/json-rpc/pubsub/4.js'
     ```
 
     This translates to `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef` and is used as the first topic in the subscription filter.

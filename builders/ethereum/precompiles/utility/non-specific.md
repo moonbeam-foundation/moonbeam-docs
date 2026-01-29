@@ -30,13 +30,13 @@ In the following sections, you will learn how to use the `ECRecoverPublicKey` pr
 The versions used in this example are v20.15.0 (Node.js) and 10.7.0 (npm). You will also need to install the [Web3](https://web3js.readthedocs.io/en/latest){target=\_blank} package by executing:
 
 ```bash
-npm install --save web3
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/1.sh'
 ```
 
 To verify the installed version of Web3, you can use the `ls` command:
 
 ```bash
-npm ls web3
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/2.sh'
 ```
 
 This example uses version 4.11.1. You will also use [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}, connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask/){target=\_blank}.
@@ -50,7 +50,7 @@ To use the `ECRecoverPublicKey` precompile, you must first sign a message to cre
 Create a new file called `signMessage.js` in your project directory:
 
 ```bash
-touch signMessage.js
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/3.sh'
 ```
 
 Open `signMessage.js` in your code editor and add the following script to initialize Web3 with Moonbase Alpha TestNet, sign and hash the message, and return the signature values:
@@ -62,7 +62,7 @@ Open `signMessage.js` in your code editor and add the following script to initia
 Return to your terminal command line to run the script with this command:
 
 ```bash
-node signMessage.js
+--8<-- 'code/builders/ethereum/precompiles/utility/non-specific/4.sh'
 ```
 
 This code will return the following object in the terminal:

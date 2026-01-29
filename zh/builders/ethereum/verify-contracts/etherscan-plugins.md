@@ -85,7 +85,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
 
 在您的终端中，您应该看到您的合约的源代码已成功提交以进行验证。如果验证成功，您应该看到 **Successfully verified contract**，并且在 [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io){target=\_blank} 上会有一个指向合约代码的链接。
 
---8<-- 'zh/code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/hardhat-verify.md'
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/hardhat-verify.md'
 
 如果您要验证的合约具有构造函数参数，您需要运行上述命令，并在命令末尾添加用于部署合约的构造函数参数。例如：
 
@@ -145,7 +145,7 @@ cast abi-encode "constructor(uint256)" 100
       --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
---8<-- 'zh/code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
 
 如果您想同时部署示例合约并进行验证，那么您可以使用以下命令：
 
@@ -179,4 +179,4 @@ cast abi-encode "constructor(uint256)" 100
       src/MyToken.sol:MyToken
     ```
 
---8<-- 'zh/code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'

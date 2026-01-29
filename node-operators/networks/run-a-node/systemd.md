@@ -30,19 +30,19 @@ To download the latest [release binary](https://github.com/moonbeam-foundation/m
     === "Moonbeam"
 
         ```bash
-        mkdir {{ networks.moonbeam.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/1.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        mkdir {{ networks.moonriver.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/2.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mkdir {{ networks.moonbase.node_directory }}
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/3.sh'
         ```
 
 2. Use `wget` to grab the latest [release binary](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} and output it to the directory created in the previous step
@@ -50,22 +50,19 @@ To download the latest [release binary](https://github.com/moonbeam-foundation/m
     === "Moonbeam"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbeam.parachain_release_tag }}/moonbeam \
-        -O {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/4.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonriver.parachain_release_tag }}/moonbeam \
-        -O {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/5.sh'
         ``` 
 
     === "Moonbase Alpha"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/{{ networks.moonbase.parachain_release_tag }}/moonbeam \
-        -O {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/6.sh'
         ```
 
 3. To verify that you have downloaded the correct version, you can run the following command in your terminal
@@ -73,19 +70,19 @@ To download the latest [release binary](https://github.com/moonbeam-foundation/m
     === "Moonbeam"
 
         ```bash
-        sha256sum {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/7.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        sha256sum {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/8.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        sha256sum {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/9.sh'
         ```
 
     You should receive the following output:
@@ -117,19 +114,19 @@ The following commands will set up everything regarding running the service:
     === "Moonbeam"
 
         ```bash
-        adduser moonbeam_service --system --no-create-home
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/10.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        adduser moonriver_service --system --no-create-home
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/11.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        adduser moonbase_service --system --no-create-home
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/12.sh'
         ```
 
 2. Ensure that you properly configure the ownership and permissions for the local directory housing the chain data, and also remember to grant execute permission to the binary file
@@ -137,22 +134,19 @@ The following commands will set up everything regarding running the service:
     === "Moonbeam"
 
         ```bash
-        sudo chown -R moonbeam_service {{ networks.moonbeam.node_directory }}
-        sudo chmod +x {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/13.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        sudo chown -R moonriver_service {{ networks.moonriver.node_directory }}
-        sudo chmod +x {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/14.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        sudo chown -R moonbase_service {{ networks.moonbase.node_directory }}
-        sudo chmod +x {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/15.sh'
         ```
 
 ## Create the Configuration File {: #create-the-configuration-file }
@@ -175,94 +169,19 @@ For an overview of the flags used in the following start-up commands, plus addit
 === "Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/16.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/17.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    [Unit]
-    Description="Moonbase Alpha systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbase_service
-    SyslogIdentifier=moonbase
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbase.node_directory }} \
-         --chain {{ networks.moonbase.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/18.sh'
     ```
 
 --8<-- 'text/node-operators/networks/run-a-node/external-access.md'
@@ -270,33 +189,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 ??? code "Example start-up command for Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         --unsafe-rpc-external \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/19.sh'
     ```
 
 --8<-- 'text/node-operators/networks/run-a-node/sql-backend.md'
@@ -304,33 +197,7 @@ For an overview of the flags used in the following start-up commands, plus addit
 ??? code "Example start-up command for Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         --frontier-backend-type sql \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/20.sh'
     ```
 
 ### Collator {: #collator }
@@ -342,25 +209,19 @@ When setting up a new node, run the following command to generate and store on d
 === "Moonbeam"
 
     ```bash
-
-    /var/lib/moonbeam-data/moonbeam key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam && sudo chown -R moonbeam_service /var/lib/moonbeam-data
-    
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/21.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-
-    /var/lib/moonriver-data/moonbeam key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver && sudo chown -R moonriver_service /var/lib/moonriver-data
-
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/22.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-
-    /var/lib/alphanet-data/moonbeam key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet  && sudo chown -R moonbase_service  /var/lib/alphanet-data
-
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/23.sh'
     ```
 
 !!! note
@@ -371,94 +232,19 @@ Now you can create the systemd configuration file:
 === "Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --collator \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/24.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --collator \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/25.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    [Unit]
-    Description="Moonbase Alpha systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbase_service
-    SyslogIdentifier=moonbase
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --collator \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbase.node_directory }} \
-         --chain {{ networks.moonbase.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)" \
-         --sync fast
-
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/26.sh'
     ```
 
 ## Run the Service {: #run-the-service }
@@ -470,7 +256,7 @@ Now you can create the systemd configuration file:
 You can also check the logs by executing:
 
 ```bash
-journalctl -f -u moonbeam.service
+--8<-- 'code/node-operators/networks/run-a-node/systemd/27.sh'
 ```
 
 --8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/logs.md'
@@ -483,7 +269,7 @@ During the syncing process, you will see logs from both the embedded relay chain
 If you need to stop the service for any reason, you can run:
 
 ```bash
-systemctl stop moonbeam.service
+--8<-- 'code/node-operators/networks/run-a-node/systemd/28.sh'
 ```
 
 ## Maintain Your Node {: #maintain-your-node }
@@ -495,7 +281,7 @@ If you want to update your client, you can keep your existing chain data in tact
 1. Stop the systemd service
 
     ```bash
-    sudo systemctl stop moonbeam.service
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/29.sh'
     ```
 
 2. Remove the old binary file
@@ -503,19 +289,19 @@ If you want to update your client, you can keep your existing chain data in tact
     === "Moonbeam"
 
         ```bash
-        rm {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/30.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        rm {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/31.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        rm {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/32.sh'
         ```
 
 3. Get the latest version of the [Moonbeam release binary on GitHub](https://github.com/moonbeam-foundation/moonbeam/releases){target=\_blank} and run the following command to update to that version
@@ -523,22 +309,19 @@ If you want to update your client, you can keep your existing chain data in tact
     === "Moonbeam"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
-        -O {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/33.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
-        -O {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/34.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        wget https://github.com/moonbeam-foundation/moonbeam/releases/download/INSERT_NEW_VERSION_TAG/moonbeam \
-        -O {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/35.sh'
         ```
 
     !!! note
@@ -549,28 +332,25 @@ If you want to update your client, you can keep your existing chain data in tact
     === "Moonbeam"
 
         ```bash
-        chmod +x {{ networks.moonbeam.node_directory }}/moonbeam
-        chown moonbeam_service {{ networks.moonbeam.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/36.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        chmod +x {{ networks.moonriver.node_directory }}/moonbeam
-        chown moonriver_service {{ networks.moonriver.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/37.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        chmod +x {{ networks.moonbase.node_directory }}/moonbeam
-        chown moonbase_service {{ networks.moonbase.node_directory }}/moonbeam
+        --8<-- 'code/node-operators/networks/run-a-node/systemd/38.sh'
         ```
 
 5. Start your service
 
     ```bash
-    systemctl start moonbeam.service
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/39.sh'
     ```
 
 To check the status of the service and/or logs, you can refer to the [commands from before](#run-the-service).
@@ -582,7 +362,7 @@ If you need a fresh instance of your Moonbeam node, you can purge your node by r
 You'll first need to stop the systemd service:
 
 ```bash
-sudo systemctl stop moonbeam
+--8<-- 'code/node-operators/networks/run-a-node/systemd/40.sh'
 ```
 
 To purge your parachain and relay chain data, you can run the following command:
@@ -590,19 +370,19 @@ To purge your parachain and relay chain data, you can run the following command:
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/41.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/42.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/43.sh'
     ```
 
 To only remove the parachain data for a specific chain, you can run:
@@ -610,19 +390,19 @@ To only remove the parachain data for a specific chain, you can run:
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/44.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/45.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/chains/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/46.sh'
     ```
 
 Similarly, to only remove the relay chain data, you can run:
@@ -630,19 +410,19 @@ Similarly, to only remove the relay chain data, you can run:
 === "Moonbeam"
 
     ```bash
-    sudo rm -rf {{ networks.moonbeam.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/47.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    sudo rm -rf {{ networks.moonriver.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/48.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
+    --8<-- 'code/node-operators/networks/run-a-node/systemd/49.sh'
     ```
 
 --8<-- 'text/node-operators/networks/run-a-node/post-purge.md'

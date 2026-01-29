@@ -1,0 +1,17 @@
+[
+    {
+        "address": "address1",
+        "status": "perfect",
+        "chainIds": [
+            "chainId1",
+            "chaindId2"
+        ]
+    },
+    {
+        "address": "address2",
+        "status": "partial",
+        "chainIds": [
+            "chaindId2"
+        ]
+    }
+]

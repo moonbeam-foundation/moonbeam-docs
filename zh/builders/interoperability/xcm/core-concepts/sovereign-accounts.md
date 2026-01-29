@@ -29,7 +29,7 @@ yarn calculate-sovereign-account --p 1000 --r moonbase
 
 运行该脚本将生成如下输出：
 
---8<-- 'zh/code/builders/interoperability/xcm/core-concepts/sovereign-accounts/terminal/calculate.md'
+--8<-- 'code/builders/interoperability/xcm/core-concepts/sovereign-accounts/terminal/calculate.md'
 
 中继地址是 Polkadot 或 Kusama 中继链引用主权账户的方式。通用平行链地址通常用于从其他平行链引用此平行链的主权账户。 Moonbase Alpha 地址是 Moonbase Alpha 使用的 H160 EVM 地址格式中相应的主权账户。
 

@@ -15,9 +15,7 @@ This guide will show you how to register [external XC-20s](/builders/interoperab
 The examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank}.
 
 ```bash
-git clone https://github.com/Moonsong-Labs/xcm-tools && \
-cd xcm-tools && \
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/1.sh'
 ```
 
 ## Register External XC-20s on Moonbeam {: #register-xc-20s }
@@ -58,19 +56,19 @@ Only three parameters are required to calculate the relative price of an asset:
 First, ensure that you've installed the required dependencies by running:
 
 ```bash
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/2.sh'
 ```
 
 Execute the script, making sure to provide the USD price of the asset you're registering, the number of decimals it has, and the network you're registering the asset on (either GLMR or MOVR):
 
 ```bash
-yarn calculate-relative-price INSERT_ASSET_PRICE INSERT_DECIMALS GLMR
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/3.sh'
 ```
 
 For example, if the asset you're registering has a USD price of $0.25 and 12 decimals and you're registering the asset on the Moonbeam network, you would run: 
 
 ```bash
-yarn calculate-relative-price 0.25 12 GLMR
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/4.sh'
 ```
 
 This instructs the script to calculate how many smallest units of an asset (priced at $0.25, with 12 decimals) correspond to 1 GLMR token.
@@ -82,7 +80,7 @@ Upon successful execution, the script prints the computed `relativePrice` as a `
 For additional info, usage details, or to see an example in action, you can invoke the help command by running: 
 
 ```bash
-yarn calculate-relative-price --help
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/5.sh'
 ```
 
 ### Generate the Encoded Calldata for the Asset Registration {: #generate-encoded-calldata-for-asset-registration }
@@ -102,12 +100,7 @@ Using the above information, you can generate the encoded call data for the `cre
 You can generate this required calldata using the [xcm-asset-registrator script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} as follows:
 
 ```bash
-yarn register-asset --w wss://wss.api.moonbeam.network  \
---asset "INSERT_MULTILOCATION" \
---symbol "INSERT_ASSET_SYMBOL" \
---decimals INSERT_DECIMALS \
---name "INSERT_ASSET_NAME" \
---relative-price INSERT_RELATIVE_PRICE
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/6.sh'
 ```
 
 Upon running the script with the relevant parameters, you'll see output like the following: 
@@ -144,11 +137,7 @@ After submitting the preimage, you can submit the proposal by following the guid
 If you prefer the script method and you're comfortable working with the scripts in the XCM tools repo, you can use the [generic call proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} by passing in the requisite calls, including the acceptance and proposal of the XCM Channel, and the asset registration. The [generic call proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank} can help you assemble the multiple requisite calls as follows:
 
 ```bash
-yarn generic-call-propose \
-  --call INSERT_CALLDATA_INCOMING_XCM_CHANNEL \
-  --call INSERT_CALLDATA_OUTGOING_XCM_CHANNEL \
-  --call INSERT_CALLDATA_BATCH_ASSET_REGISTRATION \
-  --ws-provider INSERT_WSS_PROVIDER
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/7.sh'
 ```
 
 ### Test the Asset Registration on Moonbeam {: #test-asset-registration }
@@ -266,61 +255,19 @@ The multilocation of Moonbeam native assets includes the parachain ID of the Moo
 === "Moonbeam"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { 
-              Parachain: 2004
-            },
-            {
-              PalletInstance: 10
-            }
-          ]
-        }
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/8.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { 
-              Parachain: 2023
-            },
-            {
-              PalletInstance: 10
-            }
-          ]
-        }
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/9.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      V4: {
-        parents: 1,
-        interior: {
-          X2: [
-            { 
-              Parachain: 1000
-            },
-            {
-              PalletInstance: 3
-            }
-          ]
-        }
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/10.js'
     ```
 
 ### Register Local XC-20s on Another Chain {: #register-local-xc20 }
@@ -330,7 +277,7 @@ The multilocation for local XC-20s include the parachain ID of Moonbeam, the pal
 **To be registered on other chains, local XC-20s must strictly comply with the standard ERC-20 interface as described in [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}. In particular, the [`transfer` function](https://eips.ethereum.org/EIPS/eip-20#transfer){target=\_blank} must be as described in EIP-20:**
 
 ```js
-function transfer(address _to, uint256 _value) public returns (bool success)
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/11.js'
 ```
 
 If the function selector of the `transfer` function deviates from the standard, the cross-chain transfer will fail.
@@ -340,70 +287,19 @@ You can use the following multilocation to register a local XC-20:
 === "Moonbeam"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X3: [
-          { 
-            Parachain: 2004
-          },
-          {
-            PalletInstance: 110
-          },
-          {
-            AccountKey20: {
-              key: 'INSERT_ERC20_ADDRESS'
-            }
-          }
-        ]
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/12.js'
     ```
 
 === "Moonriver"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X3: [
-          { 
-            Parachain: 2023
-          },
-          {
-            PalletInstance: 110
-          },
-          {
-            AccountKey20: {
-              key: 'INSERT_ERC20_ADDRESS'
-            }
-          }
-        ]
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/13.js'
     ```
 
 === "Moonbase Alpha"
 
     ```js
-    {
-      parents: 1,
-      interior: {
-        X3: [
-          { 
-            Parachain: 1000
-          },
-          {
-            PalletInstance: 48
-          },
-          {
-            AccountKey20: {
-              key: 'INSERT_ERC20_ADDRESS'
-            }
-          }
-        ]
-      }
-    }
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/assets/14.js'
     ```
 
 Since local XC-20s are ERC-20s on Moonbeam, there are no deposits required to create an ERC-20 on Moonbeam. However, deposits may be required to register the asset on another parachain. Please consult with the parachain team you wish to register the asset with for more information.

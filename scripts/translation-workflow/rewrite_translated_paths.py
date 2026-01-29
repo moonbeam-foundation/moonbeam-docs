@@ -138,6 +138,29 @@ def _normalize_include_path(raw_path: str, lang: str) -> str:
       - i18n: <lang>/text/... or <lang>/code/...
     while stripping legacy `.snippets` segments.
     """
+    raise RuntimeError(
+        "Call _normalize_include_path_mode(raw_path, lang, ...) instead."
+    )
+
+
+def _normalize_include_path_mode(
+    raw_path: str,
+    lang: str,
+    *,
+    snippets_base: Path,
+    shared_code_includes: bool,
+    shared_text_includes: bool,
+) -> str:
+    """
+    Normalize snippet include paths while stripping legacy `.snippets` segments.
+
+    Behavior:
+    - Default: keep language-specific snippet paths for text/code:
+        zh/text/... and zh/code/...
+    - Optional: prefer shared snippet paths when they exist:
+        zh/code/... -> code/...     (when shared_code_includes is True and file exists)
+        zh/text/... -> text/...     (when shared_text_includes is True and file exists)
+    """
     p = raw_path.strip().lstrip("./")
     p = p.lstrip("/")  # never keep absolute for includes
 
@@ -154,21 +177,47 @@ def _normalize_include_path(raw_path: str, lang: str) -> str:
     # If path already starts with <lang>/..., keep but normalize to <lang>/<text|code>/...
     if p.startswith(f"{lang}/"):
         rest = p[len(lang) + 1 :]
+        if shared_code_includes and rest.startswith("code/"):
+            shared = rest
+            if (snippets_base / shared).exists():
+                return shared
+        if shared_text_includes and rest.startswith("text/"):
+            shared = rest
+            if (snippets_base / shared).exists():
+                return shared
         if rest.startswith(("text/", "code/")):
             return f"{lang}/{rest}"
         return raw_path
 
     # Canonicalize: any include to text/... or code/... becomes <lang>/text/... or <lang>/code/...
     if p.startswith(("text/", "code/")):
+        if shared_code_includes and p.startswith("code/") and (snippets_base / p).exists():
+            return p
+        if shared_text_includes and p.startswith("text/") and (snippets_base / p).exists():
+            return p
         return f"{lang}/{p}"
 
     return raw_path
 
 
-def _rewrite_snippet_includes(text: str, lang: str, stats: RewriteStats) -> str:
+def _rewrite_snippet_includes(
+    text: str,
+    lang: str,
+    stats: RewriteStats,
+    *,
+    snippets_base: Path,
+    shared_code_includes: bool,
+    shared_text_includes: bool,
+) -> str:
     def repl(m: re.Match) -> str:
         path = m.group("path")
-        new_path = _normalize_include_path(path, lang)
+        new_path = _normalize_include_path_mode(
+            path,
+            lang,
+            snippets_base=snippets_base,
+            shared_code_includes=shared_code_includes,
+            shared_text_includes=shared_text_includes,
+        )
         if new_path != path:
             stats.include_rewrites += 1
         return f"{m.group('prefix')}{new_path}{m.group('suffix')}"
@@ -247,10 +296,13 @@ def rewrite_markdown(
     lang: str,
     internal_links_mode: str,
     *,
+    docs_root: Path,
     fix_snippet_markers: bool,
     rewrite_includes: bool,
     rewrite_links: bool,
     fix_target_blank: bool,
+    shared_code_includes: bool,
+    shared_text_includes: bool,
 ) -> tuple[str, RewriteStats]:
     original = path.read_text(encoding="utf-8")
     lines = original.splitlines()
@@ -258,6 +310,7 @@ def rewrite_markdown(
     stats = RewriteStats()
     chunks = _split_fenced_regions(lines)
     out_lines: list[str] = []
+    snippets_base = docs_root / ".snippets"
 
     for in_fence, chunk_lines in chunks:
         chunk_text = "\n".join(chunk_lines)
@@ -265,7 +318,14 @@ def rewrite_markdown(
             if fix_snippet_markers:
                 chunk_text = _fix_snippet_markers(chunk_text, stats)
             if rewrite_includes:
-                chunk_text = _rewrite_snippet_includes(chunk_text, lang, stats)
+                chunk_text = _rewrite_snippet_includes(
+                    chunk_text,
+                    lang,
+                    stats,
+                    snippets_base=snippets_base,
+                    shared_code_includes=shared_code_includes,
+                    shared_text_includes=shared_text_includes,
+                )
             if rewrite_links:
                 chunk_text = _rewrite_internal_links_mode(chunk_text, internal_links_mode, stats)
             if fix_target_blank:
@@ -306,6 +366,16 @@ def main() -> int:
         "--fix-snippet-markers",
         action="store_true",
         help="Fix common typos in snippet include markers (e.g. --8/<-- -> --8<--).",
+    )
+    ap.add_argument(
+        "--shared-code-includes",
+        action="store_true",
+        help="Prefer shared code snippets by rewriting <lang>/code/... -> code/... when the shared snippet exists.",
+    )
+    ap.add_argument(
+        "--shared-text-includes",
+        action="store_true",
+        help="Prefer shared text snippets by rewriting <lang>/text/... -> text/... when the shared snippet exists.",
     )
     ap.add_argument(
         "--skip-includes",
@@ -358,10 +428,13 @@ def main() -> int:
                 p,
                 lang,
                 internal_links_mode=args.internal_links,
+                docs_root=docs_root,
                 fix_snippet_markers=args.fix_snippet_markers,
                 rewrite_includes=not args.skip_includes,
                 rewrite_links=not args.skip_links,
                 fix_target_blank=not args.skip_target_blanks,
+                shared_code_includes=args.shared_code_includes,
+                shared_text_includes=args.shared_text_includes,
             )
             if stats.total() == 0:
                 continue

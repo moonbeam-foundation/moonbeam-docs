@@ -51,7 +51,7 @@ The example in this section of the guide will be based off of the `Box.sol` cont
 To get started with the Hardhat Etherscan plugin, you will need to first install the plugin library:
 
 ```bash
-npm install --save-dev @nomicfoundation/hardhat-verify
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/1.sh'
 ```
 
 You can add your Etherscan API key to the `hardhat.config.js` file.
@@ -59,28 +59,13 @@ You can add your Etherscan API key to the `hardhat.config.js` file.
 From within your Hardhat project, open your `hardhat.config.js` file. You'll need to import the `hardhat-verify` plugin, your Etherscan API key, and add the config for Etherscan:
 
 ```js
-require('@nomicfoundation/hardhat-verify');
-
-module.exports = {
-  networks: {
-    moonbeam: { ... },
-    moonriver: { ... },
-    moonbaseAlpha: { ... }
-  },
-  etherscan: {
-    apiKey: {
-      moonbeam: 'INSERT_ETHERSCAN_API_KEY',
-      moonriver: 'INSERT_ETHERSCAN_API_KEY',
-      moonbaseAlpha: 'INSERT_ETHERSCAN_API_KEY', 
-    },
-  },
-};
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/2.js'
 ```
 
 To verify the contract, you will run the `verify` command and pass in the address of the deployed contract and the network where it's deployed:
 
 ```bash
-npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/3.sh'
 ```
 
 In your terminal you should see the source code for your contract was successfully submitted for verification. If the verification was successful, you should see **Successfully verified contract** and there will be a link to the contract code on [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io){target=\_blank}.
@@ -90,7 +75,7 @@ In your terminal you should see the source code for your contract was successful
 If you're verifying a contract that has constructor arguments, you'll need to run the above command and add the constructor arguments used to deploy the contract at the end of the command. For example:
 
 ```bash
-npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS INSERT_CONSTRUCTOR_ARGS
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/4.sh'
 ```
 
 Please refer to the [Hardhat Verify documentation](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify){target=\_blank} for help with additional use cases such as:
@@ -110,7 +95,7 @@ In addition to the Foundry project, you will need an [Etherscan API key](https:/
 If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
 
 ```bash
-cast abi-encode "constructor(uint256)" 100
+--8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/5.sh'
 ```
 
 The result should be `0x0000000000000000000000000000000000000000000000000000000000000064`. You can then verify the contract using the following command:
@@ -118,31 +103,19 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
 === "Moonbeam"
 
     ```bash
-    forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/6.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    forge verify-contract --chain-id {{ networks.moonriver.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/7.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge verify-contract --chain-id {{ networks.moonbase.chain_id }} \
-    YOUR_CONTRACT_ADDRESS \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    src/MyToken.sol:MyToken \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/8.sh'
     ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
@@ -152,31 +125,19 @@ If you wanted to deploy the example contract and verify at the same time, then y
 === "Moonbeam"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
-    --verify --private-key YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/9.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    forge create --rpc-url {{ networks.moonriver.rpc_url }} \
-    --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
-    --verify --private-key YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/10.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbase.rpc_url }} \
-    --constructor-args 100 \
-    --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY \
-    --verify --private-key YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/11.sh'
     ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'

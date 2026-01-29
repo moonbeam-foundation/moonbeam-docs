@@ -19,9 +19,7 @@ This guide will cover the process of opening and accepting an HRMP channel betwe
 All of the examples in this guide use a CLI tool developed to ease the entire process, which you can find in the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank}.
 
 ```bash
-git clone https://github.com/Moonsong-Labs/xcm-tools && \
-cd xcm-tools && \
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/1.sh'
 ```
 
 ## Moonbase Alpha XCM Integration Overview {: #moonbase-alpha-xcm }
@@ -72,7 +70,7 @@ The accepted values for the relay chain are `polkadot` (default), `kusama`, and 
 For example, Moonbase Alpha's Sovereign account for both the relay chain and other parachains can be obtained with the following:
 
 ```bash
-yarn calculate-sovereign-account --p 1000 --r moonbase
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/2.sh'
 ```
 
 Which should result in the following response:
@@ -143,9 +141,7 @@ To send these XCM messages to the relay chain, the [Polkadot XCM Pallet](https:/
 You could potentially generate the calldata for an HRMP action by using Polkadot.js Apps, but the [xcm-tools GitHub repository](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} can build it for you, and it is the recommended tool for this process.
 
 ```bash
-git clone https://github.com/Moonsong-Labs/xcm-tools && \
-cd xcm-tools && \
-yarn
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/3.sh'
 ```
 
 The xcm-tools repository has a specific script for HRMP interactions called [`hrmp-channel-manipulator.ts`](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/hrmp-channel-manipulator.ts){target=\_blank}. This command generates encoded calldata for a specific HRMP action, as long as it is given the correct details. The script builds the XCM message with the DepositAsset XCM instruction but not with RefundSurplus.
@@ -169,28 +165,19 @@ Running the following command will provide the encoded calldata to accept an ope
 === "Moonbeam"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbeam.network  \
-    --relay-ws-provider wss://rpc.polkadot.io \
-    --hrmp-action accept
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/4.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonriver.moonbeam.network  \
-    --relay-ws-provider wss://kusama-rpc.polkadot.io \
-    --hrmp-action accept
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/5.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbase.moonbeam.network  \
-    --relay-ws-provider wss://relay.api.moonbase.moonbeam.network \
-    --hrmp-action accept
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/6.sh'
     ```
 
 !!! note
@@ -219,31 +206,19 @@ Running the following command will provide the encoded calldata to create the HR
 === "Moonbeam"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbeam.network  \
-    --relay-ws-provider wss://rpc.polkadot.io \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonriver.moonbeam.network  \
-    --relay-ws-provider wss://kusama-rpc.polkadot.io \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/8.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
-    --parachain-ws-provider wss://wss.api.moonbase.moonbeam.network  \
-    --relay-ws-provider wss://relay.api.moonbase.moonbeam.network \
-    --max-capacity 1000 --max-message-size 102400 \
-    --hrmp-action open
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/9.sh'
     ```
 
 !!! note
@@ -280,28 +255,19 @@ You can add a `--call "INSERT_CALL"` for each call you want to batch. Replace th
 === "Moonbeam"
 
     ```bash
-    yarn generic-call-propose -w wss://wss.api.moonbeam.network \
-    --call "OPEN_CHANNEL_CALL" \
-    --call "ACCEPT_INCOMING_CALL" \
-    --call "REGISTER_ASSET_CALL" \
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/10.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    yarn generic-call-propose -w wss://wss.api.moonriver.moonbeam.network \
-    --call "OPEN_CHANNEL_CALL" \
-    --call "ACCEPT_INCOMING_CALL" \
-    --call "REGISTER_ASSET_CALL" \
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/11.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    yarn generic-call-propose -w wss://wss.api.moonbase.moonbeam.network  \
-    --call "OPEN_CHANNEL_CALL" \
-    --call "ACCEPT_INCOMING_CALL" \
-    --call "REGISTER_ASSET_CALL" \
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/12.sh'
     ```
 
 !!! note
@@ -312,10 +278,7 @@ With the encoded calldata, you can then submit the governance proposal. For Moon
 If you want to send the governance proposal directly from the CLI, you'll need to use these additional flags:
 
 ```bash
---account-priv-key YOUR_PRIVATE_KEY \
---send-preimage-hash true \
---send-proposal-as v2 \
---track '{ "Origins": "GeneralAdmin" }'
+--8<-- 'code/builders/interoperability/xcm/xc-registration/xc-integration/13.sh'
 ```
 
 For Moonbase Alpha, you will not need to provide a private key or go through governance. Instead, you can use the `--sudo` flag and provide the output to the Moonbeam team so that the asset and channel can be added quickly through sudo.

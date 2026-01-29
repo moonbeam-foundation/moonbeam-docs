@@ -18,13 +18,13 @@ Overall, Chopsticks aims to simplify the process of building blockchain applicat
 To use Chopsticks, you can install it as a package with the [Node package manager](https://nodejs.org/en){target=\_blank} or [Yarn](https://yarnpkg.com){target=\_blank}:
 
 ```bash
-npm i @acala-network/chopsticks@latest
+--8<-- 'code/builders/substrate/dev-env/chopsticks/1.sh'
 ```
 
 Once installed, you can run commands with the Node package executor. For example, this runs Chopstick's base command:
 
 ```bash
-npx @acala-network/chopsticks@latest
+--8<-- 'code/builders/substrate/dev-env/chopsticks/2.sh'
 ```
 
 To run Chopsticks, you will need some sort of configuration, typically through a file. Chopsticks' source repository includes a set of [YAML](https://yaml.org){target=\_blank} configuration files that can be used to create a local copy of a variety of Substrate chains. You can download the configuration files from the [source repository's `configs` folder](https://github.com/AcalaNetwork/chopsticks){target=\_blank}.
@@ -34,81 +34,19 @@ Moonbeam, Moonriver, and Moonbase Alpha all have default files available:
 === "Moonbeam"
 
     ```yaml
-    endpoint: wss://wss.api.moonbeam.network
-    mock-signature-host: true
-    db: ./db.sqlite
-
-    import-storage:
-      System:
-        Account:
-          -
-            -
-              - "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-            - data:
-                free: "100000000000000000000000"
-      TechCommitteeCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      CouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      TreasuryCouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      AuthorFilter:
-        EligibleRatio: 100
-        EligibleCount: 100
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/3.yml'
     ```
 
 === "Moonriver"
 
     ```yaml
-    endpoint: wss://wss.moonriver.moonbeam.network
-    mock-signature-host: true
-    db: ./db.sqlite
-
-    import-storage:
-      System:
-        Account:
-          -
-            -
-              - "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-            - data:
-                free: "100000000000000000000000"
-      TechCommitteeCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      CouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      TreasuryCouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      AuthorFilter:
-        EligibleRatio: 100
-        EligibleCount: 100
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/4.yml'
     ```
 
 === "Moonbase Alpha"
 
     ```yaml
-    endpoint: wss://wss.api.moonbase.moonbeam.network
-    mock-signature-host: true
-    db: ./db.sqlite
-
-    import-storage:
-      System:
-        Account:
-          -
-            -
-              - "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-            - data:
-                free: "100000000000000000000000"
-      TechCommitteeCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      CouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      TreasuryCouncilCollective:
-        Members: ["0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"]
-      Sudo:
-        Key: "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac"
-      AuthorFilter:
-        EligibleRatio: 100
-        EligibleCount: 100
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/5.yml'
     ```
 
 These are the settings that can be included in the config file:
@@ -136,20 +74,19 @@ You can use a raw GitHub URL of the default configuration files, a path to a loc
 === "Chain Name"
 
     ```bash
-    npx @acala-network/chopsticks@latest --config=moonbeam
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/6.sh'
     ```
 
 === "GitHub URL"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/7.sh'
     ```
 
 === "Local File Path"
 
     ```bash
-    npx @acala-network/chopsticks@latest --config=configs/moonbeam.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/8.sh'
     ```
 
 !!! note
@@ -159,7 +96,7 @@ You can use a raw GitHub URL of the default configuration files, a path to a loc
 A configuration file is not necessary, however. All of the settings (except `genesis` and `timestamp`) can also be passed as flags to configure the environment completely in the command line. For example, the following command forks Moonbase Alpha at block 100.
 
 ```bash
-npx @acala-network/chopsticks@latest --endpoint {{ networks.moonbase.wss_url }} --block 100
+--8<-- 'code/builders/substrate/dev-env/chopsticks/9.sh'
 ```
 
 ### Quickstart {: #quickstart }
@@ -169,22 +106,19 @@ The simplest way to fork Moonbeam is through the configuration files that are st
 === "Moonbeam"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbeam.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/10.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/11.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    npx @acala-network/chopsticks@latest \
-    --config=https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonbase-alpha.yml
+    --8<-- 'code/builders/substrate/dev-env/chopsticks/12.sh'
     ```
 
 ### Interacting with a Fork {: #interacting-with-a-fork }
@@ -231,10 +165,7 @@ In the case where you would like to replay a block and retrieve its information 
 For example, running the following command will re-run Moonbeam's block 1000, and write the storage diff and other data in a `moonbeam-output.json` file:
 
 ```bash
-npx @acala-network/chopsticks@latest run-block  \
---endpoint wss://wss.api.moonbeam.network  \
---output-path=./moonbeam-output.json  \
---block 1000
+--8<-- 'code/builders/substrate/dev-env/chopsticks/13.sh'
 ```
 
 ## XCM Testing {: #xcm-testing }
@@ -242,24 +173,13 @@ npx @acala-network/chopsticks@latest run-block  \
 To test out XCM messages between networks, you can fork multiple parachains and a relay chain locally. For example, the following will fork Moonriver, Karura, and Kusama given that you've downloaded the [`configs` directory from the source GitHub repository](https://github.com/AcalaNetwork/chopsticks/tree/master/configs){target=\_blank}:
 
 ```bash
-npx @acala-network/chopsticks@latest xcm \
---r=kusama.yml \
---p=moonriver.yml \
---p=karura.yml
+--8<-- 'code/builders/substrate/dev-env/chopsticks/14.sh'
 ```
 
 You should see something like the following output:
 
 ```text
-[13:50:57.807] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
-[13:50:59.655] INFO (rpc/64805): Moonriver RPC listening on port 8000
-[13:50:59.656] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/karura.yml
-[13:51:03.275] INFO (rpc/64805): Karura RPC listening on port 8001
-[13:51:03.586] INFO (xcm/64805): Connected parachains [2000,2023]
-[13:51:03.586] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/kusama.yml
-[13:51:07.241] INFO (rpc/64805): Kusama RPC listening on port 8002
-[13:51:07.700] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Moonriver'
-[13:51:08.386] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Karura'
+--8<-- 'code/builders/substrate/dev-env/chopsticks/15.txt'
 ```
 
 Including the `r` flag as the relay chain is optional, as Chopsticks will automatically mock a relay chain between networks. You can also use a raw GitHub URL or the name of a popular branch, similar to the base command.
@@ -294,12 +214,7 @@ The parameters above are formatted in the following ways:
 Each method can be invoked by connecting to the websocket (`ws://localhost:8000` by default) and sending the data and parameters in the following format. Replace `METHOD_NAME` with the name of the method, and replace or delete `PARAMETER_1` and `PARAMETER_2` with the parameter data relevant to the method:
 
 ```json
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "METHOD_NAME",
-    "params": ["PARAMETER_1", "PARAMETER_2", "..."]
-}
+--8<-- 'code/builders/substrate/dev-env/chopsticks/16.json'
 ```
 
 --8<-- 'text/_disclaimers/third-party-content.md'

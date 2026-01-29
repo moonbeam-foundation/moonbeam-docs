@@ -185,3 +185,18 @@ source:
       created: Created
       updated: Updated
 tabs: Tabs
+
+external_link_modal:
+  header: "You're Leaving the Moonbeam Documentation Website"
+  message: "A new tab will open and you'll be sent to an independent, third-party website that is not affiliated with Moonbeam or the Moonbeam Foundation."
+  cancel: "Cancel"
+  continue: "Continue to External Site"
+
+network_modal:
+  header: "Please select a network to connect to your Ethereum-compatible wallet:"
+  moonbeam: "Moonbeam"
+  moonriver: "Moonriver"
+  moonbase: "Moonbase Alpha TestNet"
+
+error_modal:
+  header: "There was a problem connecting to your wallet"

@@ -35,12 +35,7 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
     === "Example"
 
         ```bash
-        curl -H "Content-Type: application/json" -X POST --data '{
-          "jsonrpc": "2.0",
-          "id": "1",
-          "method": "moon_isBlockFinalized",
-          "params": ["INSERT_BLOCK_HASH"]
-        }' {{ networks.moonbase.rpc_url }}
+        --8<-- 'code/builders/ethereum/json-rpc/moonbeam-custom-api/1.sh'
         ```
 
 ???+ function "moon_isTxFinalized"
@@ -58,12 +53,7 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
     === "Example"
 
         ```bash
-        curl -H "Content-Type: application/json" -X POST --data '{
-          "jsonrpc": "2.0",
-          "id": "1",
-          "method": "moon_isTxFinalized",
-          "params": ["INSERT_TRANSACTION_HASH"]
-        }' {{ networks.moonbase.rpc_url }}
+        --8<-- 'code/builders/ethereum/json-rpc/moonbeam-custom-api/2.sh'
         ```
 
 ???+ function "moon_getEthSyncBlockRange"
@@ -79,19 +69,7 @@ To begin exploring Moonbeam's custom JSON-RPC endpoints, you can try out the pro
         Returns the range of blocks that are fully indexed in Frontier's backend. An example response below includes the Substrate block hashes of block `0` and the latest fully indexed block:
 
         ```[
-        "0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527",
-        "0xb1b49bd709ca9fe0e751b8648951ffbb2173e1258b8de8228cfa0ab27003f612"
-        ]```
-
-    === "Example"
-
-        ```bash
-        curl -H "Content-Type: application/json" -X POST --data '{
-          "jsonrpc": "2.0",
-          "id": "1",
-          "method": "moon_getEthSyncBlockRange",
-          "params": []
-        }' {{ networks.moonbase.rpc_url }}
+        --8<-- 'code/builders/ethereum/json-rpc/moonbeam-custom-api/3.txt'
         ```
 
 

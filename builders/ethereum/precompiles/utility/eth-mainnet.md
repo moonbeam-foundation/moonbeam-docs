@@ -24,13 +24,13 @@ In this guide, you will learn how to use and/or verify these precompiles.
 As of writing this guide, the versions used were 15.2.1 and 7.0.8, respectively. You will also need to install the [Web3](https://web3js.readthedocs.io/en/latest){target=\_blank} package by executing:
 
 ```bash
-npm install --save web3
+--8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/1.sh'
 ```
 
 To verify the installed version of Web3, you can use the `ls` command:
 
 ```bash
-npm ls web3
+--8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/2.sh'
 ```
 
 As of writing this guide, the version used was 1.3.0. You will be also using [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}, connecting it to the Moonbase Alpha TestNet via [MetaMask](/tokens/connect/metamask/){target=\_blank}.

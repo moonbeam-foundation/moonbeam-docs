@@ -80,8 +80,7 @@ The interface includes the following functions:
         When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank} on the `verifyEntry` function, you can view the returned value associated with the key in hexadecimal format.
 
         ```js
-         
-        '0x01000000040000000100000000000000f88ce384dca20000000000000000000000370589030a0000000000000000000000203d88792d0000000000000000000000000000000000000000000000000080'
+        --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/1.js'
         ```
 
 ??? function "**verifyEntries**(_uint32_ relayBlockNumber, _ReadProof_ calldata readProof, _bytes[]_ callData keys) — verifies a set of entries in the relay chain and returns the corresponding values. This function takes a relay block number, a storage proof, and an array of storage keys to verify. It returns an array of values associated with the keys, in the same order as the keys"
@@ -105,8 +104,7 @@ The interface includes the following functions:
         When performing a [static call](https://docs.ethers.org/v6/api/contract/#BaseContractMethod-staticCall){target=\_blank} on the `verifyEntries` function, you can view an array containing the corresponding values mapped to their respective keys, represented in hexadecimal format.
 
         ```js
-         
-        ['0x01000000040000000100000000000000f88ce384dca20000000000000000000000370589030a0000000000000000000000203d88792d0000000000000000000000000000000000000000000000000080']
+        --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/2.js'
         ```
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }

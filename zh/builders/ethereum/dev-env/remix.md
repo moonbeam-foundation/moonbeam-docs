@@ -26,7 +26,7 @@ categories: 开发环境, 以太坊工具包
 
 如果您按照上述指南操作，您应该拥有一个本地 Moonbeam 节点，该节点将在交易到达时开始创建区块。
 
---8<-- 'zh/code/builders/ethereum/dev-env/remix/terminal/node.md'
+--8<-- 'code/builders/ethereum/dev-env/remix/terminal/node.md'
 
 您的开发节点附带 10 个预先注资的账户。您应该将 MetaMask 连接到您的 Moonbeam 开发节点，并导入至少一个预先注资的账户。您可以参考 MetaMask 文档的 [导入账户](/tokens/connect/metamask/#import-accounts){target=\_blank} 部分，获取关于如何导入开发账户的分步说明。
 

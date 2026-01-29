@@ -125,7 +125,7 @@ node_modules/.bin/substrate-api-sidecar
 
 如果安装和配置成功，您应该在控制台中看到以下输出：
 
---8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/sidecar.md'
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/sidecar.md'
 
 ## Substrate API Sidecar 端点 {: #substrate-api-sidecar-endpoints }
 

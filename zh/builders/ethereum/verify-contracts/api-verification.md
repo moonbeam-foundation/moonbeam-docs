@@ -578,7 +578,7 @@ cast abi-encode "constructor(uint256)" 100
       --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken
     ```
 
---8<-- 'zh/code/builders/ethereum/verify-contracts/api/terminal/verify-original.md'
+--8<-- 'code/builders/ethereum/verify-contracts/api/terminal/verify-original.md'
 
 如果您想同时部署示例合约并进行验证，那么您可以使用以下命令：
 
@@ -613,4 +613,4 @@ cast abi-encode "constructor(uint256)" 100
     ```
     
 
---8<-- 'zh/code/builders/ethereum/verify-contracts/api/terminal/create.md'
+--8<-- 'code/builders/ethereum/verify-contracts/api/terminal/create.md'

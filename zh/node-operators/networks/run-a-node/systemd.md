@@ -459,7 +459,7 @@ categories: 节点运营者和整理者
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/systemd/run-service.md'
 
---8<-- 'zh/code/node-operators/networks/run-a-node/systemd/terminal/status.md'
+--8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/status.md'
 
 您也可以通过运行以下命令查看日志：
 
@@ -467,7 +467,7 @@ categories: 节点运营者和整理者
 journalctl -f -u moonbeam.service
 ```
 
---8<-- 'zh/code/node-operators/networks/run-a-node/systemd/terminal/logs.md'
+--8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/logs.md'
 
 在同步过程中，您会同时看到来自嵌入式中继链（[Relaychain]）和从平行链（[🌗]）的日志。这些日志会显示目标区块（实时网络状态）和最佳区块（本地节点已同步的状态）。
 

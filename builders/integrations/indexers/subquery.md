@@ -37,13 +37,13 @@ To get started, you'll need to [create a SubQuery project](https://subquery.netw
     === "npm"
 
         ```bash
-        npm install -g @subql/cli
+        --8<-- 'code/builders/integrations/indexers/subquery/1.sh'
         ```
 
     === "yarn"
 
         ```bash
-        yarn global add @subql/cli
+        --8<-- 'code/builders/integrations/indexers/subquery/2.sh'
         ```    
 
 !!! note
@@ -52,7 +52,7 @@ To get started, you'll need to [create a SubQuery project](https://subquery.netw
 2. Initialize your SubQuery project using the following command:
 
     ```bash
-    subql init PROJECT_NAME
+    --8<-- 'code/builders/integrations/indexers/subquery/3.sh'
     ```
 
 3. You'll be prompted to answer a series of questions:
@@ -99,13 +99,13 @@ To get started, you'll need to [create a SubQuery project](https://subquery.netw
     === "npm"
 
         ```bash
-        cd PROJECT_NAME && npm install
+        --8<-- 'code/builders/integrations/indexers/subquery/4.sh'
         ```
 
     === "yarn"
 
         ```bash
-        cd PROJECT_NAME && yarn install
+        --8<-- 'code/builders/integrations/indexers/subquery/5.sh'
         ```
 
 ## Configure the Network {: #configure-the-network }
@@ -117,38 +117,19 @@ The `network` configuration is as follows for each network:
 === "Moonbeam"
 
     ```ts
-    network: {
-      chainId: 
-        '0xfe58ea77779b7abda7da4ec526d14db9b1e9cd40a217c34892af80a9b332b76d',
-      endpoint: ['{{ networks.moonbeam.rpc_url }}'],
-      chaintypes: {
-        file: ./dist/chaintypes.js,
-      },
-    },
+    --8<-- 'code/builders/integrations/indexers/subquery/6.ts'
     ```
 
 === "Moonriver"
 
     ```ts
-    network: {
-      chainId: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b',
-      endpoint: ['{{ networks.moonriver.rpc_url }}'],
-      chaintypes: {
-        file: ./dist/chaintypes.js,
-      },
-    },
+    --8<-- 'code/builders/integrations/indexers/subquery/7.ts'
     ```
 
 === "Moonbase Alpha"
 
     ```ts
-    network: {
-      chainId: '0x91bc6e169807aaa54802737e1c504b2577d4fafedd5a02c10293b1cd60e39527',
-      endpoint: ['{{ networks.moonbase.rpc_url }}'],
-      chaintypes: {
-        file: ./dist/chaintypes.js,
-      },
-    },
+    --8<-- 'code/builders/integrations/indexers/subquery/8.ts'
     ```
 
  --8<-- 'text/_common/endpoint-examples.md'
@@ -160,13 +141,13 @@ In the `schema.graphql` file, you can use GraphQL entities to define the shape o
 === "npm"
 
     ```bash
-    npm run codegen
+    --8<-- 'code/builders/integrations/indexers/subquery/9.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn codegen
+    --8<-- 'code/builders/integrations/indexers/subquery/10.sh'
     ```
 
 --8<-- 'code/builders/integrations/indexers/subquery/terminal/codegen.md'
@@ -183,7 +164,7 @@ The `project.ts` file is the entry point into your indexer; it defines what type
 To index Substrate data, you'll need to ensure that the type of the `project` is `SubstrateProject`.
 
 ```ts
-const project: SubstrateProject = { ... }
+--8<-- 'code/builders/integrations/indexers/subquery/11.ts'
 ```
 
 ### The Substrate Data Source {: #the-substrate-data-source }
@@ -191,25 +172,7 @@ const project: SubstrateProject = { ... }
 In the `project.dataSources` array, you'll define the Substrate data source and the data to be indexed. The format of the data source is as follows:
 
 ```ts
-datasources: [
-  {
-    kind: 'substrate/Runtime',
-    startBlock: INSERT_START_BLOCK,
-    endBlock: INSERT_END_BLOCK,
-    mapping: {
-      file: './dist/index.js',
-      handlers: [
-        {
-          kind: 'INSERT_HANDLER_KIND',
-          handler: 'INSERT_HANDLER_FUNCTION_NAME',
-          filter: {
-            'INSERT_FILTER_TYPE': 'INSERT_FILTER',
-          },
-        },
-      ],
-    },
-  },
-],
+--8<-- 'code/builders/integrations/indexers/subquery/12.ts'
 ```
 
 Each property can be defined as follows:
@@ -259,7 +222,7 @@ The `project.ts` file is the entry point into your indexer; it defines what type
 To index Substrate data, you'll need to ensure that the type of the `project` is `SubstrateProject<FrontierEvmDatasource>`.
 
 ```ts
-const project: SubstrateProject<FrontierEvmDatasource> = { ... }
+--8<-- 'code/builders/integrations/indexers/subquery/13.ts'
 ```
 
 ### The EVM Data Source {: #the-evm-data-source }
@@ -269,33 +232,7 @@ In the `project.dataSources` array, you'll define the EVM data source and the da
 The format of the data source is as follows:
 
 ```ts
-datasources: [
-  {
-    kind: 'substrate/FrontierEvm',
-    startBlock: INSERT_START_BLOCK,
-    endBlock: INSERT_END_BLOCK,
-    processor: {
-      file: './node_modules/@subql/frontier-evm-processor/dist/bundle.js',
-      options: {
-        abi: '',
-        address: '',
-      },
-    },
-    assets: ''
-    mapping: {
-      file: './dist/index.js',
-      handlers: [
-        {
-          kind: 'INSERT_HANDLER_KIND',
-          handler: 'INSERT_HANDLER_FUNCTION_NAME',
-          filter: {
-            'INSERT_FILTER_TYPE': 'INSERT_FILTER',
-          },
-        },
-      ],
-    },
-  },
-],
+--8<-- 'code/builders/integrations/indexers/subquery/14.ts'
 ```
 
 Each property can be defined as follows:
@@ -342,13 +279,13 @@ To run your indexer locally using Docker, you can take the following steps:
     === "npm"
 
         ```bash
-        npm run build
+        --8<-- 'code/builders/integrations/indexers/subquery/15.sh'
         ```
 
     === "yarn"
 
         ```bash
-        yarn build
+        --8<-- 'code/builders/integrations/indexers/subquery/16.sh'
         ```
 
     --8<-- 'code/builders/integrations/indexers/subquery/terminal/npm-run-build.md'
@@ -361,13 +298,13 @@ To run your indexer locally using Docker, you can take the following steps:
     === "npm"
 
         ```bash
-        npm run start:docker
+        --8<-- 'code/builders/integrations/indexers/subquery/17.sh'
         ```
 
     === "yarn"
 
         ```bash
-        yarn start:docker
+        --8<-- 'code/builders/integrations/indexers/subquery/18.sh'
         ```
 
     --8<-- 'code/builders/integrations/indexers/subquery/terminal/logs.md'
@@ -378,7 +315,7 @@ To run your indexer locally using Docker, you can take the following steps:
         It may take a few minutes before the GraphQL server is ready. You'll be able to access the playground after you see the following log:
 
         ```bash
-        substrate-demo-graphql-engine-1  | <subql-query> INFO Started playground at `http://localhost:3000`
+        --8<-- 'code/builders/integrations/indexers/subquery/19.sh'
         ```
 
     ![The GraphQL playground in the browser.](/images/builders/integrations/indexers/subquery/subquery-1.webp)

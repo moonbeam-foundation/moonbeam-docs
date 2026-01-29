@@ -66,7 +66,7 @@ node signMessage.js
 
 此代码将在终端中返回以下对象：
 
---8<-- 'zh/code/builders/ethereum/precompiles/utility/nonspecific/terminal/signature.md'
+--8<-- 'code/builders/ethereum/precompiles/utility/nonspecific/terminal/signature.md'
 
 保存这些值，因为您将在下一节中需要它们。
 

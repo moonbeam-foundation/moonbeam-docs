@@ -54,10 +54,7 @@ Before you register your sibling-parachain token on Moonbeam, you'll need to gat
 * **`Name`**: A human-readable name such as `Test Token`.
 
 ```typescript
-const ASSET_ID = 42259045809535163221576417993425387648n;
-const DECIMALS = 18n;
-const SYMBOL   = "xcTEST";
-const NAME     = "Test Token";
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/1.ts'
 ```
 
 ### How to Calculate Asset ID {: #calculate-asset-id }
@@ -67,24 +64,13 @@ To generate a token's asset ID, you'll first need to know its multilocation. `as
 Once you've constructed your multilocation, keep it handy, as you'll need it in the next step. A typical asset multilocation looks like this:
 
 ```jsonc
-{
-  "parents": 1,          // Up to Relay
-  "interior": {
-    "X3": [              // Down to sibling para asset
-      { "Parachain": 4 },
-      { "PalletInstance": 12 },
-      { "GeneralIndex": 15 }  // Arbitrary example values
-    ]
-  }
-}
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/2.txt'
 ```
 
 The XCM tools repo has a helpful [Calculate External Asset Info script](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/calculate-external-asset-info.ts){target=\_blank} that you can use to generate the asset ID programmatically. The script takes two parameters, namely, the multilocation of your asset and the target network (Moonbeam or Moonriver). Call the `calculate-external-asset-info.ts` helper script with your asset's multilocation and target network, as shown below, to easily generate its asset ID.
 
 ```bash
-ts-node scripts/calculate-external-asset-info.ts \
-  --asset '{"parents":1,"interior":{"X3":[{"Parachain":4},{"PalletInstance":12},{"GeneralIndex":15}]}}' \
-  --network moonbeam
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/3.sh'
 ```
 
 The script will return the `assetID` you are now ready to pass to `evmForeignAssets.createForeignAsset`.
@@ -102,12 +88,12 @@ The XC-20 address of xcDOT as an example can be calculated like so:
 === "Formula"
 
     ```ts
-    const xc20Address = `0xFFFFFFFF${hex(assetId).padStart(32, "0")}`;
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/4.ts'
     ```
 === "Example"
 
     ```bash
-    0xFFFFFFFF1FCACBD218EDC0EBA20FC2308C778080
+    --8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/5.sh'
     ```
 
 
@@ -134,10 +120,7 @@ Transact {
 Send the transact instruction via `xcmPallet.send`, targeting parachain `2004` for Moonbeam (or `2023` for Moonriver). 
 
 ```rust
-xcmPallet.send(
-  dest: { Parachain: 2004 },
-  message: VersionedXcm::V4(INSERT_TRANSACT_INSTRUCTION)
-);
+--8<-- 'code/builders/interoperability/xcm/xc-registration/self-serve-asset-registration/6.rs'
 ```
 
 Finally, look for the following event emitted successfully on Moonbeam:

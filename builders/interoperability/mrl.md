@@ -99,19 +99,19 @@ You'll need to create a new project directory for the files you'll be building i
 1. Create a new directory and change into the directory
 
     ```bash
-    mkdir wormhole-mrl-demo && cd wormhole-mrl-demo
+    --8<-- 'code/builders/interoperability/mrl/1.sh'
     ```
 
 2. Create a `package.json` file:
 
     ```bash
-    npm init -y
+    --8<-- 'code/builders/interoperability/mrl/2.sh'
     ```
 
 3. Install packages that you'll need to build the remote EVM calls and the XCM extrinsics
 
     ```bash
-    npm i @polkadot/api ethers
+    --8<-- 'code/builders/interoperability/mrl/3.sh'
     ```
 
 4. Create the files that you'll need for this guide:
@@ -122,14 +122,13 @@ You'll need to create a new project directory for the files you'll be building i
     - `send-batch-transaction.js` - for assembling and sending the batch transaction for the asset transfer and the remote EVM call
 
     ```bash
-    touch build-transfer-multiassets.js build-remote-calldata.js \
-    build-remote-evm-call.js send-batch-transaction.js
+    --8<-- 'code/builders/interoperability/mrl/4.sh'
     ```
 
 5. Create a directory and files for the ABIs of each of the contracts you'll be working within this guide:
 
     ```bash
-    mkdir abi && touch abi/ERC20.js abi/TokenRelayer.js abi/Batch.js
+    --8<-- 'code/builders/interoperability/mrl/5.sh'
     ```
 
     ??? code "ERC-20 Interface ABI"
@@ -188,12 +187,12 @@ To create the batch transaction and wrap it in a remote EVM call to be executed 
     === "Moonbeam"
 
         ```text
-        0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca
+        --8<-- 'code/builders/interoperability/mrl/6.txt'
         ```
     === "Moonbase Alpha"
 
         ```text
-        0x9563a59c15842a6f322b10f69d1dd88b41f2e97b
+        --8<-- 'code/builders/interoperability/mrl/7.txt'
         ```
 
 2. Use Ether's `encodeFunctionData` function to get the encoded call data for the two calls in the batch transaction: the `approve` transaction and the `transferTokensWithRelay` transaction

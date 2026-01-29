@@ -34,7 +34,7 @@ You will need to collect some information related to the contract's compiler and
 2. Take note of any SPDX license identifier used at the beginning of the Solidity source file (this example uses an MIT license):
 
     ```solidity
-    // SPDX-License-Identifier: MIT
+    --8<-- 'code/builders/ethereum/verify-contracts/block-explorers/1.sol'
     ```
 
 3. (Optional) If optimization is enabled during compilation, take note of the value of the optimization runs parameter

@@ -143,7 +143,7 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 
 延迟加载是高度资源密集型的，需要大量的 RPC 请求才能运行。为了避免受到限制，建议您使用[专用端点](#endpoint-providers)（即带有 API 密钥的端点），而不是公共端点。如果您使用带有公共端点的延迟加载，则可能会受到速率限制。使用此功能启动节点后，您将看到如下输出：
 
---8<-- 'zh/code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+--8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
 ### 使用延迟加载覆盖状态
 

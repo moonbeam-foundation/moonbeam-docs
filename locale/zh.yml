@@ -164,3 +164,18 @@ source:
       created: 创建时间
       updated: 更新时间
 tabs: 标签
+
+external_link_modal:
+  header: "您将离开 Moonbeam 文档网站"
+  message: "将打开一个新的标签页，您将被转到一个独立的不隶属于 Moonbeam 或 Moonbeam Foundation 的第三方网站。"
+  cancel: "取消"
+  continue: "继续访问外部网站"
+
+network_modal:
+  header: "请选择要连接到以太坊兼容钱包的网络："
+  moonbeam: "Moonbeam"
+  moonriver: "Moonriver"
+  moonbase: "Moonbase Alpha 测试网"
+
+error_modal:
+  header: "连接钱包时出现问题"

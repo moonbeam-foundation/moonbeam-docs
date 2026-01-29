@@ -59,14 +59,14 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
 
     1. 对于**选择网络系列**问题，虽然Moonbeam与EVM兼容，但Moonbeam模板位于**Polkadot**系列下，因此您可以选择**Polkadot**。
 
-        --8<-- 'zh/code/builders/integrations/indexers/subquery/terminal/select-network-polkadot.md'
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-network-polkadot.md'
 
     2. 下一个屏幕将提示您**选择一个网络**。您可以在Moonbeam和Moonriver之间进行选择。
 
         !!! note
             要在Moonbase Alpha上构建项目，您可以选择任一网络并在以后进行调整。
 
-        --8<-- 'zh/code/builders/integrations/indexers/subquery/terminal/select-network-moonbeam.md'
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-network-moonbeam.md'
 
     3. 系统将提示您**选择一个模板项目**。根据您在上一步中选择的网络，模板选项可能会有所不同。
 
@@ -85,14 +85,14 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
             | `moonriver-evm-starter` |    一个启动器EVM项目，它索引ERC-20 `Transfer`事件和`approve`调用     |
             |   `Moonriver-starter`   | 一个启动器Substrate项目，它通过Balances Pallet索引余额转移 |
 
-        --8<-- 'zh/code/builders/integrations/indexers/subquery/terminal/select-template.md'
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-template.md'
 
     4. 系统将提示您添加其他信息，例如RPC终结点、项目作者和项目描述。 对于这些，您可以直接按Enter键并接受默认值，或者根据需要自定义它们。
 
         !!! note
             为了避免达到公共RPC端点的速率限制，建议您拥有自己的端点和API密钥，您可以从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}处获得。
 
-        --8<-- 'zh/code/builders/integrations/indexers/subquery/terminal/select-rpc.md'
+        --8<-- 'code/builders/integrations/indexers/subquery/terminal/select-rpc.md'
 
 4. 完成所有提示后，将克隆启动器项目。 您只需从项目目录中安装依赖项：
 
@@ -169,7 +169,7 @@ SubQuery 支持为任何 Moonbeam 网络索引以太坊虚拟机 (EVM) 和 Subst
     yarn codegen
     ```
 
---8<-- 'zh/code/builders/integrations/indexers/subquery/terminal/codegen.md'
+--8<-- 'code/builders/integrations/indexers/subquery/terminal/codegen.md'
 
 生成的模型将在 `src/types/models` 目录中创建。这些模型将用于处理索引数据的映射处理程序中。
 
@@ -350,7 +350,7 @@ datasources: [
         yarn build
         ```
 
-    --8<-- 'zh/code/builders/integrations/indexers/subquery/terminal/npm-run-build.md'
+    --8<-- 'code/builders/integrations/indexers/subquery/terminal/npm-run-build.md'
 
     !!! note
         如果你更改了 `project.ts` 文件，你需要重新构建你的项目。
@@ -369,7 +369,7 @@ datasources: [
         yarn start:docker
         ```
 
-    --8<-- 'zh/code/builders/integrations/indexers/subquery/terminal/logs.md'
+    --8<-- 'code/builders/integrations/indexers/subquery/terminal/logs.md'
 
 3. 前往 `http://localhost:3000` 打开 GraphQL playground 并提交查询。你可以在 playground 上打开 **DOCS** 或 **SCHEMA** 选项卡，以在创建查询时作为参考。
 

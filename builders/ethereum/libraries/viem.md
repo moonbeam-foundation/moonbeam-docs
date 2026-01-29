@@ -30,7 +30,7 @@ For the examples in this guide, you will need to have the following:
 To get started, you'll need to create a basic TypeScript project. First, create a directory to store all of the files you'll be creating throughout this guide, and initialize the project with the following command:
 
 ```bash
-mkdir viem-examples && cd viem-examples && npm init --y
+--8<-- 'code/builders/ethereum/libraries/viem/1.sh'
 ```
 
 For this guide, you'll need to install the viem library and the Solidity compiler. To install both packages, you can run the following command:
@@ -38,19 +38,19 @@ For this guide, you'll need to install the viem library and the Solidity compile
 === "npm"
 
     ```bash
-    npm install typescript ts-node viem solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/viem/2.sh'
     ```
 
 === "yarn"
 
     ```bash
-    yarn add typescript ts-node viem solc@0.8.30
+    --8<-- 'code/builders/ethereum/libraries/viem/3.sh'
     ```
 
 You can create a TypeScript configuration file by running:
 
 ```bash
-npx tsc --init
+--8<-- 'code/builders/ethereum/libraries/viem/4.sh'
 ```
 
 !!! note
@@ -75,53 +75,25 @@ To create a client for reading chain data, you can take the following steps:
 === "Moonbeam"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonbeam } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.moonbeam.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonbeam,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/5.ts'
     ```
 
 === "Moonriver"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonriver } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.moonriver.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonriver,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/6.ts'
     ```
 
 === "Moonbase Alpha"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonbaseAlpha } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.moonbase.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonbaseAlpha,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/7.ts'
     ```
 
 === "Moonbeam Dev Node"
 
     ```ts
-    import { createPublicClient, http } from 'viem';
-    import { moonbeamDev } from 'viem/chains';
-
-    const rpcUrl = '{{ networks.development.rpc_url }}'
-    const publicClient = createPublicClient({
-      chain: moonbeamDev,
-      transport: http(rpcUrl),
-    })
+    --8<-- 'code/builders/ethereum/libraries/viem/8.ts'
     ```
 
 ### For Writing Chain Data {: #for-writing-chain-data }
@@ -139,65 +111,25 @@ To create a client for writing chain data, you can take the following steps:
 === "Moonbeam"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonbeam } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.moonbeam.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbeam,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/9.ts'
     ```
 
 === "Moonriver"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonriver } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.moonriver.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonriver,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/10.ts'
     ```
 
 === "Moonbase Alpha"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonbaseAlpha } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.moonbase.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbaseAlpha,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/11.ts'
     ```
 
 === "Moonbeam Dev Node"
 
     ```ts
-    import { createWalletClient, http } from 'viem';
-    import { privateKeyToAccount } from 'viem/accounts';
-    import { moonbeamDev } from 'viem/chains';
-
-    const account = privateKeyToAccount('INSERT_PRIVATE_KEY');
-    const rpcUrl = '{{ networks.development.rpc_url }}'
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbeamDev,
-      transport: http(rpcUrl),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/12.ts'
     ```
 
 !!! note
@@ -205,14 +137,7 @@ To create a client for writing chain data, you can take the following steps:
     To interact with browser-based wallets, you can use the following code to create an account:
 
     ```ts
-    const [account] = await window.ethereum.request({
-      method: 'eth_requestAccounts',
-    });
-    const walletClient = createWalletClient({
-      account,
-      chain: moonbeam,
-      transport: custom(window.ethereum),
-    });
+    --8<-- 'code/builders/ethereum/libraries/viem/13.ts'
     ```
 
 ## Send a Transaction {: #send-transaction }
@@ -226,7 +151,7 @@ You can also use the balance script to check the account balances after the tran
 You'll only need one file to check the balances of both addresses before and after the transaction is sent. To get started, you can create a `balances.ts` file by running:
 
 ```bash
-touch balances.ts
+--8<-- 'code/builders/ethereum/libraries/viem/14.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -245,7 +170,7 @@ Next, you will create the script for this file and complete the following steps:
 To run the script and fetch the account balances, you can run the following command:
 
 ```bash
-npx ts-node balances.ts
+--8<-- 'code/builders/ethereum/libraries/viem/15.sh'
 ```
 
 If successful, the balances for the origin and receiving address will be displayed in your terminal in DEV.
@@ -257,7 +182,7 @@ If successful, the balances for the origin and receiving address will be display
 You'll only need one file to execute a transaction between accounts. For this example, you'll be transferring 1 DEV token from an origin address (from which you hold the private key) to another address. To get started, you can create a `transaction.ts` file by running:
 
 ```bash
-touch transaction.ts
+--8<-- 'code/builders/ethereum/libraries/viem/16.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -278,7 +203,7 @@ Next, you will create the script for this file and complete the following steps:
 To run the script, you can run the following command in your terminal:
 
 ```bash
-npx ts-node transaction.ts
+--8<-- 'code/builders/ethereum/libraries/viem/17.sh'
 ```
 
 If the transaction was successful, in your terminal you'll see the transaction hash has been printed out.
@@ -310,7 +235,7 @@ You can also use the `balances.ts` script to check that the balances for the ori
 With the script for compiling the `Incrementer.sol` contract in place, you can then use the results to send a signed transaction that deploys it. To do so, you can create a file for the deployment script called `deploy.ts`:
 
 ```bash
-touch deploy.ts
+--8<-- 'code/builders/ethereum/libraries/viem/18.sh'
 ```
 
 Next, you will create the script for this file and complete the following steps:
@@ -331,7 +256,7 @@ Next, you will create the script for this file and complete the following steps:
 To run the script, you can enter the following command into your terminal:
 
 ```bash
-npx ts-node deploy.ts
+--8<-- 'code/builders/ethereum/libraries/viem/19.sh'
 ```
 
 If successful, the contract's address will be displayed in the terminal.
@@ -345,7 +270,7 @@ Call methods are the type of interaction that doesn't modify the contract's stor
 To get started, you can create a file and name it `get.ts`:
 
 ```bash
-touch get.ts
+--8<-- 'code/builders/ethereum/libraries/viem/20.sh'
 ```
 
 Then you can take the following steps to create the script:
@@ -364,7 +289,7 @@ Then you can take the following steps to create the script:
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-npx ts-node get.ts
+--8<-- 'code/builders/ethereum/libraries/viem/21.sh'
 ```
 
 If successful, the value will be displayed in the terminal.
@@ -376,7 +301,7 @@ If successful, the value will be displayed in the terminal.
 Send methods are the type of interactions that modify the contract's storage (change variables), meaning a transaction needs to be signed and sent. In this section, you'll create two scripts: one to increment and one to reset the incrementer. To get started, you can create a file for each script and name them `increment.ts` and `reset.ts`:
 
 ```bash
-touch increment.ts reset.ts
+--8<-- 'code/builders/ethereum/libraries/viem/22.sh'
 ```
 
 Open the `increment.ts` file and take the following steps to create the script:
@@ -397,7 +322,7 @@ Open the `increment.ts` file and take the following steps to create the script:
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-npx ts-node increment.ts
+--8<-- 'code/builders/ethereum/libraries/viem/23.sh'
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.ts` script alongside the `increment.ts` script to make sure that value is changing as expected.
@@ -422,7 +347,7 @@ Next, you can open the `reset.ts` file and take the following steps to create th
 To run the script, you can enter the following command in your terminal:
 
 ```bash
-npx ts-node reset.ts
+--8<-- 'code/builders/ethereum/libraries/viem/24.sh'
 ```
 
 If successful, the transaction hash will be displayed in the terminal. You can use the `get.ts` script alongside the `reset.ts` script to make sure that value is changing as expected.

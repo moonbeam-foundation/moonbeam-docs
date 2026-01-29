@@ -125,26 +125,7 @@ Then, you can take the storage growth in bytes for a given transaction and multi
 To see how this MBIP differentiates Moonbeam from Ethereum firsthand, you can estimate the gas for two different contract interactions on both networks: one that modifies an item in the chain state and one that doesn't. For example, you can use a greeting contract that allows you to store a name and then use the name to say "Hello".
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.30;
-
-contract SayHello {
-    mapping(address => string) public addressToName;
-
-    constructor(string memory _name) {
-        addressToName[msg.sender] = _name;
-    }
-
-    // Store a name associated to the address of the sender
-    function setName(string memory _name) public {
-        addressToName[msg.sender] = _name;
-    } 
-
-    // Use the name in storage associated to the sender
-    function sayHello() external view returns (string memory) {
-        return string(abi.encodePacked("Hello ", addressToName[msg.sender]));
-    }
-}
+--8<-- 'code/learn/core-concepts/tx-fees/1.sol'
 ```
 
 You can deploy this contract on both Moonriver and Ethereum, or on Moonbeam's TestNet, Moonbase Alpha, and Ethereum's TestNet, Sepolia. The above contract has already been deployed to Moonbase Alpha and Sepolia. You can feel free to access these contracts at the following addresses:
@@ -152,13 +133,13 @@ You can deploy this contract on both Moonriver and Ethereum, or on Moonbeam's Te
 === "Moonbase Alpha"
 
     ```text
-    0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd
+    --8<-- 'code/learn/core-concepts/tx-fees/2.txt'
     ```
 
 === "Sepolia"
 
     ```text
-    0x8D0C059d191011E90b963156569A8299d7fE777d
+    --8<-- 'code/learn/core-concepts/tx-fees/3.txt'
     ```
 
 Next, you can use the `eth_estimateGas` method to check the gas estimate for calling the `setName` and `sayHello` functions on each network. To do so, you'll need the bytecode for each transaction, which includes the function selector, and for the `setName` function, the name to be set. This example bytecode sets the name to "Chloe":
@@ -166,7 +147,7 @@ Next, you can use the `eth_estimateGas` method to check the gas estimate for cal
 === "Set Name"
 
     ```text
-    0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000
+    --8<-- 'code/learn/core-concepts/tx-fees/4.txt'
     ```
 
 === "Say Hello"
@@ -180,31 +161,13 @@ Now, you can use the following curl commands on Moonbase Alpha to return the gas
 === "Set Name"
 
     ```sh
-    curl {{ networks.moonbase.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd",
-            "data": "0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/5.sh'
     ```
 
 === "Say Hello"
 
     ```sh
-    curl {{ networks.moonbase.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0xDFF8E772A9B212dc4FbA19fa650B440C5c7fd7fd",
-            "data": "0xef5fb05b"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/6.sh'
     ```
 
 Then on Sepolia, you can use the same bytecode for the `data` and modify the RPC URL and contract address to target the contract deployed to Sepolia:
@@ -212,31 +175,13 @@ Then on Sepolia, you can use the same bytecode for the `data` and modify the RPC
 === "Set Name"
 
     ```sh
-    curl https://sepolia.publicgoods.network -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0x8D0C059d191011E90b963156569A8299d7fE777d",
-            "data": "0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/7.sh'
     ```
 
 === "Say Hello"
 
     ```sh
-    curl https://sepolia.publicgoods.network -H "Content-Type:application/json;charset=utf-8" -d \
-    '{
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "eth_estimateGas",
-        "params":[{
-            "to": "0x8D0C059d191011E90b963156569A8299d7fE777d",
-            "data": "0xef5fb05b"
-        }]
-    }'
+    --8<-- 'code/learn/core-concepts/tx-fees/8.sh'
     ```
 
 At the time of writing, the gas estimates for both networks are as follows:
@@ -420,54 +365,22 @@ The following curl example will return the gas information of the last 10 blocks
 === "Moonbeam"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.moonbeam.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/9.sh'
     ```
 === "Moonriver"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.moonriver.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/10.sh'
     ```
 === "Moonbase Alpha"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.moonbase.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/11.sh'
     ```
 === "Moonbeam Dev Node"
 
     ```sh
-    curl --location \
-         --request POST '{{ networks.development.rpc_url }}' \
-         --header 'Content-Type: application/json' \
-         --data-raw '{
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "eth_feeHistory",
-            "params": ["0xa", "latest"]
-         }'
+    --8<-- 'code/learn/core-concepts/tx-fees/12.sh'
     ```
 
 ### Sample Code for Calculating Transaction Fees {: #sample-code }

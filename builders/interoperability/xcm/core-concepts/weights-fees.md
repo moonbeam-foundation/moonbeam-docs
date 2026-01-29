@@ -208,9 +208,7 @@ The XCM Payment API methods provide various helpful ways to calculate fees, eval
 This function takes the XCM Version as a parameter and returns a list of acceptable fee assets in multilocation form. 
 
 ```javascript
-const allowedAssets =
-  await api.call.xcmPaymentApi.queryAcceptablePaymentAssets(3);
-console.log(allowedAssets);
+--8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/1.js'
 ```
 
 ??? code "View the complete script"
@@ -224,19 +222,7 @@ console.log(allowedAssets);
 This method converts a weight into a fee for the specified asset. It takes as parameters a weight and an asset multilocation and returns the respective fee amount.
 
 ```javascript
-const fee = await api.call.xcmPaymentApi.queryWeightToAssetFee(
-  {
-    refTime: 10_000_000_000n,
-    proofSize: 0n,
-  },
-  {
-    V3: {
-      Concrete: { parents: 1, interior: 'Here' },
-    },
-  }
-);
-
-console.log(fee);
+--8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/2.js'
 ```
 
 ??? code "View the complete script"
@@ -250,10 +236,7 @@ console.log(fee);
 This method takes an XCM message as a parameter and returns the weight of the message. 
 
 ```javascript
-const message = { V3: [instr1, instr2] };
-
-const theWeight = await api.call.xcmPaymentApi.queryXcmWeight(message);
-console.log(theWeight);
+--8<-- 'code/builders/interoperability/xcm/core-concepts/weights-fees/3.js'
 ```
 
 ??? code "View the complete script"

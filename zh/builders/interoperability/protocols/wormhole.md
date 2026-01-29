@@ -187,7 +187,7 @@ npm run testnet-spy
 
 无需担心，你不必手动解析这些日志：代码会替你完成。请让它在后台继续运行，并打开另一个终端实例进入下一步。
 
---8<-- 'zh/code/builders/interoperability/protocols/wormhole/terminal/setup-spy.md'
+--8<-- 'code/builders/interoperability/protocols/wormhole/terminal/setup-spy.md'
 
 ### 设置监听器组件 {:setting-up-the-listener-component}
 
@@ -401,7 +401,7 @@ npm run start
 
 你应该会在控制台中看到类似于下方的日志输出。
 
---8<-- 'zh/code/builders/interoperability/protocols/wormhole/terminal/run-start.md'
+--8<-- 'code/builders/interoperability/protocols/wormhole/terminal/run-start.md'
 
 ### 使用 Wormhole 从 Moonbase 发送跨链消息 {: #send-message-from-moonbase }
 
@@ -420,7 +420,7 @@ npm run start
 
 几秒钟到一分钟后，跨链消息应通过您在本地计算机上托管的中继器正确中继。
 
---8<-- 'zh/code/builders/interoperability/protocols/wormhole/terminal/send.md'
+--8<-- 'code/builders/interoperability/protocols/wormhole/terminal/send.md'
 
 ## Moonbeam 路由流动性集成 {: #moonbeam-routed-liquidity-integration }
 

@@ -32,39 +32,7 @@ DIA has deployed the following demo oracles for the Moonbeam community, which pr
 The demo oracle contracts deployed to Moonbeam are the [DIA Key-Value Oracle Contract V2](https://www.diadata.org/docs/nexus/reference/smart-contracts/diaoraclev2.sol#diaoraclev2-sol){target=\_blank}. The contract is structured as follows:
 
 ```solidity
-pragma solidity 0.7.4;
-
-contract DIAOracleV2 {
-	mapping (string => uint256) public values;
-	address oracleUpdater;
-
-	event OracleUpdate(string key, uint128 value, uint128 timestamp);
-	event UpdaterAddressChange(address newUpdater);
-
-	constructor() {
-		oracleUpdater = msg.sender;
-	}
-
-	function setValue(string memory key, uint128 value, uint128 timestamp) public {
-		require(msg.sender == oracleUpdater);
-		uint256 cValue = (((uint256)(value)) << 128) + timestamp;
-		values[key] = cValue;
-		emit OracleUpdate(key, value, timestamp);
-	}
-
-	function getValue(string memory key) external view returns (uint128, uint128) {
-		uint256 cValue = values[key];
-		uint128 timestamp = (uint128)(cValue % 2**128);
-		uint128 value = (uint128)(cValue >> 128);
-		return (value, timestamp);
-	}
-
-	function updateOracleUpdaterAddress(address newOracleUpdaterAddress) public {
-	  require(msg.sender == oracleUpdater);
-		oracleUpdater = newOracleUpdaterAddress;
-		emit UpdaterAddressChange(newOracleUpdaterAddress);
-	}
-}
+--8<-- 'code/builders/integrations/oracles/dia/1.sol'
 ```
 
 !!! note
@@ -101,68 +69,13 @@ For example, you can use the following JavaScript scripts to access the [BTC/USD
 === "Rest"
 
     ```js
-    const axios = require('axios');
-
-    const options = {
-      method: 'GET',
-      url: 'https://api.diadata.org/v1/assetQuotation/Bitcoin/0x0000000000000000000000000000000000000000',
-      headers: { 'Content-Type': 'application/json' },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    --8<-- 'code/builders/integrations/oracles/dia/2.js'
     ```
 
 === "GraphQL"
 
     ```js
-    const axios = require('axios');
-
-    const url = 'https://api.diadata.org/graphql/query';
-
-    const query = `
-      {
-        GetFeed(
-          Filter: "mair",
-          BlockSizeSeconds: 480,
-          BlockShiftSeconds: 480,
-          StartTime: 1690449575,
-          EndTime: 1690535975,
-          FeedSelection: [
-            {
-              Address: "0x0000000000000000000000000000000000000000",
-              Blockchain:"Bitcoin",
-              Exchangepairs:[],
-            },
-          ],
-        )
-        {
-          Name
-          Time
-          Value
-          Pools
-          Pairs
-        }
-      }`;
-
-    const data = {
-      query: query,
-    };
-
-    axios
-      .post(url, data)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error('Request failed:', error.message);
-      });
+    --8<-- 'code/builders/integrations/oracles/dia/3.js'
     ```
 
 You can refer to DIA's documentation on [Rest API endpoints](https://www.diadata.org/docs/reference/apis/token-prices/api-endpoints){target=\_blank} and the [GraphQL Endpoint](https://www.diadata.org/docs/reference/apis/token-prices/graphql){target=\_blank} for information on the parameters and return data.
@@ -186,75 +99,13 @@ To learn more about Drand’s randomness beacon, watch the [On-Chain Randomness 
 DIA has deployed a demo oracle on Moonbase Alpha, which can be accessed at the following address:
 
 ```text
-0x48d351ab7f8646239bbade95c3cc6de3ef4a6cec
+--8<-- 'code/builders/integrations/oracles/dia/4.txt'
 ```
 
 The DIA randomness smart contract is structured as follows:
 
 ```solidity
-pragma solidity ^0.8.30;
-
-contract DIARandomOracle {
-  struct Random {
-    string randomness;
-    string signature;
-    string previousSignature;
-  }
-
-  mapping(uint256 => Random) public values;
-  uint256 public lastRound = 0;
-  address public oracleUpdater;
-  event OracleUpdate(string key, uint128 value, uint128 timestamp);
-  event UpdaterAddressChange(address newUpdater);
-
-  constructor() {
-      oracleUpdater = msg.sender;
-  }
-
-  function setRandomValue(
-    uint256 _round,
-    string memory _randomness,
-    string memory _signature,
-    string memory _previousSignature
-  ) public {
-    require(msg.sender == oracleUpdater, "not a updater");
-    require(lastRound < _round, "old round");
-    lastRound = _round;
-    values[_round] = Random(_randomness, _signature, _previousSignature);
-  }
-
-  function getValue(uint256 _round) external view returns (Random memory) {
-    return values[_round];
-  }
-
-  function updateOracleUpdaterAddress(address newOracleUpdaterAddress)
-    public
-  {
-    require(msg.sender == oracleUpdater, "not a updater");
-    oracleUpdater = newOracleUpdaterAddress;
-    emit UpdaterAddressChange(newOracleUpdaterAddress);
-  }
-
-  function getRandomValueFromRound(uint256 _round)
-    external
-    view
-    returns (string memory)
-  {
-    return values[_round].randomness;
-  }
-
-  function getRandomValueFromRoundWithSignature(uint256 _round)
-    external
-    view
-    returns (Random memory)
-  {
-    return values[_round];
-  }
-
-    function getLastRound() public view returns (uint256) {
-    return lastRound;
-  }
-}
+--8<-- 'code/builders/integrations/oracles/dia/5.sol'
 ```
 
 !!! note

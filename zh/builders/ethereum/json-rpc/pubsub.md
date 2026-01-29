@@ -117,7 +117,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 通过执行此代码，您将建立一个订阅来监视 Moonbeam 上的 ERC-20 代币转移事件。新事件发生时将记录到终端。
 
---8<-- 'zh/code/builders/ethereum/json-rpc/pubsub/terminal/contract-events.md'
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/contract-events.md'
 
 #### 理解事件日志 {: #understanding-event-logs }
 
@@ -129,7 +129,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 该交易发出的事件日志如下：
 
---8<-- 'zh/code/builders/ethereum/json-rpc/pubsub/terminal/log-transfer-event.md'
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/log-transfer-event.md'
 
 如果您查看 `topics` 数组，则总共有三个主题（按此顺序）：
 
@@ -157,7 +157,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 在此，第一个索引参数 (`from`) 被过滤到提供的地址列表，而 `to` 设置为 `null` 以充当通配符。合约过滤器会为您处理主题格式，因此您无需手动填充地址。
 
---8<-- 'zh/code/builders/ethereum/json-rpc/pubsub/terminal/conditional-subscription.md'
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/conditional-subscription.md'
 
 如图所示，在您提供具有条件格式的两个地址后，您应该收到两个具有相同订阅的日志。来自不同地址的交易发出的事件不会向此订阅抛出任何日志。
 
@@ -167,7 +167,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 要使用 Ethers.js 订阅待处理交易，您可以使用 WebSocket 提供程序和 `provider.on('pending')` 事件。将返回待处理交易的交易哈希，您可以选择使用 `provider.getTransaction(hash)` 获取完整的交易详细信息。
 
---8<-- 'zh/code/builders/ethereum/json-rpc/pubsub/terminal/pending-txn.md'
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/pending-txn.md'
 
 您可以尝试发送一笔交易，并验证订阅返回的交易哈希是否与您使用的开发工具或钱包返回的交易哈希相同。
 
@@ -175,7 +175,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 您还可以使用 `provider.on('block')` 订阅新的区块头，然后使用 `provider.getBlock(blockNumber)` 获取区块。此订阅提供传入的区块头，可用于跟踪区块链中的更改。
 
---8<-- 'zh/code/builders/ethereum/json-rpc/pubsub/terminal/block-headers.md'
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/block-headers.md'
 
 请注意，图像中仅显示了一个区块头。 这些消息是为每个生成的块显示的，因此它们可以快速填满终端。
 
@@ -183,7 +183,7 @@ Moonbeam 支持以太坊风格的事件订阅，允许您等待事件并相应�
 
 使用 pubsub，还可以检查特定节点当前是否与网络同步。您可以使用首选库的底层 WebSocket 请求助手调用带有 `syncing` 的 `eth_subscribe` RPC。当 `syncing` 为 false 时，此订阅将返回一个布尔值；当 `syncing` 为 true 时，将返回一个描述同步进度的对象，如下所示。
 
---8<-- 'zh/code/builders/ethereum/json-rpc/pubsub/terminal/syncing.md'
+--8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/syncing.md'
 
 !!! note
     [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} 中的 pubsub 实现仍在积极开发中。当前版本允许用户订阅特定事件类型，但可能仍然存在一些限制。

@@ -1,0 +1,3 @@
+[profile.default]
+# Input your custom or default config options here
+extra_output_files = ["metadata"]

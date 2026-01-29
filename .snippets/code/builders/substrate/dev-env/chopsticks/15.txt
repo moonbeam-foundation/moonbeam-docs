@@ -1,0 +1,9 @@
+[13:50:57.807] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/moonriver.yml
+[13:50:59.655] INFO (rpc/64805): Moonriver RPC listening on port 8000
+[13:50:59.656] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/karura.yml
+[13:51:03.275] INFO (rpc/64805): Karura RPC listening on port 8001
+[13:51:03.586] INFO (xcm/64805): Connected parachains [2000,2023]
+[13:51:03.586] INFO (rpc/64805): Loading config file https://raw.githubusercontent.com/AcalaNetwork/chopsticks/master/configs/kusama.yml
+[13:51:07.241] INFO (rpc/64805): Kusama RPC listening on port 8002
+[13:51:07.700] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Moonriver'
+[13:51:08.386] INFO (xcm/64805): Connected relaychain 'Kusama' with parachain 'Karura'

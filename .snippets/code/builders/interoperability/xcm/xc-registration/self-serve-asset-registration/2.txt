@@ -1,0 +1,10 @@
+{
+  "parents": 1,          // Up to Relay
+  "interior": {
+    "X3": [              // Down to sibling para asset
+      { "Parachain": 4 },
+      { "PalletInstance": 12 },
+      { "GeneralIndex": 15 }  // Arbitrary example values
+    ]
+  }
+}

@@ -95,7 +95,7 @@ The interface varies slightly from version to version. You can find an overview 
               - The maximum allowed weight for the message in the given chain
 
             ```js
-            [ 173428000n, 0n, 20000000000n ]
+            --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/1.js'
             ```
 
     ??? function "**feePerSecond**(*Multilocation* *memory* multilocation) — read-only function that returns units of tokens per second of the XCM execution that is charged as the XCM execution fee for a given asset. This is useful when, for a given chain, there are multiple assets that can be used for fee payment"
@@ -109,7 +109,7 @@ The interface varies slightly from version to version. You can find an overview 
             The fee per second that the reserve chain charges for the given asset.
 
             ```js
-            13764626000000n
+            --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/2.js'
             ```
 
     ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the asset multilocation of the token that is used for fee payment instead of the address of the XC-20 token"
@@ -141,10 +141,7 @@ The interface varies slightly from version to version. You can find an overview 
     The following struct was added to the XCM Transactor Precompile to support Weights V2:
 
     ```solidity
-    struct Weight {
-        uint64 refTime;
-        uint65 proofSize;
-    }
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/3.sol'
     ```
 
     Additionally, support for the [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} and [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} instructions was added. To append the `RefundSurplus` instruction to the XCM message, you can use the `refund` parameter, which will refund any leftover funds not used for the `Transact` if set to `true`.
@@ -166,7 +163,7 @@ The interface varies slightly from version to version. You can find an overview 
               - The maximum allowed weight for the message in the given chain
 
             ```js
-            [ 173428000n, 0n, 20000000000n ]
+            --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/4.js'
             ```
 
     ??? function "**feePerSecond**(*Multilocation* *memory* multilocation) — read-only function that returns units of token per second of the XCM execution that is charged as the XCM execution fee for a given asset. This is useful when, for a given chain, there are multiple assets that can be used for fee payment"
@@ -180,7 +177,7 @@ The interface varies slightly from version to version. You can find an overview 
             The fee per second that the reserve chain charges for the given asset.
 
             ```js
-            13764626000000n
+            --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/5.js'
             ```
 
     ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — sends an XCM message with instructions to remotely execute a call in the destination chain. The remote call will be signed and executed by a new account, called the [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} account, that the destination parachain must compute. Moonbeam-based networks follow [the Computed Origins standard set by Polkadot](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}. You need to provide the asset multilocation of the token that is used for fee payment instead of the address of the XC-20 token"
@@ -194,7 +191,7 @@ The interface varies slightly from version to version. You can find an overview 
                 - `proofSize` - the amount of storage in bytes that can be used
                 It should be formatted as follows:
                 ```js
-                [ INSERT_REF_TIME, INSERT_PROOF_SIZE ]
+                --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/6.js'
                 ```  
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
@@ -212,7 +209,7 @@ The interface varies slightly from version to version. You can find an overview 
                 - `proofSize` - the amount of storage in bytes that can be used
                 It should be formatted as follows:
                 ```js
-                [ INSERT_REF_TIME, INSERT_PROOF_SIZE ]
+                --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/7.js'
                 ```
             - `call` - the call to be executed in the destination chain, as defined in the `Transact` instruction 
             - `feeAmount` - the amount to be used as a fee
@@ -280,43 +277,37 @@ For this example, you'll interact with the `transactThroughSigned` function of t
     - `dest` - the multilocation of the destination, which is parachain 888:
 
         ```js
-        const dest = [
-          1, // parents = 1
-          [  // interior = X1 (the array has a length of 1)
-            '0x0000000378', // Parachain selector + Parachain ID 888
-          ],
-        ];
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/8.js'
         ```
 
     - `feeLocationAddress` - the address of the XC-20 to use for fees, which is parachain 888's native asset:
 
         ```js
-        const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/9.js'
         ```
 
     - `transactRequiredWeightAtMost` - the weight required to execute the call in the `Transact` instruction. You can get this information by using the [`paymentInfo` method of the Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank} on the call
 
         ```js
-        const transactRequiredWeightAtMost = [1000000000n, 5000n];
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/10.js'
         ```
 
     - `call` - the encoded call data of the pallet, method, and input to be called. It can be constructed in [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank} (which must be connected to the destination chain) or using the [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}. For this example, the inner call is a simple balance transfer of 1 token of the destination chain to Alice's account there:
 
         ```js
-        const call =
-          '0x030044236223ab4291b93eed10e4b511b37a398dee5513000064a7b3b6e00d';
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/11.js'
         ```
 
     - `feeAmount` - the amount to use for fees
 
         ```js
-        const feeAmount = 50000000000000000n;
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/12.js'
         ```
 
     - `overallWeight` - the weight specific to the inner call (`transactRequiredWeightAtMost`) plus the weight needed to cover the execution costs for the XCM instructions in the destination chain: `DescendOrigin`, `WithdrawAsset`, `BuyExecution`, and `Transact`. It's important to note that each chain defines its own weight requirements. To determine the weight required for each XCM instruction on a given chain, please refer to the chain's documentation or reach out to a member of their team. Alternatively, you can pass in the maximum value for a uint64 for the `refTime` (the first index of the array). This will be interpreted as using an unlimited amount of weight, which removes the need to know exactly how much weight the destination chain requires to execute the XCM
 
         ```js
-        const overallWeight = [18446744073709551615n, 10000n];
+        --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-precompile/13.js'
         ```
 
 5. Create the `transactThroughSigned` function, passing in the arguments

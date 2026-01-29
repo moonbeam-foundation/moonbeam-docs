@@ -77,7 +77,7 @@ Hardhat 采用基于任务的开发方法，您可以在其中定义和执行[�
 
     该项目将设置为所有必要的依赖项和配置，以便您可以开始开发。
 
---8<-- 'zh/code/builders/ethereum/dev-env/hardhat/terminal/hardhat-create.md'
+--8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/hardhat-create.md'
 
 ## Hardhat 配置文件 {: #hardhat-configuration-file }
 
@@ -296,7 +296,7 @@ export default defineConfig({
 npx hardhat compile
 ```
 
---8<-- 'zh/code/builders/ethereum/dev-env/hardhat/terminal/compile.md'
+--8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/compile.md'
 
 编译后，将创建一个 `artifacts` 目录，其中包含合约的字节码和元数据，它们是 `.json` 文件。最好将此目录添加到 `.gitignore` 文件中。
 
@@ -351,7 +351,7 @@ npx hardhat ignition deploy ./ignition/modules/Box.js --network moonbase
 
 系统将提示您输入 Hardhat secrets manager 的密码。接下来，系统将提示您确认要部署到的网络。确认后几秒钟，合约将被部署，您将在终端中看到合约地址。
 
---8<-- 'zh/code/builders/ethereum/dev-env/hardhat/terminal/deploy-moonbase.md'
+--8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/deploy-moonbase.md'
 
 恭喜，您的合约已上线！保存该地址，您将在下一步中使用它与此合约实例进行交互。
 
@@ -389,7 +389,7 @@ npx hardhat run --network moonbase scripts/box-console.ts
 
 系统将提示您输入 Hardhat 密钥库密码（如果您使用的是加密密钥），之后脚本将连接到 Moonbase Alpha，附加到您部署的 `Box` 合约，并记录调用 `store(5n)` 前后存储的值。 运行后，您应该看到类似于以下的输出：
 
---8<-- 'zh/code/builders/ethereum/dev-env/hardhat/terminal/interact.md'
+--8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/interact.md'
 
 该脚本会打印正在使用的签名者、交易前存储的值、提交的交易哈希以及调用 `store(5n)` 后更新的值。
 
@@ -469,7 +469,7 @@ npx hardhat run --network moonbase scripts/box-console.ts
 
 当您启动 Hardhat 分叉时，您将拥有 20 个预先存入 10,000 个测试代币的开发帐户。 分叉实例可在 `http://127.0.0.1:8545/` 上找到。 终端中的输出应类似于以下内容：
 
---8<-- 'zh/code/builders/ethereum/dev-env/hardhat/terminal/private-keys.md'
+--8<-- 'code/builders/ethereum/dev-env/hardhat/terminal/private-keys.md'
 
 要验证您是否已分叉网络，您可以查询最新的区块号：
 

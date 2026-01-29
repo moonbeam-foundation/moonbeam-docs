@@ -117,12 +117,7 @@ The Polkadot XCM Pallet includes the following read-only storage methods. Note, 
     === "Returns"
         Returns a `U32` (unsigned 32-bit integer) representing the number of times an asset has been trapped at this hash location.
         ```js
-        // Example return values showing hash → count mappings
-        [
-          [[0x0140f264543926e689aeefed15a8379f6e75a8c6884b0cef0832bb913a343b53], 1],
-          [[0x0d14fd8859d8ff15dfe4d4002b402395129cdc4b69dea5575efa1dc205b96020], 425],
-          [[0x166f82439fd2b25b28b82224e82ad9f26f2da26b8257e047182a6a7031accc9a], 3]
-        ]
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/1.js'
         ```
     === "Polkadot.js API Example"
         ```js
@@ -186,8 +181,7 @@ The Polkadot XCM Pallet includes the following read-only storage methods. Note, 
         A number representing the current version of the pallet.
 
         ```js
-        // If using Polkadot.js API and calling toJSON() on the unwrapped value
-        0
+        --8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/2.js'
         ```
 
     === "Polkadot.js API Example"
@@ -225,7 +219,7 @@ To follow along with the examples in this guide, you need to have the following:
 To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank} to MetaMask with the following address:
 
 ```text
-0xFfFFfFff1FcaCBd218EDc0EbA20Fc2308C778080
+--8<-- 'code/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/3.txt'
 ```
 
 ### Polkadot XCM Transfer Assets Function {: #polkadotxcm-transfer-assets-function}

@@ -75,7 +75,7 @@ yarn calculate-relative-price 0.25 12 GLMR
 
 这指示脚本计算有多少最小单位的资产（价格为 0.25 美元，有 12 个小数位）对应于 1 个 GLMR 代币。
 
---8<-- 'zh/code/builders/interoperability/xcm/xc-registration/assets/terminal/calculate-relative-price.md'
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/calculate-relative-price.md'
 
 成功执行后，脚本会将计算出的 `relativePrice` 打印为 `BigInt`。此值表示资产的美元价格与本地代币的美元价格之间的缩放比率，最高乘以 18 个小数位。然后，您可以在链上资产注册或费用计算场景中使用此结果，尤其是在需要 `u128` 18 位小数格式的情况下。
 
@@ -112,7 +112,7 @@ yarn register-asset --w wss://wss.api.moonbeam.network  \
 
 使用相关参数运行脚本后，您将看到类似如下的输出：
 
---8<-- 'zh/code/builders/interoperability/xcm/xc-registration/assets/terminal/register-asset.md'
+--8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/register-asset.md'
 
 脚本将为以下调用提供编码后的 call data：
 

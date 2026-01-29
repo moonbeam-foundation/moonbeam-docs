@@ -1,0 +1,5 @@
+query MyQuery {
+  accountsConnection(orderBy: id_ASC) {
+    totalCount
+  }
+}

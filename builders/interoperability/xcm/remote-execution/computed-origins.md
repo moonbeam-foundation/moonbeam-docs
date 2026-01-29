@@ -23,41 +23,19 @@ The [origin conversion](https://github.com/paritytech/polkadot-sdk/blob/{{ polka
 For example, from the relay chain, the [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} instruction is natively injected by the [XCM Pallet](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm/src/lib.rs){target=\_blank}. In the case of Moonbase Alpha's relay chain (based on Westend), it has the following format (a multilocation junction):
 
 ```js
-{
-  DescendOrigin: {
-    X1: {
-      AccountId32: {
-        network: { westend: null },
-        id: decodedAddress,
-      },
-    },
-  },
-}
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/1.js'
 ```
 
 Where the `decodedAddress` corresponds to the address of the account who signed the transaction on the relay chain (in a decoded 32-byte format). You can make sure that your address is properly decoded by using the following snippet, which will decode an address if needed and ignore it if not:
 
 ```js
-import { decodeAddress } from '@polkadot/util-crypto';
-const decodedAddress = decodeAddress('INSERT_ADDRESS');
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/2.js'
 ```
 
 When the XCM instruction gets executed in Moonbeam (Moonbase Alpha in this example), the origin will have mutated to the following multilocation:
 
 ```js
-{
-  DescendOrigin: {
-    parents: 1,
-    interior: {
-      X1: {
-        AccountId32: {
-          network: { westend: null },
-          id: decodedAddress,
-        },
-      },
-    },
-  },
-}
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/3.js'
 ```
 
 ## How to Calculate the Computed Origin {: #calculate-computed-origin }
@@ -78,11 +56,7 @@ To use the script, you can take the following steps:
 3. Run the script
 
     ```bash
-    yarn calculate-multilocation-derivative-account \
-    --ws-provider INSERT_RPC_ENDPOINT \
-    --address INSERT_ORIGIN_ACCOUNT \
-    --para-id INSERT_ORIGIN_PARACHAIN_ID_IF_APPLIES \
-    --parents INSERT_PARENTS_VALUE_IF_APPLIES
+    --8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/4.sh'
     ```
 
 You can also calculate the Computed Origin account using the `multilocationToAddress` function of the [XCM Utilities Precompile](/builders/interoperability/xcm/xcm-utils/){target=\_blank}.
@@ -92,10 +66,7 @@ You can also calculate the Computed Origin account using the `multilocationToAdd
 For example, to calculate the Computed Origin on Moonbase Alpha for Alice's relay chain account, which is `5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT`, you would use the following command to run the script:
 
 ```bash
-yarn calculate-multilocation-derivative-account \
---ws-provider wss://wss.api.moonbase.moonbeam.network \
---address 5DV1dYwnQ27gKCKwhikaw1rz1bYdvZZUuFkuduB4hEK3FgDT \
---parents 1
+--8<-- 'code/builders/interoperability/xcm/remote-execution/computed-origins/5.sh'
 ```
 
 !!! note

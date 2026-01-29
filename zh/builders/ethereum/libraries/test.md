@@ -268,7 +268,7 @@ node transaction.js
 
 您还可以使用 `balances.js` 脚本来检查原始帐户和接收帐户的余额是否已更改。整个工作流程如下所示：
 
---8<-- 'zh/code/builders/ethereum/libraries/ethers-js/terminal/transaction.md'
+--8<-- 'code/builders/ethereum/libraries/ethers-js/terminal/transaction.md'
 
 ## 部署合约 {: #deploy-a-contract }
 

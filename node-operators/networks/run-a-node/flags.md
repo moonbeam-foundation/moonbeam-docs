@@ -120,28 +120,19 @@ For a complete list of the available flags, you can spin up your Moonbeam node w
 === "Moonbeam"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
-    --help
+    --8<-- 'code/node-operators/networks/run-a-node/flags/1.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
-    --help
+    --8<-- 'code/node-operators/networks/run-a-node/flags/2.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
-    --help
+    --8<-- 'code/node-operators/networks/run-a-node/flags/3.sh'
     ```
 
 ### Systemd {: #systemd }
@@ -149,29 +140,17 @@ For a complete list of the available flags, you can spin up your Moonbeam node w
 === "Moonbeam"
 
     ```bash
-    # If you used the release binary
-    ./{{ networks.moonbeam.binary_name }} --help
-
-    # Or if you compiled the binary
-    ./target/release/{{ networks.moonbeam.binary_name }} --help
+    --8<-- 'code/node-operators/networks/run-a-node/flags/4.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    # If you used the release binary
-    ./{{ networks.moonriver.binary_name }} --help
-
-    # Or if you compiled the binary
-    ./target/release/{{ networks.moonriver.binary_name }} --help
+    --8<-- 'code/node-operators/networks/run-a-node/flags/5.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    # If you used the release binary
-    ./{{ networks.moonbase.binary_name }} --help
-
-    # Or if you compiled the binary
-    ./target/release/{{ networks.moonbase.binary_name }} --help
+    --8<-- 'code/node-operators/networks/run-a-node/flags/6.sh'
     ```

@@ -270,7 +270,7 @@ node transaction.js
 
 您还可以使用 `balances.js` 脚本来检查源账户和接收账户的余额是否已更改。整个工作流程如下所示：
 
---8<-- 'zh/code/builders/ethereum/libraries/ethers-js/terminal/transaction.md'
+--8<-- 'code/builders/ethereum/libraries/ethers-js/terminal/transaction.md'
 
 ## 部署合约 {: #deploy-a-contract }
 
@@ -357,7 +357,7 @@ node deploy.js
 
 如果成功，合约的地址将显示在终端中。
 
---8<-- 'zh/code/builders/ethereum/libraries/ethers-js/terminal/deploy.md'
+--8<-- 'code/builders/ethereum/libraries/ethers-js/terminal/deploy.md'
 
 ### 读取合约数据（调用方法）{: #read-contract-data }
 
@@ -490,7 +490,7 @@ node increment.js
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.js` 脚本与 `increment.js` 脚本一起使用，以确保值按预期更改：
 
---8<-- 'zh/code/builders/ethereum/libraries/ethers-js/terminal/increment.md'
+--8<-- 'code/builders/ethereum/libraries/ethers-js/terminal/increment.md'
 
 接下来，您可以打开 `reset.js` 文件，并按照以下步骤创建脚本：
 
@@ -553,6 +553,6 @@ node reset.js
 
 如果成功，交易哈希将显示在终端中。您可以将 `get.js` 脚本与 `reset.js` 脚本一起使用，以确保值按预期更改：
 
---8<-- 'zh/code/builders/ethereum/libraries/ethers-js/terminal/reset.md'
+--8<-- 'code/builders/ethereum/libraries/ethers-js/terminal/reset.md'
 
 --8<-- 'zh/text/_disclaimers/third-party-content.md'

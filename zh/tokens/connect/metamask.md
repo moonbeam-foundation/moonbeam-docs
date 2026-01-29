@@ -64,8 +64,8 @@ categories: Tokens and Accounts, Ethereum Toolkit
 最后，输入您要导入的账户的私钥。例如，您可以使用 Moonbeam 开发节点中预先注资的账户之一。本指南使用 Gerald 的密钥。输入私钥后，点击 **导入**。
 
 ??? note "开发账户地址和私钥"
-    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
-    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
 ![将您的账户密钥粘贴到 MetaMask 中](/images/tokens/connect/metamask/metamask-4.webp)
 

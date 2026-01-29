@@ -16,7 +16,7 @@ Geth 的 [debug](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-deb
 
 如果你希望搭建自己的追踪节点，可以参考[运行追踪节点](/node-operators/networks/tracing-node/){target=\_blank}指南。追踪节点的 RPC HTTP 端点应为 `{{ networks.development.rpc_url }}`，节点日志应类似于下方示例：
 
---8<-- 'zh/code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
+--8<-- 'code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
 
 ## 支持的 Debug 和 Trace JSON-RPC 方法 {: #supported-methods }
 

@@ -34,7 +34,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a SQD 
 1. Create a SQD project based on the Substrate template by running:
 
     ```bash
-    sqd init INSERT_SQUID_NAME --template substrate
+    --8<-- 'code/builders/integrations/indexers/subsquid/1.sh'
     ```
 
     For more information on getting started with this template, please check out the [Quickstart: Substrate chains](http://docs.sqd.ai/quickstart/quickstart-substrate/){target=\_blank} guide on SQD's documentation site.
@@ -42,7 +42,7 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a SQD 
 2. Navigate into the root directory of your Squid project and install dependencies by running:  
 
     ```bash
-    npm ci
+    --8<-- 'code/builders/integrations/indexers/subsquid/2.sh'
     ```
 
 3. To configure your SQD project to run on Moonbeam, you'll need to update the `typegen.json` file. The `typegen.json` file is responsible for generating TypeScript interface classes for your data. Depending on the network you're indexing data on, the `specVersions` value in the `typegen.json` file should be configured as follows:
@@ -50,19 +50,19 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a SQD 
     === "Moonbeam"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbeam",
+        --8<-- 'code/builders/integrations/indexers/subsquid/3.json'
         ```
 
     === "Moonriver"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/metadata/moonriver",
+        --8<-- 'code/builders/integrations/indexers/subsquid/4.json'
         ```
 
     === "Moonbase Alpha"
 
         ```json
-        "specVersions": "https://v2.archive.subsquid.io/metadata/moonbase",
+        --8<-- 'code/builders/integrations/indexers/subsquid/5.json'
         ```
 
 4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](http://docs.sqd.ai/substrate-indexing/supported-networks/){target=\_blank} you are indexing data on:
@@ -70,34 +70,19 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a SQD 
     === "Moonbeam"
 
         ```ts
-        const processor = new SubstrateBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbeam.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
-          archive: lookupArchive('moonbeam', {type: 'Substrate', release: 'ArrowSquid'}),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/6.ts'
         ```
 
     === "Moonriver"
 
         ```ts
-        const processor = new SubstrateBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonriver.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
-          archive: lookupArchive('moonriver', {type: 'Substrate', release: 'ArrowSquid'}),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/7.ts'
         ```
 
     === "Moonbase Alpha"
 
         ```ts
-        const processor = new SubstrateBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbase.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
-          archive: lookupArchive('moonbase', {type: 'Substrate', release: 'ArrowSquid'}),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/8.ts'
         ```
 
     !!! note
@@ -106,15 +91,13 @@ To get started indexing Substrate data on Moonbeam, you'll need to create a SQD 
 5. There's one more quick change to make to the template. The SQD Substrate template is configured to process Substrate account types, but Moonbeam uses Ethereum-style accounts. The `getTransferEvents` function in the `src/main.ts` file will iterate through the events ingested by `processor.ts` and store the relevant `transfer` events in the database. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. In an unmodified Substrate template, the `from` and `to` fields are ss58 encoded as shown:
 
     ```ts
-    from: ss58.codec('kusama').encode(rec.from),
-    to: ss58.codec('kusama').encode(rec.to),
+    --8<-- 'code/builders/integrations/indexers/subsquid/9.ts'
     ```
 
     After removing the ss58 encoding, the respective lines are:
 
     ```ts
-    from: rec.from, 
-    to: rec.to, 
+    --8<-- 'code/builders/integrations/indexers/subsquid/10.ts'
     ```
 
 And that's all you have to do to configure your SQD project to index Substrate data on Moonbeam! Now you can update the `schema.graphql`, `typegen.json`, `src/main.ts`, and `src/processor.ts` files to index the data you need for your project! Next, take the steps in the [Run your Indexer](#run-your-indexer) section to run your indexer and query your Squid.
@@ -128,13 +111,13 @@ To get started indexing EVM data on Moonbeam, you'll need to create a SQD projec
     === "EVM"
 
         ```bash
-        sqd init INSERT_SQUID_NAME --template evm
+        --8<-- 'code/builders/integrations/indexers/subsquid/11.sh'
         ```
 
     === "ABI"
 
         ```bash
-        sqd init INSERT_SQUID_NAME --template abi
+        --8<-- 'code/builders/integrations/indexers/subsquid/12.sh'
         ```
 
     For more information on getting started with both of these templates, please check out the following SQD docs:
@@ -145,7 +128,7 @@ To get started indexing EVM data on Moonbeam, you'll need to create a SQD projec
 2. Navigate into the root directory of your Squid project and install dependencies by running:
 
     ```bash
-    npm ci
+    --8<-- 'code/builders/integrations/indexers/subsquid/13.sh'
     ```
 
 3. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from an [Archive](https://docs.sqd.ai/glossary/#archives){target=\_blank}, which is a specialized data lake. You'll need to configure your processor to pull data from the Archive that corresponds to the [network](http://docs.sqd.ai/evm-indexing/supported-networks/){target=\_blank} you are indexing data on:
@@ -153,34 +136,19 @@ To get started indexing EVM data on Moonbeam, you'll need to create a SQD projec
     === "Moonbeam"
 
         ```ts
-        const processor = new EvmBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbeam.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbeam-mainnet'
-          archive: lookupArchive('moonbeam', { type: 'EVM' })
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/14.ts'
         ```
 
     === "Moonriver"
 
         ```ts
-        const processor = new EvmBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonriver.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonriver-mainnet'
-          archive: lookupArchive('moonriver', { type: 'EVM' }),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/15.ts'
         ```
 
     === "Moonbase Alpha"
 
         ```ts
-        const processor = new EvmBatchProcessor();
-        processor.setDataSource({
-          chain: '{{ networks.moonbase.rpc_url }}',
-          // Resolves to 'https://v2.archive.subsquid.io/network/moonbase-testnet'
-          archive: lookupArchive('moonbase', { type: 'EVM' }),
-        })
+        --8<-- 'code/builders/integrations/indexers/subsquid/16.ts'
         ```
 
     !!! note
@@ -195,19 +163,19 @@ These steps apply to both Substrate and EVM indexers. Running your SQD indexer a
 1. Launch Postgres by running:
 
     ```bash
-    sqd up
+    --8<-- 'code/builders/integrations/indexers/subsquid/17.sh'
     ```
 
 2. Inspect and run the processor:
 
     ```bash
-    sqd process
+    --8<-- 'code/builders/integrations/indexers/subsquid/18.sh'
     ```
 
 3. Open a separate terminal window in the same directory, then start the GraphQL server:
 
     ```bash
-    sqd serve
+    --8<-- 'code/builders/integrations/indexers/subsquid/19.sh'
     ```
 
 4. You can query your template Substrate or EVM Squid with the below sample queries. If you've modified the template Squid to index different data, you'll need to modify this query accordingly
@@ -215,25 +183,13 @@ These steps apply to both Substrate and EVM indexers. Running your SQD indexer a
     === "Substrate Indexer"
 
         ```graphql
-        query MyQuery {
-          accountsConnection(orderBy: id_ASC) {
-            totalCount
-          }
-        }
+        --8<-- 'code/builders/integrations/indexers/subsquid/20.graphql'
         ```
 
     === "EVM Indexer"
 
         ```graphql
-        query MyQuery {
-          burns(orderBy: value_DESC) {
-            address
-            block
-            id
-            txHash
-            value
-          }
-        }
+        --8<-- 'code/builders/integrations/indexers/subsquid/21.graphql'
         ```
 
 For additional examples and workflows, refer to the [SQD documentation](https://docs.sqd.dev/){target=\_blank}.

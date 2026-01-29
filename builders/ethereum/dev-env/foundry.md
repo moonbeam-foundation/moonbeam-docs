@@ -41,21 +41,19 @@ You will need to create a Foundry project if you don't already have one. You can
 1. Install Foundry if you haven't already. If on Linux or MacOS, you can run these commands:
 
     ```bash
-    curl -L https://foundry.paradigm.xyz | bash
-    foundryup
+    --8<-- 'code/builders/ethereum/dev-env/foundry/1.sh'
     ```
 
     If on Windows, you'll have to install Rust and then build Foundry from source:
 
     ```bash
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh
-    cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
+    --8<-- 'code/builders/ethereum/dev-env/foundry/2.sh'
     ```
 
 1. Create the project, which will create a folder with three folders within it, and open it:
 
     ```bash
-    forge init foundry && cd foundry
+    --8<-- 'code/builders/ethereum/dev-env/foundry/3.sh'
     ```
 
 With the default project created, you should see three folders.
@@ -71,8 +69,7 @@ In addition to these three folders, a git project will also be created along wit
 The `src` folder may already contain `Counter.sol`, a minimal Solidity contract. Feel free to delete it. To avoid errors, you should also delete the `Counter.s.sol` file in the `scripts` folder and the `Counter.t.sol` file in the `test` folder. In the following steps, you will be deploying an ERC-20 contract. In the contracts directory, you can create the `MyToken.sol` file:
 
 ```bash
-cd src
-touch MyToken.sol
+--8<-- 'code/builders/ethereum/dev-env/foundry/4.sh'
 ```
 
 Open the file and add the following contract to it:
@@ -84,7 +81,7 @@ Open the file and add the following contract to it:
 Before you attempt to compile, install OpenZeppelin contracts as a dependency. You may have to commit previous changes to git beforehand. By default, Foundry uses git submodules instead of npm packages, so the traditional npm import path and command are not used. Instead, use the name of OpenZeppelin's GitHub repository:
 
 ```bash
-forge install OpenZeppelin/openzeppelin-contracts
+--8<-- 'code/builders/ethereum/dev-env/foundry/5.sh'
 ```
 
 ## Compiling Solidity {: #compiling-solidity }
@@ -92,7 +89,7 @@ forge install OpenZeppelin/openzeppelin-contracts
 Once all dependencies have been installed, you can compile the contract:
 
 ```bash
-forge build
+--8<-- 'code/builders/ethereum/dev-env/foundry/6.sh'
 ```
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/compile.md'
@@ -108,7 +105,7 @@ There are two primary ways to deploy contracts using Foundry. The first is the s
 Before deploying, you'll need to set up your keystore by importing your private key. You can do this using the `cast wallet import` command as follows:
 
 ```bash
-cast wallet import deployer --interactive
+--8<-- 'code/builders/ethereum/dev-env/foundry/7.sh'
 ```
 
 This will prompt you to:
@@ -123,41 +120,25 @@ Deploying the contract with `forge create` takes a single command, but you must 
 === "Moonbeam"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/8.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.moonriver.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/9.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.moonbase.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/10.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    forge create src/MyToken.sol:MyToken \
-    --rpc-url {{ networks.development.rpc_url }} \
-    --broadcast \
-    --account deployer \
-    --constructor-args 100
+    --8<-- 'code/builders/ethereum/dev-env/foundry/11.sh'
     ```
 
 After you've deployed the contract and a few seconds have passed, you should see the address in the terminal.
@@ -188,7 +169,7 @@ Notice that even though the above script is not being deployed, it still require
 For this example, Foundry will first attempt a local simulation and a simulation against the provided RPC before deploying the contract. Remember that it will execute all relevant steps in order. Foundry won't proceed with the deployment if any of the simulations fail. You can deploy the `MyToken.sol` contract with this command.
 
 ```bash
-forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --broadcast --account deployer
+--8<-- 'code/builders/ethereum/dev-env/foundry/12.sh'
 ```
 
 If your script's execution succeeds, your terminal should resemble the output below.
@@ -206,31 +187,31 @@ Try to retrieve your token's name using Cast, where `INSERT_YOUR_CONTRACT_ADDRES
 === "Moonbeam"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbeam.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/13.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonriver.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/14.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.moonbase.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/15.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    cast call INSERT_YOUR_CONTRACT_ADDRESS "name()" --rpc-url {{ networks.development.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/16.sh'
     ```
 
 You should get this data in hexadecimal format:
 
 ```text
-0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
+--8<-- 'code/builders/ethereum/dev-env/foundry/17.txt'
 ```
 
 This is far from readable, but you can use Cast to convert it into your desired format. In this case, the data is text, so you can convert it into ASCII characters to see "My Token":
@@ -238,7 +219,7 @@ This is far from readable, but you can use Cast to convert it into your desired 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/cast.md'
 
 ```bash
-cast --to-ascii 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
+--8<-- 'code/builders/ethereum/dev-env/foundry/18.sh'
 ```
 
 You can also mutate data with cast as well. Try burning tokens by sending them to the zero address.
@@ -246,41 +227,25 @@ You can also mutate data with cast as well. Try burning tokens by sending them t
 === "Moonbeam"
 
     ```bash
-    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
-    --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --chain {{ networks.moonbeam.chain_id }} \
-    INSERT_YOUR_CONTRACT_ADDRESS \
-    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/19.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
-    --rpc-url {{ networks.moonriver.rpc_url }} \
-    --chain {{ networks.moonriver.chain_id }} \
-    INSERT_YOUR_CONTRACT_ADDRESS \
-    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/20.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
-    --rpc-url {{ networks.moonbase.rpc_url }} \
-    --chain {{ networks.moonbase.chain_id }} \
-    INSERT_YOUR_CONTRACT_ADDRESS \
-    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/21.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    cast send --private-key INSERT_YOUR_PRIVATE_KEY \
-    --rpc-url {{ networks.development.rpc_url }} \
-    --chain {{ networks.development.chain_id }} \
-    INSERT_YOUR_CONTRACT_ADDRESS \
-    "transfer(address,uint256)" 0x0000000000000000000000000000000000000001 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/22.sh'
     ```
 
 The transaction will be signed by your Moonbase account and be broadcast to the network. The output should look similar to:
@@ -302,19 +267,19 @@ To fork Moonbeam from the command line, you can run the following command from w
 === "Moonbeam"
 
     ```bash
-    anvil --fork-url {{ networks.moonbeam.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/23.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    anvil --fork-url {{ networks.moonriver.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/24.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    anvil --fork-url {{ networks.moonbase.rpc_url }}
+    --8<-- 'code/builders/ethereum/dev-env/foundry/25.sh'
     ```
 
 Your forked instance will have 10 development accounts that are pre-funded with 10,000 test tokens. The forked instance is available at `http://127.0.0.1:8545/`. The output in your terminal should resemble the following:
@@ -324,7 +289,7 @@ Your forked instance will have 10 development accounts that are pre-funded with 
 To verify you have forked the network, you can query the latest block number:
 
 ```bash
-curl --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 
+--8<-- 'code/builders/ethereum/dev-env/foundry/26.sh'
 ```
 
 If you convert the `result` from [hex to decimal](https://www.rapidtables.com/convert/number/hex-to-decimal.html){target=\_blank}, you should get the latest block number from the time you forked the network. You can cross reference the block number using a [block explorer](/builders/get-started/explorers/){target=\_blank}.
@@ -332,7 +297,7 @@ If you convert the `result` from [hex to decimal](https://www.rapidtables.com/co
 From here you can deploy new contracts to your forked instance of Moonbeam or interact with contracts already deployed. Building off of the previous example in this guide, you can make a call using Cast to check the balance of the minted MYTOK tokens in the account you deployed the contract with:
 
 ```bash
-cast call INSERT_CONTRACT_ADDRESS  "balanceOf(address)(uint256)" INSERT_YOUR_ADDRESS --rpc-url http://localhost:8545
+--8<-- 'code/builders/ethereum/dev-env/foundry/27.sh'
 ```
 
 ## Using Chisel {: #using-chisel }
@@ -344,19 +309,19 @@ Since Chisel is mainly useful for quick testing, it can be used outside of a Fou
 For this example, you will be testing out some of the features of `abi` within Solidity because it is complex enough to demonstrate how Chisel could be useful. To get started using Chisel, run the following in the command line to start the shell:
 
 ```bash
-chisel
+--8<-- 'code/builders/ethereum/dev-env/foundry/28.sh'
 ```
 
 In the shell, you can write Solidity code as if it were running within a function:
 
 ```solidity
-bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
+--8<-- 'code/builders/ethereum/dev-env/foundry/29.sol'
 ```
 
 Let's say you were interested in how `abi` encoded data because you're looking into how to most efficiently store data on the blockchain and thus save gas. To view how the `myData` is stored in memory, you can use the following command while in the Chisel shell:
 
 ```bash
-!memdump
+--8<-- 'code/builders/ethereum/dev-env/foundry/30.sh'
 ```
 
 `memdump` will dump all of the data in your current session. You'll likely see something like this below. If you aren't good at reading hexadecimal or if you don't know how ABI encoding works, then you might not be able to find where the `myData` variable has been stored.
@@ -366,7 +331,7 @@ Let's say you were interested in how `abi` encoded data because you're looking i
 Fortunately, Chisel lets you easily figure out where this information is stored. Using the `!rawstack` command, you can find the location in the stack where the value of a variable:
 
 ```bash
-!rawstack myData
+--8<-- 'code/builders/ethereum/dev-env/foundry/31.sh'
 ```
 
 In this situation, since bytes is over 32 bytes in length, the memory pointer is displayed instead. But that's exactly what's needed since you already know the entirety of the stack from the `!memdump` command.
@@ -389,13 +354,13 @@ At first glance, this makes sense, since `0xa0` has a value of `0x64` which is e
 Since you're done with this code, you can clear the state of Chisel so that it doesn't mess with any future logic that you want to try out (while running the same instance of Chisel):
 
 ```bash
-!clear
+--8<-- 'code/builders/ethereum/dev-env/foundry/32.sh'
 ```
 
 There's an even easier way to test with Chisel. When writing code that ends with a semicolon (`;`), Chisel will run it as a statement, storing its value in Chisel's runtime state. But if you only needed to see how the ABI-encoded data was represented, then you could get away with running the code as an expression. To try this out with the same `abi` example, write the following in the Chisel shell:
 
 ```bash
-abi.encode(100, true, "Develop on Moonbeam")
+--8<-- 'code/builders/ethereum/dev-env/foundry/33.sh'
 ```
 
 You should see something like the following:
@@ -409,19 +374,19 @@ By default, when you leave the Chisel shell, none of the data is persisted. But 
 1. Store a `uint256` in Chisel
 
     ```bash
-    uint256 myNumber = 101;
+    --8<-- 'code/builders/ethereum/dev-env/foundry/34.sh'
     ```
 
 1. Store the session with `!save`. For this example, you can use the number `1` as a save ID
 
     ```bash
-    !save 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/35.sh'
     ```
 
 1. Quit the session
 
     ```bash
-    !quit
+    --8<-- 'code/builders/ethereum/dev-env/foundry/36.sh'
     ```
 
 Then to view and interact with your stored Chisel states, you can take the following steps:
@@ -429,19 +394,19 @@ Then to view and interact with your stored Chisel states, you can take the follo
 1. View a list of saved Chisel states
 
     ```bash
-    chisel list
+    --8<-- 'code/builders/ethereum/dev-env/foundry/37.sh'
     ```
 
 1. Load your stored states
 
     ```bash
-    chisel load 1
+    --8<-- 'code/builders/ethereum/dev-env/foundry/38.sh'
     ```
 
 1. View the `uint256` saved in Chisel from the previous set of steps
 
     ```bash
-    !rawstack myNumber
+    --8<-- 'code/builders/ethereum/dev-env/foundry/39.sh'
     ```
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/save-state.md'
@@ -449,7 +414,7 @@ Then to view and interact with your stored Chisel states, you can take the follo
 You can even fork networks while using Chisel:
 
 ```bash
-!fork {{ networks.moonbase.rpc_url }}
+--8<-- 'code/builders/ethereum/dev-env/foundry/40.sh'
 ```
 
 Then, for example, you can query the balance of one of Moonbase Alpha's collators:
@@ -469,9 +434,7 @@ Often, there will be the case where a project that you wish to integrate with ha
 To convert your preexisting Foundry project to a hybrid project, you will essentially have to install a Hardhat project into the same folder:
 
 ```bash
-npm init
-npm install --save-dev hardhat @nomicfoundation/hardhat-foundry
-npx hardhat init
+--8<-- 'code/builders/ethereum/dev-env/foundry/41.sh'
 ```
 
 For more information, please refer to our documentation on [Creating a Hardhat Project](/builders/ethereum/dev-env/hardhat/#creating-a-hardhat-project){target=\_blank}.
@@ -481,7 +444,7 @@ After initializing the new Hardhat project, a few new folders and files should a
 1. Edit the `hardhat.config.js` file within your repository. Open it up, and at the top, add the following:
 
     ```javascript
-    require("@nomicfoundation/hardhat-foundry");
+    --8<-- 'code/builders/ethereum/dev-env/foundry/42.js'
     ```
 
     After adding the `hardhat-foundry` plugin, the typical `contracts` folders for Hardhat will not work because now Hardhat expects all smart contracts to be stored within Foundry's `src` folder
@@ -491,12 +454,7 @@ After initializing the new Hardhat project, a few new folders and files should a
 1. Edit the `foundry.toml` file to ensure that dependencies installed via Git submodules and npm can be compiled by the Forge tool. Edit the `profile.default` to ensure that the `libs` entry has both `lib` and `node_modules`:
 
     ```toml
-    [profile.default]
-    src = 'src'
-    out = 'out'
-    libs = ['lib', 'node_modules']
-    solc = '0.8.20'
-    evm_version = 'london'
+    --8<-- 'code/builders/ethereum/dev-env/foundry/43.toml'
     ```
 
 Now both `forge build` and `npx hardhat compile` should work regardless of the dependencies.
@@ -504,15 +462,13 @@ Now both `forge build` and `npx hardhat compile` should work regardless of the d
 Both `forge test` and `npx hardhat test` should now be able to access all smart contracts and dependencies. `forge test` will only test the Solidity tests, whereas `npx hardhat test` will only test the JavaScript tests. If you would like to use them in conjunction, then you can create a new script within your `package.json` file:
 
 ```json
-"scripts": {
-    "test": "npx hardhat test && forge test"
-}
+--8<-- 'code/builders/ethereum/dev-env/foundry/44.json'
 ```
 
 You can run this command with:
 
 ```bash
-npm run test
+--8<-- 'code/builders/ethereum/dev-env/foundry/45.sh'
 ```
 
 Finally, while not necessary, it could be worthwhile to move all JavaScript scripts from the `scripts` folder into Foundry's `script` folder and delete the `scripts` folder so that you don't have two folders that serve the same purpose.

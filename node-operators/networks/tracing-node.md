@@ -49,19 +49,19 @@ If you haven't previously run a standard full Moonbeam node, you will need to se
 === "Moonbeam"
 
     ```bash
-    mkdir {{ networks.moonbeam.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/1.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    mkdir {{ networks.moonriver.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/2.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    mkdir {{ networks.moonbase.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/3.sh'
     ```
 
 Before getting started, you'll need to set the necessary permissions either for a specific or current user (replace `INSERT_DOCKER_USER` for the actual user that will run the `docker` command):
@@ -69,31 +69,19 @@ Before getting started, you'll need to set the necessary permissions either for 
 === "Moonbeam"
 
     ```bash
-    # chown to a specific user
-    chown INSERT_DOCKER_USER {{ networks.moonbeam.node_directory }}
-
-    # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonbeam.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/4.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    # chown to a specific user
-    chown INSERT_DOCKER_USER {{ networks.moonriver.node_directory }}
-
-    # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonriver.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/5.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    # chown to a specific user
-    chown INSERT_DOCKER_USER {{ networks.moonbase.node_directory }}
-
-    # chown to current user
-    sudo chown -R $(id -u):$(id -g) {{ networks.moonbase.node_directory }}
+    --8<-- 'code/node-operators/networks/tracing-node/6.sh'
     ```
 
 Instead of the standard `moonbeamfoundation/moonbeam` docker image, you will need to use `moonbeamfoundation/moonbeam-tracing` image. The latest supported version can be found on the [Docker Hub for the `moonbeam-tracing` image](https://hub.docker.com/r/moonbeamfoundation/moonbeam-tracing/tags){target=\_blank}.
@@ -110,71 +98,25 @@ The complete command for running a tracing node is as follows:
 === "Moonbeam"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonbeam.tracing_tag }} \
-    --base-path /data \
-    --chain {{ networks.moonbeam.chain_spec }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache INSERT_RAM_IN_MB \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonbeam-substitutes-tracing \
-    --runtime-cache-size 64 \
-    -- \
-    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --8<-- 'code/node-operators/networks/tracing-node/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonriver.tracing_tag }} \
-    --base-path /data \
-    --chain {{ networks.moonriver.chain_spec }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache INSERT_RAM_IN_MB \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonriver-substitutes-tracing \
-    --runtime-cache-size 64 \
-    -- \
-    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --8<-- 'code/node-operators/networks/tracing-node/8.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.moonbase.tracing_tag }} \
-    --base-path /data \
-    --chain {{ networks.moonbase.chain_spec }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --state-pruning archive \
-    --trie-cache-size 1073741824 \
-    --db-cache INSERT_RAM_IN_MB \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
-    --runtime-cache-size 64 \
-    -- \
-    --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
+    --8<-- 'code/node-operators/networks/tracing-node/9.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    docker run --network="host" \
-    -u $(id -u ${USER}):$(id -g ${USER}) \
-    {{ networks.development.tracing_tag }} \
-    --name "INSERT_YOUR_NODE_NAME" \
-    --ethapi debug,trace,txpool \
-    --wasm-runtime-overrides /moonbeam/moonbase-substitutes-tracing \
-    --runtime-cache-size 64 \
-    --dev
+    --8<-- 'code/node-operators/networks/tracing-node/10.sh'
     ```
 
 You should see a terminal log similar to the following if you spun up a Moonbase Alpha tracing node:
@@ -199,7 +141,7 @@ You can clone the repository to any location on your local machine. For simplici
 1. Clone the [Moonbeam Runtime Overrides repository](https://github.com/moonbeam-foundation/moonbeam-runtime-overrides){target=\_blank}
 
     ```bash
-    git clone https://github.com/moonbeam-foundation/moonbeam-runtime-overrides.git
+    --8<-- 'code/node-operators/networks/tracing-node/11.sh'
     ```
 
 2. Move the Wasm overrides into your on-chain data directory:
@@ -207,19 +149,19 @@ You can clone the repository to any location on your local machine. For simplici
     === "Moonbeam"
 
         ```bash
-        mv moonbeam-runtime-overrides/wasm {{ networks.moonbeam.node_directory }}
+        --8<-- 'code/node-operators/networks/tracing-node/12.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        mv moonbeam-runtime-overrides/wasm {{ networks.moonriver.node_directory }}
+        --8<-- 'code/node-operators/networks/tracing-node/13.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        mv moonbeam-runtime-overrides/wasm {{ networks.moonbase.node_directory }}
+        --8<-- 'code/node-operators/networks/tracing-node/14.sh'
         ```
 
 3. Delete the override files for the networks that you aren't running
@@ -227,19 +169,19 @@ You can clone the repository to any location on your local machine. For simplici
     === "Moonbeam"
 
         ```bash
-        rm {{ networks.moonbeam.node_directory }}/wasm/moonriver-runtime-* &&  rm {{ networks.moonbeam.node_directory }}/wasm/moonbase-runtime-*
+        --8<-- 'code/node-operators/networks/tracing-node/15.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        rm {{ networks.moonriver.node_directory }}/wasm/moonbeam-runtime-* &&  rm {{ networks.moonriver.node_directory }}/wasm/moonbase-runtime-*
+        --8<-- 'code/node-operators/networks/tracing-node/16.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        rm {{ networks.moonbase.node_directory }}/wasm/moonbeam-runtime-* &&  rm {{ networks.moonbase.node_directory }}/wasm/moonriver-runtime-*
+        --8<-- 'code/node-operators/networks/tracing-node/17.sh'
         ```
 
 4. Set user permissions for the overrides:
@@ -247,22 +189,19 @@ You can clone the repository to any location on your local machine. For simplici
     === "Moonbeam"
 
         ```bash
-        chmod +x {{ networks.moonbeam.node_directory }}/wasm/*
-        chown moonbeam_service {{ networks.moonbeam.node_directory }}/wasm/*
+        --8<-- 'code/node-operators/networks/tracing-node/18.sh'
         ```
 
     === "Moonriver"
 
         ```bash
-        chmod +x {{ networks.moonriver.node_directory }}/wasm/*
-        chown moonriver_service {{ networks.moonriver.node_directory }}/wasm/*
+        --8<-- 'code/node-operators/networks/tracing-node/19.sh'
         ```
 
     === "Moonbase Alpha"
 
         ```bash
-        chmod +x {{ networks.moonbase.node_directory }}/wasm/*
-        chown moonbase_service {{ networks.moonbase.node_directory }}/wasm/*
+        --8<-- 'code/node-operators/networks/tracing-node/20.sh'
         ```
 
 ### Create the Configuration File {: #create-the-configuration-file }
@@ -280,100 +219,19 @@ The next step is to create the systemd configuration file, you'll need to:
 === "Moonbeam"
 
     ```bash
-    [Unit]
-    Description="Moonbeam systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbeam_service
-    SyslogIdentifier=moonbeam
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbeam.node_directory }}/{{ networks.moonbeam.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbeam.node_directory }} \
-         --ethapi debug,trace,txpool \
-         --wasm-runtime-overrides {{ networks.moonbeam.node_directory }}/wasm \
-         --runtime-cache-size 64 \
-         --chain {{ networks.moonbeam.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/tracing-node/21.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    [Unit]
-    Description="Moonriver systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonriver_service
-    SyslogIdentifier=moonriver
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonriver.node_directory }}/{{ networks.moonriver.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonriver.node_directory }} \
-         --ethapi debug,trace,txpool \
-         --wasm-runtime-overrides {{ networks.moonriver.node_directory }}/wasm \
-         --runtime-cache-size 64 \
-         --chain {{ networks.moonriver.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
-    
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/tracing-node/22.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    [Unit]
-    Description="Moonbase Alpha systemd service"
-    After=network.target
-    StartLimitIntervalSec=0
-
-    [Service]
-    Type=simple
-    Restart=on-failure
-    RestartSec=10
-    User=moonbase_service
-    SyslogIdentifier=moonbase
-    SyslogFacility=local7
-    KillSignal=SIGHUP
-    ExecStart={{ networks.moonbase.node_directory }}/{{ networks.moonbase.binary_name }} \
-         --state-pruning archive \
-         --trie-cache-size 1073741824 \
-         --db-cache INSERT_RAM_IN_MB \
-         --base-path {{ networks.moonbase.node_directory }} \
-         --ethapi debug,trace,txpool \
-         --wasm-runtime-overrides {{ networks.moonbase.node_directory }}/wasm \
-         --runtime-cache-size 64 \
-         --chain {{ networks.moonbase.chain_spec }} \
-         --name "INSERT_YOUR_NODE_NAME" \
-         -- \
-         --name "INSERT_YOUR_NODE_NAME (Embedded Relay)"
-
-    [Install]
-    WantedBy=multi-user.target
+    --8<-- 'code/node-operators/networks/tracing-node/23.sh'
     ```
 
 !!! note
@@ -388,7 +246,7 @@ The next step is to create the systemd configuration file, you'll need to:
 You can also run the following command to see logs of the tracing node spinning up:
 
 ```bash
-journalctl -f -u moonbeam.service
+--8<-- 'code/node-operators/networks/tracing-node/24.sh'
 ```
 
 Your terminal should display logs similar to the following:

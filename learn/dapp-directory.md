@@ -115,7 +115,7 @@ To begin, you have two options for adding your project information to the [`app-
 Or you can clone the repository locally and make modifications using your preferred code editor, in which you can use the following command to clone the repository:
 
 ```bash
-git clone https://github.com/moonbeam-foundation/app-directory-data.git
+--8<-- 'code/learn/dapp-directory/1.sh'
 ```
 
 Once you've cloned the project, you can create a new branch to which you will add all of your changes. To do this on the browser-based editor, take the following steps:
@@ -348,7 +348,7 @@ Once your changes have been made, you must follow the same instructions in the [
 The DApp Directory also features a queryable API that you can use to integrate data from Moonbeam's DApp Directory into your application. The API is public and currently does not require authentication. The base URL for the API is as follows:
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/
+--8<-- 'code/learn/dapp-directory/2.sh'
 ```
 
 ### Query a Project {: #query-a-project}
@@ -356,19 +356,19 @@ https://apps.moonbeam.network/api/ds/v1/app-dir/
 You can retrieve all the information for a particular project by appending `/projects/INSERT_PROJECT_NAME` to the base URL. If you need clarification on the project name, you can omit the project name as shown below to retrieve data for every listed project and find the project in the response. 
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/projects
+--8<-- 'code/learn/dapp-directory/3.sh'
 ```
 
 Here's an example of querying the API for StellaSwap, which returns the project description, social media information, user counts, relevant smart contract addresses, market data, images, and more. 
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap
+--8<-- 'code/learn/dapp-directory/4.sh'
 ```
 
 You can visit the query URL directory in the browser, using a tool like Postman, or directly from the command line with Curl as follows: 
 
 ```bash
-curl -H "Content-Type: application/json" -X GET 'https://apps.moonbeam.network/api/ds/v1/app-dir/projects/stellaswap'
+--8<-- 'code/learn/dapp-directory/5.sh'
 ```
 
 ??? code "API Response to Querying StellaSwap"
@@ -382,7 +382,7 @@ curl -H "Content-Type: application/json" -X GET 'https://apps.moonbeam.network/a
 You can also query the API by [category](#category-and-tags). For example, you can retrieve information about all NFT projects with the following query:
 
 ```bash
-https://apps.moonbeam.network/api/ds/v1/app-dir/projects?category=nfts
+--8<-- 'code/learn/dapp-directory/6.sh'
 ```
 
 ??? code "API Response to Querying NFT projects"
@@ -414,13 +414,13 @@ The following queries can be used to query all of the listed projects on Moonbea
 === "Moonbeam"
 
     ```bash
-    https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonbeam
+    --8<-- 'code/learn/dapp-directory/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    https://apps.moonbeam.network/api/ds/v1/app-dir/projects?chain=moonriver
+    --8<-- 'code/learn/dapp-directory/8.sh'
     ```
 
 <div class="page-disclaimer">

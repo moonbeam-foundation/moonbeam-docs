@@ -1,0 +1,4 @@
+const ASSET_ID = 42259045809535163221576417993425387648n;
+const DECIMALS = 18n;
+const SYMBOL   = "xcTEST";
+const NAME     = "Test Token";

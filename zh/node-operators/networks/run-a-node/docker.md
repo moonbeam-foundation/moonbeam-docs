@@ -439,11 +439,11 @@ categories: 节点运营者和整理者
 
 一旦 Docker 拉取了必要的镜像，您的完整节点将启动，显示大量信息，例如链规格、节点名称、角色、创世状态等等。
 
---8<-- 'zh/code/node-operators/networks/run-a-node/docker/terminal/start.md'
+--8<-- 'code/node-operators/networks/run-a-node/docker/terminal/start.md'
 
 在同步过程中，您将看到来自嵌入式中继链 ([Relaychain]) 和平行链 ([🌗]) 的日志。这些日志显示了一个目标区块（实时网络状态）和一个最佳区块（本地节点同步状态）。
 
---8<-- 'zh/code/node-operators/networks/run-a-node/docker/terminal/logs.md'
+--8<-- 'code/node-operators/networks/run-a-node/docker/terminal/logs.md'
 
 如果您按照 Moonbase Alpha 的安装说明进行操作，一旦同步完成，您将在本地运行一个 Moonbase Alpha TestNet 节点！对于 Moonbeam 或 Moonriver，一旦同步，您将连接到对等节点，并看到网络上正在生成的区块！
 

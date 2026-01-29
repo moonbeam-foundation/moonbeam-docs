@@ -34,7 +34,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 1. Execute the following command to download the latest Moonbeam image:
 
     ```bash
-    docker pull moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/1.sh'
     ```
 
     The tail end of the console log should look like this:
@@ -46,25 +46,19 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     === "Ubuntu"
 
         ```bash
-        docker run --rm --name {{ networks.development.container_name }} --network host \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/2.sh'
         ```
 
     === "MacOS"
 
         ```bash
-        docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/3.sh'
         ```
 
     === "Windows"
 
         ```bash
-        docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
-        --dev --rpc-external
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/4.sh'
         ```
 
     !!! note "For Apple Silicon users"
@@ -72,13 +66,11 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         If the Docker commands fail or behave unexpectedly on Apple Silicon, enable **Use Rosetta for x86_64/amd64 emulation on Apple Silicon** in Docker Desktop settings and use the `amd64` platform for both pull and run commands:
 
         ```bash
-        docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/5.sh'
         ```
 
         ```bash
-        docker run --rm --platform=linux/amd64 --name {{ networks.development.container_name }} -p 9944:9944 \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
-        --dev --rpc-external
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/6.sh'
         ```
 
         If performance is still insufficient, consider [spinning up a node with a binary file](#getting-started-with-the-binary-file).
@@ -90,9 +82,7 @@ If successful, you should see an output showing an idle state waiting for blocks
 For more information on some of the flags and options used in the example, check out [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```bash
-docker run --rm --name {{ networks.development.container_name }} \
-moonbeamfoundation/moonbeam \
---help
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/7.sh'
 ```
 
 To continue with the tutorial, the next section is not necessary, as you've already spun up a node with Docker. You can skip ahead to the [Configure your Moonbeam Development Node](#configure-moonbeam-dev-node) section.
@@ -110,8 +100,7 @@ To build the binary file, you can take the following steps:
 1. Clone a specific tag of the Moonbeam repo, which you can find on the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=\_blank}:
 
     ```bash
-    git clone -b {{ networks.development.build_tag }} https://github.com/moonbeam-foundation/moonbeam
-    cd moonbeam
+    --8<-- 'code/builders/get-started/networks/moonbeam-dev/8.sh'
     ```
 
     !!! note
@@ -137,14 +126,13 @@ To build the binary file, you can take the following steps:
         If you are using Ubuntu 20.04 or 22.04, then you will need to make sure these additional dependencies have been installed before building the binary:
 
         ```bash
-        apt install clang protobuf-compiler libprotobuf-dev pkg-config libssl-dev -y
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/9.sh'
         ```
 
         For MacOS users, these dependencies can be installed via Homebrew:
 
         ```bash
-        brew install llvm
-        brew install protobuf
+        --8<-- 'code/builders/get-started/networks/moonbeam-dev/10.sh'
         ```
 
     ```bash
@@ -176,7 +164,7 @@ You should see an output that looks like the following, showing an idle state wa
 For more information on some of the flags and options used in the example, check out the [Flags](#node-flags) and [Options](#node-options). If you want to see a complete list of all of the flags, options, and subcommands, open the help menu by running:
 
 ```bash
-./target/release/moonbeam --help
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/11.sh'
 ```
 
 ## Configure Your Moonbeam Development Node {: #configure-moonbeam-dev-node }
@@ -238,28 +226,7 @@ engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHas
 For example, you can use the following snippet to manually create a block using [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, an Ethereum library that makes it easy to interact with JSON-RPC methods:
 
 ```js
-import { ethers } from 'ethers';
-
-const produceBlock = async () => {
-  // Connect to the Ethereum node (if applicable, replace the URL with your node's address)
-  const provider = new ethers.JsonRpcProvider(
-    '{{ networks.development.rpc_url }}'
-  );
-
-  // Set the custom JSON-RPC method and parameters
-  const method = 'engine_createBlock';
-  const params = [true, true, null];
-
-  try {
-    // Send the custom JSON-RPC call
-    const result = await provider.send(method, params);
-  } catch (error) {
-    // Handle any errors that may occur
-    console.error('Error:', error.message);
-  }
-};
-
-produceBlock();
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/12.js'
 ```
 
 !!! note
@@ -324,13 +291,13 @@ If you want to remove data associated with your node, you can purge it. The inst
 If you spun up your node using Docker along with the `-v` flag to specify a mounted directory for your container, you will need to purge that directory. To do so, you can run the following command:
 
 ```bash
-sudo rm -rf {{ networks.moonbase.node_directory }}/*
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/13.sh'
 ```
 
 If you followed the instructions in this guide and did not use the `-v` flag, you can stop and remove the Docker container. The associated data will be removed along with it. To do so, you can run the following command:
 
 ```bash
-sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/14.sh'
 ```
 
 ### Purge a Node Spun up with a Binary File {: #purge-binary-node }
@@ -338,7 +305,7 @@ sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
 When running a node via the binary file, data is stored in a local directory, typically located in `~/.local/shared/moonbeam/chains/development/db`. If you want to start a fresh instance of the node, you can either delete the content of the folder or run the following command inside the `moonbeam` folder:
 
 ```bash
-./target/release/moonbeam purge-chain --dev -y
+--8<-- 'code/builders/get-started/networks/moonbeam-dev/15.sh'
 ```
 
 This will remove the data folder. Note that all chain data is now lost. To learn more about all of the available `purge-chain` commands, you can check out the [Purging Binary Data](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary){target=\_blank} section of our documentation.

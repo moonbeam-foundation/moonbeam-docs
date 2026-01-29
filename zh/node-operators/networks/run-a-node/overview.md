@@ -97,7 +97,7 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 
 使用此功能启动节点后，您将看到如下输出：
 
---8<-- 'zh/code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+--8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
 !!! note
     Moonbeam 的延迟加载需要大量的 RPC 请求。为了避免受到公共端点的速率限制，强烈建议使用[专用端点](/builders/get-started/endpoints#endpoint-providers)。

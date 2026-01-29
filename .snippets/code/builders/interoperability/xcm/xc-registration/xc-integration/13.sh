@@ -1,0 +1,4 @@
+--account-priv-key YOUR_PRIVATE_KEY \
+--send-preimage-hash true \
+--send-proposal-as v2 \
+--track '{ "Origins": "GeneralAdmin" }'

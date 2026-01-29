@@ -42,8 +42,7 @@ In the following section, we'll create a script demonstrating how to dispatch a 
 Create a `.env` file in your project's root directory with the following:
 
 ```bash
-PRIVATE_KEY=INSERT_PRIVATE_KEY
-RPC_URL=https://rpc.api.moonbeam.network
+--8<-- 'code/tutorials/integrations/0xgasless/1.sh'
 ```
 
 Why are we specifying a private key in the `.env`? While this transaction will be gasless, you still need a private key to sign the transaction. The account associated with this private key:
@@ -59,18 +58,13 @@ Why are we specifying a private key in the `.env`? While this transaction will b
 Also, make sure you have installed the 0xGasless SDK and supporting `ethers` and `dotenv` packages:
 
 ```bash
-npm install ethers dotenv @0xgasless/smart-account
+--8<-- 'code/tutorials/integrations/0xgasless/2.sh'
 ```
 
 First, we'll import the required packages as follows:
 
 ```js
-require('dotenv').config();
-const ethers = require('ethers');
-const {
-  PaymasterMode,
-  createSmartAccountClient,
-} = require('@0xgasless/smart-account');
+--8<-- 'code/tutorials/integrations/0xgasless/3.js'
 ```
 
 Next, we'll set the critical constants. We must define the `CHAIN_ID`, `BUNDLER_URL`, and `PAYMASTER_URL`. You can get your unique paymaster URL from the paymaster on your [0xGasless Dashboard](https://dashboard.0xgasless.com/paymaster){target=\_blank}.
@@ -78,12 +72,7 @@ Next, we'll set the critical constants. We must define the `CHAIN_ID`, `BUNDLER_
 The contract address we've defined here is the address of an [Incrementer contract](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213) on Moonbeam, on which we'll call the increment function specified by the function selector. This simple contract will allow us to easily see if the gasless transaction has been dispatched successfully. 
 
 ```js
-const CHAIN_ID = 1284; // Moonbeam mainnet
-const BUNDLER_URL = `https://bundler.0xgasless.com/${CHAIN_ID}`;
-const PAYMASTER_URL =
-  'https://paymaster.0xgasless.com/v1/1284/rpc/INSERT_API_KEY';
-const CONTRACT_ADDRESS = '0x3aE26f2c909EB4F1EdF97bf60B36529744b09213';
-const FUNCTION_SELECTOR = '0xd09de08a';
+--8<-- 'code/tutorials/integrations/0xgasless/4.js'
 ```
 
 !!! warning
@@ -112,11 +101,7 @@ To send a gasless transaction using the 0xGasless smart account, you can call `s
 The function returns a UserOperation response containing a hash. Wait for the transaction receipt using the `waitForUserOpReceipt()` helper function, which polls for completion with a configurable timeout (default 60 seconds).
 
 ```javascript
-const userOpResponse = await smartWallet.sendTransaction(transaction, {
-  paymasterServiceData: { mode: PaymasterMode.SPONSORED },
-});
-
-const receipt = await waitForUserOpReceipt(userOpResponse, 60000);
+--8<-- 'code/tutorials/integrations/0xgasless/5.js'
 ```
 
 Putting it all together and adding plenty of logging and error handling for easy debugging, the full script is as follows:

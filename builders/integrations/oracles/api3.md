@@ -32,64 +32,7 @@ The requester calling an Airnode primarily focuses on two tasks:
 Here is an example of a basic requester contract to request data from an Airnode:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.9;
-
-import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
-import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
-
-// A Requester that will return the requested data by calling the specified Airnode.
-contract Requester is RrpRequesterV0, Ownable {
-    mapping(bytes32 => bool) public incomingFulfillments;
-    mapping(bytes32 => int256) public fulfilledData;
-
-    // Make sure you specify the right _rrpAddress for your chain while deploying the contract.
-    constructor(address _rrpAddress) RrpRequesterV0(_rrpAddress) {}
-
-    // To receive funds from the sponsor wallet and send them to the owner.
-    receive() external payable {
-        payable(owner()).transfer(address(this).balance);
-    }
-
-    // The main makeRequest function that will trigger the Airnode request.
-    function makeRequest(
-        address airnode,
-        bytes32 endpointId,
-        address sponsor,
-        address sponsorWallet,
-        bytes calldata parameters
-
-    ) external {
-        bytes32 requestId = airnodeRrp.makeFullRequest(
-            airnode,                        // airnode address
-            endpointId,                     // endpointId
-            sponsor,                        // sponsor's address
-            sponsorWallet,                  // sponsorWallet
-            address(this),                  // fulfillAddress
-            this.fulfill.selector,          // fulfillFunctionId
-            parameters                      // encoded API parameters
-        );
-        incomingFulfillments[requestId] = true;
-    }
-    
-    function fulfill(bytes32 requestId, bytes calldata data)
-        external
-        onlyAirnodeRrp
-    {
-        require(incomingFulfillments[requestId], "No such request made");
-        delete incomingFulfillments[requestId];
-        int256 decodedData = abi.decode(data, (int256));
-        fulfilledData[requestId] = decodedData;
-    }
-
-    // To withdraw funds from the sponsor wallet to the contract.
-    function withdraw(address airnode, address sponsorWallet) external onlyOwner {
-        airnodeRrp.requestWithdrawal(
-        airnode,
-        sponsorWallet
-        );
-    }
-}
+--8<-- 'code/builders/integrations/oracles/api3/1.sol'
 ```
 
 You can also try [deploying the example contract on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js){target=_blank}.
@@ -186,34 +129,7 @@ To interact with a dAPI, you'll need to get the proxy address for it. Click on t
 With the proxy address in hand, you'll be able to integrate the dAPI into a smart contract. Here's an example of a basic contract that reads from a dAPI:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
-
-import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
-import "@api3/contracts/api3-server-v1/proxies/interfaces/IProxy.sol";
-
-contract DataFeedReaderExample is Ownable {
-    // The proxy contract address obtained from the API3 Market UI
-    address public proxyAddress;
-
-    // Updating the proxy contract address is a security-critical
-    // action. In this example, only the owner is allowed to do so
-    function setProxyAddress(address _proxyAddress) public onlyOwner {
-        proxyAddress = _proxyAddress;
-    }
-
-    function readDataFeed()
-        external
-        view
-        returns (int224 value, uint256 timestamp)
-    {
-        // Use the IProxy interface to read a dAPI via its
-        // proxy contract
-        (value, timestamp) = IProxy(proxyAddress).read();
-        // If you have any assumptions about `value` and `timestamp`,
-        // make sure to validate them after reading from the proxy
-    }
-}
+--8<-- 'code/builders/integrations/oracles/api3/2.sol'
 ```
 
 The example contract contains two functions:

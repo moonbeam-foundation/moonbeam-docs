@@ -117,6 +117,21 @@ msgstr ""
 msgid "disclaimer.user_generated_content"
 msgstr "You are responsible for checking and validating the accuracy and truthfulness of all content. You are also responsible for doing your own diligence to understand the applicable risks present, including selection, performance, security, accuracy, or use of any third-party information. All information contained herein is subject to modification without notice."
 
+msgid "error_modal.header"
+msgstr "There was a problem connecting to your wallet"
+
+msgid "external_link_modal.cancel"
+msgstr "Cancel"
+
+msgid "external_link_modal.continue"
+msgstr "Continue to External Site"
+
+msgid "external_link_modal.header"
+msgstr "You're Leaving the Moonbeam Documentation Website"
+
+msgid "external_link_modal.message"
+msgstr "A new tab will open and you'll be sent to an independent, third-party website that is not affiliated with Moonbeam or the Moonbeam Foundation."
+
 msgid "footer.next"
 msgstr "Next"
 
@@ -329,6 +344,18 @@ msgstr "Faucet"
 
 msgid "nav"
 msgstr "Nav"
+
+msgid "network_modal.header"
+msgstr "Please select a network to connect to your Ethereum-compatible wallet:"
+
+msgid "network_modal.moonbase"
+msgstr "Moonbase Alpha TestNet"
+
+msgid "network_modal.moonbeam"
+msgstr "Moonbeam"
+
+msgid "network_modal.moonriver"
+msgstr "Moonriver"
 
 msgid "search"
 msgstr "Search"

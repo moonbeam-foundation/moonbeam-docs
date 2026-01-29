@@ -92,7 +92,7 @@ forge install OpenZeppelin/openzeppelin-contracts
 forge build
 ```
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/compile.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/compile.md'
 
 编译完成后，会创建两个文件夹：out 和 cache。合约的 ABI 和字节码将包含在 out 文件夹中。这两个文件夹已被 Foundry 项目初始化时默认生成的 .gitignore 忽略。
 
@@ -159,7 +159,7 @@ cast wallet import deployer --interactive
 
 部署合约并在几秒钟后，您应该在终端中看到该地址。
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/deploy.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/deploy.md'
 
 恭喜！您的合约已上线！保存该地址，您将在下一步中使用它与此合约实例进行交互。
 
@@ -190,7 +190,7 @@ forge script script/MyToken.s.sol --rpc-url {{ networks.moonbase.rpc_url }} --br
 
 如果脚本执行成功，你的终端输出应类似于下方内容。
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/script.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/script.md'
 
 完成！如需了解更多关于使用 Foundry 进行 Solidity 脚本编写的信息，请查看 [Foundry 文档站点](https://getfoundry.sh/guides/scripting-with-solidity/)
 {target=\_blank}。
@@ -233,7 +233,7 @@ Foundry 包含 cast，这是一个用于执行以太坊 RPC 调用的 CLI。
 
 这远非可读，但您可以使用 Cast 将其转换为所需的格式。 在这种情况下，数据是文本，因此您可以将其转换为 ASCII 字符以查看“My Token”：
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/cast.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/cast.md'
 
 ```bash
 cast --to-ascii 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
@@ -283,7 +283,7 @@ cast --to-ascii 0x00000000000000000000000000000000000000000000000000000000000000
 
 该事务将由您的 Moonbase 帐户签名并广播到网络。 输出应类似于：
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/burn.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/burn.md'
 
 恭喜，您已使用 Foundry 成功部署并与合约交互！
 
@@ -317,7 +317,7 @@ cast --to-ascii 0x00000000000000000000000000000000000000000000000000000000000000
 
 您的 fork 实例将拥有 10 个预先注资 10,000 个测试 token 的开发账户。fork 实例可在 `http://127.0.0.1:8545/` 上使用。终端中的输出应类似于以下内容：
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/fork-anvil.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/fork-anvil.md'
 
 要验证您是否已 fork 网络，可以查询最新的区块号：
 
@@ -359,7 +359,7 @@ bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
 
 `memdump` 会导出当前会话中的所有数据。您很可能会看到类似下面的输出。如果您不擅长阅读十六进制，或者不了解 ABI 编码的工作方式，可能无法找到 `myData` 变量存储的位置。
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/memdump.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/memdump.md'
 
 幸运的是，Chisel 可以轻松帮您找出这些信息存储的位置。使用 `!rawstack` 命令，可以找到变量值在栈中的位置：
 
@@ -369,7 +369,7 @@ bytes memory myData = abi.encode(100, true, "Develop on Moonbeam");
 
 在这种情况下，由于 bytes 超过 32 字节，显示的是内存指针。但这正是所需信息，因为您已经通过 `!memdump` 命令了解了整个栈的内容。
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/rawstack.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/rawstack.md'
 
 `!rawstack` 命令显示 `myData` 变量存储在 `0x80`，因此与 `!memdump` 命令得到的内存转储进行对比后，可以看到 `myData` 的存储方式如下：
 
@@ -398,7 +398,7 @@ abi.encode(100, true, "Develop on Moonbeam")
 
 您应该会看到类似下面的内容：
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/expression.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/expression.md'
 
 虽然显示方式不同，但您仍然得到了数据的内容，并且还能进一步拆解编码信息，例如 `0xa0` 的值表示数据长度。
 
@@ -442,7 +442,7 @@ abi.encode(100, true, "Develop on Moonbeam")
     !rawstack myNumber
     ```
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/save-state.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/save-state.md'
 
 您甚至可以在使用 Chisel 时 fork 网络：
 
@@ -456,7 +456,7 @@ abi.encode(100, true, "Develop on Moonbeam")
 {{ networks.moonbase.staking.candidates.address1 }}.balance
 ```
 
---8<-- 'zh/code/builders/ethereum/dev-env/foundry/terminal/query-balance.md'
+--8<-- 'code/builders/ethereum/dev-env/foundry/terminal/query-balance.md'
 
 如果想进一步了解 Chisel，请下载 Foundry 并参考其[官方参考页面](https://getfoundry.sh/chisel/reference/){target=\_blank}。
 

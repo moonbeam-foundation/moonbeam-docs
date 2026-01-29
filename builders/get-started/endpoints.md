@@ -161,13 +161,7 @@ By default, you won't see detailed logging in the terminal. To override this set
 The state overrides file should define the respective pallet, storage item, and value that you seek to override as follows:
 
 ```json
-[
- {
-     "pallet": "System",
-     "storage": "SelectedCandidates",
-     "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
- }
-]
+--8<-- 'code/builders/get-started/endpoints/1.json'
 ```
 
 #### Override an Account's Free Balance
@@ -175,14 +169,7 @@ The state overrides file should define the respective pallet, storage item, and 
 To override the balance of a particular account, you can override the account storage item of the system pallet for the respective account as follows:
 
 ```json
-[
-  {
-    "pallet": "System",
-    "storage": "Account",
-    "key": "TARGET_ADDRESS",
-    "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
-  }
-]
+--8<-- 'code/builders/get-started/endpoints/2.json'
 ```
 
 ??? note "Details about overriding account balances"
@@ -207,13 +194,13 @@ To override the balance of a particular account, you can override the account st
     While this is useful as a reference, the information you're looking for is the encoded storage key, which is accessible even without submitting the chain state query. In this instance, the encoded storage key corresponding to the system pallet and the selected account `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` is:
 
     ```text
-    0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9b882fedb4f75b055c709ec5b66b5d9933b939fead1557c741ff06492fd0127bd287a421e
+    --8<-- 'code/builders/get-started/endpoints/3.txt'
     ```
 
     Note that this encoded storage key will change alongside any input changes, such as a different account being queried. Then, head over the **Raw Storage** tab on [Polkadot.js Apps](https://polkadot.js.org/apps/#/chainstate/raw){target=_blank}. Input the above storage key and submit the query. The response is the SCALE encoded account struct, a part of which contains the free balance information to be modified as part of this example: 
 
     ```text
-    0x460c0000020000000100000006000000a4d92a6a4e6b3a5045000000000000000040a556b0e032de12000000000000004083a09e15c74c1b010000000000000000000000000000000000000000000080
+    --8<-- 'code/builders/get-started/endpoints/4.txt'
     ```
 
     There is quite a bit of data encoded in the value field because it is a complex struct comprised of multiple values. The struct is comprised of:
@@ -236,22 +223,7 @@ To override the balance of a particular account, you can override the account st
     You can associate each part of the SCALE encoded struct with the corresponding piece of Alice's account information that it represents:
 
     ```text
-    0x460c0000        // nonce (u32): 3,142 
-    02000000          // consumers (u32): 2
-    01000000          // providers (u32): 1  
-    06000000          // sufficients (u32): 6
-
-    a4d92a6a4e6b3a5045000000000000000  
-    // free (u128): 1,278,606,392,142,175,328,676
-
-    40a556b0e032de1200000000000000000  
-    // reserved (u128): 348,052,500,000,000,000,000  
-
-    4083a09e15c74c1b01000000000000000  
-    // frozen (u128): 20,413,910,106,633,175,872
-
-    00000000000000000000000000000080   
-    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    --8<-- 'code/builders/get-started/endpoints/5.txt'
     ```
 
     Remember that the values are little endian encoded. To convert the hexadecimal little endian encoded values to decimal, you can use [Substrate Utilities converter](https://www.shawntabrizi.com/substrate-js-utilities/){target=_blank}, using the **Balance to Hex (Little Endian)** converter.
@@ -259,47 +231,25 @@ To override the balance of a particular account, you can override the account st
     In this example, the existing free balance of `1,278,606,392,142,175,328,676` Wei or approximately `1278.60` DEV is `a4d92a6a4e6b3a5045`. The following example will change the value to `500,000` DEV, which is `500,000,000,000,000,000,000,000` Wei or `0x000080d07666e70de169` encoded as a hexadecimal little endian value. When properly padded to fit into the SCALE encoded storage value, it becomes `69e10de76676d08000000000000000000`, such that the table now looks like:
 
     ```text
-    0x460c0000        // nonce (u32): 3,142 
-    02000000          // consumers (u32): 2
-    01000000          // providers (u32): 1  
-    06000000          // sufficients (u32): 6
-
-    69e10de76676d08000000000000000000
-    // free (u128): 500,000,000,000,000,000,000,000
-
-    40a556b0e032de1200000000000000000  
-    // reserved (u128): 348,052,500,000,000,000,000  
-
-    4083a09e15c74c1b01000000000000000  
-    // frozen (u128): 20,413,910,106,633,175,872
-
-    00000000000000000000000000000080   
-    // flags (u128): 170,141,183,460,469,231,731,687,303,715,884,105,728
+    --8<-- 'code/builders/get-started/endpoints/6.txt'
     ```
 
     Therefore, the SCALE encoded override value is as follows:
 
     ```text
-    0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080
+    --8<-- 'code/builders/get-started/endpoints/7.txt'
     ```
 
     You can now specify the SCALE encoded override value in your `state-overrides.json` file as follows:
 
     ```json
-    [
-      {
-        "pallet": "System",
-        "storage": "Account",
-        "key": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "value": "0x460c000002000000010000000600000069e10de76676d0800000000000000000040a556b0e032de12000000000000000004083a09e15c74c1b0100000000000000000000000000000000000000000000080"
-      }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/8.json'
     ```
 
     To run lazy loading with the balance state override, you can use the following command: 
 
     ```bash
-    --lazy-loading-remote-rpc 'INSERT_RPC_URL' --lazy-loading-state-overrides ./state-overrides.json
+    --8<-- 'code/builders/get-started/endpoints/9.sh'
     ```
 
 #### Override an ERC-20 Token Balance
@@ -309,43 +259,13 @@ To override an ERC-20 token balance, identify the storage slot in the EVM’s Ac
 In the example below, we override the token balance of the [Wormhole USDC Contract (`0x931715FEE2d06333043d11F658C8CE934aC61D0c`)](https://moonscan.io/address/0x931715FEE2d06333043d11F658C8CE934aC61D0c){target=_blank} for the account `0x3b939fead1557c741ff06492fd0127bd287a421e` to $5,000 USDC. Since Wormhole USDC uses 6 decimal places, $5,000 corresponds to `5000000000` in integer form, which is `0x12a05f200` in hexadecimal.
 
 ```json
-[
-    {
-        "pallet": "EVM",
-        "storage": "AccountStorages",
-        "key": [
-            "0x931715FEE2d06333043d11F658C8CE934aC61D0c",
-            "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
-        ],
-        "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-    }
-]
+--8<-- 'code/builders/get-started/endpoints/10.json'
 ```
 
 You can calculate the exact storage slot to override for your own account with the following script:
 
 ```js
-import { ethers } from 'ethers';
-
-function getBalanceSlot(accountAddress) {
-  // Convert address to bytes32 and normalize
-  const addr = ethers.zeroPadValue(accountAddress, 32);
-
-  // CAUTION! The storage slot used here is 5, which
-  // is specific to Wormhole contracts
-  // The storage slot index for other tokens may vary
-  const packedData = ethers.concat([
-    addr,
-    ethers.zeroPadValue(ethers.toBeHex(5), 32),
-  ]);
-
-  // Calculate keccak256
-  return ethers.keccak256(packedData);
-}
-
-// Example usage
-const address = 'INSERT_ADDRESS';
-console.log(getBalanceSlot(address));
+--8<-- 'code/builders/get-started/endpoints/11.js'
 ```
 
 You can apply the same process for other ERC-20 token contracts. The following sections demonstrate overrides for the `0x3B939FeaD1557C741Ff06492FD0127bd287A421e` account with various ERC-20 tokens. Remember to update the H160 token contract address whenever you switch to a different token. Also, you will need to recalculate the H256 storage slot for each distinct account whose balance you want to override.
@@ -353,33 +273,13 @@ You can apply the same process for other ERC-20 token contracts. The following s
 ??? code "Example: Override Wormhole BTC Token Balance"
 
     ```json
-    [
-        {
-            "pallet": "EVM",
-            "storage": "AccountStorages",
-            "key": [
-                "0xE57eBd2d67B462E9926e04a8e33f01cD0D64346D",
-                "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
-            ],
-            "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-        }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/12.json'
     ```
 
 ??? code "Example: Override Wormhole ETH Token Balance"
 
     ```json
-    [
-        {
-            "pallet": "EVM",
-            "storage": "AccountStorages",
-            "key": [
-                "0xab3f0245B83feB11d15AAffeFD7AD465a59817eD",
-                "0x8c9902c0f94ae586c91ba539eb52087d3dd1578da91158308d79ff24a8d4f342"
-            ],
-            "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-        }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/13.json'
     ```
 
 ??? code "Example: Override WELL Token Balance"
@@ -387,42 +287,13 @@ You can apply the same process for other ERC-20 token contracts. The following s
     Because the [WELL token](https://moonbeam.moonscan.io/token/0x511ab53f793683763e5a8829738301368a2411e3){target=_blank} does not use a proxy implementation contract, the storage slot calculation differs. Instead of slot `5`, the balance mapping resides at slot `1`. You can determine the exact storage slot to override the WELL token balance for your own account using the following script:
 
     ```js
-    import { ethers } from 'ethers';
-
-    function getBalanceSlot(accountAddress) {
-      // Convert address to bytes32 and normalize
-      const addr = ethers.zeroPadValue(accountAddress, 32);
-
-      // Caution! The storage slot index used here is 1
-      // The storage slot index for other tokens may vary
-      const packedData = ethers.concat([
-        addr,
-        ethers.zeroPadValue(ethers.toBeHex(1), 32),
-      ]);
-
-      // Calculate keccak256
-      return ethers.keccak256(packedData);
-    }
-
-    // Example usage
-    const address = 'INSERT_ADDRESS';
-    console.log(getBalanceSlot(address));
+    --8<-- 'code/builders/get-started/endpoints/14.js'
     ```
 
     Thus, the storage override would be:
 
     ```json
-    [
-        {
-            "pallet": "EVM",
-            "storage": "AccountStorages",
-            "key": [
-                "0x511aB53F793683763E5a8829738301368a2411E3",
-                "0x728d3daf4878939a6bb58cbc263f39655bb57ea15db7daa0b306f3bf2c3f1227"
-            ],
-            "value": "0x000000000000000000000000000000000000000000000000000000012a05f200"
-        }
-    ]
+    --8<-- 'code/builders/get-started/endpoints/15.json'
     ```
 
 ## Tracing RPC Endpoint Providers {: #tracing-providers }

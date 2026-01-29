@@ -26,7 +26,7 @@ Running this service locally through NPM requires Node.js to be installed.
 To install the Substrate API Sidecar service locally in the current directory, run this from the command line:
 
 ```bash
-npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.stable_version }}
+--8<-- 'code/builders/substrate/libraries/sidecar/1.sh'
 ```
 
 !!! note
@@ -36,7 +36,7 @@ npm install @substrate/api-sidecar@{{ networks.moonbase.substrate_api_sidecar.st
 Substrate API Sidecar v{{ networks.moonbase.substrate_api_sidecar.stable_version }} is the current stable version that has been tested to work with Moonbeam networks. You can verify the installation was successful by typing from the installation directory root:
 
 ```bash
-node_modules/.bin/substrate-api-sidecar --version
+--8<-- 'code/builders/substrate/libraries/sidecar/2.sh'
 ```
 
 ## Setting up the Substrate API Sidecar {: #setting-up-the-substrate-api-sidecar }
@@ -46,25 +46,25 @@ In the terminal that Sidecar will run, export the environmental variable for the
 === "Moonbeam"
 
     ```bash
-    export SAS_SUBSTRATE_URL=wss://wss.api.moonbeam.network
+    --8<-- 'code/builders/substrate/libraries/sidecar/3.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    export SAS_SUBSTRATE_URL=wss://wss.api.moonriver.moonbeam.network
+    --8<-- 'code/builders/substrate/libraries/sidecar/4.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    export SAS_SUBSTRATE_URL=wss://wss.api.moonbase.moonbeam.network
+    --8<-- 'code/builders/substrate/libraries/sidecar/5.sh'
     ```
 
 === "Moonbeam Dev Node"
 
     ```bash
-    export SAS_SUBSTRATE_URL=ws://127.0.0.1:9944
+    --8<-- 'code/builders/substrate/libraries/sidecar/6.sh'
     ```
 
 Please reference the [Public Endpoints](/builders/get-started/endpoints/) page for a full list of Moonbeam network endpoints.
@@ -72,7 +72,7 @@ Please reference the [Public Endpoints](/builders/get-started/endpoints/) page f
 After setting the environmental variable, you can use the `echo` command to check that the environmental variable has been set correctly, by typing:
 
 ```bash
-echo $SAS_SUBSTRATE_URL
+--8<-- 'code/builders/substrate/libraries/sidecar/7.sh'
 ```
 
 And it should display the network endpoint you have just set.
@@ -84,7 +84,7 @@ Moonbeam introduces custom types that differ from the standard Substrate types. 
 First, ensure that you installed [Parity's `generate-types-bundle` package](https://github.com/paritytech/generate-type-bundle){target=\_blank}:
 
 ```bash
-npm install -g @substrate/generate-type-bundle
+--8<-- 'code/builders/substrate/libraries/sidecar/8.sh'
 ```
 
 Then, run the following command to generate the types bundle for the respective network:
@@ -92,31 +92,31 @@ Then, run the following command to generate the types bundle for the respective 
 === "Moonbeam"
 
     ```bash
-    generate-type-bundle -p "$(pwd)" -s moonbeam
+    --8<-- 'code/builders/substrate/libraries/sidecar/9.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    generate-type-bundle -p "$(pwd)" -s moonriver
+    --8<-- 'code/builders/substrate/libraries/sidecar/10.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    generate-type-bundle -p "$(pwd)" -s moonbase
+    --8<-- 'code/builders/substrate/libraries/sidecar/11.sh'
     ```
 
 Note that running subsequent commands will overwrite the existing `typesBundle.json.` You'll then need to set the `SAS_SUBSTRATE_TYPES_BUNDLE` environment variable as shown below. If you've renamed the `typesBundle.json,` ensure you use the correct file name.
 
 ```bash
-export SAS_SUBSTRATE_TYPES_BUNDLE="$(pwd)/typesBundle.json"
+--8<-- 'code/builders/substrate/libraries/sidecar/12.sh'
 ```
 
 After setting the environment variable, you can verify that you set it correctly by using the following `echo` command:
 
 ```bash
-echo $SAS_SUBSTRATE_TYPES_BUNDLE
+--8<-- 'code/builders/substrate/libraries/sidecar/13.sh'
 ```
 
 ## Running Substrate API Sidecar {: #running-substrate-api-sidecar }
@@ -124,7 +124,7 @@ echo $SAS_SUBSTRATE_TYPES_BUNDLE
 With the network endpoint environmental variable set, and from the installation directory root, run:
 
 ```bash
-node_modules/.bin/substrate-api-sidecar 
+--8<-- 'code/builders/substrate/libraries/sidecar/14.sh'
 ```
 
 If the installation and configuration are successful, you should see this output in the console:

@@ -51,157 +51,19 @@ To verify a deployed contract's source code using the Moonscan API, you must for
 === "Moonbeam"
 
     ```javascript
-    // Submit Source Code for Verification
-    const response = await axios.post(
-      'https://api-moonbeam.moonscan.io/api',
-      {
-        apikey: 'INSERT_API_KEY',
-        module: 'contract',
-        action: 'verifysourcecode',
-        contractAddress: 'INSERT_CONTRACT_ADDRESS',
-        sourceCode: 'INSERT_SOURCE_CODE', // flattened if necessary
-        codeformat: 'solidity-single-file', // or you can use "solidity-standard-json-input"
-        contractname: 'INSERT_CONTRACT_NAME', // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
-        compilerversion: 'INSERT_COMPILER_VERSION', // see https://etherscan.io/solcversions for list of support versions
-        optimizationUsed: 0, // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
-        runs: 200, // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file)
-        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // if applicable
-        evmversion: 'INSERT_EVM_VERSION', // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-        libraryname1: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
-        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the first library used
-        libraryname2: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the second library used
-        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the second library used
-        // ...
-      },
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-    );
-
-    if (response.data.status == '1') {
-      // 1 = submission success, use the guid returned (response.data.result) to check the status of your submission
-      // average time of processing is 30-60 seconds
-      console.log(
-        response.data.status +
-          '; ' +
-          response.data.message +
-          '; ' +
-          response.data.result
-      );
-      // response.data.result is the GUID receipt for the submission, you can use this guid for checking the verification status
-    } else {
-      // 0 = error
-      console.log(
-        response.data.status +
-          '; ' +
-          response.data.message +
-          '; ' +
-          response.data.result
-      );
-    }
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/1.js'
     ```
 
 === "Moonriver"
 
     ```javascript
-    // Submit Source Code for Verification
-    const response = await axios.post(
-      'https://api-moonriver.moonscan.io/api', 
-      {
-        apikey: 'INSERT_API_KEY',
-        module: 'contract',
-        action: 'verifysourcecode',
-        contractAddress: 'INSERT_CONTRACT_ADDRESS',
-        sourceCode: 'INSERT_SOURCE_CODE', // flattened if necessary
-        codeformat: 'solidity-single-file', // or you can use "solidity-standard-json-input"
-        contractname: 'INSERT_CONTRACT_NAME', // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
-        compilerversion: 'INSERT_COMPILER_VERSION', // see https://etherscan.io/solcversions for list of support versions
-        optimizationUsed: 0, // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
-        runs: 200, // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file)
-        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // if applicable
-        evmversion: 'INSERT_EVM_VERSION', // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-        libraryname1: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
-        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the first library used
-        libraryname2: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the second library used
-        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the second library used
-        // ...
-      },
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-    );
-
-    if (response.data.status == '1') {
-      // 1 = submission success, use the guid returned (response.data.result) to check the status of your submission
-      // average time of processing is 30-60 seconds
-      console.log(
-        response.data.status +
-          '; ' +
-          response.data.message +
-          '; ' +
-          response.data.result
-      );
-      // response.data.result is the GUID receipt for the submission, you can use this guid for checking the verification status
-    } else {
-      // 0 = error
-      console.log(
-        response.data.status +
-          '; ' +
-          response.data.message +
-          '; ' +
-          response.data.result
-      );
-    }
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/2.js'
     ```
 
 === "Moonbase Alpha"
 
     ```javascript
-    // Submit Source Code for Verification
-    const response = await axios.post(
-      'https://api-moonbase.moonscan.io/api', 
-      {
-        apikey: 'INSERT_API_KEY',
-        module: 'contract',
-        action: 'verifysourcecode',
-        contractAddress: 'INSERT_CONTRACT_ADDRESS',
-        sourceCode: 'INSERT_SOURCE_CODE', // flattened if necessary
-        codeformat: 'solidity-single-file', // or you can use "solidity-standard-json-input"
-        contractname: 'INSERT_CONTRACT_NAME', // if codeformat = solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20
-        compilerversion: 'INSERT_COMPILER_VERSION', // see https://etherscan.io/solcversions for list of support versions
-        optimizationUsed: 0, // 0 = no optimization, 1 = optimization was used (applicable when codeformat=solidity-single-file)
-        runs: 200, // set to 200 as default unless otherwise (applicable when codeformat=solidity-single-file)
-        constructorArguments: 'INSERT_CONSTRUCTOR_ARGUMENTS', // if applicable
-        evmversion: 'INSERT_EVM_VERSION', // options: homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
-        licenseType: 1, // valid codes 1-14 where 1=No License ... 14=Business Source License 1.1, see https://etherscan.io/contract-license-types
-        libraryname1: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the first library used, i.e. SafeMath (up to 10 libraries can be used)
-        libraryaddress1: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the first library used
-        libraryname2: 'INSERT_LIBRARY_NAME', // if applicable, enter the name of the second library used
-        libraryaddress2: 'INSERT_LIBRARY_ADDRESS', // if applicable, enter the address of the second library used
-        // ...
-      },
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-    );
-
-    if (response.data.status == '1') {
-      // 1 = submission success, use the guid returned (response.data.result) to check the status of your submission
-      // average time of processing is 30-60 seconds
-      console.log(
-        response.data.status +
-          '; ' +
-          response.data.message +
-          '; ' +
-          response.data.result
-      );
-      // response.data.result is the GUID receipt for the submission, you can use this guid for checking the verification status
-    } else {
-      // 0 = error
-      console.log(
-        response.data.status +
-          '; ' +
-          response.data.message +
-          '; ' +
-          response.data.result
-      );
-    }
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/3.js'
     ```
 
 Upon successful submission, a GUID will be returned as a part of the result. This GUID can be used to check for the submission status.
@@ -209,31 +71,19 @@ Upon successful submission, a GUID will be returned as a part of the result. Thi
 === "Moonbeam"
 
     ```bash
-    curl https://api-moonbeam.moonscan.io/api
-      ?module=contract
-      &action=checkverifystatus
-      &guid=INSERT_GUID_FROM_RESPONSE
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/4.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    curl https://api-moonriver.moonscan.io/api
-      ?module=contract
-      &action=checkverifystatus
-      &guid=INSERT_GUID_FROM_RESPONSE
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/5.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    curl https://api-moonbase.moonscan.io/api
-      ?module=contract
-      &action=checkverifystatus
-      &guid=INSERT_GUID_FROM_RESPONSE
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/6.sh'
     ```
 
 ### Retrieve Contract ABI for Verified Contracts {: #retrieve-contract-abi-for-verified-contracts }
@@ -243,31 +93,19 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
 === "Moonbeam"
 
     ```bash
-    curl https://api-moonbeam.moonscan.io/api
-      ?module=contract
-      &action=getabi
-      &address=INSERT_CONTRACT_ADDRESS
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/7.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    curl https://api-moonriver.moonscan.io/api
-      ?module=contract
-      &action=getabi
-      &address=INSERT_CONTRACT_ADDRESS
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/8.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    curl https://api-moonbase.moonscan.io/api
-      ?module=contract
-      &action=getabi
-      &address=INSERT_CONTRACT_ADDRESS
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/9.sh'
     ```
 
 ### Retrieve Contract Source Code for Verified Contracts {: #retrieve-contract-source-code-for-verified-contracts }
@@ -277,31 +115,19 @@ Once your contract is verified on Moonscan, you can use the following endpoint t
 === "Moonbeam"
 
     ```bash
-    curl https://api-moonbeam.moonscan.io/api
-      ?module=contract
-      &action=getsourcecode
-      &address=INSERT_CONTRACT_ADDRESS
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/10.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    curl https://api-moonriver.moonscan.io/api
-      ?module=contract
-      &action=getsourcecode
-      &address=INSERT_CONTRACT_ADDRESS
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/11.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    curl https://api-moonbase.moonscan.io/api
-      ?module=contract
-      &action=getsourcecode
-      &address=INSERT_CONTRACT_ADDRESS
-      &apikey=INSERT_API_KEY
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/12.sh'
     ```
 
 ## Using Sourcify API {: #using-sourcify-api }
@@ -343,7 +169,7 @@ Sourcify uses chain ID's to identify the target network(s) for the request. The 
 === "Moonbase Alpha"
 
     ```bash
-    {{ networks.moonbase.chain_id }}
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/13.sh'
     ```
 
 ### Perfect vs. Partial Match {: #full-vs-partial-match }
@@ -361,88 +187,19 @@ A POST request is used to verify a contract on Sourcify. The following is sample
 === "Moonbeam"
 
     ```javascript
-    // Submit Contract Source Code and Metadata for Verification
-    const response = await axios.post('https://sourcify.dev/server/verify', {
-      address: 'INSERT_CONTRACT_ADDRESS',
-      chain: {{ networks.moonbeam.chain_id }}, // chain ID of Moonbeam
-      files: {
-        'metadata-1.json': 'INSERT_JSON_FILE', // metadata file for contract file 1
-        'metadata-2.json': 'INSERT_JSON_FILE', // metadata file for contract file 2
-        'file1-name.sol': 'INSERT_SOL_FILE', // contract source file 1
-        'file2-name.sol': 'INSERT_SOL_FILE', // contract source file 2
-        //...
-      },
-      chosenContract: 1, // (optional) index of the contract, if the provided files contain multiple metadata files
-    });
-
-    if (result.status == 'perfect') {
-      // perfect match
-      console.log(result.status + ';' + result.address);
-    } else if (result.status == 'partial') {
-      // partial match
-      console.log(result.status + ';' + result.address);
-    } else {
-      // non-matching
-      console.log(result.status + ';' + result.address);
-    }
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/14.js'
     ```
 
 === "Moonriver"
 
     ```javascript
-    // Submit Contract Source Code and Metadata for Verification
-    const response = await axios.post('https://sourcify.dev/server/verify', {
-      address: 'INSERT_CONTRACT_ADDRESS',
-      chain: {{ networks.moonriver.chain_id }}, // chain ID of Moonriver
-      files: {
-        'metadata-1.json': 'INSERT_JSON_FILE', // metadata file for contract file 1
-        'metadata-2.json': 'INSERT_JSON_FILE', // metadata file for contract file 2
-        'file1-name.sol': 'INSERT_SOL_FILE', // contract source file 1
-        'file2-name.sol': 'INSERT_SOL_FILE', // contract source file 2
-        //...
-      },
-      chosenContract: 1, // (optional) index of the contract, if the provided files contain multiple metadata files
-    });
-
-    if (result.status == 'perfect') {
-      // perfect match
-      console.log(result.status + ';' + result.address);
-    } else if (result.status == 'partial') {
-      // partial match
-      console.log(result.status + ';' + result.address);
-    } else {
-      // non-matching
-      console.log(result.status + ';' + result.address);
-    }
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/15.js'
     ```
 
 === "Moonbase Alpha"
 
     ```javascript
-    // Submit Contract Source Code and Metadata for Verification
-    const response = await axios.post('https://sourcify.dev/server/verify', {
-      address: 'INSERT_CONTRACT_ADDRESS',
-      chain: {{ networks.moonbase.chain_id }}, // chain ID of Moonbase Alpha
-      files: {
-        'metadata-1.json': 'INSERT_JSON_FILE', // metadata file for contract file 1
-        'metadata-2.json': 'INSERT_JSON_FILE', // metadata file for contract file 2
-        'file1-name.sol': 'INSERT_SOL_FILE', // contract source file 1
-        'file2-name.sol': 'INSERT_SOL_FILE', // contract source file 2
-        //...
-      },
-      chosenContract: 1, // (optional) index of the contract, if the provided files contain multiple metadata files
-    });
-
-    if (result.status == 'perfect') {
-      // perfect match
-      console.log(result.status + ';' + result.address);
-    } else if (result.status == 'partial') {
-      // partial match
-      console.log(result.status + ';' + result.address);
-    } else {
-      // non-matching
-      console.log(result.status + ';' + result.address);
-    }
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/16.js'
     ```
 
 Alternatively, you can also use [the Sourcify hosted GUI](https://sourcify.dev/#/verifier){target=\_blank} to submit a contract for verification.  
@@ -456,39 +213,19 @@ There are two variations of this endpoint, one for perfect matching and one for 
 === "Perfect Match"
 
     ```bash
-    curl https://sourcify.dev/server/check-by-addresses
-      ?addresses={INSERT_ADDRESS_1, INSERT_ADDRESS_2, ...}
-      &chainIds={INSERT_CHAIN_ID_1, INSERT_CHAIN_ID_2, ...}
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/17.sh'
     ```
 
 === "Partial Match"
 
     ```bash
-    curl https://sourcify.dev/server/check-all-by-addresses
-      ?addresses={INSERT_ADDRESS_1, INSERT_ADDRESS_2, ...}
-      &chainIds={INSERT_CHAIN_ID_1, INSERT_CHAIN_ID_2, ...}
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/18.sh'
     ```
 
 An example response will be a JSON object of the following structure:
 
 ```json
-[
-    {
-        "address": "address1",
-        "status": "perfect",
-        "chainIds": [
-            "chainId1",
-            "chaindId2"
-        ]
-    },
-    {
-        "address": "address2",
-        "status": "partial",
-        "chainIds": [
-            "chaindId2"
-        ]
-    }
-]
+--8<-- 'code/builders/ethereum/verify-contracts/api-verification/19.json'
 ```
 
 ### Retrieve Contract Source Files for Verified Contracts {: get-contract-source-files-for-verified-contracts }
@@ -500,19 +237,19 @@ There are two variations of this endpoint, one for the source files of perfect m
 === "Moonbeam"
 
     ```bash
-    curl https://sourcify.dev/server/files/{{ networks.moonbeam.chain_id }}/INSERT_CONTRACT_ADDRESS
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/20.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    curl https://sourcify.dev/server/files/{{ networks.moonriver.chain_id }}/INSERT_CONTRACT_ADDRESS
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/21.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    curl https://sourcify.dev/server/files/{{ networks.moonbase.chain_id }}/INSERT_CONTRACT_ADDRESS
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/22.sh'
     ```
 
 And one for the source files of both perfect and partial matches:
@@ -520,19 +257,19 @@ And one for the source files of both perfect and partial matches:
 === "Moonbeam"
 
     ```bash
-    curl https://sourcify.dev/server/files/any/{{ networks.moonbeam.chain_id }}/INSERT_CONTRACT_ADDRESS
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/23.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    curl https://sourcify.dev/server/files/any/{{ networks.moonriver.chain_id }}/INSERT_CONTRACT_ADDRESS
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/24.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    curl https://sourcify.dev/server/files/any/{{ networks.moonbase.chain_id }}/INSERT_CONTRACT_ADDRESS
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/25.sh'
     ```
 
 ### Using Sourcify with Foundry {: #using-sourcify-with-foundry }
@@ -542,15 +279,13 @@ Foundry's Forge tool has built-in support for Sourcify verification similar to h
 A Foundry project that uses Sourcify must have their compiler emit metadata files. This can be configured in the `foundry.toml` file:
 
 ```toml
-[profile.default]
-# Input your custom or default config options here
-extra_output_files = ["metadata"]
+--8<-- 'code/builders/ethereum/verify-contracts/api-verification/26.toml'
 ```
 
 If you have already deployed the example contract, you can verify it with the `verify-contract` command. Before you can verify the contract, you will need to ABI-encode the constructor arguments. To do so for the example contract, you can run the following command:
 
 ```bash
-cast abi-encode "constructor(uint256)" 100
+--8<-- 'code/builders/ethereum/verify-contracts/api-verification/27.sh'
 ```
 
 The result should be `0x0000000000000000000000000000000000000000000000000000000000000064`. You can then verify the contract using the following command:
@@ -558,25 +293,19 @@ The result should be `0x00000000000000000000000000000000000000000000000000000000
 === "Moonbeam"
 
     ```bash
-    forge verify-contract --chain-id {{ networks.moonbeam.chain_id }} \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/28.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    forge verify-contract --chain-id {{ networks.moonriver.chain_id }} \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/29.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge verify-contract --chain-id {{ networks.moonbase.chain_id }} \
-    --constructor-args 0x0000000000000000000000000000000000000000000000000000000000000064 \
-    --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken 
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/30.sh'
     ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/api/terminal/verify-original.md'
@@ -586,31 +315,19 @@ If you wanted to deploy the example contract and verify at the same time, then y
 === "Moonbeam"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbeam.rpc_url }} \
-    --constructor-args 100 \
-    --verify --verifier sourcify \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken  
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/31.sh'
     ```
 
 === "Moonriver"
 
     ```bash
-    forge create --rpc-url {{ networks.moonriver.rpc_url }} \
-    --constructor-args 100 \
-    --verify --verifier sourcify \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken  
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/32.sh'
     ```
 
 === "Moonbase Alpha"
 
     ```bash
-    forge create --rpc-url {{ networks.moonbase.rpc_url }} \
-    --constructor-args 100 \
-    --verify --verifier sourcify \
-    --private-key INSERT_YOUR_PRIVATE_KEY \
-    src/MyToken.sol:MyToken
+    --8<-- 'code/builders/ethereum/verify-contracts/api-verification/33.sh'
     ```
 
 --8<-- 'code/builders/ethereum/verify-contracts/api/terminal/create.md'

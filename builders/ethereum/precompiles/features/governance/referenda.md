@@ -108,14 +108,7 @@ The methods are as follows:
 
         ReferendumStatus enum:
         ```solidity
-        enum ReferendumStatus {
-             Ongoing,
-             Approved,
-             Rejected,
-             Cancelled,
-             TimedOut,
-             Killed
-        }
+        --8<-- 'code/builders/ethereum/precompiles/features/governance/referenda/1.sol'
         ```
 
 ??? function "**ongoingReferendumInfo**(*uint32* referendumIndex) - a read-only function that returns information pertaining to an ongoing referendum"

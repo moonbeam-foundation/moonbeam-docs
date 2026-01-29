@@ -441,9 +441,7 @@ One of the supported endpoints is the token holders endpoint, which returns a li
 Try running the command below in a terminal window after replacing the placeholder with your API key.
 
 ```bash
-curl https://api.covalenthq.com/v1/1287/tokens/\
-0x08B40414525687731C23F430CEBb424b332b3d35/token_holders/ \
--u INSERT_YOUR_API_KEY:
+--8<-- 'code/builders/integrations/indexers/covalent/1.sh'
 ```
 
 !!! note
