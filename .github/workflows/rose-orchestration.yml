@@ -211,8 +211,8 @@ jobs:
       pull-requests: read
     env:
       N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL_TR }}
-      ROSE_N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN || '' }}
-      ROSE_N8N_RECEIVING_TOKEN: ${{ secrets.N8N_RECEIVING_TOKEN || '' }}
+      ROSE_N8N_SENDING_TOKEN: ${{ secrets.ROSE_N8N_SENDING_TOKEN || '' }}
+      ROSE_N8N_RECEIVING_TOKEN: ${{ secrets.ROSE_N8N_RECEIVING_TOKEN || '' }}
       ROSE_N8N_ALLOWED_HOST: ${{ vars.N8N_ALLOWED_HOST || '' }}
       ROSE_QUIET: "1"
       ROSE_LANGS_RAW: ${{ vars.ROSE_LANGUAGES }}
@@ -774,7 +774,7 @@ jobs:
       allowed: ${{ steps.permission_check.outputs.allowed }}
       merged_by_allowed: ${{ steps.merged_actor_check.outputs.allowed || steps.permission_check.outputs.allowed }}
     steps:
-      - name: Verify maintainer permissions
+      - name: Verify permissions
         id: permission_check
         uses: actions/github-script@v7
         with:
@@ -788,13 +788,13 @@ jobs:
             });
             const permission = (data && data.permission) ? data.permission : 'none';
             core.info(`Actor ${actor} has permission level: ${permission}`);
-            const allowedPermissions = new Set(['admin', 'maintain']);
+            const allowedPermissions = new Set(['admin', 'maintain', 'write']);
             const allowed = allowedPermissions.has(permission) ? 'true' : 'false';
             core.setOutput('allowed', allowed);
       - name: Halt unauthorized dispatch
         if: ${{ steps.permission_check.outputs.allowed != 'true' }}
         run: |
-          echo "::warning::${{ github.actor }} is not an admin/maintainer on this repository; skipping pipeline."
+          echo "::warning::${{ github.actor }} is not an admin/maintainer/write on this repository; skipping pipeline."
       - name: Verify merged-by permissions
         if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged == true }}
         id: merged_actor_check
@@ -817,7 +817,7 @@ jobs:
               username: mergedBy,
             });
             const permission = (data && data.permission) ? data.permission : 'none';
-            const allowedPermissions = new Set(['admin', 'maintain']);
+            const allowedPermissions = new Set(['admin', 'maintain', 'write']);
             const allowed = allowedPermissions.has(permission) ? 'true' : 'false';
             core.info(`Merged-by actor ${mergedBy} has permission level: ${permission}`);
             core.setOutput('allowed', allowed);
@@ -1454,7 +1454,7 @@ jobs:
               username: mergedBy,
             });
             const permission = (data && data.permission) ? data.permission : 'none';
-            const allowedPermissions = new Set(['admin', 'maintain']);
+            const allowedPermissions = new Set(['admin', 'maintain', 'write']);
             const allowed = allowedPermissions.has(permission) ? 'true' : 'false';
             core.info(`Merged-by actor ${mergedBy} has permission level: ${permission}`);
             core.setOutput('allowed', allowed);

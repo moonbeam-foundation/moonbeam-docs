@@ -82,12 +82,12 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 
 这里有一些不同的指南可以帮助您开始运行基于 Moonbeam 的节点：
 
-- [使用 Docker](node-operators/networks/run-a-node/docker/) - 此方法提供了一种快速简便的 Docker 容器入门方法
-- [使用 Systemd](node-operators/networks/run-a-node/systemd/) - 建议有 Substrate 节点编译经验的用户使用此方法
+- [使用 Docker](/node-operators/networks/run-a-node/docker/) - 此方法提供了一种快速简便的 Docker 容器入门方法
+- [使用 Systemd](/node-operators/networks/run-a-node/systemd/) - 建议有 Substrate 节点编译经验的用户使用此方法
 
 ## Debug、Trace 和 TxPool API {: #debug-trace-txpool-apis }
 
-您还可以通过运行跟踪节点来访问某些非标准的 RPC 方法，这允许开发人员在运行时检查和调试交易。跟踪节点使用与标准 Moonbase Alpha、Moonriver 或 Moonbeam 节点不同的 Docker 镜像。请查看[运行跟踪节点](node-operators/networks/tracing-node/)指南，并确保在整个说明中切换到正确的网络选项卡。然后，要与您的跟踪节点进行交互，请查看[Debug & Trace](builders/ethereum/json-rpc/debug-trace/)指南。
+您还可以通过运行跟踪节点来访问某些非标准的 RPC 方法，这允许开发人员在运行时检查和调试交易。跟踪节点使用与标准 Moonbase Alpha、Moonriver 或 Moonbeam 节点不同的 Docker 镜像。请查看[运行跟踪节点](/node-operators/networks/tracing-node/)指南，并确保在整个说明中切换到正确的网络选项卡。然后，要与您的跟踪节点进行交互，请查看[Debug & Trace](/builders/ethereum/json-rpc/debug-trace/)指南。
 
 ## 延迟加载 {: #lazy-loading }
 
@@ -97,10 +97,10 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 
 使用此功能启动节点后，您将看到如下输出：
 
---8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+--8<-- 'zh/code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
 !!! note
-    Moonbeam 的延迟加载需要大量的 RPC 请求。为了避免受到公共端点的速率限制，强烈建议使用[专用端点](builders/get-started/endpoints#endpoint-providers)。
+    Moonbeam 的延迟加载需要大量的 RPC 请求。为了避免受到公共端点的速率限制，强烈建议使用[专用端点](/builders/get-started/endpoints#endpoint-providers)。
 
 您可以使用以下可选参数进一步自定义延迟加载功能：
 
@@ -112,6 +112,7 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
 
 状态覆盖文件应定义您要覆盖的相应 pallet、存储项和值，如下所示：
 
+```json
 [
  {
      "pallet": "System",
@@ -119,6 +120,7 @@ Moonbeam 有多个部署，包括 Moonbase Alpha 测试网、Kusama 上的 Moonr
      "value": "0x04f24ff3a9cf04c71dbc94d0b566f7a27b94566cac"
  }
 ]
+```
 
 ## 日志和故障排除 {: #logs-and-troubleshooting }
 
@@ -147,5 +149,5 @@ chain (our genesis: GENESIS_ID theirs: OTHER_GENESIS_ID)
 
 清除链数据的说明会略有不同，具体取决于您启动节点的方式：
 
-  - 对于 Docker，您可以查看 [清除节点](node-operators/networks/run-a-node/docker/#purge-your-node) 部分的 [使用 Docker](node-operators/networks/run-a-node/docker/) 页面
-  - 对于 Systemd，您可以查看 [清除节点](node-operators/networks/run-a-node/systemd/#purge-your-node) 部分的 [使用 Systemd](node-operators/networks/run-a-node/systemd/) 页面
+  - 对于 Docker，您可以查看 [清除节点](/node-operators/networks/run-a-node/docker/#purge-your-node) 部分的 [使用 Docker](/node-operators/networks/run-a-node/docker/) 页面
+  - 对于 Systemd，您可以查看 [清除节点](/node-operators/networks/run-a-node/systemd/#purge-your-node) 部分的 [使用 Systemd](/node-operators/networks/run-a-node/systemd/) 页面

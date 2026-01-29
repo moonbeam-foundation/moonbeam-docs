@@ -158,7 +158,7 @@ Identity Precompile包含一些可以由任何人调用的函数，以及一些�
 
 ## 与Solidity接口交互 {: #interact-with-interface }
 
-以下部分将介绍如何使用[以太坊库](builders/ethereum/libraries/){target=\_blank}（例如[Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank}和[Web3.py](builders/ethereum/libraries/web3py/){target=\_blank}）与身份预编译进行交互。
+以下部分将介绍如何使用[以太坊库](/builders/ethereum/libraries/){target=\_blank}（例如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}和[Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}）与身份预编译进行交互。
 
 本指南中的示例将在Moonbase Alpha上进行。
 --8<-- 'zh/text/_common/endpoint-examples.md'

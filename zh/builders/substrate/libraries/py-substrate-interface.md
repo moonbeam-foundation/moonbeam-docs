@@ -393,8 +393,8 @@ except SubstrateRequestException as e:
 
 您还可以使用 [`rpc_request`](https://jamdottech.github.io/py-polkadot-sdk/reference/base/#substrateinterface.base.SubstrateInterface.rpc_request){target=\_blank} 方法发出自定义 RPC 请求。
 
-这对于与 Moonbeam 的 [Ethereum JSON-RPC](builders/ethereum/json-rpc/eth-rpc/){target=\_blank} 端点或 Moonbeam 的 [自定义 RPC](builders/ethereum/json-rpc/moonbeam-custom-api/){target=\_blank} 端点进行交互特别有用。
+这对于与 Moonbeam 的 [Ethereum JSON-RPC](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank} 端点或 Moonbeam 的 [自定义 RPC](/builders/ethereum/json-rpc/moonbeam-custom-api/){target=\_blank} 端点进行交互特别有用。
 
-[共识和最终性页面](learn/core-concepts/consensus-finality/#checking-tx-finality-with-substrate-libraries){target=\_blank} 提供了通过 Python Substrate Interface 使用自定义 RPC 调用来检查给定交易哈希的交易最终性的示例。
+[共识和最终性页面](/learn/core-concepts/consensus-finality/#checking-tx-finality-with-substrate-libraries){target=\_blank} 提供了通过 Python Substrate Interface 使用自定义 RPC 调用来检查给定交易哈希的交易最终性的示例。
 
 --8<-- 'zh/text/_disclaimers/third-party-content.md'

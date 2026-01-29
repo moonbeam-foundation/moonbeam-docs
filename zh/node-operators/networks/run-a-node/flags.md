@@ -73,7 +73,7 @@ categories: 节点运营者和 Collator
     - **`fast-unsafe`**: 与 `fast` 相同，但跳过下载状态证明。
     - **`warp`**: 下载最新状态和证明。
 - **`--prometheus-port`**: 指定自定义 Prometheus 端口。
-- **`--lazy-loading-remote-rpc`**: 允许通过依赖指定的 RPC 端点获取网络状态来进行[延迟加载](node-operators/networks/run-a-node/overview/#lazy-loading){target=\_blank}，直到节点完全同步，例如 `--lazy-loading-remote-rpc 'https://moonbeam.unitedbloc.com'`，只要指定的 RPC 端点具有足够的速率限制来处理预期的负载。强烈建议使用私有（API 密钥）端点，而不是公共端点。
+- **`--lazy-loading-remote-rpc`**: 允许通过依赖指定的 RPC 端点获取网络状态来进行[延迟加载](/node-operators/networks/run-a-node/overview/#lazy-loading){target=\_blank}，直到节点完全同步，例如 `--lazy-loading-remote-rpc 'https://moonbeam.unitedbloc.com'`，只要指定的 RPC 端点具有足够的速率限制来处理预期的负载。强烈建议使用私有（API 密钥）端点，而不是公共端点。
 - **`--lazy-loading-block`**: 用于指定延迟加载的区块哈希的可选参数。此参数允许您指定一个区块哈希，从该哈希开始加载数据。如果未提供，将使用最新的区块。
 - **`--lazy-loading-state-overrides`**: 用于指定延迟加载期间的状态覆盖的可选参数。此参数允许您提供一个包含状态覆盖的文件的路径。该文件可以包含任何应应用的自定义状态修改。
 - **`--lazy-loading-runtime-override`**: 用于指定启动延迟加载时的运行时覆盖的可选参数。如果未提供，它将从正在分叉的区块中获取运行时。

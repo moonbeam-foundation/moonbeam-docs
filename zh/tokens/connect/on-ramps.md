@@ -4,7 +4,7 @@ description: 本指南介绍了 Moonbeam 的法币入口，包括 Transak 和 On
 categories: Tokens and Accounts, Ethereum Toolkit
 ---
 
-# 法币入口服务将为 Moonbeam 收购 GLMR
+# 通过法币入金服务获取用于 Moonbeam 的 GLMR
 
 ## 简介
 

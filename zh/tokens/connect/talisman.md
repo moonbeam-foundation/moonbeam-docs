@@ -8,9 +8,9 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-作为 Polkadot 平行链，Moonbeam 使用[统一账户结构](learn/core-concepts/unified-accounts/){target=\_blank}，允许您通过单个以太坊风格的地址与 Substrate (Polkadot) 功能和 Moonbeam 的 EVM 进行交互。这种统一账户结构意味着您无需维护 Substrate 和以太坊账户即可与 Moonbeam 进行交互 - 相反，您可以使用单个以太坊私钥完成所有操作。
+作为 Polkadot 平行链，Moonbeam 使用[统一账户结构](/learn/core-concepts/unified-accounts/){target=\_blank}，允许您通过单个以太坊风格的地址与 Substrate (Polkadot) 功能和 Moonbeam 的 EVM 进行交互。这种统一账户结构意味着您无需维护 Substrate 和以太坊账户即可与 Moonbeam 进行交互 - 相反，您可以使用单个以太坊私钥完成所有操作。
 
-[Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} 支持通过 [Talisman](https://talisman.xyz){target=\_blank} 等扩展程序注入到浏览器中的 H160 账户。请注意，Polkadot.js Apps 正在逐步淘汰对[本地存储在浏览器缓存中的账户](tokens/connect/polkadotjs/)的支持。虽然您可以继续使用您通过 Polkadot.js Apps 导入并本地存储在浏览器中的任何帐户，但您将无法添加任何新帐户。这意味着您需要使用像 Talisman 这样的扩展程序。此外，通常认为从像 Talisman 这样的扩展程序注入您的帐户比直接将帐户存储在浏览器中更安全。
+[Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} 支持通过 [Talisman](https://talisman.xyz){target=\_blank} 等扩展程序注入到浏览器中的 H160 账户。请注意，Polkadot.js Apps 正在逐步淘汰对[本地存储在浏览器缓存中的账户](/tokens/connect/polkadotjs/)的支持。虽然您可以继续使用您通过 Polkadot.js Apps 导入并本地存储在浏览器中的任何帐户，但您将无法添加任何新帐户。这意味着您需要使用像 Talisman 这样的扩展程序。此外，通常认为从像 Talisman 这样的扩展程序注入您的帐户比直接将帐户存储在浏览器中更安全。
 
 本指南将包括在 Talisman 中设置帐户并使用它通过 Polkadot.js Apps 与 Moonbeam 交互的所有步骤。
 
@@ -89,7 +89,7 @@ Talisman 可以在您[启用以太坊账户后](#connecting-talisman-to-moonbase
 
 ## 通过 Substrate 的 API 发送交易 {: #sending-a-transaction-through-substrates-api }
 
-现在，为了展示 Moonbeam 的[统一账户](learn/core-concepts/unified-accounts/){target=\_blank}方案的潜力，您可以使用 Polkadot.js Apps 通过 Substrate API 进行转账。请记住，您正在使用以太坊风格的 H160 地址与 Substrate 进行交互。为此，您可以[添加另一个账户](#adding-a-new-account-to-talisman)。在 Talisman 中，账户已重命名为熟悉的 Alice 和 Bob 账户。要将一些 DEV 资金从 Alice 发送到 Bob，请按照以下步骤操作：
+现在，为了展示 Moonbeam 的[统一账户](/learn/core-concepts/unified-accounts/){target=\_blank}方案的潜力，您可以使用 Polkadot.js Apps 通过 Substrate API 进行转账。请记住，您正在使用以太坊风格的 H160 地址与 Substrate 进行交互。为此，您可以[添加另一个账户](#adding-a-new-account-to-talisman)。在 Talisman 中，账户已重命名为熟悉的 Alice 和 Bob 账户。要将一些 DEV 资金从 Alice 发送到 Bob，请按照以下步骤操作：
 
 点击 Alice 的**发送**按钮，这将打开另一个向导，指导您完成发送交易的过程。
 

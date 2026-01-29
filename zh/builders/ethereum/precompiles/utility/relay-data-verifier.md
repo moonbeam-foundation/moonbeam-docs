@@ -132,7 +132,7 @@ Moonbeam 的 [中继数据验证器预编译](https://github.com/moonbeam-founda
     --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/abi.js'
     ```
 
-获得ABI后，您可以使用您选择的以太坊库与预编译进行交互，例如[Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank}或[Web3.py](builders/ethereum/libraries/web3py/){target=\_blank}。一般步骤如下：
+获得ABI后，您可以使用您选择的以太坊库与预编译进行交互，例如[Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}或[Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}。一般步骤如下：
 
 1.  创建一个provider
 2.  创建预编译的合约实例

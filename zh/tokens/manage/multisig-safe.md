@@ -29,7 +29,7 @@ categories: Tokens and Accounts
 
 在本指南中，你将在 Moonbase Alpha 上创建一个 Safe，以便进行交互和管理资金。要连接到 Safe，你需要具备以下条件：
 
- - 已安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+ - 已安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - 至少有两个已加载资金的帐户。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
@@ -43,11 +43,11 @@ categories: Tokens and Accounts
 
 ### ERC-20 代币 {: #erc20-tokens }
 
-在本指南的后面部分，您将学习如何向 Safe 发送和接收 ERC-20 代币。因此，您需要部署一些 ERC-20 代币并将它们添加到您的 MetaMask 帐户中。为此，您可以查看[使用 Remix 部署到 Moonbeam](builders/ethereum/dev-env/remix/){target=\_blank} 指南，特别是[将合约部署到 Moonbeam](builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}和[与基于 Moonbeam 的 ERC-20 交互](builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank}部分将向您展示如何部署 ERC-20 代币并将其导入到 MetaMask 中。
+在本指南的后面部分，您将学习如何向 Safe 发送和接收 ERC-20 代币。因此，您需要部署一些 ERC-20 代币并将它们添加到您的 MetaMask 帐户中。为此，您可以查看[使用 Remix 部署到 Moonbeam](/builders/ethereum/dev-env/remix/){target=\_blank} 指南，特别是[将合约部署到 Moonbeam](/builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}和[与基于 Moonbeam 的 ERC-20 交互](/builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank}部分将向您展示如何部署 ERC-20 代币并将其导入到 MetaMask 中。
 
 ### 部署的智能合约 {: #deployed-smart-contract }
 
-在本指南的结尾，您将学习如何使用 Safe 与智能合约进行交互。因此，您需要部署一个智能合约来进行交互。如果您需要详细的说明，可以参考[使用 Remix 将合约部署到 Moonbeam](builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam){target=\_blank} 指南。
+在本指南的结尾，您将学习如何使用 Safe 与智能合约进行交互。因此，您需要部署一个智能合约来进行交互。如果您需要详细的说明，可以参考[使用 Remix 将合约部署到 Moonbeam](/builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam){target=\_blank} 指南。
 
 您可以前往 [Remix](https://remix.ethereum.org){target=\_blank} 并为以下 `SetText.sol` 合约创建一个新文件：
 
@@ -228,7 +228,7 @@ contract SetText {
  1. 切换到 “**资产**” 选项卡，然后从列表中选择 **MYTOK**
  2. 点击 **发送**
  3. 粘贴 Safe 的地址
- 4. 输入要发送的 MYTOK 数量。您应该已经在 [使用 Remix 部署到 Moonbeam](builders/ethereum/dev-env/remix/){target=\_blank} 指南中铸造了 800 万个 MYTOK 代币。因此，在本示例中，您可以输入 1000 个 MYTOK 作为要发送的数量
+ 4. 输入要发送的 MYTOK 数量。您应该已经在 [使用 Remix 部署到 Moonbeam](/builders/ethereum/dev-env/remix/){target=\_blank} 指南中铸造了 800 万个 MYTOK 代币。因此，在本示例中，您可以输入 1000 个 MYTOK 作为要发送的数量
  5. 点击 **下一步**
  6. 查看交易详情，然后单击**确认**以发送交易。
 

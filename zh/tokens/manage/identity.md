@@ -8,7 +8,7 @@ categories: 代币和帐户
 
 ## 简介 {: #introduction }
 
-Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的链上账户添加个人信息。个人信息可以包括默认字段，如您的法定姓名、显示名称、网站、Twitter 账号、Riot（现在称为 Element）名称。您还可以利用自定义字段来包含任何其他相关信息。
+Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的链上账户添加个人信息。个人信息可以包括默认字段包括：你的法定姓名、显示名称、网站、Twitter 账号以及 Riot（现称为 Element）用户名。您还可以利用自定义字段来包含任何其他相关信息。
 
 一旦您的身份信息上链，您可以向注册员请求验证您的身份。注册员将进行适当的尽职调查，以验证提交的身份信息，并根据他们的调查结果在链上提供他们的判断，您的账户旁边将出现一个绿色的复选标记。
 
@@ -20,35 +20,35 @@ Substrate Identity pallet 是一个开箱即用的解决方案，用于向您的
 
 - **默认字段包括** - 您的法定姓名、显示名称、网站、Twitter 句柄、Riot（现在称为 Element）名称
 
-- **自定义字段包括** - 任何其他相关信息。例如，您可以包括您的 Discord 句柄
+- **自定义字段包括** - 自定义字段包括任何其他相关信息。例如，你可以填写你的 Discord 账号
 
 === "Moonbeam"
-    |       Variable        |                               Definition                                |                      Value                      |
+    |          字段          |                                  说明                                   |                      值                       |
     |:---------------------:|:-----------------------------------------------------------------------:|:-----------------------------------------------:|
-    |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbeam.identity.basic_dep }} GLMR |
-    |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbeam.identity.field_dep }} GLMR |
-    | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonbeam.identity.max_fields }}   |
+    |        基础押金        |                     设置身份信息所需的押金金额                          | {{ networks.moonbeam.identity.basic_dep }} GLMR |
+    |        字段押金        |                 设置身份信息时每增加一个字段所需的押金金额              | {{ networks.moonbeam.identity.field_dep }} GLMR |
+    |     最大附加字段数     |                 身份信息中可存储的最大附加字段数量                      |   {{ networks.moonbeam.identity.max_fields }}   |
 
 === "Moonriver"
-    |       Variable        |                               Definition                                |                      Value                       |
+    |          字段          |                                  说明                                   |                      值                        |
     |:---------------------:|:-----------------------------------------------------------------------:|:------------------------------------------------:|
-    |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonriver.identity.basic_dep }} MOVR |
-    |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonriver.identity.field_dep }} MOVR |
-    | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |   {{ networks.moonriver.identity.max_fields }}   |
+    |        基础押金        |                     设置身份信息所需的押金金额                          | {{ networks.moonriver.identity.basic_dep }} MOVR |
+    |        字段押金        |                 设置身份信息时每增加一个字段所需的押金金额              | {{ networks.moonriver.identity.field_dep }} MOVR |
+    |     最大附加字段数     |                 身份信息中可存储的最大附加字段数量                      |   {{ networks.moonriver.identity.max_fields }}   |
 
 === "Moonbase Alpha"
-    |       Variable        |                               Definition                                |                     Value                      |
+    |          字段          |                                  说明                                   |                     值                       |
     |:---------------------:|:-----------------------------------------------------------------------:|:----------------------------------------------:|
-    |     Basic deposit     |           The amount held on deposit for setting an identity            | {{ networks.moonbase.identity.basic_dep }} DEV |
-    |     Field deposit     | The amount held on deposit per additional field for setting an identity | {{ networks.moonbase.identity.field_dep }} DEV |
-    | Max additional fields |     Maximum number of additional fields that may be stored in an ID     |  {{ networks.moonbase.identity.max_fields }}   |
+    |        基础押金        |                     设置身份信息所需的押金金额                          | {{ networks.moonbase.identity.basic_dep }} DEV |
+    |        字段押金        |                 设置身份信息时每增加一个字段所需的押金金额              | {{ networks.moonbase.identity.field_dep }} DEV |
+    |     最大附加字段数     |                 身份信息中可存储的最大附加字段数量                      |  {{ networks.moonbase.identity.max_fields }}   |
 
 ## 检查先决条件 { : #checking-prerequisites }
 
 对于本指南，您将需要以下内容：
 
 - 要在 Polkadot.js Apps 浏览器上连接到 [Moonbase Alpha TestNet](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network){target=\_blank}。您也可以按照并调整 [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network){target=\_blank} 或 [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network){target=\_blank} 的说明进行操作。
-- 要将 [创建或导入帐户](tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) 到 Polkadot.js Apps
+- 要将 [创建或导入帐户](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account) 到 Polkadot.js Apps
 - 确保您已为您的帐户充值。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 

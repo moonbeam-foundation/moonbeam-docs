@@ -430,7 +430,7 @@ GoldRush API 提供了许多其他方法，包括 NFT、价格、比特币和实
 要开始使用 GoldRush API，您需要具备以下条件：
 
  - 一个免费的 [GoldRush API 密钥](https://goldrush.dev/platform/auth/register/){target=\_blank}
- - 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+ - 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - 一个有资金的帐户。
  
   --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
@@ -471,7 +471,7 @@ balances 端点返回所有 ERC-20 和 NFT token 余额的列表，包括 ERC-72
 GoldRush 没有官方的 API 包装器。要直接查询 API，您必须使用 Python [requests 库](https://pypi.org/project/requests){target=\_blank}。使用命令行 `pip install requests` 将 requests 安装到您的环境中。然后导入它并在您的代码中使用它。使用 HTTP 动词 get 方法从 API 返回信息。将下面的代码块复制并粘贴到您喜欢的环境中并运行它。输出应该与上面的屏幕截图类似，但是格式可能会因您的环境而异。
 
 python
---8<-- 'code/builders/integrations/indexers/covalent/python-example.py'
+--8<-- 'zh/code/builders/integrations/indexers/covalent/python-example.py'
 
 !!! note
     `auth` 的第二个参数为空，因为不需要密码 - 只需要您的 API 密钥。

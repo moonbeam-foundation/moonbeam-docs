@@ -312,8 +312,8 @@ OpenGov技术委员会由在基于Moonbeam的网络中具有技术知识和专�
 
 有关通过 OpenGov 在 Moonbeam 上提交提案和参与公投的相关指南，请查看以下指南：
 
- - [如何提交提案](tokens/governance/proposals/){target=\_blank}
- - [如何对提案进行投票](tokens/governance/voting/){target=\_blank}
- - [与预映像预编译合约（Solidity 接口）交互](builders/ethereum/precompiles/features/governance/preimage/){target=\_blank}
- - [与公投预编译合约（Solidity 接口）交互](builders/ethereum/precompiles/features/governance/referenda/){target=\_blank}
- - [与信念投票预编译合约（Solidity 接口）交互](builders/ethereum/precompiles/features/governance/conviction-voting/){target=\_blank}
+ - [如何提交提案](/tokens/governance/proposals/){target=\_blank}
+ - [如何对提案进行投票](/tokens/governance/voting/){target=\_blank}
+ - [与预映像预编译合约（Solidity 接口）交互](/builders/ethereum/precompiles/features/governance/preimage/){target=\_blank}
+ - [与公投预编译合约（Solidity 接口）交互](/builders/ethereum/precompiles/features/governance/referenda/){target=\_blank}
+ - [与信念投票预编译合约（Solidity 接口）交互](/builders/ethereum/precompiles/features/governance/conviction-voting/){target=\_blank}

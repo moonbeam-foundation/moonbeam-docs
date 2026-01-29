@@ -43,7 +43,7 @@ Moonbeam 生态系统包含两个不同的生产网络：Moonbeam 和 Moonriver�
 
 要在 [Moonscan](https://moonscan.io){target=\_blank} 上正确标记您项目的智能合约，请提交包含您的项目和合约详情的 [Moonscan 合约标记表格](https://moonscan.io/contactus?id=5){target=\_blank}。
 
-### 在 FiDi 注册以进行分析（推荐）{: #register-with-fidi }
+### 在 FiDi 注册以获取分析功能（推荐）{: #register-with-fidi }
 
 鼓励新的和现有的项目在 FiDi 上注册，以便您的项目活动可以被索引并在公共分析中显示。请使用 [FiDi 项目列表表格](https://docs.google.com/forms/d/e/1FAIpQLSc8c5iOzwIHhLJKRTnC48j7CAj9JY8i_lHxryNBdJdzIyDx3Q/viewform){target=\_blank} 提交您的项目。
 

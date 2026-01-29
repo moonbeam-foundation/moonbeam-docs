@@ -42,7 +42,7 @@ categories: Substrate Toolkit, Libraries and SDKs
 
 ## 创建 API 提供程序实例 {: #creating-an-API-provider-instance }
 
-类似于[以太坊 API 库](builders/ethereum/libraries/){target=\_blank}，您必须首先实例化 Polkadot.js API 的 API 实例。使用您希望与之交互的 Moonbeam 网络的 WebSocket 端点创建 `WsProvider`。
+类似于[以太坊 API 库](/builders/ethereum/libraries/){target=\_blank}，您必须首先实例化 Polkadot.js API 的 API 实例。使用您希望与之交互的 Moonbeam 网络的 WebSocket 端点创建 `WsProvider`。
 
 --8<-- 'zh/text/_common/endpoint-examples.md'
 
@@ -281,7 +281,7 @@ const keyring = new Keyring({ type: 'ethereum' });
 
 ## Dry Run API {: #dry-run-api }
 
-Dry Run API 是一种简便的方法，用于测试调用的完整性，而不会产生任何交易费用。可以从 Polkadot.js Apps 的**开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=\_blank}选项卡访问 Dry Run API。虽然 Dry Run API 主要用于[测试 XCM 消息](builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=\_blank}，但它也可用于测试任何任意调用。
+Dry Run API 是一种简便的方法，用于测试调用的完整性，而不会产生任何交易费用。可以从 Polkadot.js Apps 的**开发者**部分的[运行时调用](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/runtime){target=\_blank}选项卡访问 Dry Run API。虽然 Dry Run API 主要用于[测试 XCM 消息](/builders/interoperability/xcm/send-execute-xcm/#test-an-xcm-message-with-the-dry-run-api){target=\_blank}，但它也可用于测试任何任意调用。
 
 此方法将 origin 和调用数据作为参数，并返回执行结果和其他事件数据。
 
@@ -357,13 +357,13 @@ console.log(`Submitted with hash ${txHash}`);
 !!! note
     在客户端 v0.35.0 之前，用于执行简单余额转账的 extrinsic 是 `balances.transfer`。此后该 extrinsic 已被弃用，并由 `balances.transferAllowDeath` extrinsic 替代。
 
-请注意，`signAndSend` 函数也可以接受可选参数，例如 `nonce`。例如：`signAndSend(alice, { nonce: aliceNonce })`。你可以使用 [State Queries](builders/substrate/libraries/polkadot-js-api/#state-queries){target=\_blank} 章节中的示例代码来获取正确的 nonce（包括 mempool 中的交易）。
+请注意，`signAndSend` 函数也可以接受可选参数，例如 `nonce`。例如：`signAndSend(alice, { nonce: aliceNonce })`。你可以使用 [State Queries](/builders/substrate/libraries/polkadot-js-api/#state-queries){target=\_blank} 章节中的示例代码来获取正确的 nonce（包括 mempool 中的交易）。
 
 ### 手续费信息 {: #fees }
 
 交易端点也提供了一种方法，用于获取指定 `api.tx.<module>.<method>` 的 weight 信息。为此，你需要在使用特定的 `module` 和 `method` 构建完整交易之后，调用 `paymentInfo` 函数。
 
-`paymentInfo` 函数会返回以 `refTime` 和 `proofSize` 表示的 weight 信息，这些信息可用于确定交易手续费。在构建 [通过 XCM 进行远程执行调用](builders/interoperability/xcm/remote-execution/){target=\_blank} 时，这会非常有帮助。
+`paymentInfo` 函数会返回以 `refTime` 和 `proofSize` 表示的 weight 信息，这些信息可用于确定交易手续费。在构建 [通过 XCM 进行远程执行调用](/builders/interoperability/xcm/remote-execution/){target=\_blank} 时，这会非常有帮助。
 
 例如，假设你已经[初始化了 API](#creating-an-API-provider-instance)，下面的代码片段展示了如何获取两个账户之间一次简单余额转账的 weight 信息：
 
@@ -389,7 +389,7 @@ console.log(`Transaction fee: ${partialFee.toHuman()}`);
 
 根据发送的交易，可能会发出其他事件，例如，对于余额转移事件，可能包括一个或多个 `balance.Transfer` 事件。
 
-Transfer API 页面包含一个[示例代码段](learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank}，用于订阅新的已完成区块头并检索所有 `balance.Transfer` 事件。
+Transfer API 页面包含一个[示例代码段](/learn/core-concepts/transfers-api/#monitor-all-balance-transfers-with-the-substrate-api){target=\_blank}，用于订阅新的已完成区块头并检索所有 `balance.Transfer` 事件。
 
 ### 批量交易 {: #batching-transactions }
 
@@ -485,7 +485,7 @@ RPC 作为特定模块上的方法公开。这意味着一旦可用，您就可�
       }'
     ```
 
-[共识和最终性页面](learn/core-concepts/consensus-finality/){target=\_blank} 包含用于使用公开的自定义和 Substrate RPC 调用来检查给定交易的最终性的示例代码。
+[共识和最终性页面](/learn/core-concepts/consensus-finality/){target=\_blank} 包含用于使用公开的自定义和 Substrate RPC 调用来检查给定交易的最终性的示例代码。
 
 ## Polkadot.js API 实用程序函数 {: #utilities }
 

@@ -34,7 +34,7 @@ categories: 基础
 
 对于以太坊上的 PoS，验证者会根据其在网络中的权益被选中来生产和验证区块。只要验证者已存放验证者押金，他们就可以被选中来生产和验证区块。但是，如前所述，在网络中的权益越大，验证者被选中来生产和验证区块的机会就越高。
 
-另一方面，对于 Moonbeam 上的 DPoS，收集者有资格根据他们自己的权益加上他们在网络中委托的权益来生产区块。任何通证持有者都可以选择将其权益委托给收集者候选人。按权益（包括委托）排序靠前的收集者候选人将加入活跃集。活跃集中的候选人数量受[治理](learn/features/governance/){target=\_blank}的约束。一旦进入活跃集，就会随机选择收集者来使用 Nimbus 共识框架生产区块。重要的是要注意，一旦收集者进入活跃集，他们的总权益不会影响他们被选中生产区块的机会。
+另一方面，对于 Moonbeam 上的 DPoS，收集者有资格根据他们自己的权益加上他们在网络中委托的权益来生产区块。任何通证持有者都可以选择将其权益委托给收集者候选人。按权益（包括委托）排序靠前的收集者候选人将加入活跃集。活跃集中的候选人数量受[治理](/learn/features/governance/){target=\_blank}的约束。一旦进入活跃集，就会随机选择收集者来使用 Nimbus 共识框架生产区块。重要的是要注意，一旦收集者进入活跃集，他们的总权益不会影响他们被选中生产区块的机会。
 
 在最终性方面，由于以太坊使用的检查点最终性系统，以太坊上的区块完成最终确定所需的时间可能比 Moonbeam 上要长得多。在以太坊中，验证者在检查点区块处确定最终性，检查点区块始终是 epoch 中的第一个区块。由于一个 epoch 有 32 个 slot，每个 slot 为 12 秒，因此区块完成最终确定至少需要 384 秒或 6.4 分钟。
 
@@ -78,9 +78,9 @@ Moonbeam 不使用检查点区块，而是依赖于 Polkadot 的 GRANDPA 最终�
 
 Moonbeam 增加了对两个自定义 RPC 端点 `moon_isBlockFinalized` 和 `moon_isTxFinalized` 的支持，它们可用于检查链上事件是否已最终确定。 这些方法更直接一些，因为您无需比较区块号来确保您的交易已最终确定。
 
-有关更多信息，您可以访问 Moonbeam 自定义 API 页面的[最终性 RPC 端点](builders/ethereum/json-rpc/moonbeam-custom-api/#rpc-methods){target=\_blank}部分。
+有关更多信息，您可以访问 Moonbeam 自定义 API 页面的[最终性 RPC 端点](/builders/ethereum/json-rpc/moonbeam-custom-api/#rpc-methods){target=\_blank}部分。
 
-您可以修改上面 Ethereum RPC 部分中的脚本，以使用 `moon_isBlockFinalized` 和 `moon_isTxFinalized`。 为此，您可以使用 [Web3.js](https://web3js.readthedocs.io){target=\_blank} 和 [Ethers.js](https://docs.ethers.org/v6){target=\_blank} 的 `send` 方法自定义调用 Substrate JSON-RPC。 也可以使用 [Web3.py](https://web3py.readthedocs.io){target=\_blank} 和 `make_request` 方法进行自定义 RPC 请求。 您需要将方法名称和参数传递给自定义请求，您可以在 [Moonbeam 自定义 API](builders/ethereum/json-rpc/moonbeam-custom-api/){target=\_blank} 页面上找到它们。
+您可以修改上面 Ethereum RPC 部分中的脚本，以使用 `moon_isBlockFinalized` 和 `moon_isTxFinalized`。 为此，您可以使用 [Web3.js](https://web3js.readthedocs.io){target=\_blank} 和 [Ethers.js](https://docs.ethers.org/v6){target=\_blank} 的 `send` 方法自定义调用 Substrate JSON-RPC。 也可以使用 [Web3.py](https://web3py.readthedocs.io){target=\_blank} 和 `make_request` 方法进行自定义 RPC 请求。 您需要将方法名称和参数传递给自定义请求，您可以在 [Moonbeam 自定义 API](/builders/ethereum/json-rpc/moonbeam-custom-api/){target=\_blank} 页面上找到它们。
 
 ???+ code "moon_isBlockFinalized"
 
@@ -122,7 +122,7 @@ Moonbeam 增加了对两个自定义 RPC 端点 `moon_isBlockFinalized` 和 `moo
         --8<-- 'code/learn/core-concepts/consensus-finality/custom-rpc/tx/web3.py'
         ```
 
-## 使用 Substrate RPC 终结点检查交易最终性 {: #check-tx-finality-with-substrate-rpc-endpoints }
+## 通过 Substrate RPC 接口检查交易最终性 {: #check-tx-finality-with-substrate-rpc-endpoints }
 
 使用 Substrate JSON-RPC 中的以下三个 RPC 请求，您可以获取当前最终确定的区块，并将其与您要检查最终性的交易的区块号进行比较：
 
@@ -130,7 +130,7 @@ Moonbeam 增加了对两个自定义 RPC 端点 `moon_isBlockFinalized` 和 `moo
 - `chain_getHeader` - 第二个请求获取给定区块哈希值的区块头
 - `eth_getTransactionReceipt` - 这将检索给定交易哈希值的交易回执
 
-[Polkadot.js API 软件包](builders/substrate/libraries/polkadot-js-api/){target=\_blank} 和 [Python Substrate 接口软件包](builders/substrate/libraries/py-substrate-interface/){target=\_blank} 为开发人员提供了一种使用 JavaScript 和 Python 与 Substrate 链交互的方式。
+[Polkadot.js API 软件包](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} 和 [Python Substrate 接口软件包](/builders/substrate/libraries/py-substrate-interface/){target=\_blank} 为开发人员提供了一种使用 JavaScript 和 Python 与 Substrate 链交互的方式。
 
 您可以在 [Polkadot.js 官方文档站点](https://polkadot.js.org/docs/substrate/rpc){target=\_blank} 中找到有关 Polkadot.js 和 Substrate JSON-RPC 的更多信息，在 [PySubstrate 官方文档站点](https://jamdottech.github.io/py-polkadot-sdk/){target=\_blank} 中找到有关 Python Substrate 接口的更多信息。
 

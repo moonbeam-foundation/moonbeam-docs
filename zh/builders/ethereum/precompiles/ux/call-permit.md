@@ -10,7 +10,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-Moonbeam 上的调用许可预编译允许用户为任何 EVM 调用签署许可，这是一个 [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} 签名消息，可以由任何人或任何智能合约分派。它类似于 [ERC-20 许可 Solidity 接口](builders/interoperability/xcm/xc20/interact/#the-erc20-permit-interface){target=\_blank}，只不过它适用于任何 EVM 调用，而不仅仅是批准。
+Moonbeam 上的调用许可预编译允许用户为任何 EVM 调用签署许可，这是一个 [EIP-712](https://eips.ethereum.org/EIPS/eip-712){target=\_blank} 签名消息，可以由任何人或任何智能合约分派。它类似于 [ERC-20 许可 Solidity 接口](/builders/interoperability/xcm/xc20/interact/#the-erc20-permit-interface){target=\_blank}，只不过它适用于任何 EVM 调用，而不仅仅是批准。
 
 当调用许可被分派时，它是代表签署许可的用户执行的，并且分派许可的用户或合约负责支付交易费用。因此，预编译可用于执行无 Gas 交易。
 
@@ -84,7 +84,7 @@ Moonbeam 上的调用许可预编译允许用户为任何 EVM 调用签署许可
 
 要学习本教程，您需要具备以下条件：
 
-- [已安装MetaMask并连接到Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+- [已安装MetaMask并连接到Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - 在Moonbase Alpha上创建或拥有两个帐户，以测试Call Permit Precompile中的不同功能
 - 至少其中一个帐户需要使用`DEV`代币进行充值。
 
@@ -199,7 +199,7 @@ contract SetMessage {
 
 ### 使用浏览器 {: #use-the-browser }
 
-要开始，您可以在浏览器中打开 [JSFiddle](https://jsfiddle.net){target=\_blank} 或其他 JavaScript 游乐场。首先，您需要添加 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank}，因为它将用于获取签名的 `v`、`r` 和 `s` 值：
+要开始，您可以在浏览器中打开 [JSFiddle](https://jsfiddle.net){target=\_blank} 或其他 JavaScript 游乐场。首先，您需要添加 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}，因为它将用于获取签名的 `v`、`r` 和 `s` 值：
 
 1. 点击 **Resources**
 1. 开始输入 `ethers`，下拉列表应填充匹配的库。选择 **ethers**
@@ -262,7 +262,7 @@ node getSignature.js
 
 在控制台中，你应该会看到连接签名以及包含 `v`、`r` 和 `s` 的值。在后续与调用许可预编译交互时需要用到这些值，请复制保存。
 
---8<-- 'code/builders/ethereum/precompiles/ux/call-permit/signature-output.md'
+--8<-- 'zh/code/builders/ethereum/precompiles/ux/call-permit/signature-output.md'
 
 ## 与Solidity接口交互 {: #interact-with-the-solidity-interface }
 

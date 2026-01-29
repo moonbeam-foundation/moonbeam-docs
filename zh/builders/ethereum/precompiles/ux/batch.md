@@ -75,7 +75,7 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
 
 要学习本教程，您需要具备：
 
-- [已安装MetaMask并连接到Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+- [已安装MetaMask并连接到Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - 在Moonbase Alpha上创建或拥有两个帐户，以测试批处理预编译中的不同功能
 - 至少一个帐户需要有`DEV`代币。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
@@ -156,14 +156,14 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
 
 ![发送批量转移](/images/builders/ethereum/precompiles/ux/batch/batch-4.webp)
 
-交易完成后，请务必检查两个帐户的余额，无论是在 MetaMask 中还是在[区块浏览器](builders/get-started/explorers/){target=\_blank}中。恭喜！您现在已通过批量预编译发送了批量转移。
+交易完成后，请务必检查两个帐户的余额，无论是在 MetaMask 中还是在[区块浏览器](/builders/get-started/explorers/){target=\_blank}中。恭喜！您现在已通过批量预编译发送了批量转移。
 
 !!! note
      通常，如果您想将本地货币发送到合约或通过合约发送，则必须在整个交易对象中设置该值，并与可支付函数交互。但是，由于批量预编译直接与 Substrate 代码交互，因此这不是典型的以太坊交易，因此没有必要。
 
 ### 查找合约交互的调用数据 {: #find-a-contract-interactions-call-data }
 
-[Remix](builders/ethereum/dev-env/remix/){target=\_blank} 等可视化界面和 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank} 等实用库隐藏了以太坊交易与 Solidity 智能合约交互的方式。函数的名称和输入类型会被哈希为[函数选择器](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=\_blank}，输入数据被编码。两部分组合后作为交易的调用数据发送。要在批量交易中发送子交易，发送方需要事先知道调用数据。
+[Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 等可视化界面和 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 等实用库隐藏了以太坊交易与 Solidity 智能合约交互的方式。函数的名称和输入类型会被哈希为[函数选择器](https://docs.soliditylang.org/en/latest/abi-spec.html#function-selector-and-argument-encoding){target=\_blank}，输入数据被编码。两部分组合后作为交易的调用数据发送。要在批量交易中发送子交易，发送方需要事先知道调用数据。
 
 尝试使用 Remix 查找交易的调用数据：
 
@@ -262,7 +262,7 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
 
 ## Ethereum 开发库 {: #ethereum-development-libraries }
 
-如果您已经学习了 Moonbeam 上的 [Ethers.js 教程](builders/ethereum/libraries/ethersjs/){target=\_blank}，您可能会发现很难找到函数的调用数据。答案隐藏在 Ether 的 `Interface` 对象中，其中的 [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} 函数允许您输入函数名称和输入，以接收最终的调用数据。
+如果您已经学习了 Moonbeam 上的 [Ethers.js 教程](/builders/ethereum/libraries/ethersjs/){target=\_blank}，您可能会发现很难找到函数的调用数据。答案隐藏在 Ether 的 `Interface` 对象中，其中的 [encodeFunctionData](https://docs.ethers.org/v6/api/abi/#Interface-encodeFunctionData){target=\_blank} 函数允许您输入函数名称和输入，以接收最终的调用数据。
 
 !!! note
     以下各节中提供的代码片段不适用于生产环境。请确保针对每个用例进行调整。
@@ -285,4 +285,4 @@ Moonbeam 上的批量预编译合约允许开发者将多个 EVM 调用合并为
      --8<-- 'code/builders/ethereum/precompiles/ux/batch/web3py-batch.py'
      ```
 
-之后，您应该可以像通常与 [Ethers](builders/ethereum/libraries/ethersjs/){target=\_blank} 中的合约交互一样与批处理预编译进行交互。
+之后，您应该可以像通常与 [Ethers](/builders/ethereum/libraries/ethersjs/){target=\_blank} 中的合约交互一样与批处理预编译进行交互。

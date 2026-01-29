@@ -21,7 +21,7 @@ material_overrides:
     node_operators: 节点运营商
     operating_a_node: 运营节点
     how_to_use_ethereum__7f58d5: 如何使用以太坊工具发送交易和部署合约
-    how_to_get_your__d48411: 如何获得基于 Moonbeam 的网络的 API 端点
+    how_to_get_your__d48411: 如何获得基于 Moonbeam 网络的 API 端点
     learn_how_to_build__870c14: |-
       了解如何构建新应用程序或将现有的 Solidity/Vyper 智能合约部署到 Moonbeam、Moonriver 或 Moonbase Alpha 测试网。
     builders: 开发者
@@ -34,7 +34,7 @@ material_overrides:
     quick_references: 快速参考
     grants_program: 资助计划
     bug_bounty: 漏洞赏金
-    start_building: 开始构建
+    start_building: 开始开发
     representation_of_the_moonbeam__37d819: Moonbeam 文档站点的表示
     ai_compatible_docs: AI 兼容文档
     dive_into_the_tools__9abd82: 深入了解工具、集成和全面的教程，开始使用 Moonbeam 并基于其构建。
@@ -68,15 +68,15 @@ material_overrides:
         感谢您的反馈！请提交
         <a href="https://github.com/moonbeam-foundation/moonbeam-docs/issues/new/?title=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">更多反馈</a> 来帮助我们改进。
     footer:
-      llms_by_topic: 按主题分类的法学硕士
-      llms_full_txt: 法学硕士全文
-      llms_txt: 法学硕士文本
-      made_with_by: 由 <a href="https://papermoon.io/" target="_blank">PaperMoon</a> with 🩵 制作
+      llms_by_topic: 按主题浏览LLM文本
+      llms_full_txt: LLM 完整文本数据
+      llms_txt: LLMS 文本
+      made_with_by: <a href="https://papermoon.io/" target="_blank">PaperMoon</a> with 🩵 出品
       privacy_policy: 隐私政策
       terms_of_use: 使用条款
     header:
       connect_wallet: 连接钱包
-      faucet: 水龙头
+      faucet:  测试代币
 disclaimer:
   third_party: 所有可用信息，包括本项目中描述的声明、内容、设计、算法、估算、路线图、规范和性能测量，仅供参考，Moonbeam 不认可此处引用的任何项目。读者有责任检查和验证其准确性和真实性。此外，本项目中的任何信息均不构成投资邀请。创建 Moonbeam 网络或 Moonriver 网络的任何开发者或实体或编写此信息的作者均不对因您使用、无法使用或您与其他用户的互动而引起的任何索赔或损害负责， 包括任何直接、间接、附带、特殊、惩戒性、惩罚性或后果性损害，或利润、加密货币、代币或任何其他有价值物品的损失。本文包含的所有信息如有更改，恕不另行通知。
   third_party_content_intro: |-
@@ -103,8 +103,8 @@ common:
   assumes_mac_or_ubuntu_env: |-
     本指南中的示例假设你使用的是 MacOS 或 Ubuntu 22.04 环境，如在 Windows 上使用需做相应调整。
   async_backing: |-
-    !!! note
-        自 runtime 3000 起，[异步背书](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\_blank} 已在所有 Moonbeam 网络启用。因此，目标区块时间从 12 秒缩短为 6 秒，这可能会破坏一些基于时间的假设。
+    !!! 注意：
+        从运行时版本 3000 开始，Moonbeam 全部网络已启用 [异步背书（asynchronous backing）](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\_blank} 机制。
   endpoint_examples_list_item: |-
     要在 Moonbeam 或 Moonriver 上测试本指南中的示例，你需要拥有自己的端点和 API 密钥，可从支持的[端点提供商](/builders/get-started/endpoints/){target=\_blank}获取
   endpoint_examples: |-
@@ -143,10 +143,9 @@ common:
     ```
   faucet:
     list_item: |-
-      你可以每 24 小时从 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank} 获取一次 DEV 测试代币
+      你可以每 24 小时通过 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank}获取一次用于测试的 DEV 代币。
     sentence: |-
-      你可以每 24 小时从 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank} 获取一次 DEV 测试代币。
-action:
+      你可以每 24 小时通过 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\_blank}获取一次用于测试的 DEV 代币。
   edit: 编辑
   view: 查看
 clipboard:

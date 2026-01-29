@@ -6,9 +6,9 @@ categories: XCM 远程执行
 
 # 使用 XCM Transactor 预编译进行远程执行
 
-XCM 消息由一系列由跨共识虚拟机 (XCVM) 执行的[指令](builders/interoperability/xcm/core-concepts/instructions/){target=\_blank}组成。这些指令的组合会产生预定的操作，例如跨链代币转移，更有趣的是，远程跨链执行。远程执行涉及从一个区块链在另一个区块链上执行操作或动作，同时保持发送者身份和权限的完整性。
+XCM 消息由一系列由跨共识虚拟机 (XCVM) 执行的[指令](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank}组成。这些指令的组合会产生预定的操作，例如跨链代币转移，更有趣的是，远程跨链执行。远程执行涉及从一个区块链在另一个区块链上执行操作或动作，同时保持发送者身份和权限的完整性。
 
-通常，XCM 消息是从根源（即 SUDO 或通过治理）发送的，这对于希望通过简单交易利用远程跨链调用的项目来说并不理想。[XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} 可以通过[主权账户](builders/interoperability/xcm/overview/#general-xcm-definitions){target=\_blank}（应仅允许通过治理）或通过来自源链的简单交易的[计算来源账户](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}，轻松地在远程链上进行交易。
+通常，XCM 消息是从根源（即 SUDO 或通过治理）发送的，这对于希望通过简单交易利用远程跨链调用的项目来说并不理想。[XCM Transactor Pallet](https://github.com/moonbeam-foundation/moonbeam/blob/master/pallets/xcm-transactor/src/lib.rs){target=\_blank} 可以通过[主权账户](/builders/interoperability/xcm/overview/#general-xcm-definitions){target=\_blank}（应仅允许通过治理）或通过来自源链的简单交易的[计算来源账户](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}，轻松地在远程链上进行交易。
 
 但是，XCM Transactor Pallet 是用 Rust 编写的，通常无法从 Moonbeam 的 Ethereum API 端访问。因此，Moonbeam 引入了 XCM Transactor 预编译，它是一个 Solidity 接口，允许您使用 Ethereum API 直接与 Substrate pallet 交互。
 
@@ -113,7 +113,7 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
             13764626000000n
             ```
 
-    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供用于支付费用的 token 的资产 multilocation，而不是 XC-20 token 的地址"
+    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供用于支付费用的 token 的资产 multilocation，而不是 XC-20 token 的地址"
 
         === "Parameters"
 
@@ -124,12 +124,12 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
             - `feeAmount` - 用作费用的金额
             - `overallWeight` - extrinsic 可以用来执行所有 XCM 指令的总权重，加上 `Transact` 调用的权重 (`transactRequiredWeightAtMost`)。`overallWeight` 结构还包含 `refTime` 和 `proofSize`。如果您为 `refTime` 传递一个 uint64 的最大值，您将允许购买无限量的权重，从而无需确切知道目标链执行 XCM 需要多少权重
 
-    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供 XC-20 资产的地址以用于支付费用"
+    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *uint64* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *uint64* overallWeight) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供 XC-20 资产的地址以用于支付费用"
 
         === "Parameters"
 
             - `dest` - 生态系统中一条链的 multilocation，XCM 消息将发送到该链（目标链）。multilocation 必须以特定方式格式化，这在 [构建预编译 Multilocation](#building-the-precompile-multilocation) 部分中描述
-            - `feeLocationAddress` - 用于支付费用的资产的 [XC-20 地址](builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=\_blank}
+            - `feeLocationAddress` - 用于支付费用的资产的 [XC-20 地址](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=\_blank}
             - `transactRequiredWeightAtMost` - 在目标链中购买的权重，用于执行在 `Transact` 指令中定义的调用
             - `call` - 在目标链中执行的调用，如 `Transact` 指令中定义
             - `feeAmount` - 用作费用的金额
@@ -148,7 +148,7 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
     }
     ```
 
-    此外，还增加了对 [`RefundSurplus`](builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} 和 [`DepositAsset`](builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} 指令的支持。要将 `RefundSurplus` 指令附加到 XCM 消息，您可以使用 `refund` 参数，如果设置为 `true`，该参数将退还未用于 `Transact` 的任何剩余资金。
+    此外，还增加了对 [`RefundSurplus`](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} 和 [`DepositAsset`](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} 指令的支持。要将 `RefundSurplus` 指令附加到 XCM 消息，您可以使用 `refund` 参数，如果设置为 `true`，该参数将退还未用于 `Transact` 的任何剩余资金。
 
     V3 接口包括以下函数：
 
@@ -184,7 +184,7 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
             13764626000000n
             ```
 
-    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供用于支付费用的 token 的资产 multilocation，而不是 XC-20 token 的地址"
+    ??? function "**transactThroughSignedMultilocation**(*Multilocation* *memory* dest, *Multilocation* *memory* feeLocation, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供用于支付费用的 token 的资产 multilocation，而不是 XC-20 token 的地址"
 
         === "Parameters"
 
@@ -204,12 +204,12 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
             - `overallWeight` - extrinsic 可以用来执行所有 XCM 指令的总权重，加上 `Transact` 调用的权重 (`transactRequiredWeightAtMost`)。`overallWeight` 结构还包含 `refTime` 和 `proofSize`。如果您为 `refTime` 传递一个 uint64 的最大值，您将允许购买无限量的权重，从而无需确切知道目标链执行 XCM 需要多少权重
             - `refund` - 一个布尔值，指示是否将 `RefundSurplus` 和 `DepositAsset` 指令添加到 XCM 消息中，以退还任何剩余费用
 
-    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供 XC-20 资产的地址以用于支付费用"
+    ??? function "**transactThroughSigned**(*Multilocation* *memory* dest, *address* feeLocationAddress, *Weight* transactRequiredWeightAtMost, *bytes* *memory* call, *uint256* feeAmount, *Weight* overallWeight, *bool* refund) — 发送一条 XCM 消息，其中包含在目标链中远程执行调用的指令。远程调用将由一个新账户签名并执行，该账户称为 [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 账户，目标平行链必须计算该账户。基于 Moonbeam 的网络遵循 [Polkadot 设定的 Computed Origins 标准](https://github.com/paritytech/polkadot-sdk/blob/{{ polkadot_sdk }}/polkadot/xcm/xcm-builder/src/location_conversion.rs){target=\_blank}。您需要提供 XC-20 资产的地址以用于支付费用"
 
         === "Parameters"
 
             - `dest` - 生态系统中一条链的 multilocation，XCM 消息将发送到该链（目标链）。multilocation 必须以特定方式格式化，这在 [构建预编译 Multilocation](#building-the-precompile-multilocation) 部分中描述
-            - `feeLocationAddress` - 用于支付费用的资产的 [XC-20 地址](builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=\_blank}
+            - `feeLocationAddress` - 用于支付费用的资产的 [XC-20 地址](/builders/interoperability/xcm/xc20/overview/#current-xc20-assets){target=\_blank}
             - `transactRequiredWeightAtMost` - 在目标链中购买的权重，用于执行在 `Transact` 指令中定义的调用。`transactRequiredWeightAtMost` 结构包含以下内容：
                 - `refTime` - 可用于执行的计算时间量
                 - `proofSize` - 可以使用的存储量（以字节为单位）
@@ -226,12 +226,12 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
 
 ## 用于远程执行的 XCM 指令 {: #xcm-instructions-for-remote-execution }
 
-通过 XCM 执行远程执行的相关 [XCM 指令](builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} 包括但不限于：
+通过 XCM 执行远程执行的相关 [XCM 指令](/builders/interoperability/xcm/core-concepts/instructions/){target=\_blank} 包括但不限于：
 
- - [`DescendOrigin`](builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} - 在目标链中执行。它会改变目标链上的来源，以匹配源链上的来源，确保目标链上的执行代表在源链上发起 XCM 消息的同一实体
- - [`WithdrawAsset`](builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - 在目标链中执行。移除资产并将其放入持有注册表
- - [`BuyExecution`](builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - 在目标链中执行。从持有注册表中获取资产以支付执行费用。要支付的费用由目标链确定
- - [`Transact`](builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - 在目标链中执行。从给定的来源分派编码的调用数据，从而可以执行特定的操作或函数
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank} - 在目标链中执行。它会改变目标链上的来源，以匹配源链上的来源，确保目标链上的执行代表在源链上发起 XCM 消息的同一实体
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - 在目标链中执行。移除资产并将其放入持有注册表
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - 在目标链中执行。从持有注册表中获取资产以支付执行费用。要支付的费用由目标链确定
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - 在目标链中执行。从给定的来源分派编码的调用数据，从而可以执行特定的操作或函数
 
 ## 构建预编译多重定位 {: #building-the-precompile-multilocation }
 
@@ -247,7 +247,7 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
 
 ## 通过计算来源账户进行交易 {: #xcmtransactor-transact-through-signed }
 
-本节介绍了如何构建 XCM 消息，以便使用 XCM Transactor Pallet 进行远程执行，特别是使用 `transactThroughSigned` 函数。此函数使用目标链上的[计算来源](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}账户来分派远程调用。
+本节介绍了如何构建 XCM 消息，以便使用 XCM Transactor Pallet 进行远程执行，特别是使用 `transactThroughSigned` 函数。此函数使用目标链上的[计算来源](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}账户来分派远程调用。
 
 本节中的示例使用了一个不可公开访问的目标平行链，因此您无法完全按照示例进行操作。您可以根据自己的用例修改示例。
 
@@ -258,8 +258,8 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
 
 要能够发送本节中的外部交易，您需要具备：
 
-- 原始链中的一个拥有[资金](builders/get-started/networks/moonbase/#get-tokens){target=\_blank}的帐户
-- 目标链上的计算原始帐户中的资金。要了解如何计算计算原始帐户的地址，请参阅[如何计算计算原始](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}文档。
+- 原始链中的一个拥有[资金](/builders/get-started/networks/moonbase/#get-tokens){target=\_blank}的帐户
+- 目标链上的计算原始帐户中的资金。要了解如何计算计算原始帐户的地址，请参阅[如何计算计算原始](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}文档。
 
 在本示例中，将使用以下帐户：
 
@@ -299,13 +299,13 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
         const feeLocationAddress = '0xFFFFFFFF1AB2B146C526D4154905FF12E6E57675';
         ```
 
-    - `transactRequiredWeightAtMost` - 在 `Transact` 指令中执行调用所需的权重。您可以使用 Polkadot.js API 的 [`paymentInfo` 方法](builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank} 获取此信息
+    - `transactRequiredWeightAtMost` - 在 `Transact` 指令中执行调用所需的权重。您可以使用 Polkadot.js API 的 [`paymentInfo` 方法](/builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank} 获取此信息
 
         ```js
         const transactRequiredWeightAtMost = [1000000000n, 5000n];
         ```
 
-    - `call` - 要调用的 pallet、方法和输入的编码调用数据。它可以在 [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank}（必须连接到目标链）中构建，也可以使用 [Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=\_blank}。在此示例中，内部调用是将目标链的 1 个代币简单地转移到 Alice 在该链上的帐户：
+    - `call` - 要调用的 pallet、方法和输入的编码调用数据。它可以在 [Polkadot.js Apps](https://polkadot.js.org/apps){target=\_blank}（必须连接到目标链）中构建，也可以使用 [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank}。在此示例中，内部调用是将目标链的 1 个代币简单地转移到 Alice 在该链上的帐户：
 
         ```js
         const call =
@@ -364,7 +364,7 @@ XCM Transactor 预编译合约是一个 Solidity 接口，开发者可以通过�
     --8<-- 'code/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/calculate-relative-price.ts'
     ```
 
-请注意，相对价格值与 [中继链 XCM 费用计算](builders/interoperability/xcm/core-concepts/weights-fees/#polkadot){target=\_blank} 部分中估计的成本或 [每权重单位](builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank} 部分中显示的成本相关（如果目标是另一个平行链）。您需要找到正确的值，以确保计算 Origin 账户持有的 Token 数量正确。计算相关的 XCM 执行费用就像将 `transactExtraWeightSigned` 乘以 `relativePrice` 一样简单（用于估算）：
+请注意，相对价格值与 [中继链 XCM 费用计算](/builders/interoperability/xcm/core-concepts/weights-fees/#polkadot){target=\_blank} 部分中估计的成本或 [每权重单位](/builders/interoperability/xcm/core-concepts/weights-fees/#moonbeam-reserve-assets){target=\_blank} 部分中显示的成本相关（如果目标是另一个平行链）。您需要找到正确的值，以确保计算 Origin 账户持有的 Token 数量正确。计算相关的 XCM 执行费用就像将 `transactExtraWeightSigned` 乘以 `relativePrice` 一样简单（用于估算）：
 
 ```
 XCM-Wei-Token-Cost = transactExtraWeightSigned * relativePrice

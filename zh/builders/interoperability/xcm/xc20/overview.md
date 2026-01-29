@@ -16,7 +16,7 @@ categories: Basics, XC-20
 
 ![Moonbeam XC-20 与 Polkadot 的 XCM 集成](/images/builders/interoperability/xcm/overview/overview-3.webp)
 
-本页面旨在介绍 XC-20 的基础知识；如果您想了解如何与 XC-20 交互或转移 XC-20，请参阅 [发送 XC-20 指南](builders/interoperability/xcm/xc20/send-xc20s/overview/){target=\_blank}。
+本页面旨在介绍 XC-20 的基础知识；如果您想了解如何与 XC-20 交互或转移 XC-20，请参阅 [发送 XC-20 指南](/builders/interoperability/xcm/xc20/send-xc20s/overview/){target=\_blank}。
 
 ## XC-20 的类型 {: #types-of-xc-20s }
 
@@ -24,7 +24,7 @@ XC-20 有两种类型：本地和外部。
 
 ### 什么是本地 XC-20？ {: #local-xc20s }
 
-本地 XC-20 是指 EVM 上存在的所有 ERC-20，可以通过 XCM 进行跨链转移。为了将本地 XC-20 转移到另一个平行链，必须在该链上注册资产。当转移本地 XC-20 时，底层代币驻留在目标链在 Moonbeam 上的主权账户中。[主权账户](builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank} 是由区块链运行时（而不是个人）管理的无密钥账户，可以持有资产并与其他链交互。本地 XC-20 必须遵循[本指南中概述的 ERC-20 接口](builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank}。它们必须实现标准的 ERC-20 函数签名，包括 [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} 中描述的 `transfer` 函数的正确函数选择器。但是，只要不破坏基本方法，仍然可以添加其他功能。
+本地 XC-20 是指 EVM 上存在的所有 ERC-20，可以通过 XCM 进行跨链转移。为了将本地 XC-20 转移到另一个平行链，必须在该链上注册资产。当转移本地 XC-20 时，底层代币驻留在目标链在 Moonbeam 上的主权账户中。[主权账户](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank} 是由区块链运行时（而不是个人）管理的无密钥账户，可以持有资产并与其他链交互。本地 XC-20 必须遵循[本指南中概述的 ERC-20 接口](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank}。它们必须实现标准的 ERC-20 函数签名，包括 [EIP-20](https://eips.ethereum.org/EIPS/eip-20){target=\_blank} 中描述的 `transfer` 函数的正确函数选择器。但是，只要不破坏基本方法，仍然可以添加其他功能。
 
 创建本地 XC-20 相当于部署一个标准的 ERC-20 并在任何 Moonbeam 网络上启用跨链功能。
 
@@ -42,7 +42,7 @@ XC-20 有两种类型：本地和外部。
 
 从跨链转移的角度来看，本地和外部 XC-20 可以使用 Ethereum 或 Substrate API 通过 Polkadot 的 XCM 基础设施发送。由于底层资产是具有 EVM 字节码的 ERC-20，遵循 [EIP-20 代币标准](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}，因此通过 Substrate 和 Ehereum API 发起的转移都会生成 EVM 日志，这些日志对诸如 [Moonscan](https://moonscan.io){target=\_blank} 之类的基于 EVM 的浏览器可见。相反，您无法使用 Substrate API 发送常规 ERC-20 转移。除了通过 XCM 进行的跨链转移之外，所有其他的 XC-20 交互（例如查询余额或调整授权额度）都必须在 EVM 中进行。
 
-XC-20 的跨链转移通过 Polkadot XCM Pallet 执行，该 Pallet 利用 ERC-20 的常规铸造、销毁和转移机制来实现 XCM 资产流动。如果您想了解如何使用该 Pallet 发送 XC-20，请参阅 [使用 Polkadot XCM Pallet](builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} 指南。
+XC-20 的跨链转移通过 Polkadot XCM Pallet 执行，该 Pallet 利用 ERC-20 的常规铸造、销毁和转移机制来实现 XCM 资产流动。如果您想了解如何使用该 Pallet 发送 XC-20，请参阅 [使用 Polkadot XCM Pallet](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} 指南。
 
 ## 资产储备 {: #asset-reserves }
 
@@ -54,7 +54,7 @@ XC-20 的跨链转移通过 Polkadot XCM Pallet 执行，该 Pallet 利用 ERC-2
 
 Moonbeam 上的本地储备资产是一种代币，从 XCM 的角度来看，其规范账本原生位于 Moonbeam 上。换句话说，Moonbeam 是该资产的源链，在该链上进行铸造和销毁。
 
-例如，Wormhole 封装的 ETH (wETH) 被认为是 Moonbeam 上的本地储备资产，即使 Ethereum 是 ETH 的最终来源。一旦 ETH 被 Wormhole 封装并通过 Moonbeam 进入 Polkadot 生态系统，wETH 就可以通过 [Moonbeam 路由流动性 (MRL)](builders/interoperability/mrl/){target=\_blank} 转移到其他平行链。
+例如，Wormhole 封装的 ETH (wETH) 被认为是 Moonbeam 上的本地储备资产，即使 Ethereum 是 ETH 的最终来源。一旦 ETH 被 Wormhole 封装并通过 Moonbeam 进入 Polkadot 生态系统，wETH 就可以通过 [Moonbeam 路由流动性 (MRL)](/builders/interoperability/mrl/){target=\_blank} 转移到其他平行链。
 
 重要的注意事项是，在纯粹的 Ethereum 层面来看，ETH 仍然受 Ethereum 的管辖并在 Ethereum 上铸造。但是，从 XCM 的角度来看，Moonbeam 上的 wETH 被视为本地储备资产，这意味着 wETH 的规范供应（就 Polkadot 生态系统而言）存在于 Moonbeam 上。
 
@@ -165,7 +165,7 @@ Moonbeam 上的本地储备资产是一种代币，从 XCM 的角度来看，其
 
 ### 检索外部 XC-20 及其元数据的列表 {: #list-xchain-assets }
 
-要获取当前可用的外部 XC-20 及其关联元数据的列表，您可以使用 [Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=\_blank} 查询链状态。您将执行以下步骤：
+要获取当前可用的外部 XC-20 及其关联元数据的列表，您可以使用 [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} 查询链状态。您将执行以下步骤：
 
 1. 为您想要获取资产列表的网络创建一个 API 提供程序。您可以为每个网络使用以下 WSS 端点：
 

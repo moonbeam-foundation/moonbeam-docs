@@ -8,7 +8,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-开发人员可以利用 Moonbeam 的以太坊兼容性功能将 [MetaMask](https://metamask.io){target=_blank} 等工具集成到他们的 dApp 中。 这样，他们就可以使用 MetaMask 提供的注入库与区块链进行交互。
+开发人员可以利用 Moonbeam 的以太坊兼容性功能将 [MetaMask](https://metamask.io){target=\_blank} 等工具集成到他们的 dApp 中。 这样，他们就可以使用 MetaMask 提供的注入库与区块链进行交互。
 
 目前，MetaMask 可以配置为连接到以下几个网络：Moonbeam、Moonriver、Moonbase Alpha 测试网和一个 Moonbeam 开发节点。
 
@@ -29,15 +29,15 @@ categories: Tokens and Accounts, Ethereum Toolkit
 !!! note
     MetaMask 将会弹出窗口，请求您授予添加自定义网络的权限。 一旦您批准了这些权限，MetaMask 将切换您当前的网络。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 ## 安装 MetaMask 扩展 {: #install-the-metamask-extension }
 
-首先，您需要从 Chrome 商店安装一个全新的默认 [MetaMask](https://metamask.io){target=_blank}。下载、安装并初始化扩展后，请按照**入门**指南进行操作。在其中，您需要创建一个钱包，设置密码，并存储您的秘密备份短语(这可以直接访问您的资金，所以请确保将其存储在安全的地方)。
+首先，您需要从 Chrome 商店安装一个全新的默认 [MetaMask](https://metamask.io){target=\_blank}。下载、安装并初始化扩展后，请按照**入门**指南进行操作。在其中，您需要创建一个钱包，设置密码，并存储您的秘密备份短语(这可以直接访问您的资金，所以请确保将其存储在安全的地方)。
 
 ## 设置钱包 {: #setup-a-wallet }
 
-安装 [MetaMask](https://metamask.io){target=_blank} 后，设置将自动打开一个新任务，并显示欢迎屏幕。在这里，您有两种选择：
+安装 [MetaMask](https://metamask.io){target=\_blank} 后，设置将自动打开一个新任务，并显示欢迎屏幕。在这里，您有两种选择：
 
 - **创建新钱包** - 您将完成一些步骤以获得新的种子短语。确保您安全地存储此短语，并且不要公开分享
 - **导入现有钱包** - 您已经存储了一个种子短语，并且您想从该恢复短语中恢复一个帐户
@@ -53,7 +53,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 创建钱包或导入现有钱包后，如果您持有私钥，您也可以将任何账户导入到 MetaMask 中。
 
-在本示例中，您将使用开发账户的私钥。点击账户切换器按钮，使用私钥导入账户。也就是显示 **账户 1** 的地方。
+在本示例中，您将使用开发账户的私钥。点击账户切换器按钮，使用私钥导入账户。也就是显示账户 **1(Account 1)** 的地方。
 
 ![从私钥 MetaMask 菜单导入账户](/images/tokens/connect/metamask/metamask-2.webp)
 
@@ -64,8 +64,8 @@ categories: Tokens and Accounts, Ethereum Toolkit
 最后，输入您要导入的账户的私钥。例如，您可以使用 Moonbeam 开发节点中预先注资的账户之一。本指南使用 Gerald 的密钥。输入私钥后，点击 **导入**。
 
 ??? note "开发账户地址和私钥"
-    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
-    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
+    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
+    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
 ![将您的账户密钥粘贴到 MetaMask 中](/images/tokens/connect/metamask/metamask-4.webp)
 
@@ -75,7 +75,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 ## 将 MetaMask 连接到 Moonbeam {: #connect-metamask-to-moonbeam }
 
-一旦您安装了 [MetaMask](https://metamask.io){target=_blank} 并创建或导入了一个帐户，您就可以将其连接到任何基于 Moonbeam 的网络。为此，请执行以下步骤：
+一旦您安装了 [MetaMask](https://metamask.io){target=\_blank} 并创建或导入了一个帐户，您就可以将其连接到任何基于 Moonbeam 的网络。为此，请执行以下步骤：
 
 1. 点击左上角的网络选择器菜单
 2. 选择 **添加网络**
@@ -88,53 +88,49 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 在这里，您可以为以下网络配置 MetaMask：
 
-===
-    "Moonbeam"
-    |         Variable          |                                      Value                                       |
+=== "Moonbeam"
+    |          字段           |                                      值                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
-    |       Network Name        |                                    `Moonbeam`                                    |
+    |         网络名称          |                                    `Moonbeam`                                    |
     |          RPC URL          |                     `{{ networks.moonbeam.public_rpc_url }}`                     |
-    |         Chain ID          | `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`) |
-    |     Symbol (Optional)     |                                      `GLMR`                                      |
-    | Block Explorer (Optional) |                     `{{ networks.moonbeam.block_explorer }}`                     |
+    |          链 ID           | `{{ networks.moonbeam.chain_id }}` (hex: `{{ networks.moonbeam.hex_chain_id }}`) |
+    |       符号（可选）        |                                      `GLMR`                                      |
+    |     区块浏览器（可选）     |                     `{{ networks.moonbeam.block_explorer }}`                     |
 
-===
-    "Moonriver"
-    |         Variable          |                                       Value                                        |
+=== "Moonriver"
+    |          字段           |                                       值                                        |
     |:-------------------------:|:----------------------------------------------------------------------------------:|
-    |       Network Name        |                                    `Moonriver`                                     |
+    |         网络名称          |                                    `Moonriver`                                     |
     |          RPC URL          |                     `{{ networks.moonriver.public_rpc_url }}`                      |
-    |         Chain ID          | `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`) |
-    |     Symbol (Optional)     |                                       `MOVR`                                       |
-    | Block Explorer (Optional) |                     `{{ networks.moonriver.block_explorer }}`                      |
+    |          链 ID           | `{{ networks.moonriver.chain_id }}` (hex: `{{ networks.moonriver.hex_chain_id }}`) |
+    |       符号（可选）        |                                       `MOVR`                                       |
+    |     区块浏览器（可选）     |                     `{{ networks.moonriver.block_explorer }}`                      |
 
-===
-    "Moonbase Alpha"
-    |         Variable          |                                      Value                                       |
+=== "Moonbase Alpha"
+    |          字段           |                                      值                                       |
     |:-------------------------:|:--------------------------------------------------------------------------------:|
-    |       Network Name        |                                 `Moonbase Alpha`                                 |
+    |         网络名称          |                                 `Moonbase Alpha`                                 |
     |          RPC URL          |                        `{{ networks.moonbase.rpc_url }}`                         |
-    |         Chain ID          | `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`) |
-    |     Symbol (Optional)     |                                      `DEV`                                       |
-    | Block Explorer (Optional) |                     `{{ networks.moonbase.block_explorer }}`                     |
+    |          链 ID           | `{{ networks.moonbase.chain_id }}` (hex: `{{ networks.moonbase.hex_chain_id }}`) |
+    |       符号（可选）        |                                      `DEV`                                       |
+    |     区块浏览器（可选）     |                     `{{ networks.moonbase.block_explorer }}`                     |
 
-===
-    "Moonbeam Dev Node"
-    |         Variable          |                                         Value                                          |
+=== "Moonbeam Dev Node"
+    |          字段           |                                         值                                          |
     |:-------------------------:|:--------------------------------------------------------------------------------------:|
-    |       Network Name        |                                     `Moonbeam Dev`                                     |
+    |         网络名称          |                                     `Moonbeam Dev`                                     |
     |          RPC URL          |                          `{{ networks.development.rpc_url }}`                          |
-    |         Chain ID          | `{{ networks.development.chain_id }}` (hex: `{{ networks.development.hex_chain_id }}`) |
-    |     Symbol (Optional)     |                                         `DEV`                                          |
-    | Block Explorer (Optional) |                      `{{ networks.development.block_explorer }}`                       |
+    |          链 ID           | `{{ networks.development.chain_id }}` (hex: `{{ networks.development.hex_chain_id }}`) |
+    |       符号（可选）        |                                         `DEV`                                          |
+    |     区块浏览器（可选）     |                      `{{ networks.development.block_explorer }}`                       |
 
 为此，请填写以下信息：
 
 1. **网络名称** - 代表您要连接的网络的名称
-2. **RPC URL** - 网络的 [RPC 端点](/builders/get-started/endpoints/){target=_blank}
+2. **RPC URL** - 网络的 [RPC 端点](/builders/get-started/endpoints/){target=\_blank}
 3. **Chain ID** - 以太坊兼容网络的链 ID
 4. **符号** - （可选）网络原生代币的符号。例如，对于 Moonbeam，该值为 **GLMR**
-5. **区块浏览器** - （可选）[区块浏览器](/builders/get-started/explorers/){target=_blank} 的 URL
+5. **区块浏览器** - （可选）[区块浏览器](/builders/get-started/explorers/){target=\_blank} 的 URL
 6. 验证所有信息后，点击 **保存**
 
 ![在 Metamask 中添加网络](/images/tokens/connect/metamask/metamask-8.webp)
@@ -216,4 +212,4 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 ![在 MetaMask 的“NFTs”选项卡上的 NFT 列表中查看导入的 NFT。](/images/tokens/connect/metamask/metamask-19.webp)
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

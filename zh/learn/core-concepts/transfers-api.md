@@ -34,7 +34,7 @@ categories: 基础知识
 不同的转账场景包括：
 
  - **Substrate 转账** — 将创建一个 extrinsic，即 `balances.transferAllowDeath` 或 `balances.transferKeepAlive`。它将触发**一个** `balances.Transfer` 事件
- - **Substrate 功能** — 某些原生 Substrate 功能可以创建 extrinsic，将代币发送到某个地址。例如，[Treasury](learn/features/treasury/){target=\_blank} 可以创建一个 extrinsic，如 `treasury.proposeSend`，它将触发**一个或多个** `balances.Transfer` 事件
+ - **Substrate 功能** — 某些原生 Substrate 功能可以创建 extrinsic，将代币发送到某个地址。例如，[Treasury](/learn/features/treasury/){target=\_blank} 可以创建一个 extrinsic，如 `treasury.proposeSend`，它将触发**一个或多个** `balances.Transfer` 事件
  - **Ethereum 转账** — 将创建一个带有空输入的 `ethereum.transact` extrinsic。它将触发**一个** `balances.Transfer` 事件
  - **通过智能合约进行的 Ethereum 转账** — 将创建一个带有某些数据作为输入的 `ethereum.transact` extrinsic。它将触发**一个或多个** `balances.Transfer` 事件
 
@@ -66,4 +66,4 @@ categories: 基础知识
 --8<-- 'code/learn/core-concepts/transfers-api/sidecar-transfer.js'
 ```
 
-您可以参考 [Substrate API Sidecar 页面](builders/substrate/libraries/sidecar/)，获取有关安装和运行您自己的 Sidecar 服务实例的信息，以及有关如何解码 Sidecar 区块以进行 Moonbeam 交易的更多详细信息。
+您可以参考 [Substrate API Sidecar 页面](/builders/substrate/libraries/sidecar/)，获取有关安装和运行您自己的 Sidecar 服务实例的信息，以及有关如何解码 Sidecar 区块以进行 Moonbeam 交易的更多详细信息。

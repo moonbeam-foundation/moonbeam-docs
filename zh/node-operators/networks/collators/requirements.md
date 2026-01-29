@@ -25,7 +25,7 @@ categories: 节点运营商和区块收集人
 有必要对社区和网络做出一定程度的承诺，以赢得委托人社区的信任并吸引更多的委托。以下是一些为社区做贡献的建议：
 
 - 积极参与社区
-    - [加入 Discord](node-operators/networks/collators/overview/#join-discord){target=\_blank} 并进行自我介绍，根据需要提供更新，并帮助支持社区成员或其他收集人
+    - [加入 Discord](/node-operators/networks/collators/overview/#join-discord){target=\_blank} 并进行自我介绍，根据需要提供更新，并帮助支持社区成员或其他收集人
 - 创建教程和教育内容
 - [成为 Moonbeam 大使](https://moonbeam.network/community/ambassador){target=\_blank}
 - 贡献与生态系统相关的开源软件
@@ -33,7 +33,7 @@ categories: 节点运营商和区块收集人
 
 ## 硬件要求 {: #hardware-requirements }
 
-整理人必须运行具有整理选项的完整节点。为此，请按照[运行节点](node-operators/networks/run-a-node/overview/)教程和[使用 Systemd](node-operators/networks/run-a-node/systemd/)的安装步骤进行操作。确保您使用整理人的特定代码片段。
+整理人必须运行具有整理选项的完整节点。为此，请按照[运行节点](/node-operators/networks/run-a-node/overview/)教程和[使用 Systemd](/node-operators/networks/run-a-node/systemd/)的安装步骤进行操作。确保您使用整理人的特定代码片段。
 
 !!! note
     运行 **整理人** 节点的 CPU 要求高于上述教程中提供的要求。为了使您的整理人节点能够跟上高交易吞吐量，具有高时钟速度和单核性能的 CPU 非常重要，因为区块生产/导入过程几乎完全是单线程的。
@@ -119,26 +119,26 @@ Moonkey 提供了一些额外的功能。可以提供以下标志：
 首先，您需要抵押（自抵押）至少一定数量的代币，才能被认为符合资格并成为候选人。只有总抵押量（包括自抵押和委托抵押）排名前列的一定数量的验证人候选人才能进入活跃验证人集合。
 
 === "Moonbeam"
-    |         Variable          |                          Value                           |
+    |          字段           |                          值                           |
     |:-------------------------:|:--------------------------------------------------------:|
-    | Minimum self-bond amount  |     {{ networks.moonbeam.staking.min_can_stk }} GLMR     |
-    |      Active set size      | {{ networks.moonbeam.staking.max_candidates }} collators |
+    |      最小自抵押数量       |     {{ networks.moonbeam.staking.min_can_stk }} GLMR     |
+    |        活跃集合规模       | {{ networks.moonbeam.staking.max_candidates }} collators |
 
 === "Moonriver"
-    |         Variable          |                           Value                           |
+    |          字段           |                           值                           |
     |:-------------------------:|:---------------------------------------------------------:|
-    | Minimum self-bond amount  |     {{ networks.moonriver.staking.min_can_stk }} MOVR     |
-    |      Active set size      | {{ networks.moonriver.staking.max_candidates }} collators |
+    |      最小自抵押数量       |     {{ networks.moonriver.staking.min_can_stk }} MOVR     |
+    |        活跃集合规模       | {{ networks.moonriver.staking.max_candidates }} collators |
 
 === "Moonbase Alpha"
-    |         Variable          |                          Value                           |
+    |          字段           |                          值                           |
     |:-------------------------:|:--------------------------------------------------------:|
-    | Minimum self-bond amount  |     {{ networks.moonbase.staking.min_can_stk }} DEV      |
-    |      Active set size      | {{ networks.moonbase.staking.max_candidates }} collators |
+    |      最小自抵押数量       |     {{ networks.moonbase.staking.min_can_stk }} DEV      |
+    |        活跃集合规模       | {{ networks.moonbase.staking.max_candidates }} collators |
 
 ### 密钥关联保证金 {: #key-association-bond }
 
-其次，您需要一个用于密钥关联的保证金。当[将您的作者 ID 映射](node-operators/networks/collators/account-management/){target=\_blank}（会话密钥）到您的帐户以获取区块奖励时，需要此保证金，并且每个注册的作者 ID 都需要。
+其次，您需要一个用于密钥关联的保证金。当[将您的作者 ID 映射](/node-operators/networks/collators/account-management/){target=\_blank}（会话密钥）到您的帐户以获取区块奖励时，需要此保证金，并且每个注册的作者 ID 都需要。
 
 === "Moonbeam"
     |   变量   |                         值                          |

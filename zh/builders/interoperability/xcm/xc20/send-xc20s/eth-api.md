@@ -10,7 +10,7 @@ categories: XCM, Precompiles
 
 作为 Polkadot 的平行链，Moonbeam 具有与其他连接的平行链通信和交换数据的固有能力。这种原生的跨链通信允许安全快速的代币转移，利用跨共识消息格式（简称 XCM），促进不同共识系统之间的通信。
 
-实现代币转移的通信协议构建在 [Substrate](builders/substrate/){target=\_blank} 之上，并且运行级别低于 EVM，这使得 EVM 开发者更难访问。
+实现代币转移的通信协议构建在 [Substrate](/builders/substrate/){target=\_blank} 之上，并且运行级别低于 EVM，这使得 EVM 开发者更难访问。
 
 尽管如此，Moonbeam 网络具有一个 XCM 预编译合约，可以填补执行层之间的空白。这个预编译合约公开了一个智能合约接口，该接口抽象了底层复杂性，使得跨链代币转移的执行变得像任何其他智能合约调用一样简单。
 
@@ -176,7 +176,7 @@ XCM 预编译合约位于以下地址：
 
 ### 检查先决条件 {: #checking-prerequisites }
 
-要学习本教程，您必须配置好您首选的 EVM 钱包，并且账户中有原生代币。您可以按照本指南将 Moonbeam 添加到 MetaMask 钱包：[使用 MetaMask 与 Moonbeam 交互](tokens/connect/metamask/){target=\_blank}。
+要学习本教程，您必须配置好您首选的 EVM 钱包，并且账户中有原生代币。您可以按照本指南将 Moonbeam 添加到 MetaMask 钱包：[使用 MetaMask 与 Moonbeam 交互](/tokens/connect/metamask/){target=\_blank}。
 
 ### Remix 设置 {: #remix-set-up }
 
@@ -273,7 +273,7 @@ XCM 预编译合约位于以下地址：
 2. 输入指定目标链的多位置。请注意，可以指定任何链，无论其配置或类型如何
 3. 输入要以地址格式发送的资产组合数组
 4. 输入将用于支付费用的资产的索引。此索引从零开始，因此第一个元素是 `0`，第二个元素是 `1`，依此类推
-5. 输入要在目标链上执行的 XCM 消息。有关创建 XCM 调用数据的更多信息，请参见[发送和执行 XCM 消息](builders/interoperability/xcm/send-execute-xcm/)
+5. 输入要在目标链上执行的 XCM 消息。有关创建 XCM 调用数据的更多信息，请参见[发送和执行 XCM 消息](/builders/interoperability/xcm/send-execute-xcm/)
 6. 输入远程储备，例如 `[1,[]]`
 7. 单击 **transact**
 8. MetaMask 将弹出，系统将提示您查看交易详细信息。单击**确认**以发送交易

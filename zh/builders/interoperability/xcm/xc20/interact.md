@@ -8,7 +8,7 @@ categories: XC-20
 
 ## 简介 {: #introduction }
 
-正如[XC-20s 概述](builders/interoperability/xcm/xc20/overview/){target=\_blank}页面中所述，XC-20s 是 Moonbeam 上一种独特的资产类别。虽然它们是 Substrate 原生资产，但它们也具有 ERC-20 接口，并且可以像任何其他 ERC-20 一样进行交互。此外，ERC-20 许可接口适用于所有外部 XC-20。
+正如[XC-20s 概述](/builders/interoperability/xcm/xc20/overview/){target=\_blank}页面中所述，XC-20s 是 Moonbeam 上一种独特的资产类别。虽然它们是 Substrate 原生资产，但它们也具有 ERC-20 接口，并且可以像任何其他 ERC-20 一样进行交互。此外，ERC-20 许可接口适用于所有外部 XC-20。
 
 本指南涵盖了 XC-20 Solidity 接口，包括标准 ERC-20 接口和 ERC-20 许可接口，以及如何使用这些接口与外部 XC-20 进行交互。
 
@@ -83,7 +83,7 @@ hash 的参数可以分解如下：
 
 ## 使用 ERC-20 接口与外部 XC-20 进行交互 {: #interact-with-the-precompile-using-remix }
 
-本指南的这一部分将向您展示如何使用 [Remix](builders/ethereum/dev-env/remix/){target=\_blank} 通过 ERC-20 接口与 XC-20 进行交互。由于本地 XC-20 是常规 ERC-20 的表示，本节重点介绍外部 XC-20。
+本指南的这一部分将向您展示如何使用 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 通过 ERC-20 接口与 XC-20 进行交互。由于本地 XC-20 是常规 ERC-20 的表示，本节重点介绍外部 XC-20。
 
 要与外部 XC-20 进行交互，您需要首先计算要交互的 XC-20 资产的预编译地址。然后，您可以像使用任何其他 ERC-20 一样与 ERC-20 接口进行交互。
 
@@ -93,7 +93,7 @@ hash 的参数可以分解如下：
 
 要通过 ERC-20 接口批准支出或转移外部 XC-20，您将需要：
 
-- [已安装 MetaMask 并连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank} TestNet
+- [已安装 MetaMask 并连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} TestNet
 - 在 Moonbase Alpha 上创建或拥有两个帐户
 - 至少一个帐户需要用 `DEV` 代币进行充值。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
@@ -155,4 +155,4 @@ XC-20 的 **IERC20** 预编译将出现在 **Deployed Contracts（已部署合�
 
 ![与预编译函数交互](/images/builders/interoperability/xcm/xc20/interact/interact-4.webp)
 
-要了解如何与每个函数进行交互，您可以查看 [ERC-20 预编译](builders/ethereum/precompiles/ux/erc20/){target=\_blank} 指南并对其进行修改以与 XC-20 预编译进行交互。
+要了解如何与每个函数进行交互，您可以查看 [ERC-20 预编译](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} 指南并对其进行修改以与 XC-20 预编译进行交互。

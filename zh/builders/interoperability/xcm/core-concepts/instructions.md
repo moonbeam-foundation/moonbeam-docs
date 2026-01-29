@@ -18,9 +18,9 @@ XCM 消息包含一系列由跨共识虚拟机 (XCVM) 执行的[操作和指令]
  4. [BuyExecution](#buy-execution) — 在 Moonbeam 中执行
  5. [DepositAsset](#deposit-asset) — 在 Moonbeam 中执行
 
-从头开始构建 XCM 消息的指令并非易事。因此，开发人员可以利用包装函数和 pallet 来使用 XCM 功能。[Polkadot XCM](builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} 和 [XCM Transactor](builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} Pallet 提供了具有预定义 XCM 指令集的功能，可以发送 [XC-20](builders/interoperability/xcm/xc20/overview/){target=\_blank} 或通过 XCM 在其他链上远程执行。
+从头开始构建 XCM 消息的指令并非易事。因此，开发人员可以利用包装函数和 pallet 来使用 XCM 功能。[Polkadot XCM](/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/){target=\_blank} 和 [XCM Transactor](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} Pallet 提供了具有预定义 XCM 指令集的功能，可以发送 [XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank} 或通过 XCM 在其他链上远程执行。
 
-如果您有兴趣尝试不同的指令组合，您可以[使用 Polkadot XCM Pallet 执行和发送自定义 XCM 消息](builders/interoperability/xcm/send-execute-xcm/){target=\_blank}。
+如果您有兴趣尝试不同的指令组合，您可以[使用 Polkadot XCM Pallet 执行和发送自定义 XCM 消息](/builders/interoperability/xcm/send-execute-xcm/){target=\_blank}。
 
 本指南概述了一些最常用的 XCM 指令，包括上面示例中的指令。
 

@@ -42,7 +42,7 @@ Relayer 的作用是为目标链的执行付费，并且在许多协议中，rel
 
 要学习本教程，您需要具备以下条件：
 
-- [已安装MetaMask并连接到Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+- [已安装MetaMask并连接到Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - [已安装Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
 - 拥有一个已获得`DEV`代币的帐户。
 
@@ -187,7 +187,7 @@ npm run testnet-spy
 
 无需担心，你不必手动解析这些日志：代码会替你完成。请让它在后台继续运行，并打开另一个终端实例进入下一步。
 
---8<-- 'code/builders/interoperability/protocols/wormhole/terminal/setup-spy.md'
+--8<-- 'zh/code/builders/interoperability/protocols/wormhole/terminal/setup-spy.md'
 
 ### 设置监听器组件 {:setting-up-the-listener-component}
 
@@ -401,7 +401,7 @@ npm run start
 
 你应该会在控制台中看到类似于下方的日志输出。
 
---8<-- 'code/builders/interoperability/protocols/wormhole/terminal/run-start.md'
+--8<-- 'zh/code/builders/interoperability/protocols/wormhole/terminal/run-start.md'
 
 ### 使用 Wormhole 从 Moonbase 发送跨链消息 {: #send-message-from-moonbase }
 
@@ -420,11 +420,11 @@ npm run start
 
 几秒钟到一分钟后，跨链消息应通过您在本地计算机上托管的中继器正确中继。
 
---8<-- 'code/builders/interoperability/protocols/wormhole/terminal/send.md'
+--8<-- 'zh/code/builders/interoperability/protocols/wormhole/terminal/send.md'
 
 ## Moonbeam 路由流动性集成 {: #moonbeam-routed-liquidity-integration }
 
 Wormhole 将通过 Moonbeam 路由流动性 (MRL) 计划为平行链提供流动性。此计划允许通过 Moonbeam 网络发送流动性，从而将来自 Wormhole 连接链的流动性一键转移到平行链钱包。
-[MRL](builders/interoperability/mrl/){target=\_blank} 利用 [GMP 预编译](builders/ethereum/precompiles/interoperability/gmp/){target=\_blank}，其文档解释了应如何构造跨链消息以正确使用预编译。
+[MRL](/builders/interoperability/mrl/){target=\_blank} 利用 [GMP 预编译](/builders/ethereum/precompiles/interoperability/gmp/){target=\_blank}，其文档解释了应如何构造跨链消息以正确使用预编译。
 
 --8<-- 'zh/text/_disclaimers/third-party-content.md'

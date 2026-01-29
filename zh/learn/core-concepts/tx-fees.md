@@ -8,7 +8,7 @@ categories: Basics
 
 ## 简介 {: #introduction }
 
-与 Moonbeam 上的[用于发送转账的 Ethereum 和 Substrate API](learn/core-concepts/transfers-api/){target=\_blank}类似，Moonbeam 上的 Substrate 和 EVM 层也有不同的交易手续费模型，开发者在需要计算和跟踪交易手续费时应该注意。
+与 Moonbeam 上的[用于发送转账的 Ethereum 和 Substrate API](/learn/core-concepts/transfers-api/){target=\_blank}类似，Moonbeam 上的 Substrate 和 EVM 层也有不同的交易手续费模型，开发者在需要计算和跟踪交易手续费时应该注意。
 
 首先，以太坊交易根据其计算复杂性和数据存储要求消耗 gas 单位。另一方面，Substrate 交易使用“权重”的概念来确定费用。在本指南中，您将学习如何计算 Substrate 和 Ethereum 交易的交易手续费。在以太坊交易方面，您还将了解 Moonbeam 和以太坊计算交易手续费方式之间的主要区别。
 
@@ -171,7 +171,7 @@ contract SayHello {
     0xc47f00270000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000543686c6f65000000000000000000000000000000000000000000000000000000
     ```
 
-=== "Say Hello"
+=== "打招呼"
 
     ```text
     0xef5fb05b
@@ -194,7 +194,7 @@ contract SayHello {
     }'
     ```
 
-=== "Say Hello"
+=== "打招呼"
 
     ```sh
     curl {{ networks.moonbase.rpc_url }} -H "Content-Type:application/json;charset=utf-8" -d \
@@ -226,7 +226,7 @@ contract SayHello {
     }'
     ```
 
-=== "Say Hello"
+=== "打招呼"
 
     ```sh
     curl https://sepolia.publicgoods.network -H "Content-Type:application/json;charset=utf-8" -d \
@@ -272,7 +272,7 @@ contract SayHello {
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
     ```
 
-=== "Legacy"
+=== "传统"
 
     ```text
     Transaction Fee = (GasPrice * TransactionWeight) / {{ networks.moonbase.tx_weight_to_gas_ratio }}
@@ -363,7 +363,7 @@ RESPONSE JSON Storage Object:
 
 需要注意的是，优先级并不是决定区块内交易排序的唯一因素。其他因素（例如交易的存活期 longevity）也会在排序过程中发挥作用。
 
-适用于相应交易类型的 `GasPrice`、`MaxFeePerGas` 和 `MaxPriorityFeePerGas` 的取值，可以根据 [Sidecar API 页面](builders/substrate/libraries/sidecar/#evm-fields-mapping-in-block-json-object){target=\_blank} 中描述的结构，从区块的 JSON 对象中读取。
+适用于相应交易类型的 `GasPrice`、`MaxFeePerGas` 和 `MaxPriorityFeePerGas` 的取值，可以根据 [Sidecar API 页面](/builders/substrate/libraries/sidecar/#evm-fields-mapping-in-block-json-object){target=\_blank} 中描述的结构，从区块的 JSON 对象中读取。
 
 某个特定区块中的以太坊交易数据可以通过以下区块端点提取：
 
@@ -381,7 +381,7 @@ GET /blocks/{blockId}
     |    MaxFeePerGas     |     `extrinsics[extrinsic_number].args.transaction.eip1559.maxFeePerGas`     |
     | MaxPriorityFeePerGas | `extrinsics[extrinsic_number].args.transaction.eip1559.maxPriorityFeePerGas` |
 
-=== "Legacy"
+=== "传统"
     | EVM 字段 |                        区块 JSON 字段                         |
     |:--------:|:-------------------------------------------------------------:|
     | GasPrice | `extrinsics[extrinsic_number].args.transaction.legacy.gasPrice` |

@@ -8,7 +8,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 介绍 {: #introduction }
 
-作为一个 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与到网络的发展方向中。随着 OpenGov（也称为 Governance v2）的引入，Preimage Pallet 允许代币持有者通过提交 preimage 来创建提案，preimage 是提案中要执行的操作，在链上。提交提案需要 preimage 的哈希值。要了解更多关于 Moonbeam 治理系统的信息，例如相关术语的概述、提案的路线图等等，请参阅 [Moonbeam 上的治理](learn/features/governance/){target=\_blank} 页面。
+作为一个 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与到网络的发展方向中。随着 OpenGov（也称为 Governance v2）的引入，Preimage Pallet 允许代币持有者通过提交 preimage 来创建提案，preimage 是提案中要执行的操作，在链上。提交提案需要 preimage 的哈希值。要了解更多关于 Moonbeam 治理系统的信息，例如相关术语的概述、提案的路线图等等，请参阅 [Moonbeam 上的治理](/learn/features/governance/){target=\_blank} 页面。
 
 Preimage Precompile 直接与 Substrate 的 Preimage Pallet 交互。该 pallet 是用 Rust 编写的，通常无法从 Moonbeam 的以太坊端访问。但是，Preimage Precompile 允许您访问创建和管理 preimage 所需的函数，所有这些函数都是 Substrate Preimage Pallet 的一部分，直接从 Solidity 接口访问。
 
@@ -61,7 +61,7 @@ Preimage Precompile 位于以下地址：
 
 以下示例在 Moonbase Alpha 上演示，但是，也可以对 Moonriver 采取类似的步骤。要按照本指南中的步骤进行操作，您需要具备以下条件：
 
- - 安装了 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+ - 安装了 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - 一个包含一些 DEV 代币的帐户。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
@@ -129,6 +129,6 @@ Preimage Precompile 位于以下地址：
 
 ![使用 Preimage 预编译的 notePreimage 函数提交预映像。](/images/builders/ethereum/precompiles/features/governance/preimage/preimage-7.webp)
 
-现在您已经提交了提案的预映像，您的提案就可以提交了！前往 [Referenda 预编译文档](builders/ethereum/precompiles/features/governance/referenda/){target=\_blank} 了解如何提交您的提案。
+现在您已经提交了提案的预映像，您的提案就可以提交了！前往 [Referenda 预编译文档](/builders/ethereum/precompiles/features/governance/referenda/){target=\_blank} 了解如何提交您的提案。
 
 如果您希望删除预映像，您可以按照上面记录的相同步骤操作，除了使用 `unnotePreimage` 函数并传入预映像哈希而不是编码提案。

@@ -12,14 +12,14 @@ categories: 节点运营者和整理者
 
 在本指南中，您将学习如何使用 [Systemd](https://systemd.io){target=\_blank} 启动 Moonbeam 节点，以及如何维护和清除您的节点。
 
-如果您有兴趣自己编译二进制文件（可能需要 30 多分钟并需要 32GB 的内存），您可以查看 [手动编译 Moonbeam 二进制文件](node-operators/networks/run-a-node/compile-binary/){target=\_blank} 指南。
+如果您有兴趣自己编译二进制文件（可能需要 30 多分钟并需要 32GB 的内存），您可以查看 [手动编译 Moonbeam 二进制文件](/node-operators/networks/run-a-node/compile-binary/){target=\_blank} 指南。
 
 ## 检查先决条件 {: #checking-prerequisites }
 
 以下各节将介绍使用二进制文件并将 Moonbeam 完整节点作为 systemd 服务运行的过程。要开始使用，您需要：
 
 - 确保您正在运行 Ubuntu 18.04、20.04 或 22.04。Moonbeam 可以在其他 Linux 版本上运行，但 Ubuntu 是目前唯一经过测试的版本
-- 确保您的系统符合[要求](node-operators/networks/run-a-node/overview/#requirements){target=\_blank}。当连接到 Kusama 上的 Moonriver 或 Polkadot 上的 Moonbeam 时，完全同步嵌入式中继链需要几天时间
+- 确保您的系统符合[要求](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}。当连接到 Kusama 上的 Moonriver 或 Polkadot 上的 Moonbeam 时，完全同步嵌入式中继链需要几天时间
 
 ## 下载最新的发布版本二进制文件 {: #the-release-binary }
 
@@ -168,7 +168,7 @@ categories: 节点运营者和整理者
 - 仔细检查二进制文件是否位于如下所述的正确路径中 (_ExecStart_)
 - 如果您使用了不同的目录，请仔细检查基本路径
 
-有关以下启动命令中使用的标志以及其他常用标志的概述，请参阅我们文档的 [标志](node-operators/networks/run-a-node/flags/){target=\_blank} 页面。
+有关以下启动命令中使用的标志以及其他常用标志的概述，请参阅我们文档的 [标志](/node-operators/networks/run-a-node/flags/){target=\_blank} 页面。
 
 ### 完整节点 {: #full-node }
 
@@ -176,7 +176,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonbeam systemd 服务"
+    Description="Moonbeam systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -207,7 +207,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonriver systemd 服务"
+    Description="Moonriver systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -238,7 +238,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonbase Alpha systemd 服务"
+    Description="Moonbase Alpha systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -271,7 +271,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonbeam systemd 服务"
+    Description="Moonbeam systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -305,7 +305,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonbeam systemd 服务"
+    Description="Moonbeam systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -366,7 +366,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonbeam systemd 服务"
+    Description="Moonbeam systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -397,7 +397,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonriver systemd 服务"
+    Description="Moonriver systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -428,7 +428,7 @@ categories: 节点运营者和整理者
 
     ```bash
     [Unit]
-    Description="Moonbase Alpha systemd 服务"
+    Description="Moonbase Alpha systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -459,7 +459,7 @@ categories: 节点运营者和整理者
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/systemd/run-service.md'
 
---8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/status.md'
+--8<-- 'zh/code/node-operators/networks/run-a-node/systemd/terminal/status.md'
 
 您也可以通过运行以下命令查看日志：
 
@@ -467,7 +467,7 @@ categories: 节点运营者和整理者
 journalctl -f -u moonbeam.service
 ```
 
---8<-- 'code/node-operators/networks/run-a-node/systemd/terminal/logs.md'
+--8<-- 'zh/code/node-operators/networks/run-a-node/systemd/terminal/logs.md'
 
 在同步过程中，您会同时看到来自嵌入式中继链（[Relaychain]）和从平行链（[🌗]）的日志。这些日志会显示目标区块（实时网络状态）和最佳区块（本地节点已同步的状态）。
 
@@ -536,7 +536,7 @@ systemctl stop moonbeam.service
         ```
 
     !!! note
-        如果您[手动编译了二进制文件](node-operators/networks/run-a-node/compile-binary/){target=\_blank}，则需要将二进制文件从 `./target/release/{{ networks.moonbeam.binary_name }}` 移动到数据目录。
+        如果您[手动编译了二进制文件](/node-operators/networks/run-a-node/compile-binary/){target=\_blank}，则需要将二进制文件从 `./target/release/{{ networks.moonbeam.binary_name }}` 移动到数据目录。
 
 4. 更新权限
 

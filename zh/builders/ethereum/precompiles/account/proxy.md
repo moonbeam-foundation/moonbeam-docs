@@ -13,9 +13,9 @@ Moonbeam 上的代理预编译允许帐户设置代理帐户，该帐户可以�
 
 如果用户想要向第二个用户提供代表他们执行有限数量操作的权限，传统上唯一的方法是将第一个帐户的私钥提供给第二个用户。但是，Moonbeam 在运行时包含原生代理功能，从而启用代理帐户。由于代理帐户提供了额外的安全层，因此应使用代理帐户，其中许多帐户可以为主帐户执行操作。例如，如果用户希望将其钱包安全地保存在冷存储中，但仍希望访问钱包的部分功能（如治理或质押），则最好这样做。
 
-**代理预编译只能从外部拥有帐户 (EOA) 或通过 [批量预编译](builders/ethereum/precompiles/ux/batch/){target=\_blank} 调用。**
+**代理预编译只能从外部拥有帐户 (EOA) 或通过 [批量预编译](/builders/ethereum/precompiles/ux/batch/){target=\_blank} 调用。**
 
-要了解有关代理帐户的更多信息，以及如何在不使用代理预编译的情况下为自己的目的设置代理帐户，请查看[设置代理帐户](tokens/manage/proxy-accounts/){target=\_blank} 页面。
+要了解有关代理帐户的更多信息，以及如何在不使用代理预编译的情况下为自己的目的设置代理帐户，请查看[设置代理帐户](/tokens/manage/proxy-accounts/){target=\_blank} 页面。
 
 代理预编译位于以下地址：
 
@@ -104,13 +104,13 @@ enum ProxyType {
 
 ## 与Solidity接口交互 {: #interact-with-the-solidity-interface }
 
-以下部分将介绍如何从Remix与Proxy Precompile进行交互。请注意，**Proxy Precompile只能从EOA或[Batch Precompile](builders/ethereum/precompiles/ux/batch/){target=\_blank}调用**。
+以下部分将介绍如何从Remix与Proxy Precompile进行交互。请注意，**Proxy Precompile只能从EOA或[Batch Precompile](/builders/ethereum/precompiles/ux/batch/){target=\_blank}调用**。
 
 ### 检查先决条件 {: #checking-prerequisites }
 
 以下示例在 Moonbase Alpha 上演示，但类似的步骤也可用于 Moonbeam 和 Moonriver。您应该：
 
- - 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+ - 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - 拥有一个包含一些 DEV 代币的帐户。
   --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
  - 拥有您控制的第二个帐户以用作代理帐户（资金可选）
@@ -180,4 +180,4 @@ enum ProxyType {
 
 ![调用 removeProxy 函数](/images/builders/ethereum/precompiles/account/proxy/proxy-6.webp)
 
-就这样！您已完成代理预编译的介绍。有关设置代理的其他信息，请访问[设置代理帐户](tokens/manage/proxy-accounts/){target=\_blank}页面和 Polkadot 文档中的[代理帐户](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank}页面。如果您对代理预编译的任何方面有任何疑问，请随时在 [Discord](https://discord.com/invite/PfpUATX){target=\_blank} 上联系我们。
+就这样！您已完成代理预编译的介绍。有关设置代理的其他信息，请访问[设置代理帐户](/tokens/manage/proxy-accounts/){target=\_blank}页面和 Polkadot 文档中的[代理帐户](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank}页面。如果您对代理预编译的任何方面有任何疑问，请随时在 [Discord](https://discord.com/invite/PfpUATX){target=\_blank} 上联系我们。

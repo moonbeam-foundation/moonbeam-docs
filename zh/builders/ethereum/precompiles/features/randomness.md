@@ -11,9 +11,9 @@ categories: Precompiles, Ethereum Toolkit
 
 Moonbeam 利用可验证随机函数 (VRF) 生成可在链上验证的随机性。VRF 是一种加密函数，它接受一些输入并生成随机值，以及证明这些随机值是由提交者生成的真实性证明。任何人都可以验证该证明，以确保正确计算了生成的随机值。
 
-目前有两种可用的随机性来源，它们根据区块生产者的 VRF 密钥和过去的随机性结果提供随机输入：[本地 VRF](learn/features/randomness/#local-vrf) 和 [BABE 纪元随机性](learn/features/randomness/#babe-epoch-randomness)。本地 VRF 直接在 Moonbeam 中确定，使用区块整理人的 VRF 密钥和上一个区块的 VRF 输出。另一方面，[BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} 纪元随机性基于中继链验证人在完整[纪元](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}期间生成的所有 VRF。
+目前有两种可用的随机性来源，它们根据区块生产者的 VRF 密钥和过去的随机性结果提供随机输入：[本地 VRF](/learn/features/randomness/#local-vrf) 和 [BABE 纪元随机性](/learn/features/randomness/#babe-epoch-randomness)。本地 VRF 直接在 Moonbeam 中确定，使用区块整理人的 VRF 密钥和上一个区块的 VRF 输出。另一方面，[BABE](https://docs.polkadot.com/polkadot-protocol/architecture/polkadot-chain/pos-consensus/#block-production-babe){target=\_blank} 纪元随机性基于中继链验证人在完整[纪元](https://wiki.polkadot.com/general/glossary/#epoch){target=\_blank}期间生成的所有 VRF。
 
-有关随机性的两种来源、请求和履行过程如何运作以及安全注意事项的更多信息，请参阅 [Moonbeam 上的随机性](learn/features/randomness/){target=\_blank} 页面。
+有关随机性的两种来源、请求和履行过程如何运作以及安全注意事项的更多信息，请参阅 [Moonbeam 上的随机性](/learn/features/randomness/){target=\_blank} 页面。
 
 Moonbeam 提供了一个随机性预编译合约，它是一个 Solidity 接口，使智能合约开发者能够使用 Ethereum API 通过本地 VRF 或 BABE 纪元随机性生成随机性。Moonbeam 还提供了一个随机性消费者 Solidity 合约，您的合约必须继承该合约才能使用已履行的随机性请求。
 
@@ -239,7 +239,7 @@ Moonbeam 提供了一个随机性预编译合约，它是一个 Solidity 接口�
 
 您的合约的 `fulfillRandomWords` 回调负责处理完成。例如，在彩票合约中，回调将使用随机词来选择获胜者并支付奖金。
 
-如果请求过期，可以通过预编译合约的 [`purgeExpiredRequest` 函数](builders/ethereum/precompiles/features/randomness/#:~:text=purgeExpiredRequest){target=\_blank} 清除它。调用此函数时，请求费用将支付给调用者，保证金将退还给原始请求者。
+如果请求过期，可以通过预编译合约的 [`purgeExpiredRequest` 函数](/builders/ethereum/precompiles/features/randomness/#:~:text=purgeExpiredRequest){target=\_blank} 清除它。调用此函数时，请求费用将支付给调用者，保证金将退还给原始请求者。
 
 以下图表显示了随机性请求的理想路径：
 
@@ -253,7 +253,7 @@ Moonbeam 提供了一个随机性预编译合约，它是一个 Solidity 接口�
 
 在本指南中，您需要具备以下条件：
 
-- [已安装MetaMask并连接到Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+- [已安装MetaMask并连接到Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - 一个有DEV代币的账户。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 

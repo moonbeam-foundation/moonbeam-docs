@@ -8,18 +8,18 @@ categories: 代币和账户, 以太坊工具包
 
 ## 介绍 {: #introduction }
 
-作为 Polkadot 平行链，Moonbeam 使用[统一账户结构](/learn/core-concepts/unified-accounts/){target=_blank}，允许您通过一个以太坊样式的地址与 Substrate (Polkadot) 功能和 Moonbeam 的 EVM 进行交互。这种统一的账户结构意味着您无需同时维护 Substrate 和以太坊账户即可与 Moonbeam 进行交互，而是可以使用一个以太坊私钥来完成所有操作。
+作为 Polkadot 平行链，Moonbeam 使用[统一账户结构](/learn/core-concepts/unified-accounts/){target=\_blank}，允许您通过一个以太坊样式的地址与 Substrate (Polkadot) 功能和 Moonbeam 的 EVM 进行交互。这种统一的账户结构意味着您无需同时维护 Substrate 和以太坊账户即可与 Moonbeam 进行交互，而是可以使用一个以太坊私钥来完成所有操作。
 
-Polkadot.js Apps 界面原生支持 H160 地址和 ECDSA 密钥。因此，在本教程中，您可以查看以太坊账户在 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=_blank} 上的集成。
+Polkadot.js Apps 界面原生支持 H160 地址和 ECDSA 密钥。因此，在本教程中，您可以查看以太坊账户在 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} 上的集成。
 
---8<-- 'text/_disclaimers/third-party-content-intro.md'
+--8<-- 'zh/text/_disclaimers/third-party-content-intro.md'
 
 !!! note
-    Polkadot.js Apps 正在逐步淘汰对存储在浏览器缓存中的本地账户的支持。建议您使用像 [Talisman 这样的浏览器扩展将您的账户注入到 Polkadot.js Apps 中](/tokens/connect/talisman/){target=_blank}。
+    Polkadot.js Apps 正在逐步淘汰对存储在浏览器缓存中的本地账户的支持。建议您使用像 [Talisman 这样的浏览器扩展将您的账户注入到 Polkadot.js Apps 中](/tokens/connect/talisman/){target=\_blank}。
 
 ## 将 Polkadot.js 应用程序连接到 Moonbeam {: #connect-polkadotjs-apps }
 
-首次启动 [Polkadot.js 应用程序](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=_blank} 时，您可能已连接到所需的网络，也可能未连接。
+首次启动 [Polkadot.js 应用程序](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} 时，您可能已连接到所需的网络，也可能未连接。
 
 您可以通过单击左上角的徽标来更改所选网络，您将在其中找到按主网、测试网和本地网络组织的列表。每个网络都可以在以下部分找到：
 
@@ -41,7 +41,7 @@ Polkadot.js Apps 界面原生支持 H160 地址和 ECDSA 密钥。因此，在�
 ## 在 Polkadot.js Apps 中创建或导入 H160 帐户 {: #creating-or-importing-an-h160-account }
 
 !!! note
-    出于安全考虑，建议不要将密钥存储在本地浏览器中。更安全的方法是使用浏览器扩展程序，如 [Talisman，将您的帐户注入到 Polkadot.js Apps 中](/tokens/connect/talisman/){target=_blank}。
+    出于安全考虑，建议不要将密钥存储在本地浏览器中。更安全的方法是使用浏览器扩展程序，如 [Talisman，将您的帐户注入到 Polkadot.js Apps 中](/tokens/connect/talisman/){target=\_blank}。
 
 在本节中，您将学习如何创建新帐户或将现有的 MetaMask 帐户导入到 Polkadot.js Apps 中。首先，需要一个先决步骤。作为逐步淘汰对本地存储在浏览器缓存中的帐户的支持的一部分，您需要在“**设置**”选项卡中启用对帐户本地存储的支持。为此，请按照以下步骤操作：
 
@@ -51,7 +51,7 @@ Polkadot.js Apps 界面原生支持 H160 地址和 ECDSA 密钥。因此，在�
 
 ![允许本地浏览器内帐户存储](/images/tokens/connect/polkadotjs/polkadotjs-3.webp)
 
-现在，您可以返回 [Polkadot.js Apps 的帐户页面](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=_blank} 并继续执行以下步骤：
+现在，您可以返回 [Polkadot.js Apps 的帐户页面](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/accounts){target=\_blank} 并继续执行以下步骤：
 
 1. 导航到“**帐户**”部分
 2. 点击“**添加帐户**”按钮
@@ -83,7 +83,7 @@ Polkadot.js Apps 界面原生支持 H160 地址和 ECDSA 密钥。因此，在�
 
 ## 通过 Substrate 的 API 发送交易 {: #sending-a-transaction-through-substrates-api }
 
-现在，为了展示 Moonbeam 的[统一账户](/learn/core-concepts/unified-accounts/){target=_blank}方案的潜力，您可以使用 Polkadot.js Apps 通过 Substrate API 进行转账。请记住，您正在使用以太坊式 H160 地址与 Substrate 交互。为此，您可以导入另一个帐户。
+现在，为了展示 Moonbeam 的[统一账户](/learn/core-concepts/unified-accounts/){target=\_blank}方案的潜力，您可以使用 Polkadot.js Apps 通过 Substrate API 进行转账。请记住，您正在使用以太坊式 H160 地址与 Substrate 交互。为此，您可以导入另一个帐户。
 
 接下来，点击 Bob 的**发送**按钮，这将打开另一个向导，引导您完成发送交易的流程。
 
@@ -99,4 +99,4 @@ Polkadot.js Apps 界面原生支持 H160 地址和 ECDSA 密钥。因此，在�
 
 就这样！我们很高兴能够在 Polkadot.js Apps 中支持 H160 账户，因为我们相信这将大大增强 Moonbeam 网络及其以太坊兼容功能的用户体验。
 
---8<-- 'text/_disclaimers/third-party-content.md'
+--8<-- 'zh/text/_disclaimers/third-party-content.md'

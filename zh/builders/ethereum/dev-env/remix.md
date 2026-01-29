@@ -13,7 +13,7 @@ categories: 开发环境, 以太坊工具包
 
 [Remix](https://remix.ethereum.org){target=\_blank} 是一个集成开发环境 (IDE)，用于在 Ethereum 和与 Ethereum 兼容的链上开发智能合约。它提供了一个易于使用的界面，用于编写、编译和部署智能合约。 鉴于 Moonbeam 的 Ethereum 兼容性功能，你可以直接将 Remix 与任何 Moonbeam 网络一起使用。
 
-本指南将引导你完成使用 Remix IDE 创建 Solidity 智能合约并将其部署到 [Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank} 的过程。 本指南可以适用于 [Moonbeam](builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbase Alpha](builders/get-started/networks/moonbase/){target=\_blank}。
+本指南将引导你完成使用 Remix IDE 创建 Solidity 智能合约并将其部署到 [Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank} 的过程。 本指南可以适用于 [Moonbeam](/builders/get-started/networks/moonbeam/){target=\_blank}、[Moonriver](/builders/get-started/networks/moonriver/){target=\_blank} 或 [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}。
 
 如果你熟悉 Remix，则可以跳到 [将 Remix 连接到 Moonbeam](#connect-remix-to-moonbeam){target=\_blank} 部分，了解如何将 Remix 与 Moonbeam 一起使用。
 
@@ -21,14 +21,14 @@ categories: 开发环境, 以太坊工具包
 
 为了本指南的目的，您需要具备以下条件：
 
-- 本地运行的 [Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank}
-- [MetaMask 已安装并连接](tokens/connect/metamask/){target=\_blank} 到您的开发节点
+- 本地运行的 [Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}
+- [MetaMask 已安装并连接](/tokens/connect/metamask/){target=\_blank} 到您的开发节点
 
 如果您按照上述指南操作，您应该拥有一个本地 Moonbeam 节点，该节点将在交易到达时开始创建区块。
 
---8<-- 'code/builders/ethereum/dev-env/remix/terminal/node.md'
+--8<-- 'zh/code/builders/ethereum/dev-env/remix/terminal/node.md'
 
-您的开发节点附带 10 个预先注资的账户。您应该将 MetaMask 连接到您的 Moonbeam 开发节点，并导入至少一个预先注资的账户。您可以参考 MetaMask 文档的 [导入账户](tokens/connect/metamask/#import-accounts){target=\_blank} 部分，获取关于如何导入开发账户的分步说明。
+您的开发节点附带 10 个预先注资的账户。您应该将 MetaMask 连接到您的 Moonbeam 开发节点，并导入至少一个预先注资的账户。您可以参考 MetaMask 文档的 [导入账户](/tokens/connect/metamask/#import-accounts){target=\_blank} 部分，获取关于如何导入开发账户的分步说明。
 
 ![MetaMask 的主屏幕，显示连接到 Moonbeam 开发节点的帐户及其余额。](/images/builders/ethereum/dev-env/remix/remix-1.webp)
 
@@ -119,7 +119,7 @@ Solidity 编译器插件还允许您更改一些设置并为编译器应用高�
 
 要将智能合约部署到 Moonbeam，您需要确保已将钱包连接到您的 Moonbeam 开发节点或您选择的 Moonbeam 网络。然后，从 **Deploy and run transactions（部署和运行交易）** 选项卡中，您可以通过从 **ENVIRONMENT（环境）** 下拉菜单中选择您的钱包来将 Remix 连接到您的钱包。例如，如果您安装了 Trust Wallet，您将从下拉菜单中看到 **Injected Provider - TrustWallet（注入的提供商 - TrustWallet）**。除了注入的提供商之外，您还可以通过 WalletConnect 连接到 Moonbeam。
 
-对于此示例，将使用 MetaMask。您应该已经安装了 MetaMask 并连接到本地 Moonbeam 开发节点。如果未连接，请参阅 [使用 MetaMask 与 Moonbeam 交互](tokens/connect/metamask/){target=\_blank} 指南，以获取分步说明。
+对于此示例，将使用 MetaMask。您应该已经安装了 MetaMask 并连接到本地 Moonbeam 开发节点。如果未连接，请参阅 [使用 MetaMask 与 Moonbeam 交互](/tokens/connect/metamask/){target=\_blank} 指南，以获取分步说明。
 
 从 **ENVIRONMENT（环境）** 下拉菜单中，选择 **Injected Provider - MetaMask（注入的提供商 - MetaMask）**。
 
@@ -182,6 +182,6 @@ MetaMask 将自动弹出并提示您连接到 Remix。您需要：
 
 ![ERC-20 合约的 approve 函数的输入以及 MetaMask 弹出的批准窗口。](/images/builders/ethereum/dev-env/remix/remix-13.webp)
 
-要查看您的余额或批准，或转移 MYTOK，您可以将 MYTOK 添加到您的钱包。有关如何将代币添加到 MetaMask 的信息，您可以参考[添加 ERC-20 代币](tokens/connect/metamask/#add-erc20){target=\_blank}部分中的[我们的 MetaMask 文档](tokens/connect/metamask/){target=\_blank}。
+要查看您的余额或批准，或转移 MYTOK，您可以将 MYTOK 添加到您的钱包。有关如何将代币添加到 MetaMask 的信息，您可以参考[添加 ERC-20 代币](/tokens/connect/metamask/#add-erc20){target=\_blank}部分中的[我们的 MetaMask 文档](/tokens/connect/metamask/){target=\_blank}。
 
 --8<-- 'zh/text/_disclaimers/third-party-content.md'

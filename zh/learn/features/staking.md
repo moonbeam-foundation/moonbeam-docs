@@ -31,7 +31,7 @@ Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com
  - **Reward payout delay（奖励支付延迟）**- 在 Staking 奖励自动分配到可用余额之前必须经过的轮次数
  - **Reward pool（奖励池）**- 预留给整理人和委托人的年度通货膨胀的一部分
  - **Collator commission（整理人佣金）**- 整理人从应付 Staking 奖励中提取的默认固定百分比。与奖励池无关
- - **Delegator rewards（委托人奖励）**— 在所有符合条件的委托人之间分配的累计委托人奖励，同时考虑到质押的相对大小（[了解更多](learn/features/staking/#reward-distribution)）
+ - **Delegator rewards（委托人奖励）**— 在所有符合条件的委托人之间分配的累计委托人奖励，同时考虑到质押的相对大小（[了解更多](/learn/features/staking/#reward-distribution)）
  - **Auto-compounding（自动复利）**- 一种设置，可自动将委托人奖励的百分比应用于其委托的总金额
  - **Slashing（罚没）**— 一种阻止整理人不良行为的机制，通常整理人及其委托人会被罚没，损失一定百分比的质押。目前，没有罚没，但可以通过治理来更改。未被中继链最终确认的区块的整理人将不会收到奖励
 
@@ -78,9 +78,9 @@ Moonbeam 使用基于 [Polkadot 的权益证明模型](https://docs.polkadot.com
 
 --8<-- 'zh/text/_common/async-backing.md'
 
-要了解如何获取有关质押的任何参数的当前值，请查看[检索质押参数](tokens/staking/stake/#retrieving-staking-parameters){target=\_blank}部分 [如何质押您的代币](tokens/staking/stake/){target=\_blank} 指南。
+要了解如何获取有关质押的任何参数的当前值，请查看[检索质押参数](/tokens/staking/stake/#retrieving-staking-parameters){target=\_blank}部分 [如何质押您的代币](/tokens/staking/stake/){target=\_blank} 指南。
 
-如果您正在寻找候选人或整理人特定的要求和信息，您可以查看[整理人](node-operators/networks/collators/requirements/#bonding-requirements){target=\_blank} 指南。
+如果您正在寻找候选人或整理人特定的要求和信息，您可以查看[整理人](/node-operators/networks/collators/requirements/#bonding-requirements){target=\_blank} 指南。
 
 ## 选择 Collator 的资源 {: #resources-for-selecting-a-collator}
 

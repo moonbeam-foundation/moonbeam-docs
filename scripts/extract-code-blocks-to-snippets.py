@@ -39,6 +39,19 @@ Snippet layout (site + language agnostic):
 Include paths written back into Markdown:
 - English: code/<doc_rel_without_ext>/<N>.<ext>
 - Lang:    <lang>/code/<doc_rel_without_lang_without_ext>/<N>.<ext>
+
+Shared code snippets across languages
+------------------------------------
+If you want translated pages (e.g. `zh/...`) to reference the same shared `code/...` snippets
+as the English source (instead of creating `zh/code/...` duplicates), run the extraction on
+the English page first (to create the snippet files), then rewrite the translated page in
+reference mode (no snippet files created):
+
+  1) English (creates `.snippets/code/...`):
+     python3 scripts/extract-code-blocks-to-snippets.py --docs-root . --paths <english.md> --write
+
+  2) Translated (rewrites fences to `--8<-- 'code/...` by matching content, no new snippets):
+     python3 scripts/extract-code-blocks-to-snippets.py --docs-root . --paths <lang>/<page>.md --write --lang-code-snippets reference-english
 """
 
 from __future__ import annotations
@@ -327,6 +340,34 @@ def _write_text(path: Path, text: str, write: bool) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def _canonical_snippet_text(text: str) -> str:
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    return "\n".join(line.rstrip() for line in text.split("\n")).strip("\n")
+
+
+def _build_existing_snippet_index(dir_path: Path) -> dict[str, Path]:
+    """
+    Returns a mapping from canonical snippet content => file path.
+    If multiple files share the same content, the lowest numeric prefix wins.
+    """
+    if not dir_path.exists() or not dir_path.is_dir():
+        return {}
+
+    def sort_key(p: Path) -> tuple[int, str]:
+        m = re.match(r"^(\d+)\.", p.name)
+        return (int(m.group(1)) if m else 10**9, p.name)
+
+    index: dict[str, Path] = {}
+    for child in sorted((p for p in dir_path.iterdir() if p.is_file()), key=sort_key):
+        try:
+            content = _canonical_snippet_text(child.read_text(encoding="utf-8"))
+        except UnicodeDecodeError:
+            continue
+        if content and content not in index:
+            index[content] = child
+    return index
+
+
 def _process_file(
     path: Path,
     docs_root: Path,
@@ -337,7 +378,8 @@ def _process_file(
     include_html_blocks: bool,
     wrap_code_includes: bool,
     extract_blocks: bool,
-) -> tuple[bool, int, int, list[tuple[Path, str]]]:
+    lang_code_snippets: str,
+) -> tuple[bool, int, int, int, list[tuple[Path, str]]]:
     rel = path.relative_to(docs_root)
     rel_parts = rel.parts
 
@@ -349,7 +391,8 @@ def _process_file(
     doc_dir = rel_no_lang.with_suffix("")
 
     snippets_root = docs_root / snippets_dir_name
-    code_root = (snippets_root / lang / "code") if lang else (snippets_root / "code")
+    shared_lang_mode = lang and lang_code_snippets in {"shared", "reference-english"}
+    code_root = (snippets_root / "code") if shared_lang_mode else ((snippets_root / lang / "code") if lang else (snippets_root / "code"))
     out_dir = code_root / doc_dir
 
     raw = path.read_text(encoding="utf-8")
@@ -401,10 +444,10 @@ def _process_file(
 
     if not extract_blocks:
         if not changed:
-            return False, 0, 0, []
+            return False, 0, wrapped_count, 0, []
         new_text = "\n".join(lines).rstrip("\n") + "\n"
         _write_text(path, new_text, write=write)
-        return True, 0, wrapped_count, []
+        return True, 0, wrapped_count, 0, []
 
     # 2) Extract fenced blocks
     fence_blocks = _parse_fenced_blocks(lines)
@@ -413,10 +456,10 @@ def _process_file(
     if not fence_blocks and not html_blocks:
         # If we only wrapped includes, still write updates.
         if not changed:
-            return False, 0, 0, []
+            return False, 0, wrapped_count, 0, []
         new_text = "\n".join(lines).rstrip("\n") + "\n"
         _write_text(path, new_text, write=write)
-        return True, 0, wrapped_count, []
+        return True, 0, wrapped_count, 0, []
 
     # Build candidates, then assign numeric filenames in document order.
     candidates: list[tuple[int, int, str, str, str, str | None, str | None, str]] = []
@@ -453,10 +496,10 @@ def _process_file(
 
     if not candidates:
         if not changed:
-            return False, 0, 0, []
+            return False, 0, wrapped_count, 0, []
         new_text = "\n".join(lines).rstrip("\n") + "\n"
         _write_text(path, new_text, write=write)
-        return True, 0, wrapped_count, []
+        return True, 0, wrapped_count, 0, []
 
     candidates.sort(key=lambda t: (t[0], t[1]))
     non_overlapping: list[tuple[int, int, str, str, str, str | None, str | None, str]] = []
@@ -468,32 +511,56 @@ def _process_file(
         non_overlapping.append(entry)
         last_end = e
 
-    next_n = _max_numeric_prefix(out_dir)
-    include_prefix = f"{lang}/code" if lang else "code"
+    reference_english = bool(lang) and lang_code_snippets == "reference-english"
+    referenced_count = 0
 
-    plan: list[tuple[int, int, Path, str, list[str], str]] = []
-    for start, end, indent, ext, extracted_text, open_line, close_line, kind in non_overlapping:
-        next_n += 1
-        out_path = out_dir / f"{next_n}.{ext}"
-        include_path = f"{include_prefix}/{doc_dir.as_posix()}/{out_path.name}"
-        include_line = f"{indent}--8<-- '{include_path}'"
+    include_prefix = "code" if shared_lang_mode else (f"{lang}/code" if lang else "code")
+    existing_index = _build_existing_snippet_index(out_dir) if reference_english else {}
 
-        if kind == "fence":
-            replacement_lines = [open_line or lines[start], include_line, close_line or lines[end]]
-        else:
-            replacement_lines = [include_line]
+    plan: list[tuple[int, int, Path | None, str, list[str], str]] = []
+    if reference_english:
+        for start, end, indent, ext, extracted_text, open_line, close_line, kind in non_overlapping:
+            key = _canonical_snippet_text(extracted_text)
+            existing_path = existing_index.get(key)
+            if not existing_path:
+                continue
 
-        plan.append((start, end, out_path, include_path, replacement_lines, extracted_text))
+            include_path = f"{include_prefix}/{doc_dir.as_posix()}/{existing_path.name}"
+            include_line = f"{indent}--8<-- '{include_path}'"
+
+            if kind == "fence":
+                replacement_lines = [open_line or lines[start], include_line, close_line or lines[end]]
+            else:
+                replacement_lines = [include_line]
+
+            plan.append((start, end, None, include_path, replacement_lines, extracted_text))
+    else:
+        next_n = _max_numeric_prefix(out_dir)
+        for start, end, indent, ext, extracted_text, open_line, close_line, kind in non_overlapping:
+            next_n += 1
+            out_path = out_dir / f"{next_n}.{ext}"
+            include_path = f"{include_prefix}/{doc_dir.as_posix()}/{out_path.name}"
+            include_line = f"{indent}--8<-- '{include_path}'"
+
+            if kind == "fence":
+                replacement_lines = [open_line or lines[start], include_line, close_line or lines[end]]
+            else:
+                replacement_lines = [include_line]
+
+            plan.append((start, end, out_path, include_path, replacement_lines, extracted_text))
 
     created: list[tuple[Path, str]] = []
     extracted_count = 0
 
     # Apply bottom-up so indices remain valid.
     for start, end, out_path, include_path, replacement_lines, extracted_text in reversed(plan):
-        _write_text(out_path, extracted_text, write=write)
+        if out_path is not None:
+            _write_text(out_path, extracted_text, write=write)
+            created.append((out_path, include_path))
+            extracted_count += 1
+        else:
+            referenced_count += 1
         lines[start : end + 1] = replacement_lines
-        created.append((out_path, include_path))
-        extracted_count += 1
         changed = True
 
     if changed:
@@ -501,7 +568,7 @@ def _process_file(
         _write_text(path, new_text, write=write)
 
     created.reverse()
-    return changed, extracted_count, wrapped_count, created
+    return changed, extracted_count, wrapped_count, referenced_count, created
 
 
 def _iter_md_files(docs_root: Path, targets: list[Path], *, include_index: bool, snippets_dir_name: str) -> list[Path]:
@@ -567,6 +634,18 @@ def main() -> int:
         help="Wrap bare code includes (--8<-- '.../code/...') in fenced code blocks based on file extension.",
     )
     ap.add_argument(
+        "--lang-code-snippets",
+        choices=("per-lang", "shared", "reference-english"),
+        default="per-lang",
+        help=(
+            "How to handle code snippet extraction for translated pages (e.g. zh/...): "
+            "'per-lang' writes to .snippets/<lang>/code and inserts <lang>/code/... includes; "
+            "'shared' writes to .snippets/code and inserts code/... includes; "
+            "'reference-english' never creates snippet files for lang pages and instead rewrites fences "
+            "to reference existing shared code/... snippets by matching snippet content."
+        ),
+    )
+    ap.add_argument(
         "--no-extract-blocks",
         action="store_true",
         help="Do not extract fenced/terminal/HTML blocks; only run include-wrapping step(s).",
@@ -602,9 +681,10 @@ def main() -> int:
     write = bool(args.write)
     total_files_changed = 0
     total_blocks = 0
+    total_referenced = 0
 
     for p in md_files:
-        changed, extracted, wrapped, created = _process_file(
+        changed, extracted, wrapped, referenced, created = _process_file(
             p,
             docs_root=docs_root,
             known_langs=known_langs,
@@ -613,14 +693,16 @@ def main() -> int:
             include_html_blocks=args.include_html_blocks,
             wrap_code_includes=args.wrap_code_includes,
             extract_blocks=not args.no_extract_blocks,
+            lang_code_snippets=args.lang_code_snippets,
         )
         total_blocks += extracted
+        total_referenced += referenced
         if changed:
             total_files_changed += 1
             mode = "Updated" if write else "Would update"
             print(
                 f"{mode} {p.relative_to(docs_root)} "
-                f"(extracted {extracted} block(s), wrapped {wrapped} include(s))"
+                f"(extracted {extracted} block(s), referenced {referenced} block(s), wrapped {wrapped} include(s))"
             )
             if created:
                 for out_path, include_path in created:
@@ -630,7 +712,8 @@ def main() -> int:
                     print(f"    include: {include_path}")
 
     print(
-        f"Done. Files changed: {total_files_changed}. Code blocks extracted: {total_blocks}. Write mode: {'on' if write else 'off'}."
+        f"Done. Files changed: {total_files_changed}. Code blocks extracted: {total_blocks}. "
+        f"Code blocks referenced: {total_referenced}. Write mode: {'on' if write else 'off'}."
     )
     return 0
 

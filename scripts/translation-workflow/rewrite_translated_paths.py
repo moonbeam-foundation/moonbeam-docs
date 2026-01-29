@@ -3,10 +3,13 @@
 Rewrite translated Markdown paths post-translation.
 
 Goals:
-- Make internal doc links relative (remove leading `/`) while leaving external URLs alone.
+- Normalize internal doc links while leaving external URLs alone:
+  - default: strip leading `/` (make links relative)
+  - optional: add leading `/` (make links root-relative)
 - Normalize snippet include paths so translated pages point to the correct per-language
   snippet tree under `.snippets/<lang>/...` (as used by this repo's MkDocs config).
 - Fix `{target=_blank}` -> `{target=\\_blank}` (MkDocs attribute list escaping).
+- Optionally fix common typos in snippet include markers (e.g. `--8/<--` -> `--8<--`).
 - Provide per-file + total logging.
 
 This script is language-agnostic and site-agnostic. It assumes:
@@ -39,12 +42,18 @@ MD_LINK_RE = re.compile(r"\]\((?P<link>[^)\s]+)(?P<rest>[^)]*)\)")
 
 @dataclass
 class RewriteStats:
+    snippet_marker_fixes: int = 0
     include_rewrites: int = 0
     internal_link_rewrites: int = 0
     target_blank_fixes: int = 0
 
     def total(self) -> int:
-        return self.include_rewrites + self.internal_link_rewrites + self.target_blank_fixes
+        return (
+            self.snippet_marker_fixes
+            + self.include_rewrites
+            + self.internal_link_rewrites
+            + self.target_blank_fixes
+        )
 
 
 def _normalize_lang(code: str) -> str:
@@ -167,28 +176,59 @@ def _rewrite_snippet_includes(text: str, lang: str, stats: RewriteStats) -> str:
     return INCLUDE_RE.sub(repl, text)
 
 
-def _rewrite_internal_links(text: str, stats: RewriteStats) -> str:
+def _fix_snippet_markers(text: str, stats: RewriteStats) -> str:
     """
-    Make internal links relative:
-      ](/foo/bar) -> ](foo/bar)
-    Keeps:
-      - external URLs (http/https/mailto)
-      - anchors-only (#...)
-      - images under /images/
+    Fix common typos for the pymdownx.snippets marker.
+
+    Examples:
+      --8/<-- 'path'  -> --8<-- 'path'
+      --8 < -- 'path' -> --8<-- 'path'
     """
 
+    patterns = [
+        # --8/<--
+        (re.compile(r"^(?P<indent>[ \t]*)--8\s*/\s*<--", re.M), r"\g<indent>--8<--"),
+        # --8 < --  (require at least one space so we don't match the correct `--8<--`)
+        (re.compile(r"^(?P<indent>[ \t]*)--8\s+<\s*--", re.M), r"\g<indent>--8<--"),
+        (re.compile(r"^(?P<indent>[ \t]*)--8\s*<\s+--", re.M), r"\g<indent>--8<--"),
+    ]
+
+    for rx, repl in patterns:
+        matches = list(rx.finditer(text))
+        if matches:
+            stats.snippet_marker_fixes += len(matches)
+            text = rx.sub(repl, text)
+
+    return text
+
+
+def _rewrite_internal_links_mode(text: str, mode: str, stats: RewriteStats) -> str:
     def repl(m: re.Match) -> str:
         link = m.group("link")
         rest = m.group("rest") or ""
         if link.startswith("#"):
             return m.group(0)
-        if re.match(r"^(?:https?:|mailto:)", link, re.I):
+        if re.match(r"^(?:https?:|mailto:|tel:)", link, re.I):
             return m.group(0)
-        if link.startswith("/images/"):
+        # protocol-relative external URLs
+        if link.startswith("//"):
             return m.group(0)
-        if link.startswith("/"):
-            stats.internal_link_rewrites += 1
-            link = link[1:]
+        if mode == "relative":
+            # Preserve absolute image paths (commonly referenced from docs root).
+            if link.startswith("/images/"):
+                return m.group(0)
+            if link.startswith("/"):
+                stats.internal_link_rewrites += 1
+                link = link[1:]
+        elif mode == "root":
+            # Don't rewrite explicit relative paths; they may be intentionally local.
+            if link.startswith(("./", "../")):
+                return m.group(0)
+            if not link.startswith("/"):
+                stats.internal_link_rewrites += 1
+                link = "/" + link.lstrip("/")
+        else:
+            raise ValueError(f"Unknown internal link mode: {mode}")
         return f"]({link}{rest})"
 
     return MD_LINK_RE.sub(repl, text)
@@ -202,7 +242,16 @@ def _fix_target_blank(text: str, stats: RewriteStats) -> str:
     return text
 
 
-def rewrite_markdown(path: Path, lang: str) -> tuple[str, RewriteStats]:
+def rewrite_markdown(
+    path: Path,
+    lang: str,
+    internal_links_mode: str,
+    *,
+    fix_snippet_markers: bool,
+    rewrite_includes: bool,
+    rewrite_links: bool,
+    fix_target_blank: bool,
+) -> tuple[str, RewriteStats]:
     original = path.read_text(encoding="utf-8")
     lines = original.splitlines()
 
@@ -213,9 +262,14 @@ def rewrite_markdown(path: Path, lang: str) -> tuple[str, RewriteStats]:
     for in_fence, chunk_lines in chunks:
         chunk_text = "\n".join(chunk_lines)
         if not in_fence:
-            chunk_text = _rewrite_snippet_includes(chunk_text, lang, stats)
-            chunk_text = _rewrite_internal_links(chunk_text, stats)
-            chunk_text = _fix_target_blank(chunk_text, stats)
+            if fix_snippet_markers:
+                chunk_text = _fix_snippet_markers(chunk_text, stats)
+            if rewrite_includes:
+                chunk_text = _rewrite_snippet_includes(chunk_text, lang, stats)
+            if rewrite_links:
+                chunk_text = _rewrite_internal_links_mode(chunk_text, internal_links_mode, stats)
+            if fix_target_blank:
+                chunk_text = _fix_target_blank(chunk_text, stats)
         out_lines.append(chunk_text)
 
     updated = "\n".join(out_lines).rstrip("\n") + "\n"
@@ -241,6 +295,32 @@ def main() -> int:
         nargs="*",
         default=None,
         help="Optional file/dir paths (relative to docs root). Default: rewrite all <lang>/**/*.md.",
+    )
+    ap.add_argument(
+        "--internal-links",
+        choices=["relative", "root"],
+        default="relative",
+        help="How to normalize internal Markdown links. 'relative' strips leading '/', 'root' ensures leading '/'. Default: relative.",
+    )
+    ap.add_argument(
+        "--fix-snippet-markers",
+        action="store_true",
+        help="Fix common typos in snippet include markers (e.g. --8/<-- -> --8<--).",
+    )
+    ap.add_argument(
+        "--skip-includes",
+        action="store_true",
+        help="Skip rewriting --8<-- snippet include paths (default: rewrite includes).",
+    )
+    ap.add_argument(
+        "--skip-links",
+        action="store_true",
+        help="Skip rewriting Markdown links (default: rewrite links).",
+    )
+    ap.add_argument(
+        "--skip-target-blanks",
+        action="store_true",
+        help="Skip fixing {target=_blank} escaping (default: fix).",
     )
     ap.add_argument("--write", action="store_true", help="Apply changes (default: dry-run).")
     args = ap.parse_args()
@@ -274,7 +354,15 @@ def main() -> int:
                 continue
 
             total_files_scanned += 1
-            updated, stats = rewrite_markdown(p, lang)
+            updated, stats = rewrite_markdown(
+                p,
+                lang,
+                internal_links_mode=args.internal_links,
+                fix_snippet_markers=args.fix_snippet_markers,
+                rewrite_includes=not args.skip_includes,
+                rewrite_links=not args.skip_links,
+                fix_target_blank=not args.skip_target_blanks,
+            )
             if stats.total() == 0:
                 continue
 
@@ -282,9 +370,11 @@ def main() -> int:
             mode = "Updated" if args.write else "Would update"
             print(
                 f"{mode} {p.relative_to(docs_root)} "
-                f"(includes={stats.include_rewrites}, links={stats.internal_link_rewrites}, target_blank={stats.target_blank_fixes})"
+                f"(marker_fixes={stats.snippet_marker_fixes}, includes={stats.include_rewrites}, "
+                f"links={stats.internal_link_rewrites}, target_blank={stats.target_blank_fixes})"
             )
 
+            total_stats.snippet_marker_fixes += stats.snippet_marker_fixes
             total_stats.include_rewrites += stats.include_rewrites
             total_stats.internal_link_rewrites += stats.internal_link_rewrites
             total_stats.target_blank_fixes += stats.target_blank_fixes
@@ -295,10 +385,11 @@ def main() -> int:
 
     print(
         "Done. Files scanned: {scanned}. Files with changes: {changed}. Files written: {written}. "
-        "include_rewrites={inc}, internal_link_rewrites={lnk}, target_blank_fixes={tb}.".format(
+        "marker_fixes={mf}, include_rewrites={inc}, internal_link_rewrites={lnk}, target_blank_fixes={tb}.".format(
             scanned=total_files_scanned,
             changed=total_files_with_changes,
             written=total_files_written,
+            mf=total_stats.snippet_marker_fixes,
             inc=total_stats.include_rewrites,
             lnk=total_stats.internal_link_rewrites,
             tb=total_stats.target_blank_fixes,

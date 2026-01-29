@@ -25,10 +25,10 @@ Moonbeam 提供了两种不同类型的浏览器：一种用于查询 Ethereum A
 Moonscan 的其他功能包括：
 
  - [验证人排行榜](https://moonbeam.moonscan.io/collators){target=\_blank}，按性能对验证人进行排名
- - [合约源代码验证](builders/ethereum/verify-contracts/block-explorers/){target=\_blank}，可通过 Web 界面和 API 访问
+ - [合约源代码验证](/builders/ethereum/verify-contracts/block-explorers/){target=\_blank}，可通过 Web 界面和 API 访问
  - 能够读取和写入已验证智能合约的状态数据
  - [Token 授权](https://moonscan.io/tokenapprovalchecker){target=\_blank}，您可以在其中查看和撤销之前的所有 Token 授权
- - [添加 Token 信息](builders/get-started/token-profile/){target=\_blank} 并为部署到 Moonbeam 网络的 ERC-20、ERC-721 和 ERC-1155 创建配置文件。该配置文件可以包括指向您的项目、社交媒体、价格数据以及与您的 Token 相关的其他信息的链接
+ - [添加 Token 信息](/builders/get-started/token-profile/){target=\_blank} 并为部署到 Moonbeam 网络的 ERC-20、ERC-721 和 ERC-1155 创建配置文件。该配置文件可以包括指向您的项目、社交媒体、价格数据以及与您的 Token 相关的其他信息的链接
 
 ![Moonbeam Moonscan](/images/builders/get-started/explorers/explorers-1.webp)
 
@@ -57,5 +57,5 @@ Moonscan 的其他功能包括：
 
 ![Polkadot.js Moonbeam](/images/builders/get-started/explorers/explorers-4.webp)
 
-要将其连接到 Moonbeam 开发节点，您可以按照[将 Polkadot.js Apps 连接到本地 Moonbeam 节点](builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank}部分中的步骤进行操作，该部分位于[Moonbeam 开发节点入门](builders/get-started/networks/moonbeam-dev/){target=\_blank}指南中。此处的默认端口是 `9944`。
+要将其连接到 Moonbeam 开发节点，您可以按照[将 Polkadot.js Apps 连接到本地 Moonbeam 节点](/builders/get-started/networks/moonbeam-dev/#connecting-polkadot-js-apps-to-a-local-moonbeam-node){target=\_blank}部分中的步骤进行操作，该部分位于[Moonbeam 开发节点入门](/builders/get-started/networks/moonbeam-dev/){target=\_blank}指南中。此处的默认端口是 `9944`。
 ![Polkadot.js Local Node](/images/builders/get-started/explorers/explorers-5.webp)

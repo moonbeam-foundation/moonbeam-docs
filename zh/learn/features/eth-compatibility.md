@@ -22,7 +22,7 @@ Moonbeam 采用 H160 Ethereum 风格账户和 ECDSA 密钥，确保与现有 Eth
 
 了解更多：
 
-- [Moonbeam 的统一账户系统](learn/core-concepts/unified-accounts/){target=\_blank}
+- [Moonbeam 的统一账户系统](/learn/core-concepts/unified-accounts/){target=\_blank}
 
 ### JSON-RPC 支持 {: #json-rpc-support }
 
@@ -32,9 +32,9 @@ Moonbeam提供与以太坊完全的JSON-RPC兼容性，允许开发人员使用�
 
 了解更多：
 
-- [支持的以太坊RPC方法](builders/ethereum/json-rpc/eth-rpc/){target=\_blank}
-- [使用以太坊JSON-RPC方法订阅事件](builders/ethereum/json-rpc/pubsub/){target=\_blank}
-- [使用非标准RPC方法调试和跟踪交易](builders/ethereum/json-rpc/debug-trace/){target=\_blank}
+- [支持的以太坊RPC方法](/builders/ethereum/json-rpc/eth-rpc/){target=\_blank}
+- [使用以太坊JSON-RPC方法订阅事件](/builders/ethereum/json-rpc/pubsub/){target=\_blank}
+- [使用非标准RPC方法调试和跟踪交易](/builders/ethereum/json-rpc/debug-trace/){target=\_blank}
 
 ### 以太坊开发者工具和库 {: #ethereum-dev-tools }
 
@@ -42,8 +42,8 @@ Moonbeam 以以太坊 JSON-RPC 方法为底层支持，充分利用以太坊丰�
 
 了解更多：
 
-- [以太坊库](builders/ethereum/libraries/){target=\_blank}
-- [以太坊开发环境](builders/ethereum/libraries/){target=\_blank}
+- [以太坊库](/builders/ethereum/libraries/){target=\_blank}
+- [以太坊开发环境](/builders/ethereum/libraries/){target=\_blank}
 
 ### 预编译合约 {: #precompiled-contracts }
 
@@ -53,7 +53,7 @@ Moonbeam 提供预编译合约，以允许以太坊智能合约无缝访问 Subs
 
 了解更多：
 
-- [Moonbeam 预编译合约概述](builders/ethereum/precompiles/overview/){target=\_blank}
+- [Moonbeam 预编译合约概述](/builders/ethereum/precompiles/overview/){target=\_blank}
 
 ### Ethereum 代币标准 {: #ethereum-token-standards }
 
@@ -63,7 +63,7 @@ Moonbeam 支持 Ethereum 代币标准，允许开发者部署和交互符合如 
 
 了解更多：
 
-- [支持 XCM 的 ERC-20](builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}（也称为本地 XC-20）
+- [支持 XCM 的 ERC-20](/builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}（也称为本地 XC-20）
 
 ## 主要区别 {: #key-differences }
 
@@ -73,7 +73,7 @@ Moonbeam 使用委托权益证明（DPoS）共识机制，网络中的代币持�
 
 了解更多：
 
-- [PoS 和 DPoS 之间的区别](learn/core-concepts/consensus-finality/#main-differences){target=\_blank}
+- [PoS 和 DPoS 之间的区别](/learn/core-concepts/consensus-finality/#main-differences){target=\_blank}
 
 ### 最终性 {: #finality }
 
@@ -81,7 +81,7 @@ Moonbeam 和以太坊具有不同的最终性流程。在以太坊上，存在�
 
 了解更多信息：
 
-- [Moonbeam 上的共识和最终性](learn/core-concepts/consensus-finality/){target=\_blank}
+- [Moonbeam 上的共识和最终性](/learn/core-concepts/consensus-finality/){target=\_blank}
 
 ### 代理账户 {: #proxy-accounts }
 
@@ -90,7 +90,7 @@ Moonbeam 和以太坊具有不同的最终性流程。在以太坊上，存在�
 了解更多：
 
 - [代理账户概述](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank}
-- [如何设置代理账户](tokens/manage/proxy-accounts/){target=\_blank}
+- [如何设置代理账户](/tokens/manage/proxy-accounts/){target=\_blank}
 
 ### 账户余额 {: #account-balances }
 
@@ -98,7 +98,7 @@ Moonbeam 和以太坊具有不同的最终性流程。在以太坊上，存在�
 
 了解更多：
 
-- [Moonbeam 账户余额](learn/core-concepts/balances/){target=\_blank}
+- [Moonbeam 账户余额](/learn/core-concepts/balances/){target=\_blank}
 
 ### 余额转移 {: #balance-transfers }
 
@@ -106,7 +106,7 @@ Moonbeam 和以太坊具有不同的最终性流程。在以太坊上，存在�
 
 了解更多：
 
-- [Moonbeam 上的余额转移](learn/core-concepts/transfers-api/){target=\_blank}
+- [Moonbeam 上的余额转移](/learn/core-concepts/transfers-api/){target=\_blank}
 
 ### 交易费用 {: #transaction-fees }
 
@@ -114,4 +114,4 @@ Moonbeam 和以太坊具有不同的最终性流程。在以太坊上，存在�
 
 了解更多：
 
-- [在 Moonbeam 上计算交易费用](learn/core-concepts/tx-fees/){target=\_blank}
+- [在 Moonbeam 上计算交易费用](/learn/core-concepts/tx-fees/){target=\_blank}

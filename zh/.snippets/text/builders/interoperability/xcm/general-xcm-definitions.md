@@ -1,4 +1,0 @@
-- **XCM** — 代表跨共识消息（Cross-Consensus Message）。这是一种共识系统之间相互通信的通用方法。
- - **VMP** — 代表垂直消息传递（Vertical Message Passing），是 XCM 的传输方法之一。它允许平行链与中继链交换消息。*UMP*（向上消息传递，Upward Message Passing）使平行链能够向其中继链发送消息，而 *DMP*（向下消息传递，Downward Message Passing）使中继链能够将消息传递给其平行链之一
- - **XCMP** — 代表跨共识消息传递（Cross-Consensus Message Passing），是 XCM 的传输方法之一。它允许平行链在同一中继链上与其他平行链交换消息
- - **HRMP** — 代表水平中继路由消息传递（Horizontal Relay-routed Message Passing），是在启动完整的 XCMP 实现之前的临时协议。它具有与 XCMP 相同的接口，但消息存储在中继链上

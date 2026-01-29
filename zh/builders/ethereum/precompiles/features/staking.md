@@ -10,7 +10,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-Moonbeam 通过 Parachain Staking Pallet 使用委托权益证明（DPoS）系统，允许代币持有者（委托人）明确选择他们要支持的整理人候选者以及质押数量。Parachain Staking Pallet 的设计使委托人与候选者在链上共享风险与收益。有关质押的基础信息，例如通用术语、质押变量等，请参阅 [Moonbeam 上的质押](learn/features/staking/){target=\_blank} 页面。
+Moonbeam 通过 Parachain Staking Pallet 使用委托权益证明（DPoS）系统，允许代币持有者（委托人）明确选择他们要支持的整理人候选者以及质押数量。Parachain Staking Pallet 的设计使委托人与候选者在链上共享风险与收益。有关质押的基础信息，例如通用术语、质押变量等，请参阅 [Moonbeam 上的质押](/learn/features/staking/){target=\_blank} 页面。
 
 质押模块使用 Rust 编写，是一个 pallet 的一部分，通常无法从 Moonbeam 的以太坊端访问。不过，质押预编译允许开发者通过以太坊 API 访问位于以下地址的预编译合约中的质押功能：
 
@@ -470,7 +470,7 @@ Parachain Staking Pallet 的部分 extrinsic 包含退出延迟，在请求可�
 
 以下示例在 Moonbase Alpha 上演示，但 Moonbeam 和 Moonriver 也可采用类似步骤。
 
-- 安装 MetaMask 并 [连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+- 安装 MetaMask 并 [连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - 拥有至少 `{{networks.moonbase.staking.min_del_stake}}` 代币的账户。
 
 --8<-- 'zh/text/_common/faucet/faucet-list-item.md'

@@ -19,7 +19,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 使用 ECRecoverPublicKey 检索公钥 {: verifying-signatures-ecrecoverpublickey }
 
-`ECRecoverPublicKey` 预编译的主要功能是从给定的消息哈希和签名中恢复用于创建数字签名的公钥。此预编译类似于 [ECRecover](builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover/){target=\_blank}，但区别在于它返回签署消息的帐户的公钥，而不是帐户地址。
+`ECRecoverPublicKey` 预编译的主要功能是从给定的消息哈希和签名中恢复用于创建数字签名的公钥。此预编译类似于 [ECRecover](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover/){target=\_blank}，但区别在于它返回签署消息的帐户的公钥，而不是帐户地址。
 
 在以下部分中，您将学习如何使用 `ECRecoverPublicKey` 预编译。
 
@@ -66,7 +66,7 @@ node signMessage.js
 
 此代码将在终端中返回以下对象：
 
---8<-- 'code/builders/ethereum/precompiles/utility/nonspecific/terminal/signature.md'
+--8<-- 'zh/code/builders/ethereum/precompiles/utility/nonspecific/terminal/signature.md'
 
 保存这些值，因为您将在下一节中需要它们。
 

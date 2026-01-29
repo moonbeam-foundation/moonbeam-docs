@@ -16,7 +16,7 @@ categories: Basics
  - **基于以太坊 API JSON-RPC** — [Moonbeam Basic Explorer](https://moonbeam-explorer.netlify.app/?network=MoonbaseAlpha){target=\_blank}
  - **Substrate API** — [Subscan](https://moonbase.subscan.io){target=\_blank} 或 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank}
 
-有关每个可用区块浏览器的更多信息，请访问文档的 [区块浏览器](builders/get-started/explorers/){target=\_blank} 部分。
+有关每个可用区块浏览器的更多信息，请访问文档的 [区块浏览器](/builders/get-started/explorers/){target=\_blank} 部分。
 
 ## 连接 MetaMask
 
@@ -29,7 +29,7 @@ categories: Basics
 !!! note
     MetaMask 将弹出窗口，请求您授予权限以将 Moonbase Alpha 添加为自定义网络。批准权限后，MetaMask 会将您当前的网路切换到 Moonbase Alpha。
 
-如果您没有安装 MetaMask，或者想要按照教程开始操作，请查看[使用 MetaMask 与 Moonbeam 交互](tokens/connect/metamask/){target=\_blank} 指南。
+如果您没有安装 MetaMask，或者想要按照教程开始操作，请查看[使用 MetaMask 与 Moonbeam 交互](/tokens/connect/metamask/){target=\_blank} 指南。
 
 ## 配置 {: #configuration }
 
@@ -79,7 +79,7 @@ Moonbase Alpha 上部署了各种 DApp，使您可以试验各种应用程序和
 
 ### Moonbeam Uniswap {: #moonbeam-uniswap }
 
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} 是部署到 Moonbase Alpha 的 [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=\_blank} 的一个分支。值得注意的是，Moonbeam Uniswap 允许开发人员轻松进行交易，以获取 [跨链资产](builders/interoperability/xcm/xc20/){target=\_blank}，例如用于 XCM 测试的 xcKarura 或 xcUNIT。要执行您的第一笔交易，请执行以下步骤：
+[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} 是部署到 Moonbase Alpha 的 [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=\_blank} 的一个分支。值得注意的是，Moonbeam Uniswap 允许开发人员轻松进行交易，以获取 [跨链资产](/builders/interoperability/xcm/xc20/){target=\_blank}，例如用于 XCM 测试的 xcKarura 或 xcUNIT。要执行您的第一笔交易，请执行以下步骤：
 
 1. 按下 **选择代币**
 2. 连接您的 MetaMask 钱包并确保您在 Moonbase Alpha 网络上

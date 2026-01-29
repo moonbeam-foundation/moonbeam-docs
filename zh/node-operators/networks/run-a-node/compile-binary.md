@@ -12,7 +12,7 @@ categories: 节点运营商和收集人
 
 本指南适用于具有编译 [Substrate](https://docs.polkadot.com/){target=\_blank} 区块链节点经验的人员。平行链节点类似于典型的 Substrate 节点，但存在一些差异。Substrate 平行链节点将是一个更大的构建，因为它包含运行平行链本身的代码，以及同步中继链和促进两者之间通信的代码。此构建非常大，可能需要 30 分钟以上，并且至少需要 32 GB 的内存。
 
-要快速入门而无需自己编译二进制文件，可以使用[发布二进制文件](node-operators/networks/run-a-node/systemd/){target=\_blank}。
+要快速入门而无需自己编译二进制文件，可以使用[发布二进制文件](/node-operators/networks/run-a-node/systemd/){target=\_blank}。
 
 ## 编译二进制文件 {: #compile-the-binary }
 
@@ -66,4 +66,4 @@ categories: 节点运营商和收集人
 --8<-- 'code/builders/get-started/networks/moonbeam-dev/updatepath.md'
 ```
 
-现在，您可以使用 Moonbeam 二进制文件来运行 Systemd 服务。要设置和运行该服务，请参阅[使用 Systemd 在 Moonbeam 上运行节点](node-operators/networks/run-a-node/systemd/){target=\_blank}指南。
+现在，您可以使用 Moonbeam 二进制文件来运行 Systemd 服务。要设置和运行该服务，请参阅[使用 Systemd 在 Moonbeam 上运行节点](/node-operators/networks/run-a-node/systemd/){target=\_blank}指南。

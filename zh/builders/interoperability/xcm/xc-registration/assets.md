@@ -8,9 +8,9 @@ categories: XC-20
 
 ## 简介 {: #introduction }
 
-要通过 XCM 在链之间转移资产，需要在两条链之间建立开放通道，并且需要在目标链上注册该资产。如果两条链之间不存在通道，则需要打开一个通道。请查看 [XC 通道注册](builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 指南，了解如何在 Moonbeam 和另一条链之间建立通道。
+要通过 XCM 在链之间转移资产，需要在两条链之间建立开放通道，并且需要在目标链上注册该资产。如果两条链之间不存在通道，则需要打开一个通道。请查看 [XC 通道注册](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 指南，了解如何在 Moonbeam 和另一条链之间建立通道。
 
-本指南将向您展示如何在 Moonbeam 上注册 [外部 XC-20](builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}，并提供您需要在另一个链上注册 Moonbeam 资产的信息，包括 Moonbeam 原生资产（GLMR、MOVR 和 DEV）和[本地 XC-20](Builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}（支持 XCM 的 ERC-20）。
+本指南将向您展示如何在 Moonbeam 上注册 [外部 XC-20](/builders/interoperability/xcm/xc20/overview/#external-xc20s){target=\_blank}，并提供您需要在另一个链上注册 Moonbeam 资产的信息，包括 Moonbeam 原生资产（GLMR、MOVR 和 DEV）和[本地 XC-20](/Builders/interoperability/xcm/xc20/overview/#local-xc20s){target=\_blank}（支持 XCM 的 ERC-20）。
 
 本指南中的示例使用了一个 CLI 工具，该工具旨在简化整个过程，您可以在 [xcm-tools GitHub 存储库](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} 中找到它。
 
@@ -24,9 +24,9 @@ yarn
 
 在 Moonbeam 上注册外部 XC-20 是一个多步骤的过程，从高层次上讲，涉及到在 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank} 上提出资产注册，并创建一个链上治理提案。
 
-如果 Moonbeam 和资产的原始链之间尚不存在通道，则需要打开一个通道。您可以将通道相关的调用与资产注册调用进行批处理，这样您只需要提交一个提案即可。您必须首先创建几个论坛帖子：一个 [XCM 披露](builders/interoperability/xcm/xc-registration/forum-templates/#xcm-disclosures){target=\_blank} 帖子和一个 [XCM 提案](builders/interoperability/xcm/xc-registration/forum-templates/#xcm-proposals){target=\_blank} 帖子。
+如果 Moonbeam 和资产的原始链之间尚不存在通道，则需要打开一个通道。您可以将通道相关的调用与资产注册调用进行批处理，这样您只需要提交一个提案即可。您必须首先创建几个论坛帖子：一个 [XCM 披露](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-disclosures){target=\_blank} 帖子和一个 [XCM 提案](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-proposals){target=\_blank} 帖子。
 
-在您收集到社区成员的反馈后，您可以创建一个提案来开通一个通道并注册任何资产。有关开通通道的更多信息，请参阅 [与 Moonbeam 建立 XC 集成](builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 指南。
+在您收集到社区成员的反馈后，您可以创建一个提案来开通一个通道并注册任何资产。有关开通通道的更多信息，请参阅 [与 Moonbeam 建立 XC 集成](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 指南。
 
 ![如果 XC 通道不存在，则进行资产注册](/images/builders/interoperability/xcm/xc-registration/assets/assets-1.webp)
 
@@ -36,7 +36,7 @@ yarn
 
 ### 创建论坛帖子 {: #create-a-forum-post }
 
-要在 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank} 上创建论坛帖子，您需要确保将帖子添加到正确的类别并添加相关内容。有关一般指南和要遵循的模板，请参阅[Moonbeam 社区论坛 XCM 集成模板](builders/interoperability/xcm/xc-registration/forum-templates/#){target=\_blank} 页面。
+要在 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank} 上创建论坛帖子，您需要确保将帖子添加到正确的类别并添加相关内容。有关一般指南和要遵循的模板，请参阅[Moonbeam 社区论坛 XCM 集成模板](/builders/interoperability/xcm/xc-registration/forum-templates/#){target=\_blank} 页面。
 
 ### 计算相对价格 {: #calculate-relative-price }
 
@@ -75,7 +75,7 @@ yarn calculate-relative-price 0.25 12 GLMR
 
 这指示脚本计算有多少最小单位的资产（价格为 0.25 美元，有 12 个小数位）对应于 1 个 GLMR 代币。
 
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/calculate-relative-price.md'
+--8<-- 'zh/code/builders/interoperability/xcm/xc-registration/assets/terminal/calculate-relative-price.md'
 
 成功执行后，脚本会将计算出的 `relativePrice` 打印为 `BigInt`。此值表示资产的美元价格与本地代币的美元价格之间的缩放比率，最高乘以 18 个小数位。然后，您可以在链上资产注册或费用计算场景中使用此结果，尤其是在需要 `u128` 18 位小数格式的情况下。
 
@@ -87,7 +87,7 @@ yarn calculate-relative-price --help
 
 ### 生成用于资产注册的编码 calldata {: #generate-encoded-calldata-for-asset-registration }
 
-在 Moonbeam 上提交治理提案需要两步：首先提交一个预映像（preimage）来定义要执行的操作，然后基于该预映像提交提案。更多信息请参阅 [Moonbeam 治理](learn/features/governance/){target=\_blank} 页面。要为资产注册提交预映像，您需要同时准备 `evmForeignAssets.createForeignAsset` 与 `xcmWeightTrader.addAsset` 这两个 extrinsic 的编码 calldata。现有资产的价格可以通过 `xcmWeightTrader.editAsset` 更新。
+在 Moonbeam 上提交治理提案需要两步：首先提交一个预映像（preimage）来定义要执行的操作，然后基于该预映像提交提案。更多信息请参阅 [Moonbeam 治理](/learn/features/governance/){target=\_blank} 页面。要为资产注册提交预映像，您需要同时准备 `evmForeignAssets.createForeignAsset` 与 `xcmWeightTrader.addAsset` 这两个 extrinsic 的编码 calldata。现有资产的价格可以通过 `xcmWeightTrader.editAsset` 更新。
 
 提案必须通过 Fast General Admin 轨道提交。在注册资产之前必须先建立通道。要获取 `evmForeignAssets.createForeignAsset` extrinsic 的编码 calldata，您需要提供以下参数：
 
@@ -112,7 +112,7 @@ yarn register-asset --w wss://wss.api.moonbeam.network  \
 
 使用相关参数运行脚本后，您将看到类似如下的输出：
 
---8<-- 'code/builders/interoperability/xcm/xc-registration/assets/terminal/register-asset.md'
+--8<-- 'zh/code/builders/interoperability/xcm/xc-registration/assets/terminal/register-asset.md'
 
 脚本将为以下调用提供编码后的 call data：
 
@@ -131,15 +131,15 @@ yarn register-asset --w wss://wss.api.moonbeam.network  \
 
 使用上述信息，您可以通过 Polkadot API 或 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/extrinsics){target=\_blank} 生成 `addAsset` 调用的编码调用数据。
 
-要创建一个批处理事务，将 `xcmWeightTrader.addAsset` 和 `evmForeignAssets.createForeignAsset` 调用组合在一起，您可以使用 [Polkadot API 的 `batch` 方法](builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}。如前所述，[XCM 资产注册器脚本](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} 可以帮助您构建和提交所需的调用。
+要创建一个批处理事务，将 `xcmWeightTrader.addAsset` 和 `evmForeignAssets.createForeignAsset` 调用组合在一起，您可以使用 [Polkadot API 的 `batch` 方法](/builders/substrate/libraries/polkadot-js-api/#batching-transactions){target=\_blank}。如前所述，[XCM 资产注册器脚本](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/xcm-asset-registrator.ts){target=\_blank} 可以帮助您构建和提交所需的调用。
 
 ### 提交资产注册的预映像和提案 {: #submit-preimage-proposal }
 
-您的下一个任务是为包含 `xcmWeightTrader.addAsset` 与 `evmForeignAssets.createForeignAsset` 的批处理调用提交预映像（preimage）。请参考[提交民主提案指南](tokens/governance/proposals/#submitting-a-preimage-of-the-proposal){target=\_blank}中的说明进行操作。
+您的下一个任务是为包含 `xcmWeightTrader.addAsset` 与 `evmForeignAssets.createForeignAsset` 的批处理调用提交预映像（preimage）。请参考[提交民主提案指南](/tokens/governance/proposals/#submitting-a-preimage-of-the-proposal){target=\_blank}中的说明进行操作。
 
 对于 Moonbase Alpha，您无需走治理流程，因为 Moonbase Alpha 具有 sudo 权限。相反，您可以将批处理调用数据（batch call data）的输出提供给 Moonbeam 团队，由他们使用 sudo 提交该调用。这比通过治理流程更快、更简单。不过，您也可以选择在 Moonbase Alpha 上走一遍治理流程，以便为 Moonbeam 的治理过程做准备。
 
-提交预映像后，您可以根据[提交提案](tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank}部分的指南提交提案。
+提交预映像后，您可以根据[提交提案](/tokens/governance/proposals/#submitting-a-proposal-v2){target=\_blank}部分的指南提交提案。
 
 如果您更倾向于使用脚本方式，并且熟悉 XCM tools 仓库中的脚本，您可以使用 [generic call proposer](https://github.com/Moonsong-Labs/xcm-tools/blob/main/scripts/generic-call-proposer.ts){target=\_blank}，将所需的调用（包括 XCM 通道的接受与提案，以及资产注册）作为参数传入。该脚本可以帮助您组装多个必需的调用，例如：
 
@@ -153,7 +153,7 @@ yarn generic-call-propose \
 
 ### 在 Moonbeam 上测试资产注册 {: #test-asset-registration }
 
-在您的资产注册后，团队将提供资产 ID 和 [XC-20 预编译](builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank}地址。您的 XC-20 预编译地址通过将资产 ID 十进制数转换为十六进制，并在其前面加上 F，直到获得一个 40 个十六进制字符（加上“0x”）的地址来计算得出。有关如何计算的更多信息，请参阅外部 XC-20 指南的 [计算外部 XC-20 预编译地址](builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=\_blank} 部分。资产成功注册后，您可以将代币从您的平行链转移到您正在集成的基于 Moonbeam 的网络。
+在您的资产注册后，团队将提供资产 ID 和 [XC-20 预编译](/builders/interoperability/xcm/xc20/interact/#the-erc20-interface){target=\_blank}地址。您的 XC-20 预编译地址通过将资产 ID 十进制数转换为十六进制，并在其前面加上 F，直到获得一个 40 个十六进制字符（加上“0x”）的地址来计算得出。有关如何计算的更多信息，请参阅外部 XC-20 指南的 [计算外部 XC-20 预编译地址](/builders/interoperability/xcm/xc20/interact/#calculate-xc20-address){target=\_blank} 部分。资产成功注册后，您可以将代币从您的平行链转移到您正在集成的基于 Moonbeam 的网络。
 
 !!! note
     请记住，基于 Moonbeam 的网络使用 AccountKey20（以太坊风格的地址）。
@@ -184,17 +184,17 @@ yarn generic-call-propose \
 !!! note
     对于 Moonbeam 和 Moonriver 测试，请向上述帐户发送价值 50 美元的代币。此外，请提供一个以太坊风格的帐户，用于发送价值 50 美元的 GLMR/MOVR 以进行测试。
 
-[XC-20s](builders/interoperability/xcm/xc20/){target=\_blank} 是具有 [ERC-20 接口](builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=\_blank} 的基于 Substrate 的资产。这意味着可以将它们添加到 MetaMask，并可以与生态系统中存在的任何 EVM DApp 组合使用。 团队可以将您与您认为与 XC-20 集成相关的任何 DApp 联系起来。
+[XC-20s](/builders/interoperability/xcm/xc20/){target=\_blank} 是具有 [ERC-20 接口](/builders/interoperability/xcm/xc20/overview/#the-erc20-interface){target=\_blank} 的基于 Substrate 的资产。这意味着可以将它们添加到 MetaMask，并可以与生态系统中存在的任何 EVM DApp 组合使用。 团队可以将您与您认为与 XC-20 集成相关的任何 DApp 联系起来。
 
-如果您需要 DEV 代币（Moonbase Alpha 的本地代币）来使用您的 XC-20 资产，您可以从 [Moonbase Alpha 水龙头](builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=\_blank} 获得一些，该水龙头每 24 小时分配 {{ networks.moonbase.website_faucet_amount }} 。如果您需要更多，请随时通过 [Telegram](https://t.me/Moonbeam_Official){target=\_blank} 或 [Discord](https://discord.com/invite/PfpUATX){target=\_blank} 与团队联系。
+如果您需要 DEV 代币（Moonbase Alpha 的本地代币）来使用您的 XC-20 资产，您可以从 [Moonbase Alpha 水龙头](/builders/get-started/networks/moonbase/#moonbase-alpha-faucet){target=\_blank} 获得一些，该水龙头每 24 小时分配 {{ networks.moonbase.website_faucet_amount }} 。如果您需要更多，请随时通过 [Telegram](https://t.me/Moonbeam_Official){target=\_blank} 或 [Discord](https://discord.com/invite/PfpUATX){target=\_blank} 与团队联系。
 
 ### 设置 XC-20 预编译字节码 {: #set-bytecode }
 
 一旦您的 XC-20 在 Moonbeam 上注册，您就可以设置 XC-20 的预编译字节码。这是必要的，因为预编译是在 Moonbeam 运行时内部实现的，并且默认情况下没有字节码。在 Solidity 中，当调用合约时，会有一些检查要求合约字节码不能为空。因此，将字节码设置为占位符可以绕过这些检查，并允许调用预编译。
 
-您可以使用 [预编译注册表](builders/ethereum/precompiles/utility/registry/){target=\_blank}（它是一个 Solidity 接口）来更新 XC-20 预编译的字节码，以避免任何问题并确保可以从 Solidity 调用该预编译。为此，您将使用预编译注册表的 [`updateAccountCode` 函数](builders/ethereum/precompiles/utility/registry/#the-solidity-interface){target=\_blank}。
+您可以使用 [预编译注册表](/builders/ethereum/precompiles/utility/registry/){target=\_blank}（它是一个 Solidity 接口）来更新 XC-20 预编译的字节码，以避免任何问题并确保可以从 Solidity 调用该预编译。为此，您将使用预编译注册表的 [`updateAccountCode` 函数](/builders/ethereum/precompiles/utility/registry/#the-solidity-interface){target=\_blank}。
 
-要开始，您需要[计算 XC-20 的预编译地址](builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank}并拥有预编译注册表的 ABI。
+要开始，您需要[计算 XC-20 的预编译地址](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank}并拥有预编译注册表的 ABI。
 
 ??? code "预编译注册表 ABI"
 
@@ -231,7 +231,7 @@ yarn generic-call-propose \
 
 为了实现 Moonbeam 资产（包括 Moonbeam 原生资产 (GLMR、MOVR、DEV) 和部署在 Moonbeam 上的本地 XC-20 (支持 XCM 的 ERC-20)）在 Moonbeam 和另一条链之间的跨链转移，您需要在另一条链上注册这些资产。由于每条链存储跨链资产的方式不同，因此在另一条链上注册 Moonbeam 资产的具体步骤会因链而异。至少，您需要知道 Moonbeam 上资产的元数据和多重位置。
 
-除了资产注册之外，还需要采取其他步骤才能实现与 Moonbeam 的跨链集成。有关更多信息，请参阅[与 Moonbeam 建立 XC 集成](builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 指南。
+除了资产注册之外，还需要采取其他步骤才能实现与 Moonbeam 的跨链集成。有关更多信息，请参阅[与 Moonbeam 建立 XC 集成](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank} 指南。
 
 ### 在另一条链上注册 Moonbeam 原生资产 {: #register-moonbeam-native-assets }
 
@@ -414,7 +414,7 @@ function transfer(address _to, uint256 _value) public returns (bool success)
 
 ### 更新外部资产 XCM 位置 {: #updating-foreign-asset-xcm-location }
 
-您可以使用 `evmForeignAssets.changeXcmLocation` 调用来更新资产的多重位置，该调用使用 `assetId` 和新的多重位置作为参数。您需要发起一个[治理提案](tokens/governance/proposals/)，并在通用管理轨道下提交更新。如果您在 Moonbase Alpha 中进行测试，您可以要求 Moonbeam 团队使用 Sudo 提交外部函数调用以加快流程。您也可以在 Moonbase Alpha 上提交必要的治理提案。
+您可以使用 `evmForeignAssets.changeXcmLocation` 调用来更新资产的多重位置，该调用使用 `assetId` 和新的多重位置作为参数。您需要发起一个[治理提案](/tokens/governance/proposals/)，并在通用管理轨道下提交更新。如果您在 Moonbase Alpha 中进行测试，您可以要求 Moonbeam 团队使用 Sudo 提交外部函数调用以加快流程。您也可以在 Moonbase Alpha 上提交必要的治理提案。
 
 ### 冻结外部资产 {: #freezing-a--foreign-asset }
 

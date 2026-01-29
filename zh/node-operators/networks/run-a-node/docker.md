@@ -17,7 +17,7 @@ categories: 节点运营者和整理者
 要开始，您需要：
 
 - [安装 Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}。在撰写本文时，使用的 Docker 版本为 24.0.6
-- 确保您的系统满足[要求](node-operators/networks/run-a-node/overview/#requirements){target=\_blank}。当连接到 Kusama 上的 Moonriver 或 Polkadot 上的 Moonbeam 时，完全同步嵌入式中继链需要几天时间
+- 确保您的系统满足[要求](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}。当连接到 Kusama 上的 Moonriver 或 Polkadot 上的 Moonbeam 时，完全同步嵌入式中继链需要几天时间
 
 ## 设置链数据的存储 {: #storage-chain-data }
 
@@ -84,7 +84,7 @@ categories: 节点运营者和整理者
 - 将 `INSERT_YOUR_NODE_NAME` 替换为您选择的节点名称。您需要在两个地方执行此操作：一个用于平行链，一个用于中继链
 - 将 `INSERT_RAM_IN_MB` 替换为您服务器实际 RAM 的 50%。例如，对于 32GB 的 RAM，该值必须设置为 `16000`。最小值是 `2000`，但它低于推荐的规格
 
-有关以下启动命令中使用的标志以及其他常用标志的概述，请参阅我们文档的[标志](node-operators/networks/run-a-node/flags/){target=\_blank}页面。
+有关以下启动命令中使用的标志以及其他常用标志的概述，请参阅我们文档的[标志](/node-operators/networks/run-a-node/flags/){target=\_blank}页面。
 
 !!! note "对于 Apple Silicon 用户"
     如果 Docker 命令在 Apple Silicon 上失败或行为异常，请在 Docker Desktop 设置中启用 **Use Rosetta for x86_64/amd64 emulation on Apple Silicon**，并对 pull 和 run 命令使用 `amd64` 平台。 例如：
@@ -439,16 +439,16 @@ categories: 节点运营者和整理者
 
 一旦 Docker 拉取了必要的镜像，您的完整节点将启动，显示大量信息，例如链规格、节点名称、角色、创世状态等等。
 
---8<-- 'code/node-operators/networks/run-a-node/docker/terminal/start.md'
+--8<-- 'zh/code/node-operators/networks/run-a-node/docker/terminal/start.md'
 
 在同步过程中，您将看到来自嵌入式中继链 ([Relaychain]) 和平行链 ([🌗]) 的日志。这些日志显示了一个目标区块（实时网络状态）和一个最佳区块（本地节点同步状态）。
 
---8<-- 'code/node-operators/networks/run-a-node/docker/terminal/logs.md'
+--8<-- 'zh/code/node-operators/networks/run-a-node/docker/terminal/logs.md'
 
 如果您按照 Moonbase Alpha 的安装说明进行操作，一旦同步完成，您将在本地运行一个 Moonbase Alpha TestNet 节点！对于 Moonbeam 或 Moonriver，一旦同步，您将连接到对等节点，并看到网络上正在生成的区块！
 
 !!! note
-    完全同步嵌入式中继链可能需要几天时间。请确保您的系统满足[要求](node-operators/networks/run-a-node/overview/#requirements){target=\_blank}。
+    完全同步嵌入式中继链可能需要几天时间。请确保您的系统满足[要求](/node-operators/networks/run-a-node/overview/#requirements){target=\_blank}。
 
 ## 维护您的节点 {: #maintain-your-node }
 

@@ -55,13 +55,13 @@ categories: Governance
 
 --8<-- 'zh/text/learn/features/governance/delegation-definitions.md'
 
-有关特定于 Track 的参数（例如决定期、确认期和颁布期的长度、批准和支持要求等）的概述，请参阅[治理概述页面的 OpenGov（治理 v2）的治理参数部分](learn/features/governance/#governance-parameters-v2){target=\_blank}。
+有关特定于 Track 的参数（例如决定期、确认期和颁布期的长度、批准和支持要求等）的概述，请参阅[治理概述页面的 OpenGov（治理 v2）的治理参数部分](/learn/features/governance/#governance-parameters-v2){target=\_blank}。
 
 ## 提案路线图 {: #roadmap-of-a-proposal }
 
 本指南将介绍如何对公共提案进行投票，如下面的提案路线图图中突出显示的步骤所示。除了学习如何对提案进行投票外，您还将了解提案如何通过导入期、决策和确认期以及执行期。
 
-您可以在[治理概述页面](learn/features/governance/#roadmap-of-a-proposal-v2){target=\_blank}上找到有关 OpenGov 提案的[开心路径](happy path)的完整说明。
+您可以在[治理概述页面](/learn/features/governance/#roadmap-of-a-proposal-v2){target=\_blank}上找到有关 OpenGov 提案的[开心路径](/happy path)的完整说明。
 
 ![提案路线图](/images/tokens/governance/voting/proposal-roadmap.webp)
 
@@ -77,7 +77,7 @@ categories: Governance
 
 本节介绍如何在 Moonbase Alpha 上的 OpenGov（治理 v2）中对公共全民公投进行投票。这些步骤可以适用于 Moonbeam 和 Moonriver。本指南假定已经有一个正在进行的全民公投。如果您想对一个公开的全民公投进行投票，您可以按照这些说明来学习投票方法。
 
-要在网络上对提案进行投票，您需要使用 Polkadot.js Apps 界面。为此，您需要首先导入一个以太坊样式的帐户（H160 地址），您可以通过遵循[创建或导入 H160 帐户](tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 指南来完成。在本示例中，导入了三个帐户，并使用超级原始名称对其进行了命名：Alice、Bob 和 Charlie。
+要在网络上对提案进行投票，您需要使用 Polkadot.js Apps 界面。为此，您需要首先导入一个以太坊样式的帐户（H160 地址），您可以通过遵循[创建或导入 H160 帐户](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 指南来完成。在本示例中，导入了三个帐户，并使用超级原始名称对其进行了命名：Alice、Bob 和 Charlie。
 
 ![Polkadot.js 中的帐户](/images/tokens/governance/proposals/proposals-3.webp)
 
@@ -118,7 +118,7 @@ categories: Governance
 1. 选择**用账户投票**
 2. 选择您希望如何对全民投票进行投票。您可以选择**赞成**以支持全民投票，选择**反对**以反对它，或者如果您想指定一个“赞成”投票值和一个“反对”投票值，则选择**拆分**
 3. 输入投票值
-4. 设置投票信念，它决定了您的投票权重 (`vote_weight = tokens * conviction_multiplier`)。请参阅[信念乘数](learn/features/governance/#conviction-multiplier){target=\_blank}文档以获取更多信息
+4. 设置投票信念，它决定了您的投票权重 (`vote_weight = tokens * conviction_multiplier`)。请参阅[信念乘数](/learn/features/governance/#conviction-multiplier){target=\_blank}文档以获取更多信息
 5. 单击“**投票**”并签署交易
 
 ![要在全民投票中提交投票，请填写投票的详细信息，然后单击 Polkadot.js Apps 上的“投票”按钮。](/images/tokens/governance/voting/vote-5.webp)
@@ -162,7 +162,7 @@ Moonbase Alpha 上通用管理通道中的提案将具有以下特征：
 1.  输入**delegate from account**，这应该是您希望从中委托投票的帐户
 2.  选择**submission track**，或者如果您希望其他帐户代表您在任何 Track 上投票，请将**apply delegation to all tracks**滑块切换为开启
 3.  输入**delegated vote value**
-4.  设置投票信念，这决定了您的投票权重 (`vote_weight = tokens * conviction_multiplier`)。有关更多信息，请参阅 [信念乘数](learn/features/governance/#conviction-multiplier){target=\_blank} 文档
+4.  设置投票信念，这决定了您的投票权重 (`vote_weight = tokens * conviction_multiplier`)。有关更多信息，请参阅 [信念乘数](/learn/features/governance/#conviction-multiplier){target=\_blank} 文档
 5.  单击**Next**
 6.  在下一个屏幕上，选择**delegate to address**，这应该是您希望将投票委托给的帐户
 7.  单击**Delegate**并签署交易
@@ -177,7 +177,7 @@ Moonbase Alpha 上通用管理通道中的提案将具有以下特征：
 
 1.  选择您已从中委托的帐户
 2.  选择 **convictionVoting** pallet 和 **undelegate** extrinsic
-3.  输入 Origin 的 **class**。对于 General Admin Track，它是 `2`。有关 Track ID 的完整列表，请参阅 [治理概述页面的 OpenGov 部分](learn/features/governance/#general-parameters-by-track){target=\_blank}
+3.  输入 Origin 的 **class**。对于 General Admin Track，它是 `2`。有关 Track ID 的完整列表，请参阅 [治理概述页面的 OpenGov 部分](/learn/features/governance/#general-parameters-by-track){target=\_blank}
 4.  单击**Submit transaction**并签署交易
 
 ![在 Polkadot.js Apps 上取消委托投票。](/images/tokens/governance/voting/vote-10.webp)

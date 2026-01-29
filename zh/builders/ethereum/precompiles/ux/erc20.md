@@ -13,7 +13,7 @@ Moonbeam 上的原生代币 ERC-20 预编译合约允许开发者通过 ERC-20 �
 
 此预编译的主要优势之一是，它消除了将协议代币的包装表示作为 ERC-20 智能合约的必要性，例如以太坊上的 WETH。此外，它可以防止同一协议代币有多个包装表示。因此，需要通过 ERC-20 接口与协议代币交互的 DApp 无需单独的智能合约即可进行操作。
 
-在底层，[ERC-20 预编译](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=\_blank} 执行与 Substrate 余额 pallet 相关的特定 Substrate 操作，该 pallet 以 Rust 编写。余额 pallet 提供处理 [Moonbeam 上的各种余额类型](learn/core-concepts/balances/#moonbeam-account-balances){target=\_blank}、设置可用余额、转移余额等功能。
+在底层，[ERC-20 预编译](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/balances-erc20/src/lib.rs){target=\_blank} 执行与 Substrate 余额 pallet 相关的特定 Substrate 操作，该 pallet 以 Rust 编写。余额 pallet 提供处理 [Moonbeam 上的各种余额类型](/learn/core-concepts/balances/#moonbeam-account-balances){target=\_blank}、设置可用余额、转移余额等功能。
 
 本指南将向您展示如何通过 ERC-20 预编译与 Moonbase Alpha 测试网的原生协议代币 DEV 代币进行交互。您还可以按照并改编本指南，以了解如何将 GLMR 或 MOVR 用作 ERC-20 代币。
 
@@ -115,7 +115,7 @@ Moonbeam 上的 [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/bl
 
 要学习本教程，您需要具备：
 
-- [已安装 MetaMask 并连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+- [已安装 MetaMask 并连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - 在 Moonbase Alpha 上创建或拥有两个帐户，以测试 ERC-20 预编译中的不同功能
 - 至少其中一个帐户需要有 `DEV` 代币。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
@@ -124,7 +124,7 @@ Moonbeam 上的 [`ERC20.sol`](https://github.com/moonbeam-foundation/moonbeam/bl
 
 如果您想与Moonbase Alpha DEV token交互，就像在MetaMask中使用ERC-20一样，您可以使用预编译地址创建一个自定义token。
 
-首先，打开MetaMask，并确保您已[连接到Moonbase Alpha](tokens/connect/metamask/){target=\_blank}，然后：
+首先，打开MetaMask，并确保您已[连接到Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}，然后：
 
 1. 切换到 **Assets** 选项卡
 2. 点击 **Import tokens**

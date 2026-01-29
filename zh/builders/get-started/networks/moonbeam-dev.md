@@ -39,7 +39,7 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 
     控制台日志的尾部应如下所示：
 
-    --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/docker-pull.md'
+    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/docker-pull.md'
 
 1. 运行以下 Docker 命令启动 Moonbeam 开发节点，该命令将以即时密封模式启动节点以进行本地测试，以便在收到交易时立即生成区块：
 
@@ -85,7 +85,7 @@ Moonbeam 开发节点是您自己的个人开发环境，用于在 Moonbeam 上�
 
 如果成功，您应该看到一个输出，显示一个空闲状态，等待区块被生成：
 
---8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/docker-run.md'
+--8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/docker-run.md'
 
 有关示例中使用的一些标志和选项的更多信息，请查看 [Flags](#node-flags) 和 [Options](#node-options)。如果您想查看所有标志、选项和子命令的完整列表，请运行以下命令打开帮助菜单：
 
@@ -153,7 +153,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 
     以下是构建输出的尾部应显示的内容：
 
-    --8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/compile.md'
+    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/compile.md'
 
 !!! note
 
@@ -171,7 +171,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 
 您应该会看到如下所示的输出，显示一个空闲状态，等待生成区块：
 
---8<-- 'code/builders/get-started/networks/moonbeam-dev/terminal/run-binary.md'
+--8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/terminal/run-binary.md'
 
 有关示例中使用的一些标志和选项的更多信息，请查看 [标志](#node-flags) 和 [选项](#node-options)。如果您想查看所有标志、选项和子命令的完整列表，请通过运行以下命令打开帮助菜单：
 
@@ -235,7 +235,7 @@ docker run --rm --name {{ networks.development.container_name }} \
 engine_createBlock(createEmpty: *bool*, finalize: *bool*, parentHash?: *BlockHash*)
 ```
 
-例如，您可以使用以下代码段通过 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank} 手动创建一个区块，这是一个以太坊库，可以轻松地与 JSON-RPC 方法进行交互：
+例如，您可以使用以下代码段通过 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 手动创建一个区块，这是一个以太坊库，可以轻松地与 JSON-RPC 方法进行交互：
 
 ```js
 import { ethers } from 'ethers';
@@ -263,11 +263,11 @@ produceBlock();
 
 !!! note
 
-    如果您不熟悉 Ethers，请参阅 [Ethers.js](builders/ethereum/libraries/ethersjs/){target=\_blank} 文档页面以了解更多信息。
+    如果您不熟悉 Ethers，请参阅 [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} 文档页面以了解更多信息。
 
 ## 预充值开发账户 {: #pre-funded-development-accounts }
 
-Moonbeam 有一个[统一账户](learn/core-concepts/unified-accounts/){target=\_blank}系统，使用户能够拥有一个以太坊风格的 H160 账户，该账户可以与 Substrate API 和以太坊 API 交互。因此，您可以通过 [Polkadot.js Apps](tokens/connect/polkadotjs/#connect-polkadotjs-apps){target=\_blank} 或 [MetaMask](tokens/connect/metamask/){target=\_blank}（或任何其他 [EVM 钱包](tokens/connect/){target=\_blank}）与您的账户进行交互。此外，您还可以使用其他[开发工具](builders/ethereum/dev-env/){target=\_blank}，例如 [Remix](builders/ethereum/dev-env/remix/){target=\_blank} 和 [Hardhat](builders/ethereum/dev-env/hardhat/){target=\_blank}。
+Moonbeam 有一个[统一账户](/learn/core-concepts/unified-accounts/){target=\_blank}系统，使用户能够拥有一个以太坊风格的 H160 账户，该账户可以与 Substrate API 和以太坊 API 交互。因此，您可以通过 [Polkadot.js Apps](/tokens/connect/polkadotjs/#connect-polkadotjs-apps){target=\_blank} 或 [MetaMask](/tokens/connect/metamask/){target=\_blank}（或任何其他 [EVM 钱包](/tokens/connect/){target=\_blank}）与您的账户进行交互。此外，您还可以使用其他[开发工具](/builders/ethereum/dev-env/){target=\_blank}，例如 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 和 [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}。
 
 您的 Moonbeam 开发节点附带十个已预先充值的以太坊风格的帐户，用于开发。这些地址源自 Substrate 的规范开发助记词：
 
@@ -277,13 +277,13 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 ??? note "开发账户地址和私钥"
 
-    --8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
+    --8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-accounts.md'
 
 开发节点还包含一个用于测试目的的额外预充值帐户：
 
---8<-- 'code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
+--8<-- 'zh/code/builders/get-started/networks/moonbeam-dev/dev-testing-account.md'
 
-您可以使用这些账户的私钥将它们连接到 [MetaMask](tokens/connect/metamask/){target=\_blank}、[Talisman](tokens/connect/talisman/){target=\_blank}、[Polkadot.js Apps](tokens/connect/polkadotjs/){target=\_blank} 等。
+您可以使用这些账户的私钥将它们连接到 [MetaMask](/tokens/connect/metamask/){target=\_blank}、[Talisman](/tokens/connect/talisman/){target=\_blank}、[Polkadot.js Apps](/tokens/connect/polkadotjs/){target=\_blank} 等。
 
 ## 开发节点端点 {: #access-your-development-node }
 
@@ -312,7 +312,7 @@ bottom drive obey lake curtain smoke basket hold race lonely fit walk
 
 您还可以通过运行跟踪节点来访问一些非标准的 RPC 方法，这允许开发人员在运行时检查和调试交易。跟踪节点使用与标准 Moonbeam 开发节点不同的 Docker 镜像。
 
-要了解如何运行 Moonbeam 开发跟踪节点，请查看[运行跟踪节点](node-operators/networks/tracing-node/){target=\_blank}指南，并确保在整个说明中切换到 **Moonbeam 开发节点**选项卡。然后，要使用跟踪节点访问非标准 RPC 方法，请查看[Debug & Trace](builders/ethereum/json-rpc/debug-trace/){target=\_blank}指南。
+要了解如何运行 Moonbeam 开发跟踪节点，请查看[运行跟踪节点](/node-operators/networks/tracing-node/){target=\_blank}指南，并确保在整个说明中切换到 **Moonbeam 开发节点**选项卡。然后，要使用跟踪节点访问非标准 RPC 方法，请查看[Debug & Trace](/builders/ethereum/json-rpc/debug-trace/){target=\_blank}指南。
 
 ## 清理开发节点 {: #purging-your-node }
 
@@ -341,4 +341,4 @@ sudo docker stop `CONTAINER_ID` && docker rm `CONTAINER_ID`
 ./target/release/moonbeam purge-chain --dev -y
 ```
 
-这将删除数据文件夹。请注意，所有链数据都会因此丢失。如需了解所有可用的 `purge-chain` 命令，请参阅我们文档中的 [清除二进制数据](node-operators/networks/run-a-node/systemd/#purging-compiled-binary){target=\_blank} 部分。
+这将删除数据文件夹。请注意，所有链数据都会因此丢失。如需了解所有可用的 `purge-chain` 命令，请参阅我们文档中的 [清除二进制数据](/node-operators/networks/run-a-node/systemd/#purging-compiled-binary){target=\_blank} 部分。

@@ -10,7 +10,7 @@ categories: Tokens and Accounts, Ethereum Toolkit
 
 Moonbeam 的开发者和用户在钱包方面有多种选择。得益于 Moonbeam 完美的以太坊兼容性，Moonbeam 支持各种流行的钱包，包括 [SubWallet](https://www.subwallet.app){target=\_blank}。
 
-SubWallet 是一款综合性的 Web3 钱包，原生支持 Substrate 和以太坊账户。虽然 Moonbeam 是一个基于 Substrate 的区块链，但它有一个 [统一账户系统](learn/core-concepts/unified-accounts/){target=\_blank}，该系统用以太坊风格的账户和密钥取代了默认的 Substrate 风格的账户和密钥。由于 SubWallet 支持以太坊风格的账户，您可以使用 SubWallet 与您的 Moonbeam 账户进行交互。
+SubWallet 是一款综合性的 Web3 钱包，原生支持 Substrate 和以太坊账户。虽然 Moonbeam 是一个基于 Substrate 的区块链，但它有一个 [统一账户系统](/learn/core-concepts/unified-accounts/){target=\_blank}，该系统用以太坊风格的账户和密钥取代了默认的 Substrate 风格的账户和密钥。由于 SubWallet 支持以太坊风格的账户，您可以使用 SubWallet 与您的 Moonbeam 账户进行交互。
 
 本指南将带您完成所有必要的步骤，从安装 SubWallet 到设置钱包、将其连接到 Moonbeam 以及发送资金。
 
@@ -129,7 +129,7 @@ SubWallet 是一款综合性的 Web3 钱包，原生支持 Substrate 和以太�
 
 ![SubWallet 浏览器扩展上的自定义资产显示屏幕。](/images/tokens/connect/subwallet/subwallet-10.webp)
 
-如果你尝试连接到[本地 Moonbeam 开发节点](builders/get-started/networks/moonbeam-dev/){target=\_blank}，你可以从左上角选择汉堡菜单，这将带你到设置页面。
+如果你尝试连接[本地的 Moonbeam 开发节点](/builders/get-started/networks/moonbeam-dev/){target=\_blank}，可以点击左上角的汉堡菜单（三横线菜单），进入设置页面。
 
 ![SubWallet 浏览器扩展上的令牌屏幕。](/images/tokens/connect/subwallet/subwallet-11.webp)
 
@@ -137,7 +137,7 @@ SubWallet 是一款综合性的 Web3 钱包，原生支持 Substrate 和以太�
 
 ![SubWallet 浏览器扩展上的设置屏幕。](/images/tokens/connect/subwallet/subwallet-12.webp)
 
-单击右上角的 **+** 图标，然后输入[网络配置](builders/get-started/quick-start/#network-configurations){target=\_blank}。你还可以从此菜单管理和连接到其他网络。
+单击右上角的 **+** 图标，然后输入[网络配置](/builders/get-started/quick-start/#network-configurations){target=\_blank}。你还可以从此菜单管理和连接到其他网络。
 
 ![SubWallet 浏览器扩展上的令牌屏幕。](/images/tokens/connect/subwallet/subwallet-13.webp)
 

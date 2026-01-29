@@ -8,7 +8,7 @@ categories: XCM 远程执行, Ethereum 工具包
 
 ## 简介 {: #introduction}
 
-[XCM Transactor Pallet](builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} 提供了一个简单的界面，用于通过 XCM 执行远程跨链调用。但是，这不考虑对 Moonbeam 的 EVM 进行远程调用的可能性，仅考虑对特定于 Substrate 的 pallet（功能）进行调用。
+[XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} 提供了一个简单的界面，用于通过 XCM 执行远程跨链调用。但是，这不考虑对 Moonbeam 的 EVM 进行远程调用的可能性，仅考虑对特定于 Substrate 的 pallet（功能）进行调用。
 
 Moonbeam 的 EVM 只能通过 [Ethereum Pallet](https://github.com/polkadot-evm/frontier/tree/master/frame/ethereum){target=\_blank} 访问。除此之外，此 pallet 还在将交易放入交易池之前处理某些交易验证。然后，它在将池中的交易插入区块之前执行另一个验证步骤。最后，它通过 `transact` 函数提供接口来执行经过验证的交易。所有这些步骤都遵循与以太坊交易在结构和签名方案方面相同的行为。
 
@@ -23,7 +23,7 @@ Moonbeam 的 EVM 只能通过 [Ethereum Pallet](https://github.com/polkadot-evm/
 本指南将介绍常规 EVM 调用和远程 EVM 调用之间的差异。此外，它还将向您展示如何通过 [Ethereum XCM pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank} 公开的 extrinsic 执行远程 EVM 调用。
 
 !!! note
-    远程 EVM 调用通过 [XCM Transactor Pallet](builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} 完成。因此，建议在尝试通过 XCM 执行远程 EVM 调用之前，先熟悉 XCM Transactor 的概念。
+    远程 EVM 调用通过 [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank} 完成。因此，建议在尝试通过 XCM 执行远程 EVM 调用之前，先熟悉 XCM Transactor 的概念。
 
 **请注意，通过 XCM 对 Moonbeam 的 EVM 进行的远程调用仍在积极开发中**。此外，**开发人员必须了解，发送不正确的 XCM 消息可能会导致资金损失。** 因此，至关重要的是在 TestNet 上测试 XCM 功能，然后再转移到生产环境。
 
@@ -35,12 +35,12 @@ Moonbeam 的 EVM 只能通过 [Ethereum Pallet](https://github.com/polkadot-evm/
 
 对于远程 EVM 调用，签名者在另一条链中签署 XCM 交易。Moonbeam 接收该 XCM 消息，该消息遵循通过 XCM 形式的常规远程执行：
 
- - [`DescendOrigin`](builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank}（可选）
- - [`WithdrawAsset`](builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank}
- - [`BuyExecution`](builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank}
- - [`Transact`](builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank}
+ - [`DescendOrigin`](/builders/interoperability/xcm/core-concepts/instructions/#descend-origin){target=\_blank}（可选）
+ - [`WithdrawAsset`](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank}
+ - [`BuyExecution`](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank}
+ - [`Transact`](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank}
 
-XCM 执行通过 [计算来源账户机制](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}进行，默认情况下，该机制使用源链的主权账户在目标链中。如果包含 `DescendOrigin`，Moonbeam 会将 XCM 调用的来源更改为无密钥账户，源链中的用户可以通过 XCM 远程控制该账户。远程 EVM 调用从该无密钥账户（或相关的[代理](tokens/manage/proxy-accounts/){target=\_blank}）分派。因此，由于交易未签名，因此没有签名的实际 `v-r-s` 值，而是 `0x1`。
+XCM 执行通过 [计算来源账户机制](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank}进行，默认情况下，该机制使用源链的主权账户在目标链中。如果包含 `DescendOrigin`，Moonbeam 会将 XCM 调用的来源更改为无密钥账户，源链中的用户可以通过 XCM 远程控制该账户。远程 EVM 调用从该无密钥账户（或相关的[代理](/tokens/manage/proxy-accounts/){target=\_blank}）分派。因此，由于交易未签名，因此没有签名的实际 `v-r-s` 值，而是 `0x1`。
 
 由于远程 EVM 调用没有签名的实际 `v-r-s` 值，因此 EVM 交易哈希可能会出现冲突问题，因为它被计算为签名交易 blob 的 keccak256 哈希。因此，如果两个具有相同 nonce 的账户提交相同的交易对象，它们将最终得到相同的 EVM 交易哈希。因此，所有远程 EVM 交易都使用附加到 [以太坊 XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank} 的全局 nonce。
 
@@ -108,7 +108,7 @@ Maximum Gas Units = (Maximum Weight Units - Remote EVM Weight Units) / 25,000
 总之，以下是常规 EVM 调用和远程 EVM 调用之间的主要区别：
 
 - 远程 EVM 调用使用全局 nonce（由 [以太坊 XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank} 拥有），而不是每个账户的 nonce
-- 远程 EVM 调用的签名的 `v-r-s` 值为 `0x1`。无法通过标准方法（例如，通过 [ECRECOVER](builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}）从签名中检索发送者。但是，`from` 包含在交易回执中，以及通过哈希获取交易时（使用以太坊 JSON-RPC）
+- 远程 EVM 调用的签名的 `v-r-s` 值为 `0x1`。无法通过标准方法（例如，通过 [ECRECOVER](/builders/ethereum/precompiles/utility/eth-mainnet/#verify-signatures-with-ecrecover){target=\_blank}）从签名中检索发送者。但是，`from` 包含在交易回执中，以及通过哈希获取交易时（使用以太坊 JSON-RPC）
 - 所有远程 EVM 调用的 gas 价格为零。EVM 执行在 XCM 执行级别收费，而不是在 EVM 级别收费
 - 您可以为远程 EVM 调用设置的当前最大 gas 限制不同，如上所述
 
@@ -146,7 +146,7 @@ Ethereum XCM Pallet 提供了以下外在函数（函数），可以通过 `Tran
             - `action` - 要执行的操作，它提供两个选项：`Call` 和 `Create`。[Ethereum XCM Pallet](https://github.com/moonbeam-foundation/moonbeam/tree/master/pallets/ethereum-xcm){target=\_blank} 的当前实现不支持 `CREATE` 操作。因此，您无法通过远程 EVM 调用部署智能合约。对于 `Call`，您需要指定您正在交互的合约地址
             - `value` - 要发送的本地代币的数量
             - `input` - 合约交互的编码调用数据
-        - `xcmTransactAs` - 将从中调度远程 EVM 调用的帐户（`msg.sender`）。此帐户需要在 Moonbeam 上将计算出的原始帐户设置为 `any` 类型的[代理](tokens/manage/proxy-accounts/){target=\_blank}，否则远程 EVM 调用将失败。交易费用仍然由计算出的原始账户支付
+        - `xcmTransactAs` - 将从中调度远程 EVM 调用的帐户（`msg.sender`）。此帐户需要在 Moonbeam 上将计算出的原始帐户设置为 `any` 类型的[代理](/tokens/manage/proxy-accounts/){target=\_blank}，否则远程 EVM 调用将失败。交易费用仍然由计算出的原始账户支付
 
     === "Polkadot.js API 示例"
 
@@ -173,8 +173,8 @@ Ethereum XCM Pallet 提供了以下外在函数（函数），可以通过 `Tran
 
 要能够从relay chain发送调用，您需要以下内容：
 
-- 在具有资金 (UNIT) 的relay chain上的[帐户](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank}，以支付交易费用。您可以通过在[Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=\_blank}（Moonbase Alpha上的演示Uniswap-V2克隆）上交换DEV代币（Moonbase Alpha的本地代币）来获取一些xcUNIT，然后[将它们发送到relay chain](builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank}。此外，您可以[在Discord上联系我们](https://discord.com/invite/PfpUATX){target=\_blank}以直接获取一些UNIT代币
-- 您的Computed Origin帐户的地址。请参阅 [Computed Origin](builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 指南，以了解如何计算您的Computed Origin地址
+- 在具有资金 (UNIT) 的relay chain上的[帐户](https://polkadot.js.org/apps/?rpc=wss://relay.api.moonbase.moonbeam.network#/accounts){target=\_blank}，以支付交易费用。您可以通过在[Moonbeam-Swap](https://moonbeam-swap.netlify.app){target=\_blank}（Moonbase Alpha上的演示Uniswap-V2克隆）上交换DEV代币（Moonbase Alpha的本地代币）来获取一些xcUNIT，然后[将它们发送到relay chain](/builders/interoperability/xcm/xc20/send-xc20s/xtokens-precompile/){target=\_blank}。此外，您可以[在Discord上联系我们](https://discord.com/invite/PfpUATX){target=\_blank}以直接获取一些UNIT代币
+- 您的Computed Origin帐户的地址。请参阅 [Computed Origin](/builders/interoperability/xcm/remote-execution/computed-origins/){target=\_blank} 指南，以了解如何计算您的Computed Origin地址
 - 为您的Computed Origin帐户提供资金。该帐户必须有足够的DEV代币（或Moonbeam/Moonriver的GLMR/MOVR），以支付远程EVM调用的XCM执行成本。请注意，这是将从中调度远程EVM调用的帐户 (`msg.sender`)。因此，该帐户必须满足EVM调用正确执行所需的任何条件。例如，如果您要进行ERC-20转账，请持有任何相关的ERC-20代币
 
 !!! note
@@ -190,7 +190,7 @@ Ethereum XCM Pallet 提供了以下外在函数（函数），可以通过 `Tran
 
 对于要执行的操作，您将与一个简单的 [递增合约](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=\_blank} 进行合约交互，该合约位于 `0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8`。您将调用 `increment` 函数，该函数没有输入参数，并且会将 `number` 的值增加 1。它还会将执行该函数的区块时间戳存储到 `timestamp` 变量中。
 
-`increment` 函数的编码调用数据为 `0xd09de08a`，它是函数选择器，也是 `increment()` 的 keccak256 哈希的前八个十六进制字符（或 4 个字节）。如果您选择与具有输入参数的函数进行交互，则还需要对它们进行编码。获取编码调用数据最简单的方法是在 [Remix](builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} 或 [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=\_blank} 中模拟交易。然后，在 Metamask 中，选中 **HEX DATA: 4 BYTES**（十六进制数据：4 字节）选项卡下的 **HEX**（十六进制）以获取调用数据。您无需签署交易。
+`increment` 函数的编码调用数据为 `0xd09de08a`，它是函数选择器，也是 `increment()` 的 keccak256 哈希的前八个十六进制字符（或 4 个字节）。如果您选择与具有输入参数的函数进行交互，则还需要对它们进行编码。获取编码调用数据最简单的方法是在 [Remix](/builders/ethereum/dev-env/remix/#interacting-with-a-moonbeam-based-erc-20-from-metamask){target=\_blank} 或 [Moonscan](https://moonbase.moonscan.io/address/0xa72f549a1a12b9b49f30a7f3aeb1f4e96389c5d8#code){target=\_blank} 中模拟交易。然后，在 Metamask 中，选中 **HEX DATA: 4 BYTES**（十六进制数据：4 字节）选项卡下的 **HEX**（十六进制）以获取调用数据。您无需签署交易。
 
 现在，您已经获得了编码后的合约交互数据，您可以使用 [`eth_estimateGas` JSON-RPC 方法](https://ethereum.org/developers/docs/apis/json-rpc/#eth_estimategas){target=\_blank} 确定此调用的 gas 限制。对于此示例，您可以将 gas 限制设置为 `155000`。
 
@@ -207,7 +207,7 @@ Ethereum XCM Pallet 提供了以下外在函数（函数），可以通过 `Tran
  1. 提供调用的输入数据。这包括：
      - 用于创建提供程序的 Moonbase Alpha 端点 URL
      - `transact` 函数的 `xcmTransaction` 参数的值
- 2. 创建 [Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=\_blank} 提供程序
+ 2. 创建 [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} 提供程序
  3. 使用 `xcmTransaction` 值制作 `ethereumXcm.transact` 外部函数
  4. 获取外部函数的编码调用数据。您无需签署和发送交易
 
@@ -224,7 +224,7 @@ Ethereum XCM Pallet 提供了以下外在函数（函数），可以通过 `Tran
 
 当使用 `Transact` 指令时，您需要定义 `requireWeightAtMost` 字段，这是交易所需的权重。此字段接受两个参数：`refTime` 和 `proofSize`。`refTime` 是可用于执行的计算时间量，`proofSize` 是可使用的存储量（以字节为单位）。
 
-要获得 `refTime` 和 `proofSize` 的估计值，您可以使用 [Polkadot.js API 的 `paymentInfo` 方法](builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank}。由于 `Transact` 调用数据需要这些权重，您可以扩展上一节中的脚本以添加对 `paymentInfo` 的调用。
+要获得 `refTime` 和 `proofSize` 的估计值，您可以使用 [Polkadot.js API 的 `paymentInfo` 方法](/builders/substrate/libraries/polkadot-js-api/#fees){target=\_blank}。由于 `Transact` 调用数据需要这些权重，您可以扩展上一节中的脚本以添加对 `paymentInfo` 的调用。
 
 `paymentInfo` 方法接受与通常传递给 `.signAndSend` 方法相同的参数，即发送帐户，以及可选的一些附加值，例如 nonce 或签名者。
 
@@ -294,7 +294,7 @@ Ethereum XCM Pallet 提供了以下外在函数（函数），可以通过 `Tran
     - 用于创建 provider 的中继链 endpoint URL
     - `send` 函数每个参数对应的值
 2. 创建将用于发送交易的 Keyring 实例
-3. 创建 [Polkadot.js API](builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
+3. 创建 [Polkadot.js API](/builders/substrate/libraries/polkadot-js-api/){target=\_blank} provider
 4. 使用 `dest` 和 `message` 值构造 `xcmPallet.send` extrinsic
 5. 使用您在第二步创建的 Keyring 实例，通过 `.signAndSend` 发送交易
 

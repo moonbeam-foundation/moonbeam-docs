@@ -28,7 +28,7 @@ XCM 旨在成为一种在共识系统之间交流思想的语言。发送 XCM �
 每个链都可以配置 XCM 费用的处理方式以及可以使用哪些代币支付（原生储备代币或外部代币）。例如：
 
 - **Polkadot 和 Kusama** - 费用分别以 DOT 或 KSM 支付，并交给区块的验证者
-- **Moonbeam 和 Moonriver** - XCM 执行费用可以用储备资产（分别为 GLMR 或 MOVR）支付，也可以用在其他链中产生的资产支付（如果这些资产注册为 [XCM 执行资产](builders/interoperability/xcm/xc-registration/assets/){target=\_blank}）。当 XCM 执行（代币转移或远程执行）以原生链储备资产（GLMR 或 MOVR）支付时，{{ networks.moonbeam.treasury.tx_fees_burned }}% 将被销毁。当 XCM 执行以国外资产支付时，费用将发送到 Treasury
+- **Moonbeam 和 Moonriver** - XCM 执行费用可以用储备资产（分别为 GLMR 或 MOVR）支付，也可以用在其他链中产生的资产支付（如果这些资产注册为 [XCM 执行资产](/builders/interoperability/xcm/xc-registration/assets/){target=\_blank}）。当 XCM 执行（代币转移或远程执行）以原生链储备资产（GLMR 或 MOVR）支付时，{{ networks.moonbeam.treasury.tx_fees_burned }}% 将被销毁。当 XCM 执行以国外资产支付时，费用将发送到 Treasury
 
 考虑以下情景：Alice 在 Polkadot 上有一些 DOT，她想将其转移到 Moonbeam 上的 Alith。她发送了一条 XCM 消息，其中包含一组 XCM 指令，这些指令将从她在 Polkadot 上的帐户中检索给定数量的 DOT，并将它们作为 xcDOT 铸造到 Alith 的帐户中。部分指令在 Polkadot 上执行，另一部分在 Moonbeam 上执行。
 

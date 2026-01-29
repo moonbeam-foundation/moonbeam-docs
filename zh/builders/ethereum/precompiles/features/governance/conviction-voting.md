@@ -8,7 +8,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-作为 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与网络的发展方向。随着 OpenGov（也称为 Governance v2）的引入，确信投票 Pallet 允许代币持有者对提案进行、委托和管理确信加权的投票。要了解有关 Moonbeam 治理系统的更多信息，例如相关术语、原则、机制等的概述，请参阅 [Moonbeam 上的治理](learn/features/governance/){target=\_blank} 页面。
+作为 Polkadot 平行链和去中心化网络，Moonbeam 具有原生的链上治理功能，使利益相关者能够参与网络的发展方向。随着 OpenGov（也称为 Governance v2）的引入，确信投票 Pallet 允许代币持有者对提案进行、委托和管理确信加权的投票。要了解有关 Moonbeam 治理系统的更多信息，例如相关术语、原则、机制等的概述，请参阅 [Moonbeam 上的治理](/learn/features/governance/){target=\_blank} 页面。
 
 确信投票预编译直接与 Substrate 的确信投票 Pallet 交互。此 Pallet 以 Rust 编写，通常无法从 Moonbeam 的 Ethereum API 端访问。但是，确信投票预编译允许您直接从 Solidity 接口访问 Substrate 确信投票 Pallet 的治理相关功能。此外，这还实现了大大改善的最终用户体验。例如，代币持有者可以直接从 MetaMask 对提案进行投票或委托投票，而无需在 Polkadot.js Apps 中导入帐户并浏览复杂的 UI。
 
@@ -38,7 +38,7 @@ categories: Precompiles, Ethereum Toolkit
 
 [`ConvictionVoting.sol`](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/conviction-voting/ConvictionVoting.sol){target=\_blank} 是一个 Solidity 接口，允许开发人员与预编译的方法进行交互。
 
-该接口包含一个 `Conviction` 枚举，用于定义 [置信乘数](learn/features/governance/#conviction-multiplier-v2){target=\_blank} 类型。该枚举具有以下变量：
+该接口包含一个 `Conviction` 枚举，用于定义 [置信乘数](/learn/features/governance/#conviction-multiplier-v2){target=\_blank} 类型。该枚举具有以下变量：
 
  - **None** - 0.1 倍投票，已解锁
  - **Locked1x** - 1 倍投票，在成功投票后的一个执行期内锁定
@@ -156,7 +156,7 @@ categories: Precompiles, Ethereum Toolkit
 
 以下示例在 Moonbase Alpha 上演示，但是，对于 Moonriver，可以采取类似的步骤。要遵循本指南中的步骤，您需要具备以下条件：
 
- - 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+ - 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
  - 具有一些 DEV 代币的帐户。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
@@ -186,7 +186,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ### 投票表决 {: #vote-on-a-referendum }
 
-您可以在引导期或决定期的任何时间锁定代币并对全民公投进行投票。为了使全民公投获得通过，它需要获得最低的批准和支持，这因轨道而异。有关每个相关期间以及各轨道批准和支持要求的更多信息，请参阅[治理概述页面的 OpenGov 部分](learn/features/governance/#opengov){target=\_blank}。
+您可以在引导期或决定期的任何时间锁定代币并对全民公投进行投票。为了使全民公投获得通过，它需要获得最低的批准和支持，这因轨道而异。有关每个相关期间以及各轨道批准和支持要求的更多信息，请参阅[治理概述页面的 OpenGov 部分](/learn/features/governance/#opengov){target=\_blank}。
 
 首先，您需要获取要投票的全民公投的索引。要获取全民公投的索引，请前往 [Polkadot.js Apps](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network%2Fpublic-ws#/referenda){target=\_blank} 并执行以下步骤：
 
@@ -196,7 +196,7 @@ categories: Precompiles, Ethereum Toolkit
 
 ![查看 Polkadot.js Apps 上的全民公投列表。](/images/builders/ethereum/precompiles/features/governance/conviction-voting/conviction-voting-4.webp)
 
-现在，您可以返回 Remix 以通过信念投票预编译合约对全民公投进行投票。您可以使用两种方法对全民公投进行投票：`voteYes` 或 `voteNo`。您可能已经发现，如果您同意该提案，您将使用 `voteYes`，如果不同意，您将使用 `voteNo`。您将指定您想要通过投票锁定的代币数量和信念，使用您想要在[前面提到的 `Conviction` 枚举](#the-conviction-voting-solidity-interface)中投票的信念的索引。例如，如果您想在一个成功的投票后锁定您的代币两个颁布期，您将在 `Locked2x` 信念中输入 `2`。有关信念的更多信息，您可以查看[Governance v2 文档的信念乘数部分](learn/features/governance/#conviction-multiplier-v2){target=\_blank}。
+现在，您可以返回 Remix 以通过信念投票预编译合约对全民公投进行投票。您可以使用两种方法对全民公投进行投票：`voteYes` 或 `voteNo`。您可能已经发现，如果您同意该提案，您将使用 `voteYes`，如果不同意，您将使用 `voteNo`。您将指定您想要通过投票锁定的代币数量和信念，使用您想要在[前面提到的 `Conviction` 枚举](#the-conviction-voting-solidity-interface)中投票的信念的索引。例如，如果您想在一个成功的投票后锁定您的代币两个颁布期，您将在 `Locked2x` 信念中输入 `2`。有关信念的更多信息，您可以查看[Governance v2 文档的信念乘数部分](/learn/features/governance/#conviction-multiplier-v2){target=\_blank}。
 
 要提交您的投票，您可以采取以下步骤：
 

@@ -20,7 +20,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
 ## 追踪节点标记 {: #tracing-node-flags }
 
-启动 `debug`、`txpool` 或 `tracing` 节点类似于[运行完整节点](node-operators/networks/run-a-node/overview/){target=\_blank}，但需要额外的标记来启用非标准的以太坊 RPC 模块。这些标记控制追踪深度、缓存和运行时配置。
+启动 `debug`、`txpool` 或 `tracing` 节点类似于[运行完整节点](/node-operators/networks/run-a-node/overview/){target=\_blank}，但需要额外的标记来启用非标准的以太坊 RPC 模块。这些标记控制追踪深度、缓存和运行时配置。
 
 - **`--ethapi debug`**: 启用具有 RPC 方法（如 `debug_traceTransaction`、`debug_traceBlockByNumber`、`debug_traceBlockByHash` 和 `debug_traceCall`）的 `debug` 模块。
 - **`--ethapi trace`**: 启用 `trace` 模块及其相关联的 RPC 方法（如 `trace_filter`）。
@@ -178,14 +178,14 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
 如果您启动了一个 Moonbase Alpha 追踪节点，您应该会看到类似于以下内容的终端日志：
 
---8<-- 'code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
+--8<-- 'zh/code/builders/ethereum/json-rpc/debug-trace/terminal/start-up-logs.md'
 
 ## 使用 Systemd 运行追踪节点 {: #run-a-tracing-node-with-systemd }
 
-当您使用 Systemd 运行节点时，首先需要设置 Moonbeam 二进制文件。为此，您需要按照[使用 Systemd 在 Moonbeam 上运行节点](node-operators/networks/run-a-node/systemd/){target=\_blank} 页面上的说明进行操作。通常，您需要：
+当您使用 Systemd 运行节点时，首先需要设置 Moonbeam 二进制文件。为此，您需要按照[使用 Systemd 在 Moonbeam 上运行节点](/node-operators/networks/run-a-node/systemd/){target=\_blank} 页面上的说明进行操作。通常，您需要：
 
-1. 按照[发布二进制文件](node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank} 说明设置 Moonbeam 二进制文件。或者，如果您想自己编译二进制文件，可以按照 [编译二进制文件](node-operators/networks/run-a-node/systemd/#compile-the-binary){target=\_blank} 说明进行操作
-2. 按照[设置服务](node-operators/networks/run-a-node/systemd/#setup-the-service){target=\_blank} 说明中的说明进行操作
+1. 按照[发布二进制文件](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank} 说明设置 Moonbeam 二进制文件。或者，如果您想自己编译二进制文件，可以按照 [编译二进制文件](/node-operators/networks/run-a-node/systemd/#compile-the-binary){target=\_blank} 说明进行操作
+2. 按照[设置服务](/node-operators/networks/run-a-node/systemd/#setup-the-service){target=\_blank} 说明中的说明进行操作
 
 完成上述特定部分的说明后，您可以继续阅读以下说明。
 
@@ -280,7 +280,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
     ```bash
     [Unit]
-    Description="Moonbeam systemd 服务"
+    Description="Moonbeam systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -313,7 +313,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
     ```bash
     [Unit]
-    Description="Moonriver systemd 服务"
+    Description="Moonriver systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -346,7 +346,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
     ```bash
     [Unit]
-    Description="Moonbase Alpha systemd 服务"
+    Description="Moonbase Alpha systemd service"
     After=network.target
     StartLimitIntervalSec=0
 
@@ -382,7 +382,7 @@ Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块提供�
 
 --8<-- 'zh/text/node-operators/networks/run-a-node/systemd/run-service.md'
 
---8<-- 'code/node-operators/networks/tracing-node/terminal/status.md'
+--8<-- 'zh/code/node-operators/networks/tracing-node/terminal/status.md'
 
 您也可以运行以下命令来查看追踪节点启动时的日志：
 
@@ -392,8 +392,8 @@ journalctl -f -u moonbeam.service
 
 您的终端应显示类似于以下内容的日志：
 
---8<-- 'code/node-operators/networks/tracing-node/terminal/logs.md'
+--8<-- 'zh/code/node-operators/networks/tracing-node/terminal/logs.md'
 
 ## 使用追踪节点 {: #using-a-tracing-node }
 
-要了解 Moonbeam 上可用的不同非标准 RPC 方法，以及如何通过追踪节点使用这些方法，请查看[调试与追踪](builders/ethereum/json-rpc/debug-trace/)指南。
+要了解 Moonbeam 上可用的不同非标准 RPC 方法，以及如何通过追踪节点使用这些方法，请查看[调试与追踪](/builders/ethereum/json-rpc/debug-trace/)指南。

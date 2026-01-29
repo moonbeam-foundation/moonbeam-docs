@@ -33,7 +33,7 @@ npm install --save web3
 npm ls web3
 ```
 
-在撰写本指南时，使用的版本是 1.3.0。您还将使用 [Remix](builders/ethereum/dev-env/remix/){target=\_blank}，通过 [MetaMask](tokens/connect/metamask/){target=\_blank} 连接到 Moonbase Alpha 测试网。
+在撰写本指南时，使用的版本是 1.3.0。您还将使用 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank}，通过 [MetaMask](/tokens/connect/metamask/){target=\_blank} 连接到 Moonbase Alpha 测试网。
 
 --8<-- 'zh/text/_common/endpoint-examples.md'
 
@@ -53,13 +53,13 @@ npm ls web3
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/ecrecoverresult.md'
 ```
 
-有了必要的值，您可以转到 [Remix](builders/ethereum/dev-env/remix/){target=\_blank} 来测试预编译的合约。请注意，这也可以使用 Web3.js 库进行验证，但在这种情况下，您可以转到 Remix 以确保它正在使用区块链上的预编译合约。您可以用来验证签名的 Solidity 代码如下：
+有了必要的值，您可以转到 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 来测试预编译的合约。请注意，这也可以使用 Web3.js 库进行验证，但在这种情况下，您可以转到 Remix 以确保它正在使用区块链上的预编译合约。您可以用来验证签名的 Solidity 代码如下：
 
 ```solidity
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/ecrecoverremix.sol'
 ```
 
-使用 [Remix 编译器和部署](builders/ethereum/dev-env/remix/){target=\_blank} 并且 [MetaMask 指向 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `verify()` 方法，如果 `ecrecover` 返回的地址等于用于签署消息的地址（与私钥相关，需要在合约中手动设置），则返回 **true**。
+使用 [Remix 编译器和部署](/builders/ethereum/dev-env/remix/){target=\_blank} 并且 [MetaMask 指向 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `verify()` 方法，如果 `ecrecover` 返回的地址等于用于签署消息的地址（与私钥相关，需要在合约中手动设置），则返回 **true**。
 
 ## 使用 SHA256 进行哈希 {: #hashing-with-sha256 }
 
@@ -91,7 +91,7 @@ BN128Add 预编译实现了本地椭圆曲线点加法。它返回一个椭圆�
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/bn128add.sol'
 ```
 
-使用 [Remix 编译器和部署](builders/ethereum/dev-env/remix/){target=\_blank} 并使用 [MetaMask 指向 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `callBn256Add(bytes32 ax, bytes32 ay, bytes32 bx, bytes32 by)` 方法以返回操作结果。
+使用 [Remix 编译器和部署](/builders/ethereum/dev-env/remix/){target=\_blank} 并使用 [MetaMask 指向 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `callBn256Add(bytes32 ax, bytes32 ay, bytes32 bx, bytes32 by)` 方法以返回操作结果。
 
 ## BN128Mul {: #bn128mul }
 
@@ -103,7 +103,7 @@ BN128Mul 预编译实现了与标量值的原生椭圆曲线乘法。它返回�
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/bn128mul.sol'
 ```
 
-使用 [Remix 编译器和部署](builders/ethereum/dev-env/remix/){target=\_blank} 以及 [指向 Moonbase Alpha 的 MetaMask](tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `callBn256ScalarMul(bytes32 x, bytes32 y, bytes32 scalar)` 方法来返回操作结果。
+使用 [Remix 编译器和部署](/builders/ethereum/dev-env/remix/){target=\_blank} 以及 [指向 Moonbase Alpha 的 MetaMask](/tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `callBn256ScalarMul(bytes32 x, bytes32 y, bytes32 scalar)` 方法来返回操作结果。
 
 ## BN128配对 {: #bn128pairing }
 
@@ -115,7 +115,7 @@ BN128 配对预编译实现了椭圆曲线配对操作，以执行 zkSNARK 验�
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/bn128pairing.sol'
 ```
 
-使用 [Remix 编译器和部署](builders/ethereum/dev-env/remix/){target=\_blank} 以及 [MetaMask 指向 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `function callBn256Pairing(bytes memory input)` 方法以返回操作结果。
+使用 [Remix 编译器和部署](/builders/ethereum/dev-env/remix/){target=\_blank} 以及 [MetaMask 指向 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}，您可以部署合约并调用 `function callBn256Pairing(bytes memory input)` 方法以返回操作结果。
 
 ## 身份函数 {: #the-identity-function }
 
@@ -141,7 +141,7 @@ Solidity 编译器不支持此功能，因此需要使用内联汇编来调用�
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/modularexp.sol'
 ```
 
-您可以尝试在 [Remix](builders/ethereum/dev-env/remix/){target=\_blank} 中执行此操作。使用 `verify()` 函数，传递底数、指数和模数。此函数将把结果存储在 `checkResult` 变量中。
+您可以尝试在 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 中执行此操作。使用 `verify()` 函数，传递底数、指数和模数。此函数将把结果存储在 `checkResult` 变量中。
 
 ## P256 验证 {: #p256-verify }
 
@@ -158,7 +158,7 @@ P256Verify 预编译增加了对 [RIP-7212](https://github.com/ethereum/RIPs/blo
     --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/p256verifywithtests.sol'
     ```
 
-使用 [Remix 编译器和部署](builders/ethereum/dev-env/remix/){target=\_blank} 以及 [指向 Moonbase Alpha 的 MetaMask](tokens/connect/metamask/){target=\_blank}，您可以部署合约并使用以下参数调用 `verify` 方法：
+使用 [Remix 编译器和部署](/builders/ethereum/dev-env/remix/){target=\_blank} 以及 [指向 Moonbase Alpha 的 MetaMask](/tokens/connect/metamask/){target=\_blank}，您可以部署合约并使用以下参数调用 `verify` 方法：
 
 === “有效签名”
 

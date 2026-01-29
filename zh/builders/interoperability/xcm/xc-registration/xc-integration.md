@@ -12,7 +12,7 @@ categories: XCM, Integrations
 
 所有与 Moonbeam 的 XCMP 通道集成都是单向的，这意味着消息只会沿一个方向流动。如果链 A 向链 B 发起通道，那么链 A 只能向 B 发送消息，而 B 无法向 A 回发消息。因此，如果希望两条链之间可以双向发送消息，链 B 也需要向链 A 发起通道。
 
-在打开 XCMP（或 HRMP）通道之后，双方链上的对应资产需要先在对方链上注册，才能进行转移。要查看如何注册资产的分步说明，请参阅[如何注册跨链资产](builders/interoperability/xcm/xc-registration/assets/){target=\\_blank}指南。
+在打开 XCMP（或 HRMP）通道之后，双方链上的对应资产需要先在对方链上注册，才能进行转移。要查看如何注册资产的分步说明，请参阅[如何注册跨链资产](/builders/interoperability/xcm/xc-registration/assets/){target=\\_blank}指南。
 
 本指南将介绍在一条平行链与基于 Moonbeam 的网络之间打开并接受 HRMP 通道的流程。此外，本指南还提供创建一个批量提案的必要步骤，用于将“打开并接受通道”和“在 Moonbeam 上注册资产”合并为单个提案。
 
@@ -36,10 +36,10 @@ Moonriver/Moonbeam XCM 集成的第一步是通过 Alphanet 中继链与 Moonbas
    - WASM/Genesis head hash
    - 您的平行链 ID
    - 您的主权账户地址。Moonbeam 团队将在中继链级别为您的主权账户提供资金。此步骤是创建 HRMP 通道所必需的
-   - 编码的调用数据，用于打开到您的平行链的 HRMP 通道，接受传入的 HRMP 通道，以及[注册资产](builders/interoperability/xcm/xc-registration/assets/#register-xc-20s){target=\_blank}（如果适用）。这将通过 sudo 执行
+   - 编码的调用数据，用于打开到您的平行链的 HRMP 通道，接受传入的 HRMP 通道，以及[注册资产](/builders/interoperability/xcm/xc-registration/assets/#register-xc-20s){target=\_blank}（如果适用）。这将通过 sudo 执行
 4. 从您的平行链打开到 Moonbase Alpha 的 HRMP 通道（通过 sudo 或通过治理）
 5. 接受来自 Moonbase Alpha 的 HRMP 通道（通过 sudo 或通过治理）
-6. （可选）在您的平行链上[注册 Moonbase Alpha 的 DEV 令牌](builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=\_blank}
+6. （可选）在您的平行链上[注册 Moonbase Alpha 的 DEV 令牌](/builders/interoperability/xcm/xc-registration/assets/#register-moonbeam-native-assets){target=\_blank}
 7. 为了测试 XCM 集成，请发送一些令牌到：
 
    ```
@@ -93,15 +93,15 @@ Sovereign Account Address on Moonbase Alpha: 0x7369626ce803000000000000000000000
 
 1. 从您的链打开（或确保存在）到 Moonriver/Moonbeam 的 HRMP 通道。可以选择注册 MOVR/GLMR
 2. 创建 [两个 Moonbeam 社区论坛帖子](#create-forum-posts)，其中包含 XCM 集成的一些关键信息：
-   - 一个 [XCM 披露帖子](builders/interoperability/xcm/xc-registration/forum-templates/#xcm-disclosure)，您将在其中提供有关项目、代码库和社交网络渠道的一些披露信息
-   - 一个 [XCM 提案帖子](builders/interoperability/xcm/xc-registration/forum-templates/#xcm-proposals)，您将在其中提供有关提案本身的一些技术信息
+   - 一个 [XCM 披露帖子](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-disclosure)，您将在其中提供有关项目、代码库和社交网络渠道的一些披露信息
+   - 一个 [XCM 提案帖子](/builders/interoperability/xcm/xc-registration/forum-templates/#xcm-proposals)，您将在其中提供有关提案本身的一些技术信息
 3. 在 Moonbeam/Moonriver 上创建一个批量提案，以：
 
    1. 接受传入的 HRMP 通道
    2. 建议打开从 Moonriver/Moonbeam 发出的传出 HRMP 通道
-   3. 将资产注册为 [XC-20 代币](builders/interoperability/xcm/xc20/overview/){target=\_blank}（如果适用）
+   3. 将资产注册为 [XC-20 代币](/builders/interoperability/xcm/xc20/overview/){target=\_blank}（如果适用）
 
-   提案应在 [OpenGov](learn/features/governance/#opengov){target=\_blank} 的 General Admin Track 中完成。正常的颁布时间如下：
+   提案应在 [OpenGov](/learn/features/governance/#opengov){target=\_blank} 的 General Admin Track 中完成。正常的颁布时间如下：
 
    - **Moonriver** - 决策期约为 {{ networks.moonriver.governance.tracks.general_admin.decision_period.time }}，颁布时间至少为 {{ networks.moonriver.governance.tracks.general_admin.min_enactment_period.time }}
    - **Moonbeam** - 决策期约为 {{ networks.moonbeam.governance.tracks.general_admin.decision_period.time }}，颁布时间至少为 {{ networks.moonbeam.governance.tracks.general_admin.min_enactment_period.time }}
@@ -125,20 +125,20 @@ Sovereign Account Address on Moonbase Alpha: 0x7369626ce803000000000000000000000
 
 ### 创建论坛帖子 {: #create-forum-posts }
 
-要在 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank} 上创建论坛帖子，您需要确保将帖子添加到正确的类别并添加相关内容。 有关要遵循的通用指南和模板，请参阅 [Moonbeam 社区论坛 XCM 集成模板](builders/interoperability/xcm/xc-registration/forum-templates/#){target=\_blank} 页面。
+要在 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank} 上创建论坛帖子，您需要确保将帖子添加到正确的类别并添加相关内容。 有关要遵循的通用指南和模板，请参阅 [Moonbeam 社区论坛 XCM 集成模板](/builders/interoperability/xcm/xc-registration/forum-templates/#){target=\_blank} 页面。
 
 ## 创建 HRMP 通道 {: #create-an-hrmp-channel }
 
 在可以将任何消息从您的平行链发送到 Moonbeam 之前，必须先打开一个 HRMP 通道。要创建 HRMP 通道，您需要向中继链发送一条 XCM 消息，该消息将请求通过中继链打开通道。该消息需要包含**至少**以下 XCM 指令：
 
-1. [WithdrawAsset](builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - 从原始平行链的 Sovereign 账户（在中继链中）取出资金到一个持有状态
-2. [BuyExecution](builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - 从中继链购买执行时间以执行 XCM 消息
-3. [Transact](builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - 提供要执行的中继链调用数据。在这种情况下，调用将是 HRMP extrinsic
+1. [WithdrawAsset](/builders/interoperability/xcm/core-concepts/instructions/#withdraw-asset){target=\_blank} - 从原始平行链的 Sovereign 账户（在中继链中）取出资金到一个持有状态
+2. [BuyExecution](/builders/interoperability/xcm/core-concepts/instructions/#buy-execution){target=\_blank} - 从中继链购买执行时间以执行 XCM 消息
+3. [Transact](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} - 提供要执行的中继链调用数据。在这种情况下，调用将是 HRMP extrinsic
 
 !!! note
-    您可以添加 [DepositAsset](builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} 以在执行后退还剩余资金。如果未提供此选项，则不会进行退款。此外，您还可以在 [Transact](builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} 之后添加 [RefundSurplus](builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} 以获取未用于 Transact 的任何剩余资金。但是您必须计算支付额外 XCM 指令的执行成本是否值得。
+    您可以添加 [DepositAsset](/builders/interoperability/xcm/core-concepts/instructions/#deposit-asset){target=\_blank} 以在执行后退还剩余资金。如果未提供此选项，则不会进行退款。此外，您还可以在 [Transact](/builders/interoperability/xcm/core-concepts/instructions/#transact){target=\_blank} 之后添加 [RefundSurplus](/builders/interoperability/xcm/core-concepts/instructions/#refund-surplus){target=\_blank} 以获取未用于 Transact 的任何剩余资金。但是您必须计算支付额外 XCM 指令的执行成本是否值得。
 
-要将这些 XCM 消息发送到中继链，通常会调用 [Polkadot XCM Pallet](https://github.com/paritytech/polkadot-sdk/tree/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm){target=\_blank}。Moonbeam 还有一个 [XCM Transactor Pallet](builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank}，它将该过程简化为抽象 XCM 消息构造器的调用。
+要将这些 XCM 消息发送到中继链，通常会调用 [Polkadot XCM Pallet](https://github.com/paritytech/polkadot-sdk/tree/{{ polkadot_sdk }}/polkadot/xcm/pallet-xcm){target=\_blank}。Moonbeam 还有一个 [XCM Transactor Pallet](/builders/interoperability/xcm/remote-execution/substrate-calls/xcm-transactor-pallet/){target=\_blank}，它将该过程简化为抽象 XCM 消息构造器的调用。
 
 您可能会使用 Polkadot.js Apps 为 HRMP 操作生成 calldata，但 [xcm-tools GitHub 存储库](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank} 可以为您构建它，并且是此过程的推荐工具。
 
@@ -198,7 +198,7 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 
 运行脚本后，您将看到如下所示的输出：
 
---8<-- 'code/builders/interoperability/xcm/xc-registration/integration/terminal/accept.md'
+--8<-- 'zh/code/builders/interoperability/xcm/xc-registration/integration/terminal/accept.md'
 
 如上所示运行脚本将返回编码后的 calldata，以接受 HRMP 通道。您还可以使用该脚本在链上为给定的 HRMP 操作创建并提交预映像和提案。对于 Moonbeam 和 Moonriver，提案必须通过 General Admin Track 提交。
 
@@ -251,7 +251,7 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 
 运行脚本后，您将看到如下所示的输出：
 
---8<-- 'code/builders/interoperability/xcm/xc-registration/integration/terminal/propose.md'
+--8<-- 'zh/code/builders/interoperability/xcm/xc-registration/integration/terminal/propose.md'
 
 如上所示运行脚本将返回编码的 calldata，以打开 HRMP 通道。您还可以使用该脚本为给定的 HRMP 操作创建和提交链上的 preimage 和提案。对于 Moonbeam 和 Moonriver，提案必须通过 General Admin Track 提交。
 
@@ -263,7 +263,7 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 
 在平行链上完成 XCM 过程最有效的方法是将所有交易批量处理在一起。[xcm-tools 存储库](https://github.com/Moonsong-Labs/xcm-tools){target=\_blank}提供了一个脚本，可以将 extrinsic 调用批量处理为单个调用，从而只需要一个交易。如果您的平行链想要同时打开一个 HRMP 通道并注册一个资产，这将很有帮助。在 Moonbeam 网络上提议通道注册时，**应该使用**此方法。
 
-如果您除了建立通道之外还要注册资产，请参阅[如何注册跨链资产](builders/interoperability/xcm/xc-registration/assets/){target=\_blank}指南，以了解如何生成资产注册所需的编码调用数据。
+如果您除了建立通道之外还要注册资产，请参阅[如何注册跨链资产](/builders/interoperability/xcm/xc-registration/assets/){target=\_blank}指南，以了解如何生成资产注册所需的编码调用数据。
 
 下图描述了将所有交易批量处理为一个的过程。
 
@@ -275,7 +275,7 @@ yarn hrmp-manipulator --target-para-id YOUR_PARACHAIN_ID \
 
 - `OPEN_CHANNEL_CALL` 是 SCALE 编码的调用数据，用于[从 Moonbeam 打开到您的平行链的 HRMP 通道](#open-an-hrmp-channel-from-moonbeam)
 - `ACCEPT_INCOMING_CALL` 是 SCALE 编码的调用数据，用于[从您的平行链接受通道请求](#accept-an-hrmp-channel-on-moonbeam)
-- `REGISTER_ASSET_CALL` 是 SCALE 编码的调用数据，用于[注册跨链资产](builders/interoperability/xcm/xc-registration/assets/#register-xc-20s){target=\_blank}。如果您有多个资产要在 Moonbeam 上注册，您可以包含额外的注册 SCALE 编码的调用数据，并带有额外的 `--call` 标志
+- `REGISTER_ASSET_CALL` 是 SCALE 编码的调用数据，用于[注册跨链资产](/builders/interoperability/xcm/xc-registration/assets/#register-xc-20s){target=\_blank}。如果您有多个资产要在 Moonbeam 上注册，您可以包含额外的注册 SCALE 编码的调用数据，并带有额外的 `--call` 标志
 
 === "Moonbeam"
 
@@ -307,7 +307,7 @@ yarn generic-call-propose -w wss://wss.api.moonbase.moonbeam.network  \
 !!! note
     您可以通过更改 `parachain-ws-provider` 来重新调整您的平行链的脚本。
 
-有了编码的调用数据，您就可以提交治理提案。对于 Moonbeam 和 Moonriver，您必须将提案分配给 General Admin Track。建议您熟悉[基于 Moonbeam 的网络上的 OpenGov：Governance v2 流程](learn/features/governance/#opengov){target=\_blank}。
+有了编码的调用数据，您就可以提交治理提案。对于 Moonbeam 和 Moonriver，您必须将提案分配给 General Admin Track。建议您熟悉[基于 Moonbeam 的网络上的 OpenGov：Governance v2 流程](/learn/features/governance/#opengov){target=\_blank}。
 
 如果您想直接从 CLI 发送治理提案，您需要使用以下附加标志：
 

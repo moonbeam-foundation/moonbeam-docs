@@ -40,9 +40,9 @@ Moonbeam 引入了一个新的专用 Origin，名为 `ForeignAssetOwnerOrigin`�
 
 需要注意以下几个必备条件：
 
-- Moonbeam上的兄弟平行链的[主权账户](builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}必须有足够的资金来支付资产存款和交易费用。建议您预留额外的资金缓冲，以备后续交易之需。请参阅此[主权账户计算指南](builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
+- Moonbeam上的兄弟平行链的[主权账户](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}必须有足够的资金来支付资产存款和交易费用。建议您预留额外的资金缓冲，以备后续交易之需。请参阅此[主权账户计算指南](/builders/interoperability/xcm/core-concepts/sovereign-accounts/){target=\_blank}
 - 您的平行链应支持 XCM V4
-- 您的平行链需要与 Moonbeam 建立双向 XCM 通道。请参阅此[关于打开与 Moonbeam 之间的 XCM 通道的信息指南](builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank}
+- 您的平行链需要与 Moonbeam 建立双向 XCM 通道。请参阅此[关于打开与 Moonbeam 之间的 XCM 通道的信息指南](/builders/interoperability/xcm/xc-registration/xc-integration/){target=\_blank}
 
 ## 收集您的资产详细信息 {: #assemble-your-asset-details }
 

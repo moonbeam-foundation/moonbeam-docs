@@ -137,13 +137,13 @@ dRPC.org 提供公共和付费的 [Moonbeam RPC](https://drpc.org/chainlist/moon
 
 ## 使用 RPC 端点提供程序进行延迟加载 {: #lazy-loading-with-RPC-Endpoint-Providers }
 
-通过延迟加载，Moonbeam 节点可以在后台下载网络状态的同时运行，从而无需等待完全同步即可使用。要使用延迟加载启动 Moonbeam 节点，您需要[下载 Moonbeam 发布二进制文件](node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank}或[编译二进制文件](node-operators/networks/run-a-node/compile-binary/#compile-the-binary){target=\_blank}。您可以使用以下标志激活延迟加载：
+通过延迟加载，Moonbeam 节点可以在后台下载网络状态的同时运行，从而无需等待完全同步即可使用。要使用延迟加载启动 Moonbeam 节点，您需要[下载 Moonbeam 发布二进制文件](/node-operators/networks/run-a-node/systemd/#the-release-binary){target=\_blank}或[编译二进制文件](/node-operators/networks/run-a-node/compile-binary/#compile-the-binary){target=\_blank}。您可以使用以下标志激活延迟加载：
 
 `--lazy-loading-remote-rpc 'INSERT-RPC-URL'`
 
 延迟加载是高度资源密集型的，需要大量的 RPC 请求才能运行。为了避免受到限制，建议您使用[专用端点](#endpoint-providers)（即带有 API 密钥的端点），而不是公共端点。如果您使用带有公共端点的延迟加载，则可能会受到速率限制。使用此功能启动节点后，您将看到如下输出：
 
---8<-- 'code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
+--8<-- 'zh/code/node-operators/networks/run-a-node/terminal/lazy-loading.md'
 
 ### 使用延迟加载覆盖状态
 
@@ -426,7 +426,7 @@ console.log(getBalanceSlot(address));
 
 ## Tracing RPC 端点供应商 {: #tracing-providers }
 
-通过 Tracing RPC 端点，您可以访问非标准的 RPC 方法，例如属于 Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块的方法。要查看 Moonbeam 上支持的用于调试和追踪的非标准 RPC 方法列表，请参阅[调试 API 和追踪模块](builders/ethereum/json-rpc/debug-trace/){target=\_blank} 指南。
+通过 Tracing RPC 端点，您可以访问非标准的 RPC 方法，例如属于 Geth 的 `debug` 和 `txpool` API 以及 OpenEthereum 的 `trace` 模块的方法。要查看 Moonbeam 上支持的用于调试和追踪的非标准 RPC 方法列表，请参阅[调试 API 和追踪模块](/builders/ethereum/json-rpc/debug-trace/){target=\_blank} 指南。
 
 以下供应商提供 tracing RPC 端点：
 

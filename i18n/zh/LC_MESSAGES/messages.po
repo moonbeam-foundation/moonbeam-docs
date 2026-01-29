@@ -19,12 +19,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
 
-msgid "action.edit"
-msgstr "编辑"
-
-msgid "action.view"
-msgstr "查看"
-
 msgid "clipboard.copied"
 msgstr "已复制"
 
@@ -33,8 +27,11 @@ msgstr "本指南中的示例假设你使用的是 MacOS 或 Ubuntu 22.04 环境
 
 msgid "common.async_backing"
 msgstr ""
-"!!! note\n"
-"    自 runtime 3000 起，[异步背书](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\\_blank} 已在所有 Moonbeam 网络启用。因此，目标区块时间从 12 秒缩短为 6 秒，这可能会破坏一些基于时间的假设。"
+"!!! 注意：\n"
+"    从运行时版本 3000 开始，Moonbeam 全部网络已启用 [异步背书（asynchronous backing）](https://wiki.polkadot.com/learn/learn-async-backing/#asynchronous-backing){target=\\_blank} 机制。"
+
+msgid "common.edit"
+msgstr "编辑"
 
 msgid "common.endpoint_examples"
 msgstr "要在 Moonbeam 或 Moonriver 上测试本指南中的示例，你需要拥有自己的端点和 API 密钥，可从支持的[端点提供商](/builders/get-started/endpoints/){target=\\_blank}获取。"
@@ -46,10 +43,10 @@ msgid "common.endpoint_setup"
 msgstr "要为 Moonbeam 或 Moonriver 配置你的项目，你需要拥有自己的端点和 API 密钥，可从支持的[端点提供商](/builders/get-started/endpoints/){target=\\_blank}获取。"
 
 msgid "common.faucet.list_item"
-msgstr "你可以每 24 小时从 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\\_blank} 获取一次 DEV 测试代币"
+msgstr "你可以每 24 小时通过 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\\_blank}获取一次用于测试的 DEV 代币。"
 
 msgid "common.faucet.sentence"
-msgstr "你可以每 24 小时从 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\\_blank} 获取一次 DEV 测试代币。"
+msgstr "你可以每 24 小时通过 [Moonbase Alpha 水龙头](https://faucet.moonbeam.network){target=\\_blank}获取一次用于测试的 DEV 代币。"
 
 msgid "common.install_nodejs"
 msgstr ""
@@ -82,6 +79,9 @@ msgstr ""
 "```bash\n"
 "npm -v\n"
 "```"
+
+msgid "common.view"
+msgstr "查看"
 
 msgid "disclaimer.educational_tutorial"
 msgstr "本教程仅用于教育目的。因此，本教程中创建的任何合约或代码都不应在生产环境中使用。"
@@ -168,7 +168,7 @@ msgid "material_overrides.home.how_to_connect_metamask__e5c8c5"
 msgstr "如何将 MetaMask 连接到基于 Moonbeam 的网络"
 
 msgid "material_overrides.home.how_to_get_your__d48411"
-msgstr "如何获得基于 Moonbeam 的网络的 API 端点"
+msgstr "如何获得基于 Moonbeam 网络的 API 端点"
 
 msgid "material_overrides.home.how_to_set_up__030179"
 msgstr "如何设置基于 Moonbeam 的节点"
@@ -231,7 +231,7 @@ msgid "material_overrides.home.security_considerations"
 msgstr "安全注意事项"
 
 msgid "material_overrides.home.start_building"
-msgstr "开始构建"
+msgstr "开始开发"
 
 msgid "material_overrides.home.tokens"
 msgstr "代币"
@@ -288,16 +288,16 @@ msgid "material_overrides.partials.feedback.title"
 msgstr "这个页面有帮助吗？"
 
 msgid "material_overrides.partials.footer.llms_by_topic"
-msgstr "按主题分类的法学硕士"
+msgstr "按主题浏览LLM文本"
 
 msgid "material_overrides.partials.footer.llms_full_txt"
-msgstr "法学硕士全文"
+msgstr "LLM 完整文本数据"
 
 msgid "material_overrides.partials.footer.llms_txt"
-msgstr "法学硕士文本"
+msgstr "LLMS 文本"
 
 msgid "material_overrides.partials.footer.made_with_by"
-msgstr "由 <a href=\"https://papermoon.io/\" target=\"_blank\">PaperMoon</a> with 🩵 制作"
+msgstr "<a href=\"https://papermoon.io/\" target=\"_blank\">PaperMoon</a> with 🩵 出品"
 
 msgid "material_overrides.partials.footer.privacy_policy"
 msgstr "隐私政策"
@@ -309,7 +309,7 @@ msgid "material_overrides.partials.header.connect_wallet"
 msgstr "连接钱包"
 
 msgid "material_overrides.partials.header.faucet"
-msgstr "水龙头"
+msgstr "测试代币"
 
 msgid "nav"
 msgstr "导航"

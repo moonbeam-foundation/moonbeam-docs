@@ -20,7 +20,7 @@ categories: Ethereum Toolkit
 
 ### 生成 Etherscan API 密钥 {: #generating-an-etherscan-api-key }
 
-在使用 Moonscan API 之前，您需要生成一个 Etherscan API 密钥。请按照 Etherscan 插件验证页面的[密钥生成部分](builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}中的说明进行操作，因为生成的 API 密钥用于两者。
+在使用 Moonscan API 之前，您需要生成一个 Etherscan API 密钥。请按照 Etherscan 插件验证页面的[密钥生成部分](/builders/ethereum/verify-contracts/etherscan-plugins/#generating-an-etherscan-api-key){target=\_blank}中的说明进行操作，因为生成的 API 密钥用于两者。
 
 ### Moonscan 公共 API URL {: #moonscan-public-api-url }
 
@@ -536,7 +536,7 @@ Sourcify 提供了用于一次性检查多个 EVM 链上合约验证状态的端
 
 ### 将 Sourcify 与 Foundry 结合使用 {: #using-sourcify-with-foundry }
 
-Foundry 的 Forge 工具内置了对 Sourcify 验证的支持，类似于它对[Etherscan 的内置支持](builders/ethereum/verify-contracts/etherscan-plugins/#using-foundry-to-verify){target=\_blank}。本指南的此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](builders/ethereum/dev-env/foundry/){target=\_blank} 指南中创建的 `MyToken.sol` 合约。
+Foundry 的 Forge 工具内置了对 Sourcify 验证的支持，类似于它对[Etherscan 的内置支持](/builders/ethereum/verify-contracts/etherscan-plugins/#using-foundry-to-verify){target=\_blank}。本指南的此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](/builders/ethereum/dev-env/foundry/){target=\_blank} 指南中创建的 `MyToken.sol` 合约。
 
 使用 Sourcify 的 Foundry 项目必须让其编译器发出元数据文件。这可以在 `foundry.toml` 文件中配置：
 
@@ -578,7 +578,7 @@ cast abi-encode "constructor(uint256)" 100
       --verifier sourcify INSERT_CONTRACT_ADDRESS src/MyToken.sol:MyToken
     ```
 
---8<-- 'code/builders/ethereum/verify-contracts/api/terminal/verify-original.md'
+--8<-- 'zh/code/builders/ethereum/verify-contracts/api/terminal/verify-original.md'
 
 如果您想同时部署示例合约并进行验证，那么您可以使用以下命令：
 
@@ -613,4 +613,4 @@ cast abi-encode "constructor(uint256)" 100
     ```
     
 
---8<-- 'code/builders/ethereum/verify-contracts/api/terminal/create.md'
+--8<-- 'zh/code/builders/ethereum/verify-contracts/api/terminal/create.md'

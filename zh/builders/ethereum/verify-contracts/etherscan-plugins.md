@@ -18,7 +18,7 @@ Hardhat 插件可以无缝集成到您的 [Hardhat](https://hardhat.org){target=
 
 要学习本教程，您需要具备以下条件：
 
-- [MetaMask 已安装并连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank} 测试网
+- [MetaMask 已安装并连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank} 测试网
 - 一个已充值 `DEV` 代币的帐户。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 - 一个 Etherscan API 密钥
@@ -46,7 +46,7 @@ Hardhat 插件可以无缝集成到您的 [Hardhat](https://hardhat.org){target=
 
 ## 使用 Hardhat Etherscan 插件 {: #using-the-hardhat-verify-plugin }
 
-本指南本节中的示例将基于在[使用 Hardhat 部署到 Moonbeam](builders/ethereum/dev-env/hardhat/){target=\_blank} 指南中创建的 `Box.sol` 合约。
+本指南本节中的示例将基于在[使用 Hardhat 部署到 Moonbeam](/builders/ethereum/dev-env/hardhat/){target=\_blank} 指南中创建的 `Box.sol` 合约。
 
 要开始使用 Hardhat Etherscan 插件，您首先需要安装插件库：
 
@@ -85,7 +85,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS
 
 在您的终端中，您应该看到您的合约的源代码已成功提交以进行验证。如果验证成功，您应该看到 **Successfully verified contract**，并且在 [Moonscan for Moonbase Alpha](https://moonbase.moonscan.io){target=\_blank} 上会有一个指向合约代码的链接。
 
---8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/hardhat-verify.md'
+--8<-- 'zh/code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/hardhat-verify.md'
 
 如果您要验证的合约具有构造函数参数，您需要运行上述命令，并在命令末尾添加用于部署合约的构造函数参数。例如：
 
@@ -103,7 +103,7 @@ npx hardhat verify --network moonbase INSERT_CONTRACT_ADDRESS INSERT_CONSTRUCTOR
 
 ## 使用 Foundry 进行验证 {: #using-foundry-to-verify }
 
-本指南此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](builders/ethereum/dev-env/foundry/){target=\_blank} 指南中创建的 `MyToken.sol` 合约。
+本指南此部分中的示例将使用在[使用 Foundry 部署到 Moonbeam](/builders/ethereum/dev-env/foundry/){target=\_blank} 指南中创建的 `MyToken.sol` 合约。
 
 除了 Foundry 项目，您还需要一个 [Etherscan API 密钥](https://etherscan.io/){target=\_blank} 来验证您的合约。
 
@@ -145,7 +145,7 @@ cast abi-encode "constructor(uint256)" 100
       --etherscan-api-key INSERT_YOUR_ETHERSCAN_API_KEY
     ```
 
---8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
+--8<-- 'zh/code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-verify.md'
 
 如果您想同时部署示例合约并进行验证，那么您可以使用以下命令：
 
@@ -179,4 +179,4 @@ cast abi-encode "constructor(uint256)" 100
       src/MyToken.sol:MyToken
     ```
 
---8<-- 'code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'
+--8<-- 'zh/code/builders/ethereum/verify-contracts/etherscan-plugins/terminal/forge-create-verify.md'

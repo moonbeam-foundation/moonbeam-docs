@@ -8,9 +8,9 @@ categories: Basics
 
 ## 简介 {: #introduction }
 
-由于 Moonbeam 被设计为 Polkadot 上与 Ethereum 兼容的平行链，因此底层账户系统将默认的 Substrate 样式账户和密钥替换为 Ethereum 样式的账户和密钥。因此，您可以使用 [MetaMask](tokens/connect/metamask/){target=\_blank} 和您可能已经熟悉的 Ethereum 工具（例如 [Remix](builders/ethereum/dev-env/remix/){target=\_blank} 和 [Hardhat](builders/ethereum/dev-env/hardhat/){target=\_blank}）与您的 Moonbeam 账户进行交互。
+由于 Moonbeam 被设计为 Polkadot 上与 Ethereum 兼容的平行链，因此底层账户系统将默认的 Substrate 样式账户和密钥替换为 Ethereum 样式的账户和密钥。因此，您可以使用 [MetaMask](/tokens/connect/metamask/){target=\_blank} 和您可能已经熟悉的 Ethereum 工具（例如 [Remix](/builders/ethereum/dev-env/remix/){target=\_blank} 和 [Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}）与您的 Moonbeam 账户进行交互。
 
-您还可以使用 Polkadot.js Apps 与您的 Moonbeam 账户进行交互，因为它原生支持 H160 地址和 ECDSA 密钥。有关此集成的更多信息，您可以查看 [使用 Polkadot.js Apps 与 Moonbeam 交互](tokens/connect/polkadotjs/){target=\_blank} 指南。
+您还可以使用 Polkadot.js Apps 与您的 Moonbeam 账户进行交互，因为它原生支持 H160 地址和 ECDSA 密钥。有关此集成的更多信息，您可以查看 [使用 Polkadot.js Apps 与 Moonbeam 交互](/tokens/connect/polkadotjs/){target=\_blank} 指南。
 
 ## Substrate EVM 兼容区块链 {: #substrate-evm-compatible-blockchain }
 

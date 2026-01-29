@@ -9,9 +9,9 @@ categories: Precompiles, Ethereum Toolkit
 
 ## 简介 {: #introduction }
 
-Moonbeam 路由流动性 (MRL) 是指 Moonbeam 作为始发链的流动性进入其他 Polkadot 平行链的端口平行链的用例。这可以通过通用消息传递 (GMP) 实现，其中具有任意数据和代币的消息可以通过[链无关 GMP 协议](builders/interoperability/protocols/){target=\_blank}跨非平行链区块链发送。这些 GMP 协议可以与 [Polkadot 的 XCM 消息传递系统](builders/interoperability/xcm/overview/){target=\_blank} 结合使用，以实现无缝的流动性路由。
+Moonbeam 路由流动性 (MRL) 是指 Moonbeam 作为始发链的流动性进入其他 Polkadot 平行链的端口平行链的用例。这可以通过通用消息传递 (GMP) 实现，其中具有任意数据和代币的消息可以通过[链无关 GMP 协议](/builders/interoperability/protocols/){target=\_blank}跨非平行链区块链发送。这些 GMP 协议可以与 [Polkadot 的 XCM 消息传递系统](/builders/interoperability/xcm/overview/){target=\_blank} 结合使用，以实现无缝的流动性路由。
 
-GMP 预编译充当 Moonbeam 路由流动性的接口，充当来自 GMP 协议的携带代币的消息与通过 [XCMP](builders/interoperability/xcm/overview/#xcm-transport-protocols){target=\_blank} 连接到 Moonbeam 的平行链之间的中间人。目前，GMP 预编译仅支持通过 [Wormhole GMP 协议](builders/interoperability/protocols/wormhole/){target=\_blank} 中继流动性。
+GMP 预编译充当 Moonbeam 路由流动性的接口，充当来自 GMP 协议的携带代币的消息与通过 [XCMP](/builders/interoperability/xcm/overview/#xcm-transport-protocols){target=\_blank} 连接到 Moonbeam 的平行链之间的中间人。目前，GMP 预编译仅支持通过 [Wormhole GMP 协议](/builders/interoperability/protocols/wormhole/){target=\_blank} 中继流动性。
 
 GMP 预编译位于以下地址：
 
@@ -48,7 +48,7 @@ GMP 预编译位于以下地址：
 
 GMP 预编译有一个方法：
 
-- **wormholeTransferERC20**(*bytes memory* vaa) - 接收 Wormhole 桥接传输 [已验证操作批准 (VAA)](https://wormhole.com/docs/protocol/infrastructure/vaas/){target=\_blank}，通过 Wormhole 代币桥铸造代币，并将流动性转发到自定义负载的 [多位置](builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}。有效负载应为预编译特定的 SCALE 编码对象，如本指南的 [为 Wormhole 构建有效负载](#building-the-payload-for-wormhole) 部分中所述
+- **wormholeTransferERC20**(*bytes memory* vaa) - 接收 Wormhole 桥接传输 [已验证操作批准 (VAA)](https://wormhole.com/docs/protocol/infrastructure/vaas/){target=\_blank}，通过 Wormhole 代币桥铸造代币，并将流动性转发到自定义负载的 [多位置](/builders/interoperability/xcm/core-concepts/multilocations/){target=\_blank}。有效负载应为预编译特定的 SCALE 编码对象，如本指南的 [为 Wormhole 构建有效负载](#building-the-payload-for-wormhole) 部分中所述
 
 VAA 是在原始链交易后生成的包含有效负载的包，由 Wormhole [守护者](https://wormhole.com/docs/protocol/infrastructure/guardians/){target=\_blank} 发现。
 

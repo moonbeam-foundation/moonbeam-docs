@@ -23,7 +23,7 @@ categories: 代币和账户
 - 至少一个帐户必须有 `DEV` 代币。
  --8<-- 'zh/text/_common/faucet/faucet-list-item.md'
 
-如果您在将帐户导入 Polkadot.js Apps 时需要帮助，请查看[使用 Polkadot.js Apps 与 Moonbeam 交互](tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 指南。
+如果您在将帐户导入 Polkadot.js Apps 时需要帮助，请查看[使用 Polkadot.js Apps 与 Moonbeam 交互](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 指南。
 
 ## 常规定义 {: #general-definitions }
 
@@ -71,7 +71,7 @@ categories: 代币和账户
 - **`Governance`** - 允许代理帐户进行与治理相关的交易，例如投票或提出民主提案
 - **`NonTransfer`** - 此类型的代理帐户可以提交任何类型的交易，但余额转账除外
 - **`Balances`** - 允许代理帐户仅进行与发送资金相关的交易
-- **`IdentityJudgement`** - 允许代理帐户从注册服务商处请求对[帐户身份](tokens/manage/identity/){target=\_blank}进行判断。可以发布以下判断：
+- **`IdentityJudgement`** - 允许代理帐户从注册服务商处请求对[帐户身份](/tokens/manage/identity/){target=\_blank}进行判断。可以发布以下判断：
     - **unknown** -（默认）尚未做出任何判断
     - **fee paid** - 表示用户已请求判断，并且正在进行中
     - **reasonable** - 该信息看起来合理，但未执行深入检查（即正式的 KYC 流程）

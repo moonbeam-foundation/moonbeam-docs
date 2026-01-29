@@ -12,9 +12,9 @@ categories: Governance
 
 在 Moonbeam 中，用户可以使用他们的 H160 地址和私钥（即他们的常规以太坊帐户）来创建提案并对其进行投票！
 
-本指南将概述在 OpenGov（治理 v2）中提交提案，供其他代币持有者投票的流程，并提供逐步说明。本指南将向您展示如何在 Moonbase Alpha 上提交提案，但它可以很容易地适用于 Moonbeam 和 Moonriver。有关如何在 OpenGov 中投票的单独指南，请参见[如何在 OpenGov 中进行提案投票](tokens/governance/voting/){target=\_blank}。
+本指南将概述在 OpenGov（治理 v2）中提交提案，供其他代币持有者投票的流程，并提供逐步说明。本指南将向您展示如何在 Moonbase Alpha 上提交提案，但它可以很容易地适用于 Moonbeam 和 Moonriver。有关如何在 OpenGov 中投票的单独指南，请参见[如何在 OpenGov 中进行提案投票](/tokens/governance/voting/){target=\_blank}。
 
-有关 Moonbeam 治理系统的更多信息，请参阅 [Moonbeam 上的治理](learn/features/governance/){target=\_blank} 概述页面。
+有关 Moonbeam 治理系统的更多信息，请参阅 [Moonbeam 上的治理](/learn/features/governance/){target=\_blank} 概述页面。
 
 ## 定义 {: #definitions }
 
@@ -28,19 +28,19 @@ categories: Governance
 
 --8<-- 'zh/text/learn/features/governance/lead-in-definitions.md'
 
-请务必查看每个网络和跟踪的[治理参数](learn/features/governance/#governance-parameters-v2){target=\_blank}。
+请务必查看每个网络和跟踪的[治理参数](/learn/features/governance/#governance-parameters-v2){target=\_blank}。
 
 ## 提案路线图 {: #roadmap-of-a-proposal }
 
 本指南将介绍提案路线图中概述的前几个步骤，如下面的图表所示。您将学习如何将您的提案想法提交到 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank}，提交 preimages，并使用 preimage 哈希在链上提交您的提案。
 
-您可以在治理概述页面的 [提案路线图](learn/features/governance/#roadmap-of-a-proposal-v2){target=\_blank} 部分找到完整的解释。
+您可以在治理概述页面的 [提案路线图](/learn/features/governance/#roadmap-of-a-proposal-v2){target=\_blank} 部分找到完整的解释。
 
 ![提案路线图](/images/tokens/governance/proposals/proposals-roadmap.webp)
 
 ## 向社区论坛提交您的想法 {: #submitting-your-idea-to-the-forum }
 
-在深入了解提交提案的步骤之前，您需要熟悉 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank}。强烈建议您在论坛上发布任何提案之前，先征求反馈。在提交预图像和提案之前，您应该预留五天的时间，让社区讨论并提供对 Moonbeam 论坛帖子的反馈。
+在深入了解提交提案的步骤之前，您需要熟悉 [Moonbeam 社区论坛](https://forum.moonbeam.network){target=\_blank}。强烈建议您在论坛上发布任何提案之前，先征求反馈。在继续提交 preimage 和 proposal 之前，应预留至少五天 的时间，供社区在 Moonbeam Forum 上对相关帖子进行讨论并提供反馈。
 
 要访问 Moonbeam 社区论坛，您必须是 [Moonbeam Discord](https://discord.com/invite/PfpUATX){target=\_blank} 社区的成员。然后，您可以注册使用您的 Discord 凭据访问论坛。
 
@@ -62,7 +62,7 @@ categories: Governance
 
 本节介绍在 Moonbase Alpha 上使用 OpenGov（治理 v2）创建提案的流程。这些步骤可以适用于 Moonbeam 和 Moonriver。
 
-要在网络中提出提案，您可以使用 Polkadot.js Apps 界面。为此，您需要首先导入一个以太坊风格的帐户（H160 地址），您可以按照[创建或导入 H160 帐户](tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 指南进行操作。在本示例中，导入了三个帐户，并使用了超级原始名称命名：Alice、Bob 和 Charlie。
+要在网络中提出提案，您可以使用 Polkadot.js Apps 界面。为此，您需要首先导入一个以太坊风格的帐户（H160 地址），您可以按照[创建或导入 H160 帐户](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank} 指南进行操作。在本示例中，导入了三个帐户，并使用了超级原始名称命名：Alice、Bob 和 Charlie。
 
 ![Polkadot.js 中的帐户](/images/tokens/governance/proposals/proposals-3.webp)
 
@@ -99,7 +99,7 @@ categories: Governance
 
 一旦您提交了原像（请查看上一节），路线图的下一个主要里程碑就是提交与之相关的提案。为此，请从**治理**下拉菜单中选择**Referenda**，然后点击**提交提案**。
 
-为了提交提案，您需要选择要使用哪个 Origin 类来执行您的提案。**选择错误的 Track/Origin 可能会导致您的提案执行失败**。有关每个 Origin 类的更多信息，请参阅 Moonbeam 治理概述页面上的[通用定义](learn/features/governance/#general-definitions-gov2){target=\_blank}部分。
+为了提交提案，您需要选择要使用哪个 Origin 类来执行您的提案。**选择错误的 Track/Origin 可能会导致您的提案执行失败**。有关每个 Origin 类的更多信息，请参阅 Moonbeam 治理概述页面上的[通用定义](/learn/features/governance/#general-definitions-gov2){target=\_blank}部分。
 
 ![提交提案](/images/tokens/governance/proposals/proposals-6.webp)
 
@@ -110,7 +110,7 @@ categories: Governance
  3. 在 **origin** 下拉菜单中，选择 **Origins**
  4. 在 **Origins** 下拉菜单中，选择 Origin，在本例中为 **GeneralAdmin**
  5. 输入与提案相关的原像哈希。在本示例中，它是上一节中 `system.remark` 原像的哈希值
- 6. 选择颁布的时间，可以是在特定数量的区块之后，也可以是在特定区块。它必须满足最低颁布期，您可以在 OpenGov 的[治理参数](learn/features/governance/#governance-parameters-v2)中找到该参数
+ 6. 选择颁布的时间，可以是在特定数量的区块之后，也可以是在特定区块。它必须满足最低颁布期，您可以在 OpenGov 的[治理参数](/learn/features/governance/#governance-parameters-v2)中找到该参数
  7. 输入区块数或要在其上颁布提案的特定区块
  8. 点击**提交提案**并签署交易
 
@@ -125,4 +125,4 @@ categories: Governance
 
 该提案现在处于导入期，可以进行投票了！为了使您的提案从导入期进入下一阶段，至少需要经过准备期，以便有足够的时间讨论提案，所选 Track 中需要有足够的容量，并且需要提交决策保证金。保证金可以由任何代币持有人支付。如果没有足够的容量或尚未提交决策保证金，但准备期已经过去，则该提案将保留在导入期，直到满足所有条件为止。
 
-要了解如何对提案进行投票，请参阅[如何在 OpenGov 中对提案进行投票](tokens/governance/voting/){target=\_blank}指南。
+要了解如何对提案进行投票，请参阅[如何在 OpenGov 中对提案进行投票](/tokens/governance/voting/){target=\_blank}指南。

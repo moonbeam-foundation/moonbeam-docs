@@ -8,7 +8,7 @@ categories: Basics
 
 ## 简介 {: #introduction }
 
-在 Moonbeam 上开发智能合约时，需要注意一些在以太坊上开发时不会遇到的安全问题。Moonbeam 具有多个[预编译合约](builders/ethereum/precompiles/){target=\_blank}，这些合约是 Solidity 接口，使开发人员可以通过以太坊 API 访问基于 Substrate 的功能，但绕过了 EVM。虽然预编译合约旨在改善开发人员的体验，但可能会有一些意想不到的后果需要考虑。
+在 Moonbeam 上开发智能合约时，需要注意一些在以太坊上开发时不会遇到的安全问题。Moonbeam 具有多个[预编译合约](/builders/ethereum/precompiles/){target=\_blank}，这些合约是 Solidity 接口，使开发人员可以通过以太坊 API 访问基于 Substrate 的功能，但绕过了 EVM。虽然预编译合约旨在改善开发人员的体验，但可能会有一些意想不到的后果需要考虑。
 
 本指南将概述并提供在 Moonbeam 上开发时需要注意的一些安全问题的示例。
 
@@ -24,7 +24,7 @@ categories: Basics
 
 如前所述，在Moonbeam上任意执行代码的一个主要问题是Moonbeam具有可调用的预编译合约，这可用于绕过通常在Ethereum上可用的一些保护措施。为了在Moonbeam上安全地使用任意代码执行，您应该考虑以下事项，这些事项**仅适用于允许任意代码执行的合约**：
 
-- Moonbeam[预编译合约](builders/ethereum/precompiles/){target=\_blank}，例如原生ERC-20预编译、XC-20预编译和XCM相关预编译，允许用户管理和转移资产，而无需访问EVM。相反，这些操作是使用原生Substrate代码完成的。因此，如果您的合约持有原生代币或XC-20，并允许任意代码执行，则可以使用这些预编译来耗尽合约的余额，绕过通常由EVM强制执行的任何安全检查
+- Moonbeam[预编译合约](/builders/ethereum/precompiles/){target=\_blank}，例如原生ERC-20预编译、XC-20预编译和XCM相关预编译，允许用户管理和转移资产，而无需访问EVM。相反，这些操作是使用原生Substrate代码完成的。因此，如果您的合约持有原生代币或XC-20，并允许任意代码执行，则可以使用这些预编译来耗尽合约的余额，绕过通常由EVM强制执行的任何安全检查
 - 当使用`call()`函数时，将交易对象的value属性设置为固定金额（例如，`call{value: 0}(...)`），可以通过调用原生资产预编译并在编码的调用数据中指定要转移的金额来绕过
 - 允许使用你合约的用户传入任意调用数据，这将在目标合约上执行任何函数，特别是如果目标合约是预编译合约，则**不**安全。为了安全起见，您可以为要允许执行的安全函数硬编码函数选择器
 - 在执行任意调用数据的函数中，将目标合约（包括预编译）列入黑名单**不**被认为是安全的，因为将来可能会添加其他预编译。在执行任意调用数据的函数中提供列入白名单的目标合约被认为是安全的，假设被调用的合约不是预编译，或者在它们是预编译的情况下，进行调用的合约不持有原生代币或任何XC-20
@@ -33,7 +33,7 @@ categories: Basics
 
 ### 预编译可以覆盖设置值 {: #setting-a-value }
 
-在以太坊上，允许任意代码执行的智能合约可以强制调用的值为特定数量（例如，`{value: 0}`），从而保证只有该数量的本地货币会随交易一起发送。而在 Moonbeam 上，[原生 ERC-20 预编译合约](builders/ethereum/precompiles/ux/erc20/){target=\_blank} 使您可以通过 Substrate API 与 Moonbeam 的本地货币进行交互，就像与 ERC-20 进行交互一样。因此，您可以通过设置调用的 `value` 以及通过原生 ERC-20 预编译来从智能合约转移 Moonbeam 本地资产。如果您设置了任意调用的 `value`，则可以通过定位 [原生 ERC-20 预编译合约](builders/ethereum/precompiles/ux/erc20/){target=\_blank} 并传入调用数据来转移本地资产，以此来覆盖该值。由于 ERC-20 和 XC-20 不是原生资产，因此设置 value 属性不能为以太坊或 Moonbeam 上的这些类型的资产提供任何保护。
+在以太坊上，允许任意代码执行的智能合约可以强制调用的值为特定数量（例如，`{value: 0}`），从而保证只有该数量的本地货币会随交易一起发送。而在 Moonbeam 上，[原生 ERC-20 预编译合约](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} 使您可以通过 Substrate API 与 Moonbeam 的本地货币进行交互，就像与 ERC-20 进行交互一样。因此，您可以通过设置调用的 `value` 以及通过原生 ERC-20 预编译来从智能合约转移 Moonbeam 本地资产。如果您设置了任意调用的 `value`，则可以通过定位 [原生 ERC-20 预编译合约](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} 并传入调用数据来转移本地资产，以此来覆盖该值。由于 ERC-20 和 XC-20 不是原生资产，因此设置 value 属性不能为以太坊或 Moonbeam 上的这些类型的资产提供任何保护。
 
 例如，如果您有一个允许任意代码执行的合约，并且您将编码的调用数据传递给它，该调用数据将合约的余额转移到另一个地址，那么您基本上可以耗尽给定合约的余额。
 
@@ -50,7 +50,7 @@ function getBytes(address _erc20Contract, address _arbitraryCallContract, addres
 }
 ```
 
-获得编码的调用数据后，您可以对 [原生 ERC-20 预编译合约](builders/ethereum/precompiles/ux/erc20/){target=\_blank} 进行任意调用，将调用的值设置为 `0`，并将调用数据以字节形式传入：
+获得编码的调用数据后，您可以对 [原生 ERC-20 预编译合约](/builders/ethereum/precompiles/ux/erc20/){target=\_blank} 进行任意调用，将调用的值设置为 `0`，并将调用数据以字节形式传入：
 
 ```solidity
 function makeArbitraryCall(address _target, bytes calldata _bytes) public {
@@ -124,8 +124,8 @@ function transferFunds(address payable _target) payable public {
 }
 ```
 
-在以太坊上，您可以使用此检查来确保给定的合约函数只能由 EOA 调用一次。这是因为在以太坊上，EOA 在每次交易中只能与合约交互一次。但是，Moonbeam **并非如此**，因为 EOA 可以通过使用预编译合约（例如 [batch](builders/ethereum/precompiles/ux/batch/){target=\_blank} 和 [call permit](builders/ethereum/precompiles/ux/call-permit/){target=\_blank} 预编译）一次与合约交互多次。
+在以太坊上，您可以使用此检查来确保给定的合约函数只能由 EOA 调用一次。这是因为在以太坊上，EOA 在每次交易中只能与合约交互一次。但是，Moonbeam **并非如此**，因为 EOA 可以通过使用预编译合约（例如 [batch](/builders/ethereum/precompiles/ux/batch/){target=\_blank} 和 [call permit](/builders/ethereum/precompiles/ux/call-permit/){target=\_blank} 预编译）一次与合约交互多次。
 
-使用 batch 预编译，用户可以原子地对合约执行多次调用。batch 函数的调用者将是 `msg.sender` 和 `tx.origin`，从而可以一次进行多个合约交互。
+通过批处理预编译（batch precompile），用户可以以原子方式对合约执行多次调用。batch 函数的调用者将是 `msg.sender` 和 `tx.origin`，从而可以一次进行多个合约交互。
 
 使用 call permit 预编译，如果用户希望在一次交易中与合约交互多次，他们可以通过为每次合约交互签名一个许可并在单个函数调用中调度所有许可来实现。只有当调度器与许可签名者是同一账户时，这才会绕过 `tx.origin == msg.sender` 检查。否则，`msg.sender` 将是许可签名者，`tx.origin` 将是调度器，从而导致抛出异常。

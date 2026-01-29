@@ -9,9 +9,9 @@ categories: 节点运营商和整理者
 
 ## 简介 {: #introduction }
 
-Moonbeam 上的作者映射预编译合约允许收集人候选人通过熟悉且易于使用的 Solidity 接口将 Session Key 映射到用于支付区块奖励的 Moonbeam 地址。这使候选人可以使用 Ledger 或任何其他与 Moonbeam 兼容的 Ethereum 钱包完成作者映射。但是，建议您在气隙计算机上生成密钥。您可以参考[收集人要求页面的帐户要求部分](node-operators/networks/collators/requirements/#account-requirements){target=\_blank}以了解更多信息。
+Moonbeam 上的作者映射预编译合约允许收集人候选人通过熟悉且易于使用的 Solidity 接口将 Session Key 映射到用于支付区块奖励的 Moonbeam 地址。这使候选人可以使用 Ledger 或任何其他与 Moonbeam 兼容的 Ethereum 钱包完成作者映射。但是，建议您在气隙计算机上生成密钥。您可以参考[收集人要求页面的帐户要求部分](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}以了解更多信息。
 
-要成为收集人候选人，您必须[运行一个收集人节点](node-operators/networks/run-a-node/overview/){target=\_blank}。您还需要[加入候选人池](node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}，完全同步您的节点，并在生成会话密钥并将其映射到您的帐户之前提交所需的[保证金](#bonds)。映射会话密钥时，必须支付[额外的保证金](#bonds)。
+要成为收集人候选人，您必须[运行一个收集人节点](/node-operators/networks/run-a-node/overview/){target=\_blank}。您还需要[加入候选人池](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}，完全同步您的节点，并在生成会话密钥并将其映射到您的帐户之前提交所需的[保证金](#bonds)。映射会话密钥时，必须支付[额外的保证金](#bonds)。
 
 预编译合约位于以下地址：
 
@@ -95,12 +95,12 @@ Moonbeam 上的作者映射预编译合约允许收集人候选人通过熟悉�
 
 以下示例在 Moonbase Alpha 上演示，但是，Moonbeam 和 Moonriver 也可以采取类似的步骤。 你应该：
 
-- 安装 MetaMask 并[连接到 Moonbase Alpha](tokens/connect/metamask/){target=\_blank}
+- 安装 MetaMask 并[连接到 Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
 - 拥有一个包含 DEV 代币的帐户。你应该有足够的代币来支付[候选人和映射保证金](#bonds)，以及发送交易并将你的会话密钥映射到你的帐户的 gas 费用。要获得足够的 DEV 代币来遵循本指南，你可以直接通过 [Moonbeam Discord 服务器](https://discord.com/invite/PfpUATX){target=\_blank}联系管理员
-- 确保你正在[运行排序人节点](node-operators/networks/run-a-node/overview/){target=\_blank}并且已完全同步
-- 确保你已[加入候选人池](node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}
+- 确保你正在[运行排序人节点](/node-operators/networks/run-a-node/overview/){target=\_blank}并且已完全同步
+- 确保你已[加入候选人池](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}
 
-如前所述，你可以通过将 Ledger 连接到 MetaMask 来使用它。请参阅 [Ledger](tokens/connect/ledger/){target=\_blank} 指南以将你的 Ledger 导入到 MetaMask。请注意，不建议将 Ledger 用于生产用途。有关更多信息，请参阅[排序人要求中的帐户要求](node-operators/networks/collators/requirements/#account-requirements){target=\_blank}。
+如前所述，你可以通过将 Ledger 连接到 MetaMask 来使用它。请参阅 [Ledger](/tokens/connect/ledger/){target=\_blank} 指南以将你的 Ledger 导入到 MetaMask。请注意，不建议将 Ledger 用于生产用途。有关更多信息，请参阅[排序人要求中的帐户要求](/node-operators/networks/collators/requirements/#account-requirements){target=\_blank}。
 
 ### 生成会话密钥 {: #generate-session-keys }
 
@@ -137,7 +137,7 @@ Moonbeam 上的作者映射预编译合约允许收集人候选人通过熟悉�
 
 下一步是将您的会话密钥映射到您的 H160 帐户（以太坊风格的地址）。请确保您持有此帐户的私钥，因为这是支付区块奖励的地方。
 
-要将会话密钥映射到您的帐户，您需要位于[候选池](node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}中。一旦您成为候选人，您需要发送一个映射 extrinsic。请注意，这将绑定每个已注册作者 ID 的代币。
+要将会话密钥映射到您的帐户，您需要位于[候选池](/node-operators/networks/collators/activities/#become-a-candidate){target=\_blank}中。一旦您成为候选人，您需要发送一个映射 extrinsic。请注意，这将绑定每个已注册作者 ID 的代币。
 
 在开始之前，请确保您已连接到要将您的会话密钥映射到的帐户。这将是您收到区块奖励的帐户。
 
@@ -149,4 +149,4 @@ Moonbeam 上的作者映射预编译合约允许收集人候选人通过熟悉�
 
 ![映射您的会话密钥](/images/node-operators/networks/collators/author-mapping/author-mapping-4.webp)
 
-要验证您是否已成功映射您的会话密钥，您可以使用 [author mapping pallet](node-operators/networks/collators/account-management/#author-mapping-interface){target=\_blank} 的 `mappingWithDeposit` 方法或 `nimbusLookup` 方法。为此，请参阅 [Collator 帐户管理指南的“检查映射”部分](node-operators/networks/collators/account-management/#check-the-mappings){target=\_blank}。
+要验证您是否已成功映射您的会话密钥，您可以使用 [author mapping pallet](/node-operators/networks/collators/account-management/#author-mapping-interface){target=\_blank} 的 `mappingWithDeposit` 方法或 `nimbusLookup` 方法。为此，请参阅 [Collator 帐户管理指南的“检查映射”部分](/node-operators/networks/collators/account-management/#check-the-mappings){target=\_blank}。

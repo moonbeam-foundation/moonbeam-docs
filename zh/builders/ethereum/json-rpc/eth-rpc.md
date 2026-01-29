@@ -81,6 +81,6 @@ Moonbeam 不支持以下以太坊 API JSON-RPC 方法：
 
 查看一些非标准的以太坊和 Moonbeam 特定的 RPC 方法：
 
-- [调试和追踪](builders/ethereum/json-rpc/debug-trace/)
-- [事件订阅](builders/ethereum/json-rpc/pubsub/)
-- [自定义 Moonbeam](builders/ethereum/json-rpc/moonbeam-custom-api/)
+- [调试和追踪](/builders/ethereum/json-rpc/debug-trace/)
+- [事件订阅](/builders/ethereum/json-rpc/pubsub/)
+- [自定义 Moonbeam](/builders/ethereum/json-rpc/moonbeam-custom-api/)

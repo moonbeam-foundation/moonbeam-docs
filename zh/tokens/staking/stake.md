@@ -16,7 +16,7 @@ categories: Staking
 
 本指南将向您展示如何通过 Polkadot.js Apps 在 Moonbase Alpha 上进行质押，但对于 Moonbeam 和 Moonriver，可以采取类似的步骤。想要轻松质押代币的代币持有者可以使用 [Moonbeam dApp](https://apps.moonbeam.network){target=\_blank} 来进行质押。
 
-有关质押的更多一般信息，请查看 [Moonbeam 上的质押](learn/features/staking/){target=\_blank} 概述。
+有关质押的更多一般信息，请查看 [Moonbeam 上的质押](/learn/features/staking/){target=\_blank} 概述。
 
 ## 外在函数定义 {: #extrinsics-definitions }
 
@@ -34,15 +34,15 @@ categories: Staking
 ### 增加或减少质押  {: #bond-more-or-less }
 
  - **delegatorBondMore**(*address* candidate, *uint256* more) - 用于请求增加已委托的整理人的质押代币数量的外部函数
- - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - 用于请求减少已委托的整理人的质押代币数量的外部函数。该数量不得使您的总质押量低于最低委托质押量。在您可以通过 `executeDelegationRequest` 外部函数执行请求之前，会有一个[减少质押延迟](learn/features/staking/#:~:text=Decrease delegation delay){target=\_blank}
+ - **scheduleDelegatorBondLess**(*address* candidate, *uint256* less) - 用于请求减少已委托的整理人的质押代币数量的外部函数。该数量不得使您的总质押量低于最低委托质押量。在您可以通过 `executeDelegationRequest` 外部函数执行请求之前，会有一个[减少质押延迟](/learn/features/staking/#:~:text=Decrease delegation delay){target=\_blank}
  - **executeDelegationRequest**(*address* delegator, *address* candidate) - 用于执行和挂起的委托请求的外部函数。此外部函数应仅在请求已安排且退出延迟已过后使用
- - **scheduleCandidateBondLess**(*uint256* less) - 允许整理人候选人请求减少其自抵押一定数量的外部函数。在您可以通过 `executeCandidateBondLess` 外部函数执行请求之前，会有一个[减少质押延迟](node-operators/networks/collators/activities/#:~:text=Reduce self-delegation){target=\_blank}
+ - **scheduleCandidateBondLess**(*uint256* less) - 允许整理人候选人请求减少其自抵押一定数量的外部函数。在您可以通过 `executeCandidateBondLess` 外部函数执行请求之前，会有一个[减少质押延迟](/node-operators/networks/collators/activities/#:~:text=Reduce self-delegation){target=\_blank}
  - **executeCandidateBondLess**(*address* candidate) - 用于执行减少候选人的自抵押金额的外部函数。此外部函数应仅在抵押请求已安排且退出延迟已过后使用
  - **cancelCandidateBondLess**() - 用于取消已安排的增加或减少特定候选人的抵押的请求的外部函数
 
 ### 撤销委托 {: #revoke-delegations }
 
- - **scheduleRevokeDelegation**(*address* collator) - 用于安排完全移除现有委托的外部函数。在您通过 [`executeDelegationRequest`](#:~:text=executeDelegationRequest(address delegator, address candidate)) 外部函数执行请求之前，会有一个[撤销委托延迟](learn/features/staking/#:~:text=Revoke delegations delay){target=\_blank}
+ - **scheduleRevokeDelegation**(*address* collator) - 用于安排完全移除现有委托的外部函数。在您通过 [`executeDelegationRequest`](#:~:text=executeDelegationRequest(address delegator, address candidate)) 外部函数执行请求之前，会有一个[撤销委托延迟](/learn/features/staking/#:~:text=Revoke delegations delay){target=\_blank}
  - **cancelDelegationRequest**(*address* candidate) - 外部函数，用于取消计划撤销委托的请求
 
 ### 设置或更改自动复利百分比 {: #set-change-auto-compounding }
@@ -63,7 +63,7 @@ categories: Staking
 
 ![检索 Staking 参数](/images/tokens/staking/stake/stake-1.webp)
 
-然后，您应该会看到每个委托人的最大委托数，这也可以在 [Moonbeam 上的 Staking](learn/features/staking/#quick-reference){target=\_blank} 概述中找到。
+然后，您应该会看到每个委托人的最大委托数，这也可以在 [Moonbeam 上的 Staking](/learn/features/staking/#quick-reference){target=\_blank} 概述中找到。
 
 ## 如何通过 Polkadot.js Apps 质押和自动复利奖励 {: #how-to-delegate-a-candidate }
 
@@ -150,7 +150,7 @@ if (delegatorInfo.toHuman()) {
 
 ### 质押您的代币 {: #staking-your-tokens }
 
-要访问质押功能，您需要使用 Polkadot.js Apps 界面。为此，您需要首先导入/创建一个以太坊风格的帐户（H160 地址），您可以通过遵循 Polkadot.js 指南的[创建或导入 H160 帐户](tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank}部分来完成。
+要访问质押功能，您需要使用 Polkadot.js Apps 界面。为此，您需要首先导入/创建一个以太坊风格的帐户（H160 地址），您可以通过遵循 Polkadot.js 指南的[创建或导入 H160 帐户](/tokens/connect/polkadotjs/#creating-or-importing-an-h160-account){target=\_blank}部分来完成。
 
 在此示例中，导入了一个帐户，并以一个超级原始的名称命名：Alice。Alice 的地址是 `0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac`。
 
@@ -237,7 +237,7 @@ console.log(`${delegation.value}%`);
 
 从 [运行时版本 1001](https://moonbeam.network/news/moonriver-technical-update-staking-changes-as-part-of-runtime-upgrade-1001){target=\_blank} 开始，用户与各种质押功能互动的方式发生了重大变化。包括处理质押退出的方式。
 
-如果您想退出并停止委托，您必须首先安排它，等待退出延迟，然后执行退出请求。如果您已经是委托人，您可以使用 `scheduleRevokeDelegation` extrinsic 请求停止您的委托，以请求从特定的整理人候选人处取消质押您的代币。安排请求不会自动撤销您的委托，您必须等待 [退出延迟](learn/features/staking/#quick-reference){target=\_blank}，然后使用 `executeDelegationRequest` 方法执行请求。
+如果您想退出并停止委托，您必须首先安排它，等待退出延迟，然后执行退出请求。如果您已经是委托人，您可以使用 `scheduleRevokeDelegation` extrinsic 请求停止您的委托，以请求从特定的整理人候选人处取消质押您的代币。安排请求不会自动撤销您的委托，您必须等待 [退出延迟](/learn/features/staking/#quick-reference){target=\_blank}，然后使用 `executeDelegationRequest` 方法执行请求。
 
 ### 安排请求停止委托 {: #schedule-request-to-stop-delegations }
 
@@ -254,7 +254,7 @@ console.log(`${delegation.value}%`);
 !!! note
     每个候选人只能有一个待处理的计划请求。
 
-安排退出后，您必须等待一个 [退出延迟](learn/features/staking/#quick-reference){target=\_blank} 才能执行它。如果您尝试在退出延迟结束前执行它，则 extrinsic 将失败，并且您会从 Polkadot.js Apps 看到 `parachainStaking.PendingDelegationRequest` 的错误。
+安排退出后，您必须等待一个 [退出延迟](/learn/features/staking/#quick-reference){target=\_blank} 才能执行它。如果您尝试在退出延迟结束前执行它，则 extrinsic 将失败，并且您会从 Polkadot.js Apps 看到 `parachainStaking.PendingDelegationRequest` 的错误。
 
 ### 执行停止委托的请求 {: #execute-request-to-stop-delegations }
 
@@ -297,7 +297,7 @@ console.log(`${delegation.value}%`);
 
 ## 质押奖励 {: #staking-rewards }
 
-由于整理人的活跃集合中的候选人会从区块生产中获得奖励，因此委托人也会获得奖励。有关如何计算奖励的简要概述，请参见 Moonbeam 质押概述页面的[奖励分配部分](learn/features/staking/#reward-distribution){target=\_blank}。
+由于整理人的活跃集合中的候选人会从区块生产中获得奖励，因此委托人也会获得奖励。有关如何计算奖励的简要概述，请参见 Moonbeam 质押概述页面的[奖励分配部分](/learn/features/staking/#reward-distribution){target=\_blank}。
 
 总而言之，委托人将根据其在获得奖励的整理人的总委托中所占的股份（包括整理人的股份）来获得奖励。
 

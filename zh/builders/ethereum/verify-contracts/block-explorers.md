@@ -14,9 +14,9 @@ categories: Ethereum Toolkit
 
 ## 部署合约 {: #deploying-the-contract }
 
-为了在区块浏览器上验证智能合约，必须首先将合约部署到目标网络。本教程将介绍如何将智能合约部署到 [Moonbase Alpha](builders/get-started/networks/moonbase/){target=\_blank}，但它也可以适用于 Moonbeam 或 Moonriver。
+为了在区块浏览器上验证智能合约，必须首先将合约部署到目标网络。本教程将介绍如何将智能合约部署到 [Moonbase Alpha](/builders/get-started/networks/moonbase/){target=\_blank}，但它也可以适用于 Moonbeam 或 Moonriver。
 
-您可以查看此页面，获取有关使用 Moonbeam 上的 Ethereum 库[部署智能合约](builders/ethereum/libraries/){target=\_blank}的教程。您也可以使用开发者工具，例如 [Remix](builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}、[Hardhat](builders/ethereum/dev-env/hardhat/){target=\_blank}，或者其他首选工具，将智能合约部署到 Moonbeam。
+您可以查看此页面，获取有关使用 Moonbeam 上的 Ethereum 库[部署智能合约](/builders/ethereum/libraries/){target=\_blank}的教程。您也可以使用开发者工具，例如 [Remix](/builders/ethereum/dev-env/remix/#deploying-a-contract-to-moonbeam-using-remix){target=\_blank}、[Hardhat](/builders/ethereum/dev-env/hardhat/){target=\_blank}，或者其他首选工具，将智能合约部署到 Moonbeam。
 
 本教程将使用与上述部署教程相同的合约，用于合约验证示例。
 
