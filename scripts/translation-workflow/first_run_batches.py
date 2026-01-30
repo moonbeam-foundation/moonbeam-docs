@@ -7,6 +7,12 @@ This script is intended for workflow dispatch "first_run" mode:
 - For each target language, selects directories whose translation counterpart
   directory doesn't exist yet under `<lang>/...`.
 - Emits batches so the caller can run Rose in small, sequential directory groups.
+
+Notes:
+- This script only writes a plan JSON. It does not send anything to n8n.
+- By default, it includes `.snippets/**` directories that contain underscore
+  segments (e.g. `_common`, `_disclaimers`). Use `--exclude-snippet-private-dirs`
+  to skip them.
 """
 
 from __future__ import annotations
@@ -85,6 +91,8 @@ def _chunk(items: list[str], size: int) -> list[list[str]]:
 
 
 def build_plan(repo_root: Path, languages: list[str], batch_size: int) -> Plan:
+    # NOTE: plan generation is intentionally conservative; flags that expand the
+    # search space are wired through `main()` to avoid changing defaults.
     languages_set = set(languages)
     exclude_roots = set(DEFAULT_EXCLUDE_DIRS) | languages_set
 
@@ -108,7 +116,12 @@ def build_plan(repo_root: Path, languages: list[str], batch_size: int) -> Plan:
             eligible_dirs.append(rel.as_posix())
 
     snippets_root = repo_root / ".snippets"
-    if snippets_root.exists() and snippets_root.is_dir():
+    include_snippets = os.environ.get("ROSE_FIRST_RUN_INCLUDE_SNIPPETS", "").strip().lower() in {"1", "true", "yes", "on"}
+    raw_private = os.environ.get("ROSE_FIRST_RUN_INCLUDE_SNIPPET_PRIVATE_DIRS")
+    include_private_snippets = True
+    if raw_private is not None:
+        include_private_snippets = raw_private.strip().lower() in {"1", "true", "yes", "on"}
+    if include_snippets and snippets_root.exists() and snippets_root.is_dir():
         for dir_path in sorted(snippets_root.rglob("*")):
             if not dir_path.is_dir():
                 continue
@@ -118,9 +131,8 @@ def build_plan(repo_root: Path, languages: list[str], batch_size: int) -> Plan:
                 continue
             if not rel_under.parts:
                 continue
-            # Only include snippet directories whose path components don't start with "_"
-            # (e.g., include `text/foo/` but skip `text/_common/` and `text/_disclaimers/`).
-            if any(part.startswith("_") for part in rel_under.parts):
+            # Only include "private" snippet directories (e.g. `_common`, `_disclaimers`) when enabled.
+            if not include_private_snippets and any(part.startswith("_") for part in rel_under.parts):
                 continue
             if _is_eligible_content_dir(dir_path):
                 eligible_dirs.append(Path(".snippets", rel_under).as_posix())
@@ -169,6 +181,26 @@ def main() -> int:
         default="scripts/translations/first_run_plan.json",
         help="Where to write the plan JSON (default: scripts/translations/first_run_plan.json).",
     )
+    parser.add_argument(
+        "--include-snippets",
+        action="store_true",
+        help="Include `.snippets/**` directories in the plan (default: on).",
+    )
+    parser.add_argument(
+        "--no-snippets",
+        action="store_true",
+        help="Do not include `.snippets/**` directories in the plan.",
+    )
+    parser.add_argument(
+        "--include-snippet-private-dirs",
+        action="store_true",
+        help="Include `.snippets/**` directories with underscore segments (e.g. `_common`, `_disclaimers`).",
+    )
+    parser.add_argument(
+        "--exclude-snippet-private-dirs",
+        action="store_true",
+        help="Exclude `.snippets/**` directories with underscore segments (e.g. `_common`, `_disclaimers`).",
+    )
     args = parser.parse_args()
 
     langs = _parse_languages(args.languages)
@@ -178,6 +210,22 @@ def main() -> int:
     repo_root = Path(args.repo_root).resolve()
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Thread flags into plan generation via env vars to keep build_plan's signature stable
+    # (the GitHub Action calls this script and expects the output format only).
+    include_snippets = True
+    if args.include_snippets:
+        include_snippets = True
+    if args.no_snippets:
+        include_snippets = False
+    include_private_snippets = True
+    if args.exclude_snippet_private_dirs:
+        include_private_snippets = False
+    if args.include_snippet_private_dirs:
+        include_private_snippets = True
+
+    os.environ["ROSE_FIRST_RUN_INCLUDE_SNIPPETS"] = "1" if include_snippets else "0"
+    os.environ["ROSE_FIRST_RUN_INCLUDE_SNIPPET_PRIVATE_DIRS"] = "1" if include_private_snippets else "0"
 
     plan = build_plan(repo_root=repo_root, languages=langs, batch_size=args.batch_size)
 

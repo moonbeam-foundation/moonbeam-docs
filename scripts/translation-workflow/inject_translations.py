@@ -513,6 +513,46 @@ def _find_anchor_line(lines: list[str], anchor_id: str) -> int | None:
     return None
 
 
+def _ensure_section_anchor(section: str, anchor_id: str) -> str:
+    """Ensure the first Markdown heading in `section` has {: #anchor_id }.
+
+    Translators should not change anchor ids, but when a section is retranslated
+    we harden against accidental edits so reinsertion remains deterministic.
+    """
+    if not section.strip():
+        return section
+
+    needle = f"#{anchor_id}"
+    attr_re = re.compile(r"\{:\s*[^}]*\}")
+
+    lines = section.splitlines()
+    for i, line in enumerate(lines):
+        stripped = line.lstrip()
+        if not stripped.startswith("#"):
+            continue
+        match = attr_re.search(line)
+        if not match:
+            lines[i] = f"{line.rstrip()} {{: {needle} }}"
+            break
+
+        attr = match.group(0)
+        if needle not in attr:
+            if "#" in attr:
+                attr = re.sub(
+                    r"#([A-Za-z0-9][A-Za-z0-9_-]*)",
+                    needle,
+                    attr,
+                    count=1,
+                )
+            if needle not in attr:
+                inner = attr[:-1].rstrip()
+                attr = f"{inner} {needle} }}"
+        lines[i] = line[: match.start()] + attr + line[match.end() :]
+        break
+
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def _insert_section_by_anchor(
     *,
     dest_text: str,
@@ -607,6 +647,7 @@ def main() -> int:
                 raise ValueError("anchored_section entry missing missing_section_id")
             existing = dest.read_text(encoding="utf-8") if dest.exists() else ""
             injected = _restore_markdown_structure(dest, english_source, translated)
+            injected = _ensure_section_anchor(injected, missing_id)
             updated = _insert_section_by_anchor(
                 dest_text=existing,
                 missing_section_id=missing_id,

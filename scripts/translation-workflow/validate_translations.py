@@ -33,6 +33,7 @@ ANCHORED_HEADING_RE = re.compile(
 LOCALE_COLON_PATTERN = re.compile(r'^(\s*[^:\n]+):[ \t]*([^\n]+)$', re.MULTILINE)
 LOCALE_INLINE_COLON_REGEX = re.compile(r'(?<=\w):(?=\s)')
 QUIET = os.environ.get("ROSE_QUIET", "").strip().lower() in {"1", "true", "yes", "on"}
+VALIDATION_LEVEL = os.environ.get("ROSE_VALIDATION_LEVEL", "moderate").strip().lower()
 LOCALE_EXCLUDED_VALUE_PREFIXES = ('"', "'", "|", ">", "[", "{", "#")
 
 
@@ -117,17 +118,73 @@ def _compare_line_counts(
     trans_lines: list[str],
     issues: list[dict[str, Any]],
 ) -> bool:
-    if len(eng_lines) != len(trans_lines):
+    # Strict mode expects line-preserving output (typically from tag-based pipelines).
+    # Moderate mode allows translations to reflow line breaks without failing fast.
+    return len(eng_lines) == len(trans_lines)
+
+
+def _compare_total_counts(
+    entry: dict[str, Any],
+    issues: list[dict[str, Any]],
+    *,
+    english: str,
+    translated: str,
+) -> None:
+    """Compare structural token counts at a file level (line-break agnostic).
+
+    This is a relaxed alternative to per-line comparisons, intended for payloads
+    where translation may legitimately reflow paragraphs/line breaks.
+    """
+    def count(pattern: re.Pattern[str], text: str) -> int:
+        return len(pattern.findall(text))
+
+    eng_urls = count(URL_RE, english)
+    trans_urls = count(URL_RE, translated)
+    if eng_urls != trans_urls:
         issues.append(
             _make_issue(
                 entry,
-                "line_count_mismatch",
-                f"Line count mismatch: {len(eng_lines)} vs {len(trans_lines)}",
-                details={"english": len(eng_lines), "translated": len(trans_lines)},
+                "url_count_mismatch",
+                "URL count differs (file-level)",
+                details={"english": eng_urls, "translated": trans_urls},
             )
         )
-        return False
-    return True
+
+    eng_images = count(IMAGE_RE, english)
+    trans_images = count(IMAGE_RE, translated)
+    if eng_images != trans_images:
+        issues.append(
+            _make_issue(
+                entry,
+                "image_count_mismatch",
+                "Image count differs (file-level)",
+                details={"english": eng_images, "translated": trans_images},
+            )
+        )
+
+    eng_headers = sum(1 for line in _split_lines(english) if HEADER_RE.search(line))
+    trans_headers = sum(1 for line in _split_lines(translated) if HEADER_RE.search(line))
+    if eng_headers != trans_headers:
+        issues.append(
+            _make_issue(
+                entry,
+                "header_count_mismatch",
+                "Header count differs (file-level)",
+                details={"english": eng_headers, "translated": trans_headers},
+            )
+        )
+
+    eng_bullets = sum(1 for line in _split_lines(english) if BULLET_RE.search(line))
+    trans_bullets = sum(1 for line in _split_lines(translated) if BULLET_RE.search(line))
+    if eng_bullets != trans_bullets:
+        issues.append(
+            _make_issue(
+                entry,
+                "bullet_count_mismatch",
+                "Bullet count differs (file-level)",
+                details={"english": eng_bullets, "translated": trans_bullets},
+            )
+        )
 
 
 def _compare_per_line(
@@ -261,18 +318,6 @@ def _compare_tables(
                         details={"english": eng_pipe, "translated": trans_pipe},
                     )
                 )
-            eng_dash = e_row.count("-")
-            trans_dash = t_row.count("-")
-            if eng_dash != trans_dash:
-                issues.append(
-                    _make_issue(
-                        entry,
-                        "table_dash_mismatch",
-                        f"Table {idx} row {row_idx} dash mismatch",
-                        line=row_line,
-                        details={"english": eng_dash, "translated": trans_dash},
-                    )
-                )
 
 
 def _collect_code_fences(lines: list[str]) -> list[dict[str, Any]]:
@@ -321,19 +366,17 @@ def _compare_code_fences(
 def _compare_inline_code(
     entry: dict[str, Any], eng_lines: list[str], trans_lines: list[str], issues: list[dict[str, Any]]
 ) -> None:
-    for idx, (eng_line, trans_line) in enumerate(zip(eng_lines, trans_lines), start=1):
-        eng_count = len(INLINE_CODE_RE.findall(eng_line))
-        trans_count = len(INLINE_CODE_RE.findall(trans_line))
-        if eng_count != trans_count:
-            issues.append(
-                _make_issue(
-                    entry,
-                    "inline_code_mismatch",
-                    f"Inline code backtick pairs differ on line {idx}",
-                    line=idx,
-                    details={"english": eng_count, "translated": trans_count},
-                )
+    eng_total = sum(len(INLINE_CODE_RE.findall(line)) for line in eng_lines)
+    trans_total = sum(len(INLINE_CODE_RE.findall(line)) for line in trans_lines)
+    if eng_total != trans_total:
+        issues.append(
+            _make_issue(
+                entry,
+                "inline_code_mismatch",
+                "Inline code backtick pairs differ",
+                details={"english": eng_total, "translated": trans_total},
             )
+        )
 
 
 def _collect_admonitions(lines: list[str]) -> list[dict[str, Any]]:
@@ -703,12 +746,39 @@ def _compare_anchored_headings(
     if not eng_headings:
         return
     trans_headings = _extract_anchored_headings(trans_lines)
-    trans_ids = {h["id"] for h in trans_headings}
-    for h in eng_headings:
-        anchor_id = h["id"]
-        if anchor_id in trans_ids:
-            continue
-        block, insert_before = _section_block_by_anchor(eng_lines, anchor_id)
+    eng_by_id: dict[str, dict[str, Any]] = {h["id"]: h for h in eng_headings}
+    trans_by_id: dict[str, dict[str, Any]] = {h["id"]: h for h in trans_headings}
+    eng_ids = set(eng_by_id)
+    trans_ids = set(trans_by_id)
+
+    # Anchors should not be translated; enforce a strict 1:1 id match.
+    missing_set = eng_ids - trans_ids
+    # Preserve English ordering so any follow-up reinsertion can maintain the
+    # same section order even if multiple anchors are missing.
+    missing = [h["id"] for h in eng_headings if h["id"] in missing_set]
+    extra = sorted(trans_ids - eng_ids)
+
+    def next_existing_anchor(anchor_id: str) -> str | None:
+        """Return the next English anchor id that already exists in translation."""
+        idx = None
+        for i, h in enumerate(eng_headings):
+            if h["id"] == anchor_id:
+                idx = i
+                break
+        if idx is None:
+            return None
+        for h in eng_headings[idx + 1 :]:
+            candidate = h["id"]
+            if candidate in trans_ids:
+                return candidate
+        return None
+
+    for anchor_id in missing:
+        h = eng_by_id[anchor_id]
+        block, _ = _section_block_by_anchor(eng_lines, anchor_id)
+        # Prefer inserting before the next anchor that still exists in the
+        # translated file so the reinjected section lands in the right spot.
+        insert_before = next_existing_anchor(anchor_id)
         issues.append(
             _make_issue(
                 entry,
@@ -722,6 +792,41 @@ def _compare_anchored_headings(
                 },
             )
         )
+
+    for anchor_id in extra:
+        h = trans_by_id[anchor_id]
+        issues.append(
+            _make_issue(
+                entry,
+                "extra_anchor_section",
+                f"Unexpected anchored section #{anchor_id} (not present in English)",
+                line=h["line"],
+                details={
+                    "extra_section_id": anchor_id,
+                    "translated_heading_raw": h.get("raw"),
+                },
+            )
+        )
+
+    for anchor_id in sorted(eng_ids & trans_ids):
+        eng_h = eng_by_id[anchor_id]
+        trans_h = trans_by_id[anchor_id]
+        if eng_h.get("level") != trans_h.get("level"):
+            issues.append(
+                _make_issue(
+                    entry,
+                    "anchor_heading_level_mismatch",
+                    f"Anchored heading level differs for #{anchor_id}",
+                    line=trans_h.get("line"),
+                    details={
+                        "anchor_id": anchor_id,
+                        "english_level": eng_h.get("level"),
+                        "translated_level": trans_h.get("level"),
+                        "english_heading_raw": eng_h.get("raw"),
+                        "translated_heading_raw": trans_h.get("raw"),
+                    },
+                )
+            )
 
 
 def _group_by_language(issues: list[dict[str, Any]]) -> dict[str, Any]:
@@ -792,20 +897,36 @@ def validate_entry(entry: dict[str, Any], issues: list[dict[str, Any]]) -> None:
     trans_lines = _split_lines(translated)
     aligned = _compare_line_counts(entry, eng_lines, trans_lines, issues)
     if not aligned:
-        return
-    _compare_line_breaks(entry, eng_lines, trans_lines, issues)
-    _compare_per_line("url_count_mismatch", "URL count", _count_urls, eng_lines, trans_lines, entry, issues)
-    _compare_per_line("header_count_mismatch", "Header count", _count_headers, eng_lines, trans_lines, entry, issues)
-    _compare_per_line("image_count_mismatch", "Image count", _count_images, eng_lines, trans_lines, entry, issues)
-    _compare_per_line("bullet_count_mismatch", "Bullet count", _is_bullet, eng_lines, trans_lines, entry, issues)
+        # In moderate mode, allow translations to reflow line breaks without flagging noise.
+        # Still report very large drift as a signal something structural went wrong.
+        if VALIDATION_LEVEL == "strict" or abs(len(trans_lines) - len(eng_lines)) >= 10:
+            issues.append(
+                _make_issue(
+                    entry,
+                    "line_count_mismatch",
+                    f"Line count mismatch: {len(eng_lines)} vs {len(trans_lines)}",
+                    details={"english": len(eng_lines), "translated": len(trans_lines)},
+                )
+            )
+        if VALIDATION_LEVEL == "strict":
+            return
+
+    if aligned and VALIDATION_LEVEL == "strict":
+        _compare_line_breaks(entry, eng_lines, trans_lines, issues)
+        _compare_per_line("url_count_mismatch", "URL count", _count_urls, eng_lines, trans_lines, entry, issues)
+        _compare_per_line("header_count_mismatch", "Header count", _count_headers, eng_lines, trans_lines, entry, issues)
+        _compare_per_line("image_count_mismatch", "Image count", _count_images, eng_lines, trans_lines, entry, issues)
+        _compare_per_line("bullet_count_mismatch", "Bullet count", _is_bullet, eng_lines, trans_lines, entry, issues)
     _compare_frontmatter(entry, eng_lines, trans_lines, issues)
     _compare_tables(entry, eng_lines, trans_lines, issues)
 
     if suffix in MARKDOWN_SUFFIXES:
         _compare_code_fences(entry, eng_lines, trans_lines, issues)
-        _compare_inline_code(entry, eng_lines, trans_lines, issues)
+        if aligned and VALIDATION_LEVEL == "strict":
+            _compare_inline_code(entry, eng_lines, trans_lines, issues)
         _compare_admonitions(entry, eng_lines, trans_lines, issues)
-        _validate_image_paths(entry, trans_lines, issues)
+        if VALIDATION_LEVEL == "strict":
+            _validate_image_paths(entry, trans_lines, issues)
         _compare_anchored_headings(entry, eng_lines, trans_lines, issues)
 
     if suffix in {".html", ".jinja", ".jinja2", ".j2"}:

@@ -108,14 +108,14 @@ categories: Tutorials
 
 ??? code "发送无 Gas 交易"
     ```javascript
-    --8<-- 'code/tutorials/integrations/0xgasless/dispatch.js'
+    --8<-- '/code/tutorials/integrations/0xgasless/dispatch.js'
     ```
 
 ### 验证完成
 
 运行脚本后，您会看到如下输出：
 
---8<-- 'code/tutorials/integrations/0xgasless/output.md'
+--8<-- '/code/tutorials/integrations/0xgasless/output.md'
 
 由于我们发起的无 Gas 交易与 Moonbeam 上的 [Incrementer](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract){target=\_blank} 智能合约交互，因此很容易检查交易是否成功发起。您可以返回 [Moonscan 上的 Incrementer 合约的读取合约部分](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract) 并检查存储在合约中的数字。或者，您可以前往**内部交易**选项卡，然后将高级模式切换为**开启**，以查看合约调用递增合约。
 

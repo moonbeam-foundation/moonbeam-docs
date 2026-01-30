@@ -26,7 +26,7 @@ sys.path.append(str(CURRENT_DIR))
 DEBUG = os.environ.get("ROSE_DEBUG", "").strip().lower() in {"1", "true", "yes", "on"}
 QUIET = os.environ.get("ROSE_QUIET", "").strip().lower() in {"1", "true", "yes", "on"}
 try:
-    from collect_diff_sets import _run_git_diff, _collect_sets  # type: ignore
+    from collect_diff_sets import _run_git_diff, _collect_sets, _collect_sets_by_headers  # type: ignore
 except Exception as exc:  # pragma: no cover
     raise RuntimeError("Unable to import collect_diff_sets helper") from exc
 
@@ -40,6 +40,8 @@ ALLOWED_EXTENSIONS = {".md", ".markdown", ".mkd", ".html", ".jinja", ".jinja2", 
 MARKDOWN_EXTENSIONS = {".md", ".markdown", ".mkd"}
 TAGGER_PATH = CURRENT_DIR / "tagger.js"
 LOCALE_SYNC = CURRENT_DIR / "locale_sync.py"
+REWRITE_TRANSLATED_PATHS = CURRENT_DIR / "rewrite_translated_paths.py"
+EXTRACT_CODE_SNIPPETS = (REPO_ROOT / "scripts" / "extract-code-blocks-to-snippets.py").resolve()
 LOCALE_REPORT = TRANSLATION_STAGE / "locale_report.json"
 COVERAGE_REPORT = TRANSLATION_STAGE / "summary_report.json"
 VALIDATION_REPORT = TRANSLATION_STAGE / "validation_report.json"
@@ -310,6 +312,103 @@ def _build_retranslate_payload_from_validation(report_path: Path) -> list[dict[s
             }
         )
     return out
+
+
+def _maybe_retranslate_missing_anchors(
+    args: argparse.Namespace,
+    *,
+    commit_sha: str,
+    retranslate_entries: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Optionally request missing anchored sections and inject them back."""
+    enabled = _as_bool(os.environ.get("ROSE_AUTOFIX_MISSING_ANCHORS", "0") or "0")
+    result: dict[str, Any] = {
+        "enabled": enabled,
+        "requested": len(retranslate_entries),
+        "response_entries": 0,
+        "injected": 0,
+        "remaining": 0,
+        "error": None,
+    }
+
+    if not retranslate_entries:
+        return result
+
+    RETRANSLATE_PAYLOAD.write_text(
+        json.dumps(retranslate_entries, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    _info(f"Wrote retranslation payload: {RETRANSLATE_PAYLOAD} ({len(retranslate_entries)} section(s))")
+
+    if not enabled:
+        return result
+
+    try:
+        n8n_payload = {
+            "jobs": retranslate_entries,
+            "head_ref": args.head,
+            "target_languages": list(args.languages),
+            "branch": args.head,
+            "commit": commit_sha,
+            "purpose": "retranslate_missing_anchors",
+        }
+        payload_json = json.dumps(n8n_payload, ensure_ascii=False)
+        response = _post_json(args.n8n_webhook, n8n_payload, payload_json)
+        translated_jobs = _decode_n8n_jobs(response, list(args.languages))
+        result["response_entries"] = len(translated_jobs)
+
+        # Harden job metadata for the injector.
+        for job in translated_jobs:
+            if not isinstance(job, dict):
+                continue
+            if job.get("missing_section_id") and not job.get("kind"):
+                job["kind"] = "anchored_section"
+
+        retranslate_response_path = TRANSLATION_STAGE / "retranslate_response.json"
+        retranslate_response_path.write_text(
+            json.dumps(translated_jobs, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        _run_cmd(
+            [
+                PYTHON_BIN,
+                str(CURRENT_DIR / "inject_translations.py"),
+                "--payload",
+                str(retranslate_response_path),
+                "--languages",
+                *args.languages,
+            ]
+        )
+        result["injected"] = len(translated_jobs)
+
+        # Normalize paths / includes again, since we just injected new content.
+        _maybe_rewrite_translated_paths(args.languages)
+        _maybe_wrap_code_includes_after_inject(args.languages)
+
+        validation_cmd = [
+            PYTHON_BIN,
+            str(CURRENT_DIR / "validate_translations.py"),
+            "--payload",
+            str(PAYLOAD_PATH),
+            "--report",
+            str(VALIDATION_REPORT),
+        ]
+        validation_result = subprocess.run(validation_cmd, check=False)
+        if validation_result.returncode != 0:
+            _info("Validation still reports issues after anchor autofix; continuing.")
+
+        remaining = _build_retranslate_payload_from_validation(VALIDATION_REPORT)
+        result["remaining"] = len(remaining)
+        if remaining:
+            RETRANSLATE_PAYLOAD.write_text(
+                json.dumps(remaining, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+    except Exception as exc:  # pragma: no cover - depends on network/provider
+        result["error"] = str(exc)
+        _info(f"Missing-anchor autofix failed: {exc}")
+
+    return result
 
 
 def _sanitize_payload_entry(entry: dict[str, Any]) -> dict[str, Any]:
@@ -742,6 +841,103 @@ def _post_json(url: str, payload: dict[str, Any], payload_json: str | None = Non
         raise RuntimeError(f"Unable to decode n8n response: {exc}") from exc
 
 
+def _decode_n8n_jobs(response: Any, default_languages: list[str]) -> list[dict[str, Any]]:
+    """Best-effort decode for n8n responses into a list of payload entries."""
+    response_payload: Any = response
+    if isinstance(response, list):
+        response_payload = response[0] if response else {}
+    elif isinstance(response, str):
+        try:
+            response_payload = json.loads(response)
+        except json.JSONDecodeError as exc:  # pragma: no cover
+            raise RuntimeError("Unable to decode n8n response string") from exc
+
+    if isinstance(response_payload, dict) and "object" in response_payload:
+        obj = response_payload["object"]
+        if isinstance(obj, str):
+            try:
+                response_payload = json.loads(obj)
+            except json.JSONDecodeError as exc:  # pragma: no cover
+                raise RuntimeError("Unable to decode n8n object payload") from exc
+        else:
+            response_payload = obj
+
+    translations: Any = (
+        response_payload.get("translations")
+        or response_payload.get("entries")
+        or response_payload.get("payload")
+        or response_payload
+    )
+    if isinstance(translations, str):
+        try:
+            translations = json.loads(translations)
+        except json.JSONDecodeError as exc:
+            raise RuntimeError("n8n payload string could not be decoded as JSON") from exc
+
+    if isinstance(translations, dict) and "payload" in translations:
+        inner_payload = translations.get("payload")
+        if isinstance(inner_payload, str):
+            try:
+                translations = json.loads(inner_payload)
+            except json.JSONDecodeError as exc:  # pragma: no cover
+                raise RuntimeError("n8n payload string could not be decoded as JSON") from exc
+        elif isinstance(inner_payload, (list, dict)):
+            translations = inner_payload
+
+    if isinstance(translations, dict) and "comment" in translations:
+        translations = translations["comment"]
+    if isinstance(translations, dict) and "jobs" in translations:
+        translations = translations["jobs"]
+
+    # Flatten common wrapper formats.
+    if isinstance(translations, list):
+        if (
+            len(translations) == 1
+            and isinstance(translations[0], dict)
+            and "jobs" in translations[0]
+        ):
+            translations = translations[0]["jobs"]
+        elif translations and all(isinstance(item, dict) and "jobs" in item for item in translations):
+            flattened: list[dict[str, Any]] = []
+            for item in translations:
+                jobs = item.get("jobs")
+                if isinstance(jobs, list):
+                    flattened.extend(job for job in jobs if isinstance(job, dict))
+            if flattened:
+                translations = flattened
+        elif translations and all(isinstance(item, dict) and "comment" in item for item in translations):
+            flattened = []
+            for item in translations:
+                comments = item.get("comment")
+                if isinstance(comments, list):
+                    flattened.extend(comment for comment in comments if isinstance(comment, dict))
+            if flattened:
+                translations = flattened
+
+    if isinstance(translations, dict):
+        translations = _payload_entries_list(translations)
+
+    if not isinstance(translations, list):
+        raise RuntimeError("Unexpected n8n response payload shape (expected list of jobs).")
+
+    normalized: list[dict[str, Any]] = []
+    for entry in translations:
+        if not isinstance(entry, dict):
+            continue
+        if entry.get("target_language") and not entry.get("target_languages"):
+            entry["target_languages"] = [entry["target_language"]]
+        if (
+            entry.get("target_languages") in (None, [], "")
+            and entry.get("kind") == "file"
+            and default_languages
+        ):
+            entry["target_languages"] = list(default_languages)
+        _normalize_translated_content(entry)
+        normalized.append(entry)
+
+    return normalized
+
+
 def _as_bool(value: str) -> bool:
     return value.strip().lower() in {"1", "true", "yes", "on"}
 
@@ -779,7 +975,8 @@ def _is_translation_path(rel_path: str, languages: list[str]) -> bool:
 
 def _run_tagger(text: str) -> str:
     if not TAGGER_PATH.exists():
-        raise FileNotFoundError(f"Tagger script missing: {TAGGER_PATH}")
+        # Tagger is optional; n8n may no longer consume these tags.
+        return text
     with tempfile.NamedTemporaryFile("w", delete=False, encoding="utf-8") as src:
         src.write(text)
         src_path = src.name
@@ -842,6 +1039,174 @@ def _read_file_at_ref(ref: str, rel_path: str) -> str | None:
     return result.stdout
 
 
+def _extract_section_by_header_path(
+    lines: list[str],
+    header_path: list[str],
+) -> tuple[dict[str, int] | None, str | None]:
+    """Extract a Markdown section by its header path (titles only).
+
+    Returns (range_dict, section_text) or (None, None) if not found.
+    The range_dict uses 1-based inclusive start/end line numbers.
+    """
+    if not header_path:
+        return None, None
+
+    heading_re = re.compile(r"^(?P<hashes>#{1,6})\s+(?P<title>.+?)\s*$")
+    in_fence = False
+    stack: list[tuple[int, str]] = []  # (level, title)
+    headings: list[dict[str, Any]] = []
+
+    for idx, raw in enumerate(lines, start=1):
+        stripped = raw.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        match = heading_re.match(raw)
+        if not match:
+            continue
+        level = len(match.group("hashes"))
+        title = match.group("title").strip()
+        while stack and stack[-1][0] >= level:
+            stack.pop()
+        stack.append((level, title))
+        headings.append({"line": idx, "level": level, "title": title, "path": [t for _, t in stack]})
+
+    # Find the best match for the requested path (exact match preferred).
+    candidates = [h for h in headings if h["path"] == header_path]
+    if not candidates:
+        # Fallback: match by last title only (least specific).
+        last = header_path[-1]
+        candidates = [h for h in headings if h["title"] == last]
+    if not candidates:
+        return None, None
+
+    # Prefer the deepest match (longest path) if multiple candidates exist.
+    chosen = max(candidates, key=lambda h: (len(h["path"]), h["line"]))
+    start = int(chosen["line"])
+    level = int(chosen["level"])
+
+    end = len(lines)
+    for h in headings:
+        line = int(h["line"])
+        if line <= start:
+            continue
+        if int(h["level"]) <= level:
+            end = line - 1
+            break
+
+    block = "\n".join(lines[start - 1 : end]).rstrip() + "\n"
+    return {"start": start, "end": end}, block
+
+
+def _maybe_extract_code_snippets(paths: list[str]) -> None:
+    """Extract code fences from English Markdown into shared `.snippets/code/...`.
+
+    This mutates the working tree (and creates new snippet files). It is intended
+    to run before the translation payload is sent to n8n so code blocks are not
+    translated.
+    """
+    enabled = os.environ.get("ROSE_EXTRACT_CODE_SNIPPETS", "1").strip().lower() in {"1", "true", "yes", "on"}
+    if not enabled:
+        return
+    if not EXTRACT_CODE_SNIPPETS.exists():
+        _debug(f"Snippet extractor not found: {EXTRACT_CODE_SNIPPETS}")
+        return
+
+    filtered: list[str] = []
+    for rel in paths:
+        norm = repo_relative_str(rel)
+        if Path(norm).suffix.lower() not in MARKDOWN_EXTENSIONS:
+            continue
+        if norm.startswith(".snippets/") or norm.startswith("locale/"):
+            continue
+        parts = Path(norm).parts
+        if parts and LANGUAGE_CODE_PATTERN.match(parts[0]) and parts[0].lower() != "en":
+            continue
+        filtered.append(norm)
+
+    filtered = sorted(set(filtered))
+    if not filtered:
+        return
+
+    cmd = [
+        PYTHON_BIN,
+        str(EXTRACT_CODE_SNIPPETS),
+        "--docs-root",
+        str(REPO_ROOT),
+        "--write",
+        "--paths",
+        *filtered,
+    ]
+    _info(f"Extracting shared code snippets from {len(filtered)} English file(s)...")
+    subprocess.run(cmd, check=True, cwd=str(REPO_ROOT))
+
+
+def _maybe_rewrite_translated_paths(languages: list[str]) -> None:
+    enabled = os.environ.get("ROSE_REWRITE_TRANSLATED_PATHS", "1").strip().lower() in {"1", "true", "yes", "on"}
+    if not enabled:
+        return
+    if not REWRITE_TRANSLATED_PATHS.exists():
+        _debug(f"rewrite_translated_paths not found: {REWRITE_TRANSLATED_PATHS}")
+        return
+    internal_links = os.environ.get("ROSE_INTERNAL_LINKS", "relative").strip().lower()
+    if internal_links not in {"relative", "root"}:
+        internal_links = "relative"
+
+    cmd = [
+        PYTHON_BIN,
+        str(REWRITE_TRANSLATED_PATHS),
+        "--docs-root",
+        str(REPO_ROOT),
+        "--languages",
+        " ".join(languages),
+        "--internal-links",
+        internal_links,
+        "--fix-snippet-markers",
+        "--shared-code-includes",
+        "--write",
+    ]
+    paths: list[str] = []
+    for lang in languages:
+        paths.extend([lang, f".snippets/{lang}/text"])
+    cmd.extend(["--paths", *paths])
+    _info("Rewriting translated includes/links/target attributes...")
+    subprocess.run(cmd, check=True, cwd=str(REPO_ROOT))
+
+
+def _maybe_wrap_code_includes_after_inject(languages: list[str]) -> None:
+    """Fix bare code include lines by wrapping them in fenced blocks (post-inject).
+
+    This does *not* extract any new blocks; it only normalizes include formatting
+    (e.g. ensuring `--8<-- 'code/foo/bar.js'` appears inside ```js fences).
+    """
+    enabled = os.environ.get("ROSE_WRAP_CODE_INCLUDES", "1").strip().lower() in {"1", "true", "yes", "on"}
+    if not enabled:
+        return
+    if not EXTRACT_CODE_SNIPPETS.exists():
+        _debug(f"Snippet extractor not found: {EXTRACT_CODE_SNIPPETS}")
+        return
+
+    paths: list[str] = []
+    for lang in languages:
+        paths.extend([lang, f".snippets/{lang}/text"])
+
+    cmd = [
+        PYTHON_BIN,
+        str(EXTRACT_CODE_SNIPPETS),
+        "--docs-root",
+        str(REPO_ROOT),
+        "--no-extract-blocks",
+        "--wrap-code-includes",
+        "--write",
+        "--paths",
+        *paths,
+    ]
+    _info("Wrapping bare code includes inside fenced blocks (post-inject)...")
+    subprocess.run(cmd, check=True, cwd=str(REPO_ROOT))
+
+
 def _build_payload_entries(
     diff_map: dict[str, list[dict[str, Any]]],
     languages: list[str],
@@ -882,7 +1247,16 @@ def _build_payload_entries(
             range_info = entry.get("added")
             if not range_info:
                 continue
-            block_text = _slice_block(lines, range_info["start"], range_info["end"])
+            block_text = None
+            effective_range = range_info
+            header_path = entry.get("header_path")
+            if isinstance(header_path, list) and all(isinstance(item, str) for item in header_path):
+                inferred_range, inferred_block = _extract_section_by_header_path(lines, header_path)
+                if inferred_range and inferred_block:
+                    effective_range = inferred_range
+                    block_text = inferred_block
+            if block_text is None:
+                block_text = _slice_block(lines, range_info["start"], range_info["end"])
             if _is_code_only(block_text):
                 continue
             block_entry = {
@@ -890,7 +1264,7 @@ def _build_payload_entries(
                 "source_path": normalized_path,
                 "source_language": "EN",
                 "set_id": entry["set_id"],
-                "range": range_info,
+                "range": effective_range,
                 "target_languages": languages,
                 "content": block_text,
                 "content_original": block_text,
@@ -1050,7 +1424,13 @@ def _run_pipeline(args: argparse.Namespace) -> int:
             _info(f"  - {rel_path}")
 
     diff_text = _run_git_diff(args.base, args.head, args.paths)
-    diff_map = _collect_sets(diff_text)
+    # Use header-grouped, full-section ranges by default for block payloads.
+    # This yields more stable translation units than raw diff hunks.
+    diff_group_by = os.environ.get("ROSE_DIFF_GROUP_BY", "headers").strip().lower()
+    if diff_group_by == "hunks":
+        diff_map = _collect_sets(diff_text)
+    else:
+        diff_map = _collect_sets_by_headers(diff_text, args.head)
     diff_file_count = len(diff_map)
     diff_block_count = sum(len(items) for items in diff_map.values())
     _debug(f"Detected {diff_block_count} diff block(s) across {diff_file_count} file(s).")
@@ -1090,6 +1470,13 @@ def _run_pipeline(args: argparse.Namespace) -> int:
 
     CHANGES_PATH.write_text(json.dumps(diff_map, indent=2), encoding="utf-8")
 
+    # Before sending any English content to n8n, extract shared code snippets
+    # so code blocks are replaced by `--8<-- 'code/...'` includes.
+    extract_candidates: list[str] = list(diff_map.keys())
+    if include_files:
+        extract_candidates.extend(sorted(include_files))
+    _maybe_extract_code_snippets(extract_candidates)
+
     entries, english_files = _build_payload_entries(
         diff_map,
         args.languages,
@@ -1125,96 +1512,9 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         return 1
     response = _post_json(args.n8n_webhook, n8n_payload, payload_json)
 
-    response_payload: Any = response
-    if isinstance(response, list):
-        response_payload = response[0] if response else {}
-    elif isinstance(response, str):
-        try:
-            response_payload = json.loads(response)
-        except json.JSONDecodeError as exc:  # pragma: no cover
-            raise RuntimeError("Unable to decode n8n response string") from exc
-
-    if isinstance(response_payload, dict) and "object" in response_payload:
-        obj = response_payload["object"]
-        if isinstance(obj, str):
-            try:
-                response_payload = json.loads(obj)
-            except json.JSONDecodeError as exc:  # pragma: no cover
-                raise RuntimeError("Unable to decode n8n object payload") from exc
-        else:
-            response_payload = obj
-
-    translations = (
-        response_payload.get("translations")
-        or response_payload.get("entries")
-        or response_payload.get("payload")
-        or response_payload
-    )
-    if isinstance(translations, str):
-        try:
-            translations = json.loads(translations)
-        except json.JSONDecodeError as exc:
-            raise RuntimeError("n8n payload string could not be decoded as JSON") from exc
-    if isinstance(translations, dict) and "payload" in translations:
-        inner_payload = translations.get("payload")
-        if isinstance(inner_payload, str):
-            try:
-                translations = json.loads(inner_payload)
-            except json.JSONDecodeError as exc:  # pragma: no cover
-                raise RuntimeError("n8n payload string could not be decoded as JSON") from exc
-        elif isinstance(inner_payload, list):
-            translations = inner_payload
-        elif isinstance(inner_payload, dict):
-            translations = inner_payload
-    if isinstance(translations, dict) and "comment" in translations:
-        translations = translations["comment"]
-    if isinstance(translations, dict) and "jobs" in translations:
-        translations = translations["jobs"]
-    if isinstance(translations, list):
-        if (
-            len(translations) == 1
-            and isinstance(translations[0], dict)
-            and "jobs" in translations[0]
-        ):
-            translations = translations[0]["jobs"]
-        elif translations and all(
-            isinstance(item, dict) and "jobs" in item for item in translations
-        ):
-            flattened: list[dict[str, Any]] = []
-            for item in translations:
-                jobs = item.get("jobs")
-                if isinstance(jobs, list):
-                    flattened.extend(job for job in jobs if isinstance(job, dict))
-            if flattened:
-                translations = flattened
-        elif translations and all(
-            isinstance(item, dict) and "comment" in item for item in translations
-        ):
-            flattened: list[dict[str, Any]] = []
-            for item in translations:
-                comments = item.get("comment")
-                if isinstance(comments, list):
-                    flattened.extend(comment for comment in comments if isinstance(comment, dict))
-            if flattened:
-                translations = flattened
-    if isinstance(translations, list):
-        for entry in translations:
-            if (
-                isinstance(entry, dict)
-                and entry.get("target_language")
-                and not entry.get("target_languages")
-            ):
-                entry["target_languages"] = [entry["target_language"]]
-            if (
-                isinstance(entry, dict)
-                and entry.get("target_languages") in (None, [], "")
-                and entry.get("kind") == "file"
-            ):
-                entry["target_languages"] = list(args.languages)
-            if isinstance(entry, dict):
-                _normalize_translated_content(entry)
+    translations = _decode_n8n_jobs(response, list(args.languages))
     PAYLOAD_PATH.write_text(json.dumps(translations, indent=2, ensure_ascii=False), encoding="utf-8")
-    payload_entries = _payload_entries_list(translations)
+    payload_entries = translations
     target_files = _collect_target_files(translations)
     locale_yaml_targets: list[str] = []
     for path in target_files:
@@ -1267,6 +1567,10 @@ def _run_pipeline(args: argparse.Namespace) -> int:
             ]
         )
 
+    # Normalize translated include paths / internal links / target attrs after injection.
+    _maybe_rewrite_translated_paths(args.languages)
+    _maybe_wrap_code_includes_after_inject(args.languages)
+
     # Skip mdformat formatting on translated files to avoid front matter issues
     mdformat_failures: list[dict[str, str]] = []
 
@@ -1284,6 +1588,18 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     validation_result = subprocess.run(validation_cmd, check=False)
     if validation_result.returncode != 0:
         _info("Structural validation reported issues; continuing so translations stay available.")
+
+    # If the only problem is missing anchored sections, optionally request those
+    # exact English sections to be (re)translated and injected into place.
+    retranslate_entries = _build_retranslate_payload_from_validation(VALIDATION_REPORT)
+    retranslate_result = _maybe_retranslate_missing_anchors(
+        args,
+        commit_sha=commit_sha,
+        retranslate_entries=retranslate_entries,
+    )
+    # Refresh missing-anchor entries after the optional autofix attempt so the
+    # summary reflects what's still missing.
+    retranslate_entries = _build_retranslate_payload_from_validation(VALIDATION_REPORT)
     _maybe_post_validation_comments(commit_sha)
     _run_cmd([PYTHON_BIN, str(CURRENT_DIR / "cleanup_tmp.py")])
 
@@ -1299,15 +1615,9 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         "issues_by_language": validation_summary.get("issues_by_language", {}),
     }
 
-    retranslate_entries = _build_retranslate_payload_from_validation(VALIDATION_REPORT)
-    if retranslate_entries:
-        RETRANSLATE_PAYLOAD.write_text(
-            json.dumps(retranslate_entries, ensure_ascii=False, indent=2),
-            encoding="utf-8",
-        )
-        _info(
-            f"Wrote retranslation payload: {RETRANSLATE_PAYLOAD} ({len(retranslate_entries)} section(s))"
-        )
+    retranslate_payload_path = (
+        str(RETRANSLATE_PAYLOAD) if retranslate_result.get("requested") else None
+    )
     summary_payload = {
         "missing_per_language": missing_report,
         "locale_added_per_locale": locale_summary.get("added_per_locale", {}),
@@ -1321,8 +1631,9 @@ def _run_pipeline(args: argparse.Namespace) -> int:
         "validation_status": validation_block["status"],
         "validation_issue_count": validation_block["issue_count"],
         "validation_issues": validation_summary.get("issues", []),
-        "retranslate_payload": str(RETRANSLATE_PAYLOAD) if retranslate_entries else None,
+        "retranslate_payload": retranslate_payload_path,
         "retranslate_entry_count": len(retranslate_entries),
+        "retranslate_autofix": retranslate_result,
         "payload_entry_count": len(payload_entries),
         "localized_file_changes": len(target_files),
         "diff_file_count": len(english_files),

@@ -455,6 +455,8 @@ jobs:
                           return True
                       if path_lower.startswith(f".snippets/text/{lang}/"):
                           return True
+                      if path_lower.startswith(f".snippets/{lang}/"):
+                          return True
                   return False
 
               include_files = [
