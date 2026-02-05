@@ -646,3 +646,39 @@ Similarly, to only remove the relay chain data, you can run:
     ```
 
 --8<-- 'text/node-operators/networks/run-a-node/post-purge.md'
+
+## Purge Your Frontier Database {: #purge-frontier-database }
+
+If you need to purge only the Frontier database of your Moonbeam node, you can do so by following these steps:
+
+1. Stop the systemd service:
+
+    ```bash
+    sudo systemctl stop moonbeam.service
+    ```
+
+2. Remove the Frontier database folder:
+
+    === "Moonbeam"
+
+        ```bash
+        sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/moonbeam/frontier/*
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        sudo rm -rf {{ networks.moonriver.node_directory }}/chains/moonriver/frontier/*
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        sudo rm -rf {{ networks.moonbase.node_directory }}/chains/alphanet/frontier/*
+        ```
+
+3. Start the systemd service:
+
+    ```bash
+    sudo systemctl start moonbeam.service
+    ```
