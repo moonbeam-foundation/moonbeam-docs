@@ -41014,10 +41014,37 @@ Similarly, to only remove the relay chain data, you can run:
     sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
     ```
 
-Now that your chain data has been purged, you can start a new node with a fresh data directory. You can install the newest version by repeating the instructions in this guide. Make sure you are using the latest tag available, which you can find on the [Moonbeam GitHub Release](https://github.com/moonbeam-foundation/moonbeam/releases) page.
+## Purge Your Frontier Database {: #purge-frontier-database }
 
-!!! note
-    On an as-needed basis, Moonbase Alpha might be purged and reset. In these instances, you will need to purge both the parachain data and the relay chain data. If a purge is required, node operators will be notified in advance (via our [Discord channel](https://discord.com/invite/PfpUATX){target=\_blank}).
+If you need to purge only the Frontier database of your Moonbeam node, you can do so by following these steps:
+
+1. Stop the Docker container:
+
+    ```bash
+    sudo docker stop INSERT_CONTAINER_ID
+    ```
+
+2. Remove the Frontier database folder:
+
+    === "Moonbeam"
+
+        ```bash
+        sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/moonbeam/frontier/*
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        sudo rm -rf {{ networks.moonriver.node_directory }}/chains/moonriver/frontier/*
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        sudo rm -rf {{ networks.moonbase.node_directory }}/chains/alphanet/frontier/*
+        ```
+
+3. Start the Docker container again using the [start-up command](#start-up-commands) for your node type
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/run-a-node/flags/
@@ -42076,6 +42103,42 @@ Now that your chain data has been purged, you can start a new node with a fresh 
 
 !!! note
     On an as-needed basis, Moonbase Alpha might be purged and reset. In these instances, you will need to purge both the parachain data and the relay chain data. If a purge is required, node operators will be notified in advance (via our [Discord channel](https://discord.com/invite/PfpUATX){target=\_blank}).
+
+## Purge Your Frontier Database {: #purge-frontier-database }
+
+If you need to purge only the Frontier database of your Moonbeam node, you can do so by following these steps:
+
+1. Stop the systemd service:
+
+    ```bash
+    sudo systemctl stop moonbeam.service
+    ```
+
+2. Remove the Frontier database folder:
+
+    === "Moonbeam"
+
+        ```bash
+        sudo rm -rf {{ networks.moonbeam.node_directory }}/chains/moonbeam/frontier/*
+        ```
+
+    === "Moonriver"
+
+        ```bash
+        sudo rm -rf {{ networks.moonriver.node_directory }}/chains/moonriver/frontier/*
+        ```
+
+    === "Moonbase Alpha"
+
+        ```bash
+        sudo rm -rf {{ networks.moonbase.node_directory }}/chains/alphanet/frontier/*
+        ```
+
+3. Start the systemd service:
+
+    ```bash
+    sudo systemctl start moonbeam.service
+    ```
 --- END CONTENT ---
 
 Doc-Content: https://docs.moonbeam.network/node-operators/networks/tracing-node/
