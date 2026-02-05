@@ -645,6 +645,8 @@ Similarly, to only remove the relay chain data, you can run:
     sudo rm -rf {{ networks.moonbase.node_directory }}/polkadot/*
     ```
 
+--8<-- 'text/node-operators/networks/run-a-node/post-purge.md'
+
 ## Purge Your Frontier Database {: #purge-frontier-database }
 
 To purge only the Frontier database of your Moonbeam node, follow these steps:
