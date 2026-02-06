@@ -1,46 +1,15 @@
-name: CheckMkDocsBuild
+name: PR Docs Build
+
 on:
-  # Trigger the workflow on a new pull request on master
-  pull_request_target:
-    branches:
-      - master
+  pull_request:
+
+permissions:
+  contents: read
 
 jobs:
-  build-docs-site:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10.12'
-
-      - name: Allow to move dotfiles
-        run: |
-          # move also dotfile with *
-          shopt -s dotglob
-
-      - name: Clone Moonbeam MKDocs
-        run: |
-          # clone mkdocs repo locally
-          git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/papermoonio/moonbeam-mkdocs.git
-
-      - name: Move moonbeam-docs contents to mkdocs repository
-        run: |
-          mkdir moonbeam-mkdocs/moonbeam-docs
-          find . -mindepth 1 -maxdepth 1 ! -name 'moonbeam-mkdocs' -exec mv {} moonbeam-mkdocs/moonbeam-docs/ \;
-
-      - name: Install pip requirements
-        run: |
-          cd moonbeam-mkdocs
-          # upgrade pip
-          pip3 install --upgrade pip setuptools==65.7.0
-          # install dependencies quietly
-          pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
-
-      - name: Build mkdocs
-        run: |
-          cd moonbeam-mkdocs
-          # change destination build folder in mkdocs YAML to local site/
-          sed -i 's/site_dir.*/site_dir: site/' mkdocs.yml
-          # build project
-          python3 -m mkdocs build
+  build-docs:
+    uses: papermoonio/workflows/.github/workflows/core-pr-mkdocs-build.yml@main
+    with:
+      mkdocs_repo: papermoonio/moonbeam-mkdocs
+      docs_repo: moonbeam-foundation/moonbeam-docs
+      docs_checkout: moonbeam-docs

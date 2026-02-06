@@ -14,13 +14,13 @@ Token holders can add to candidates' stake using their tokens, a process called 
 
 Once a candidate joins the active set of collators, they are eligible to produce blocks and receive partial block rewards as part of the token inflationary model. They share these as staking rewards with their delegators, considering their proportional contribution toward their stake in the network. Delegators can choose to auto-compound their rewards so that a set percentage of their rewards are automatically applied to their total delegation amount.
 
-This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network){target=\_blank} to do so.
+This guide will show you how to stake on Moonbase Alpha via Polkadot.js Apps, but similar steps can be taken for any of the Moonbeam and Moonriver. Token holders that want to easily stake their tokens can use the [Moonbeam dApp](https://apps.moonbeam.network/moonbeam){target=\_blank} to do so.
 
 For more general information on staking, please check out the [Staking on Moonbeam](/learn/features/staking/){target=\_blank} overview.
 
 ## Extrinsics Definitions {: #extrinsics-definitions }
 
-There are many extrinsics related to the staking pallet, you can check out a complete list of them on the [Parachain Staking Pallet](/builders/substrate/interfaces/features/staking/){target=\_blank} page.
+There are many extrinsics related to the staking pallet; you can explore the full list directly in Polkadot.js Apps or by reviewing the chain metadata.
 
 The following list covers the extrinsics that you'll use in this guide and are associated with the delegation process.
 

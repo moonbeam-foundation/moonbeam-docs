@@ -72,7 +72,7 @@ Please note that the examples in this section require installing [wscat](https:/
 
 ## Subscribe to Events Using Ethereum Libraries {: #subscribe-to-events }
 
-This section will show you how to use [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, like [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, to programmatically subscribe to events on Moonbeam.
+This section will show you how to use [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, like [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, to programmatically subscribe to events on Moonbeam.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -82,15 +82,15 @@ The examples in this guide are based on an Ubuntu 22.04 environment. You will al
 - An account with funds.
   --8<-- 'text/_common/faucet/faucet-list-item.md'
 - To deploy your own ERC-20 token on Moonbase Alpha. You can do this by following [our Remix tutorial](/builders/ethereum/dev-env/remix/){target=\_blank} while first pointing MetaMask to Moonbase Alpha
-- Web3.js or the Ethereum library of your choice installed. You can install Web3.js via npm:
+- Ethers.js or the Ethereum library of your choice installed. You can install Ethers.js via npm:
 
     ```bash
-    npm install web3
+    npm install ethers
     ```
 
 ### Subscribe to Event Logs {: #subscribing-to-event-logs-in-moonbase-alpha }
 
-Any contract that follows the ERC-20 token standard emits an event related to a token transfer, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. In this section, you'll learn how to subscribe to these events using the Web3.js library.
+Any contract that follows the ERC-20 token standard emits an event related to a token transfer, that is, `event Transfer(address indexed from, address indexed to, uint256 value)`. In this section, you'll learn how to subscribe to these events using the Ethers.js library.
 
 Use the following code snippet to set up a subscription to listen for token transfer events:
 
@@ -103,18 +103,18 @@ Use the following code snippet to set up a subscription to listen for token tran
 
 In the provided code:
 
-- A subscription is set up using the [`web3.subscribe('logs', options)`](https://docs.web3js.org/libdocs/Web3Eth/#subscribelogs-options){target=\_blank} method to receive logs emitted by the contract, which listens for new data and logs it to the console
-- The `topics` array filters logs to include only events with the specified event signature. For this example, logs are filtered using the signature of the `Transfer` event, which can be calculated as follows:
+- A WebSocket provider is used to listen for the `Transfer` event and parse the log with the contract ABI
+- The listener filters for the `Transfer` event by signature, which can be calculated as follows:
 
     ```js
     EventSignature = keccak256(Transfer(address,address,uint256))
     ```
 
-    This translates to `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef`, as seen in the code snippet.
+    This translates to `0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef` and is used as the first topic in the subscription filter.
 
 If you do not provide any topics, you subscribe to all events emitted by the contract. More information about topics can be found in the [Understanding event logs on the Ethereum blockchain](https://medium.com/mycrypto/understanding-event-logs-on-the-ethereum-blockchain-f4ae7ba50378){target=\_blank} Medium post.
 
-By executing this code, you'll establish a subscription to monitor ERC-20 token transfer events on Moonbeam. The terminal will display a subscription ID indicating a successful setup and await any new events emitted by the contract.
+By executing this code, you'll establish a subscription to monitor ERC-20 token transfer events on Moonbeam. New events will be logged to the terminal as they occur.
 
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/contract-events.md'
 
@@ -148,27 +148,23 @@ If the event returns multiple unindexed values, they will be appended one after 
 
 #### Use Wildcards and Conditional Formatting {: #using-wildcards-and-conditional-formatting }
 
-Using the same example as in the previous section, you can subscribe to all of the events of the token contract with the following code:
+Using the same example as in the previous section, you can subscribe to Transfer events while filtering by specific senders with the following code:
 
 ```js
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/use-wildcards.js'
 ```
 
-Here, by using the wildcard `null` in place of the event signature, you'll filter to listen to all events emitted by the contract you subscribe to. However, with this configuration, you can also use a second input field (`topic_1`) to filter by address.
-
-In the case of this subscription, you are notifying that you want to only receive events where `topic_1` is one of the addresses you are providing. Note that addresses need to be in H256 format. For example, the address `0x44236223aB4291b93EEd10E4B511B37a398DEE55` needs to be entered as `0x00000000000000000000000044236223aB4291b93EEd10E4B511B37a398DEE55`.
-
-As before, this subscription's output will display the event signature in `topic_0` to tell you which event the contract emitted.
+Here, the first indexed parameter (`from`) is filtered to the provided address list, while `to` is set to `null` to act as a wildcard. The contract filter handles topic formatting for you, so you don't need to manually pad the addresses.
 
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/conditional-subscription.md'
 
-As shown, after you provided the two addresses with conditional formatting, you should have received two logs with the same subscription ID. Events emitted by transactions from different addresses will not throw any logs to this subscription.
+As shown, after you provided the two addresses with conditional formatting, you should have received two logs with the same subscription. Events emitted by transactions from different addresses will not throw any logs to this subscription.
 
-This example showed how you could subscribe to just the event logs of a specific contract, but the Web3.js library provides other subscription types that will be covered in the following sections.
+This example showed how you could subscribe to just the event logs of a specific contract, but the same approach applies to other subscription types covered in the following sections.
 
 ### Subscribe to Incoming Pending Transactions {: #subscribe-to-incoming-pending-transactions }
 
-To subscribe to pending transactions, you can use the [`web3.eth.subscribe('pendingTransactions')`](https://docs.web3js.org/libdocs/Web3Eth/#subscribependingtransactions){target=\_blank} method, implementing the same callback function to check for the response. The transaction hash of the pending transactions is returned.
+To subscribe to pending transactions with Ethers.js, you can use a WebSocket provider and the `provider.on('pending')` event. The transaction hash of the pending transactions is returned, and you can optionally fetch full transaction details with `provider.getTransaction(hash)`.
 
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/pending-txn.md'
 
@@ -176,7 +172,7 @@ You can try this by sending a transaction and verifying that the transaction has
 
 ### Subscribe to Incoming Block Headers {: #subscribe-to-incoming-block-headers }
 
-You can also subscribe to new block headers using the [`web3.eth.subscribe('newHeads')`](https://docs.web3js.org/libdocs/Web3Eth/#subscribenewheads){target=\_blank} method, implementing the same callback function to check for the response. This subscription provides incoming block headers and can be used to track changes in the blockchain.
+You can also subscribe to new block headers using `provider.on('block')`, then fetch the block with `provider.getBlock(blockNumber)`. This subscription provides incoming block headers and can be used to track changes in the blockchain.
 
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/block-headers.md'
 
@@ -184,7 +180,7 @@ Note that only one block header is shown in the image. These messages are displa
 
 ### Check If a Node Is Synchronized with the Network {: #check-if-a-node-is-synchronized-with-the-network }
 
-With pubsub, checking whether a particular node is currently synchronizing with the network is also possible. You can use the [`web3.eth.subscribe('syncing')`](https://docs.web3js.org/libdocs/Web3Eth/#subscribesyncing){target=\_blank} method, implementing the same callback function to check for the response. This subscription will either return a boolean when `syncing` is false or an object describing the syncing progress when `syncing` is true, as seen below.
+With pubsub, checking whether a particular node is currently synchronizing with the network is also possible. You can call the `eth_subscribe` RPC with `syncing` using your preferred library's low-level WebSocket request helper. This subscription will either return a boolean when `syncing` is false or an object describing the syncing progress when `syncing` is true, as seen below.
 
 --8<-- 'code/builders/ethereum/json-rpc/pubsub/terminal/syncing.md'
 

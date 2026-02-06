@@ -11,7 +11,7 @@ categories: Precompiles, Ethereum Toolkit
 
 The Proxy Precompile on Moonbeam allows accounts to set proxy accounts that can perform specific limited actions on their behalf, such as governance, staking, or balance transfers.
 
-If a user wanted to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam has included the [Substrate Proxy Pallet](/builders/substrate/interfaces/account/proxy/){target=\_blank}, which enables proxy accounts. Proxy accounts ought to be used due to the additional layer of security that they provide, where many accounts can perform actions for a main account. This is best if, for example, a user wants to keep their wallet safe in cold storage but still wants to access parts of the wallet's functionality like governance or staking.  
+If a user wants to provide a second user access to a limited number of actions on their behalf, traditionally the only method to do so would be by providing the first account's private key to the second. However, Moonbeam includes native proxy functionality in the runtime, which enables proxy accounts. Proxy accounts should be used due to the additional layer of security that they provide, where many accounts can perform actions for a main account. This is best if, for example, a user wants to keep their wallet safe in cold storage but still wants to access parts of the wallet's functionality like governance or staking.
 
 **The Proxy Precompile can only be called from an Externally Owned Account (EOA) or by the [Batch Precompile](/builders/ethereum/precompiles/ux/batch/){target=\_blank}.**
 
@@ -65,6 +65,23 @@ The interface includes the following functions:
 
         None.
 
+??? function "**proxy**(*address* real, *address* callTo, *bytes* callData) - dispatches `callData` to `callTo` on behalf of `real` using the caller's registered proxy rights"
+
+    === "Parameters"
+
+        - `real` - address of the account the call will be executed for
+        - `callTo` - address receiving the proxied call (subject to [dispatch limitations](#proxy-dispatch-limitations))
+        - `callData` - call data to forward to the destination
+
+??? function "**proxyForceType**(*address* real, *ProxyType* forceProxyType, *address* callTo, *bytes* callData) - dispatches `callData` on behalf of `real` while enforcing the provided proxy type instead of inferring it"
+
+    === "Parameters"
+
+        - `real` - address of the account the call will be executed for
+        - `forceProxyType` - ProxyType value that must match the caller's registered proxy type
+        - `callTo` - address receiving the proxied call (subject to [dispatch limitations](#proxy-dispatch-limitations))
+        - `callData` - call data to forward to the destination
+
 ??? function "**isProxy**(*address* real, *address* delegate, *ProxyType* proxyType, *uint32* delay) - returns a boolean, `true` if the delegate address is a proxy of type `proxyType`, for address `real`, with the specified `delay`"
 
     === "Parameters"
@@ -91,16 +108,26 @@ enum ProxyType {
 
 ## Proxy Types {: #proxy-types }
 
-There are multiple types of proxy roles that can be delegated to accounts, where are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the primary account:
+There are multiple types of proxy roles that can be delegated to accounts, which are represented in `Proxy.sol` through the `ProxyType` enum. The following list includes all of the possible proxies and the type of transactions they can make on behalf of the primary account:
 
- - **Any** — the any proxy will allow the proxy account to make any type of transaction that the `Governance`, `Staking`, `Balances`, and `AuthorMapping` proxy types can perform. Note that balance transfers are only allowed to EOAs, not contracts or Precompiles
- - **NonTransfer** — the non-transfer proxy will allow the proxy account to make any type of transaction through the `Governance`, `Staking` and `AuthorMapping` Precompiles, where the `msg.value` is checked to be zero
+ - **Any** — allows the proxy account to dispatch the `Governance`, `Staking`, `Balances`, and `AuthorMapping` actions permitted by the runtime filter; arbitrary smart contract targets are not allowed, and balance transfers are limited to EOAs without contract code
+ - **NonTransfer** — allows transactions through the `Governance`, `Staking` and `AuthorMapping` precompiles, where the `msg.value` is checked to be zero; no contract calls outside those precompiles are permitted
  - **Governance** - the governance proxy will allow the proxy account to make any type of governance related transaction (includes both democracy or council pallets)
  - **Staking** - the staking proxy will allow the proxy account to make staking related transactions through the `Staking` Precompile, including calls to the `AuthorMapping` Precompile
  - **CancelProxy** - the cancel proxy will allow the proxy account to reject and remove delayed proxy announcements (of the primary account). Currently, this is not an action supported by the Proxy Precompile
- - **Balances** - the balances proxy will allow the proxy account to only make balance transfers to EOAs
+ - **Balances** - allows only plain balance transfers to EOAs with no contract code and does not support calling contracts or precompiles
  - **AuthorMapping** - this type of proxy account is used by collators to migrate services from one server to another
  - **IdentityJudgement** - the identity judgement proxy will allow the proxy account to judge and certify the personal information associated with accounts on Polkadot. Currently, this is not an action supported by the Proxy Precompile
+
+## Proxy Dispatch Limitations {: #proxy-dispatch-limitations }
+
+Moonbeam applies an EVM call filter to proxy dispatches. The key rules are as follows:
+
+- Only EOAs (or the [Batch Precompile](/builders/ethereum/precompiles/ux/batch/){target=_blank}) can call the Proxy Precompile; contracts cannot
+- Not a general “call any contract as the real account” path—non-precompile contract calls are rejected
+- Governance, Staking, and AuthorMapping calls must target their respective precompiles with `msg.value = 0`
+- Balances proxy calls only allow plain value transfers to EOAs with no contract code (not to contracts or precompiles)
+- `CancelProxy` is not dispatched through the Proxy Precompile
 
 ## Interact with the Solidity Interface {: #interact-with-the-solidity-interface }
 
@@ -167,6 +194,20 @@ If everything went correctly, the output should be `true`.
 
 ![Call the isProxy function](/images/builders/ethereum/precompiles/account/proxy/proxy-5.webp)
 
+### Dispatch a Proxy Call {: #dispatch-proxy-call }
+
+Once you've registered a proxy, you can forward a call on behalf of the real account. In Remix, expand the Proxy Precompile contract and open **proxy** (or **proxyForceType** if you want to force the proxy type). The following example will use a Balances proxy (or `Any` with Balances allowed) to send value to an EOA with no contract code, keeping `callData` as `0x` for a plain transfer. Remember that the runtime limits described in [Proxy Dispatch Limitations](#proxy-dispatch-limitations) apply.
+
+Ensure MetaMask is connected to the delegate/proxy account (the one authorized via `addProxy`), not the primary account, before dispatching. Then, take the following steps:
+
+1. In Remix, set the amount to send in the **VALUE** field. Double-check the VALUE units (wei vs ether) before sending. 
+2. Enter the address of the account being proxied.
+3. Enter the callTo address (this is the receiving account).
+4. Enter `0x` for call data.
+5. Press **Transact** to dispatch the call.
+
+![Dispatching a proxied call](/images/builders/ethereum/precompiles/account/proxy/proxy-6.webp)
+
 ### Remove a Proxy {: #remove-proxy }
 
 You can remove a proxy from your account via the Proxy Precompile. In this example, you will remove the balances proxy [previously added](#add-proxy) to your delegate account by taking the following steps:
@@ -178,6 +219,6 @@ You can remove a proxy from your account via the Proxy Precompile. In this examp
 
 After the transaction is confirmed, if you repeat the steps to [check for a proxy's existence](#check-proxy), the result should be `false`.
 
-![Call the removeProxy function](/images/builders/ethereum/precompiles/account/proxy/proxy-6.webp)
+![Call the removeProxy function](/images/builders/ethereum/precompiles/account/proxy/proxy-7.webp)
 
 And that's it! You've completed your introduction to the Proxy Precompile. Additional information on setting up proxies is available on the [Setting up a Proxy Account](/tokens/manage/proxy-accounts/){target=\_blank} page and the [Proxy Accounts](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank} page on Polkadot's documentation. Feel free to reach out on [Discord](https://discord.com/invite/PfpUATX){target=\_blank} if you have any questions about any aspect of the Proxy Precompile.

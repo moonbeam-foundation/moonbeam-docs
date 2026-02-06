@@ -118,7 +118,7 @@ A typical workflow to verify relay chain data involves the following steps:
 3. **Relay RPC call** - call the `state_getReadProof(keys, at)` RPC method to retrieve the storage proof, where `at` is the relay block hash obtained in step two, and `keys` is an array of strings which contains the keys for target storage items. For `@polkadot/api`, it can be obtained via `api.query.module.key()` function
 4. **Moonbeam RPC call** - submit an Ethereum transaction to call the `verifyEntry` or `verifyEntries` function to verify the data against the relay block number. The call data should contain the relay block number obtained in step one, the read proof generated in step three, and the key(s) to verify
 
-The following sections will cover how to interact with the Relay Data Verifier Precompile using Ethereum libraries, such as Ethers.js, Web3.js, and Web3.py. The examples in this guide will be on Moonbase Alpha.
+The following sections will cover how to interact with the Relay Data Verifier Precompile using Ethereum libraries, such as Ethers.js and Web3.py. The examples in this guide will be on Moonbase Alpha.
 
 ### Checking Prerequisites {: #checking-prerequisites }
 
@@ -138,7 +138,7 @@ To interact with the Solidity interface using an Ethereum library, you'll need t
     --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/abi.js'
     ```
 
-Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, or [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}. The general steps are as follows:
+Once you have the ABI, you can interact with the precompile using the Ethereum library of your choice, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} or [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}. The general steps are as follows:
 
 1. Create a provider
 2. Create a contract instance of the precompile
@@ -153,12 +153,6 @@ The provided code example demonstrates how to use the Ethers.js library to inter
 
      ```js
      --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/ethers-relay-data-verifier.js'
-     ```
-
-=== "Web3.js"
-
-     ```js
-     --8<-- 'code/builders/ethereum/precompiles/utility/relay-data-verifier/web3js-relay-data-verifier.js'
      ```
 
 === "Web3.py"

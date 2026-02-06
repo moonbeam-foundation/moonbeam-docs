@@ -95,7 +95,7 @@ As mentioned before, only the top candidates by delegated stake will be in the a
 
 To stop collating and leave the candidate pool, you must first schedule a request to leave the pool. Scheduling a request automatically removes you from the active set, so you will no longer be eligible to produce blocks or earn rewards. You must wait for the duration of the [exit delay](#collator-timings) before you can execute the request to leave. After the request has been executed, you will be removed from the candidate pool.
 
-Similar to [Polkadot's `chill()`](https://docs.polkadot.com/infrastructure/running-a-validator/operational-tasks/pause-validating/){target=\_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
+Similar to [Polkadot's `chill()`](https://docs.polkadot.com/node-infrastructure/run-a-validator/operational-tasks/pause-validating/){target=\_blank} functionality, you can [temporarily leave the candidate pool](#temporarily-leave-the-candidate-pool) without unbonding your tokens.
 
 ### Schedule Request to Leave Candidates {: #schedule-request-to-leave-candidates }
 

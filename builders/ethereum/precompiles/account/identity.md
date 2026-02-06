@@ -10,7 +10,7 @@ categories: Precompiles, Ethereum Toolkit
 
 The Identity Precompile is a Solidity interface that allows you to create, manage, and retrieve information on on-chain identities. Identities are attached to accounts and include personal information, such as your legal name, display name, website, Twitter handle, Riot (now known as Element) name, and more. You can also take advantage of custom fields to include any other relevant information.
 
-The Identity Precompile interacts directly with Substrate's [Identity Pallet](/builders/substrate/interfaces/account/identity/){target=\_blank} to provide the functionality needed to create and manage identities. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Identity Precompile allows you to access this functionality directly from the Solidity interface.
+The Identity Precompile interacts directly with Moonbeam's underlying Substrate Identity runtime logic to provide the functionality needed to create and manage identities. This pallet is coded in Rust and is normally not accessible from the Ethereum side of Moonbeam. However, the Identity Precompile allows you to access this functionality directly from the Solidity interface.
 
 The Identity Precompile is located at the following address:
 
@@ -164,7 +164,7 @@ The judgment-related functions that must be called by a registrar and the caller
 
 ## Interact with the Solidity Interface {: #interact-with-interface }
 
-The following sections will cover how to interact with the Identity Precompile using [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank}, [Web3.js](/builders/ethereum/libraries/web3js/){target=\_blank}, and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
+The following sections will cover how to interact with the Identity Precompile using [Ethereum libraries](/builders/ethereum/libraries/){target=\_blank}, such as [Ethers.js](/builders/ethereum/libraries/ethersjs/){target=\_blank} and [Web3.py](/builders/ethereum/libraries/web3py/){target=\_blank}.
 
 The examples in this guide will be on Moonbase Alpha.
 --8<-- 'text/_common/endpoint-examples.md'
@@ -194,12 +194,6 @@ In the examples below, you'll learn how to assemble the data required to set an 
 
     ```js
     --8<-- 'code/builders/ethereum/precompiles/account/identity/ethers.js'
-    ```
-
-=== "Web3.js"
-
-    ```js
-    --8<-- 'code/builders/ethereum/precompiles/account/identity/web3.js'
     ```
 
 === "Web3.py"

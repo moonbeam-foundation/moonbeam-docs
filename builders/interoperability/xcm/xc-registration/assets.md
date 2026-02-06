@@ -158,7 +158,7 @@ After your asset is registered, the team will provide the asset ID and the [XC-2
 !!! note
     Remember that Moonbeam-based networks use AccountKey20 (Ethereum-style addresses).
 
-For testing, please also provide your parachain WSS endpoint so that the [Moonbeam dApp](https://apps.moonbeam.network){target=\_blank} can connect to it. Lastly, please fund the corresponding account:
+For testing, please also provide your parachain WSS endpoint so that the [Moonbeam dApp](https://apps.moonbeam.network/moonbeam){target=\_blank} can connect to it. Lastly, please fund the corresponding account:
 
 === "Moonbeam"
 
