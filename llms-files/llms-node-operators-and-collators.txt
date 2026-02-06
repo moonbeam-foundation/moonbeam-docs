@@ -1099,7 +1099,7 @@ Metrics will be assessed over seven day periods. The performance metrics are as 
 
 An orbiter may leave the program and receive their bond back without any delay. The only limitation is that if the orbiter is currently active, they cannot leave. Once they are no longer active (i.e. once their assigned active round ends and block production authority rotates to another orbiter), they can leave at any time by following these steps: 
 
-1. Execute the chain state call `moonbeamOrbiters.collatorsPool()` with no arguments, making sure to disable "include option" in [Polkadot.js](https://polkadot.js.org/apps/#/explorer){target=\_blank}. Make a note of your collator pool address and the number of pools as you will need them in the following steps. 
+1. Execute the chain state call `moonbeamOrbiters.collatorsPool()` with no arguments, making sure to disable "include option" in [Polkadot.js](https://polkadot.js.org/apps/#/explorer){target=\_blank}. Make note of your collator pool address and the number of pools as you will need them in the following steps. 
     ![`moonbeamOrbiters.collatorsPool()` Chain State Call in Polkadot.js](/images/node-operators/networks/collators/orbiter/orbiter-1.webp)
 
 2. Execute `moonbeamOrbiters.orbiterLeaveCollatorPool(collator)` extrinsic where the `collator` param is the address of the collator pool you are in.
