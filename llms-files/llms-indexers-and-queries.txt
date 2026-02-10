@@ -23,7 +23,7 @@ Doc-Content: https://docs.moonbeam.network/builders/integrations/indexers/covale
 --- BEGIN CONTENT ---
 ---
 title: GoldRush API
-description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related onchain data.
+description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related on-chain data.
 categories: Indexers and Queries
 ---
 
@@ -33,7 +33,7 @@ categories: Indexers and Queries
 
 [GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, provides structured blockchain data APIs for developers building wallets, dashboards, analytics, and automation tooling. Instead of stitching data from many RPC calls, you can query balances, transactions, token transfers, logs, and chain metadata through REST endpoints.
 
-On Moonbeam networks, GoldRush can be used to read both historical and current onchain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
+On Moonbeam networks, GoldRush can be used to read both historical and current on-chain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
 
 <div class="intro-disclaimer">
   The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
