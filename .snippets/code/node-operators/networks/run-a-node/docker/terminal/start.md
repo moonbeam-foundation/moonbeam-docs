@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-     <span data-ty="input"><span class="file-path"></span>docker run --network="host" -v "/var/lib/alphanet-data:/data" -u $(id -u ${USER}):$(id -g ${USER}) moonbeam-foundation/moonbeam:v0.50.0 --base-path=/data --chain alphanet --name="TestNode" --state-pruning archive --trie-cache-size 1073741824 --db-cache 8000 --name="TestNode (Embedded Relay)"</span>
+     <span data-ty="input"><span class="file-path"></span>docker run --network="host" -v "/var/lib/alphanet-data:/data" -u $(id -u ${USER}):$(id -g ${USER}) moonbeamfoundation/moonbeam:v0.50.0 --base-path=/data --chain alphanet --name="TestNode" --state-pruning archive --trie-cache-size 1073741824 --db-cache 8000 --name="TestNode (Embedded Relay)"</span>
     <span data-ty>2025-07-10 09:04:26 Moonbeam Parachain Collator </span>
     <span data-ty>2025-07-10 09:04:26 ✌️  version 0.50.0 </span>
     <span data-ty>2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025 </span>
