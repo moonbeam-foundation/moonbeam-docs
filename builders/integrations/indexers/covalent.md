@@ -77,11 +77,16 @@ If you're building a service or frontend, the GoldRush SDK can simplify request 
     ```typescript
     import { GoldRushClient } from "@covalenthq/client-sdk";
 
-    const client = new GoldRushClient("API_KEY");
-    const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
-      chainName: "moonbeam-mainnet",
-      walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-    });
+    async function main() {
+      const client = new GoldRushClient("API_KEY");
+      const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
+        chainName: "moonbeam-mainnet",
+        walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      });
+      console.log(resp);
+    }
+
+    main().catch(console.error);
     ```
 
 === "Moonriver TypeScript SDK"
@@ -89,11 +94,16 @@ If you're building a service or frontend, the GoldRush SDK can simplify request 
     ```typescript
     import { GoldRushClient } from "@covalenthq/client-sdk";
 
-    const client = new GoldRushClient("API_KEY");
-    const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
-      chainName: "moonbeam-moonriver",
-      walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-    });
+    async function main() {
+      const client = new GoldRushClient("API_KEY");
+      const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
+        chainName: "moonbeam-moonriver",
+        walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      });
+      console.log(resp);
+    }
+
+    main().catch(console.error);
     ```
 
 ## Supported Foundational API Categories {: #supported-foundational-api-categories }
