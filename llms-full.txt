@@ -65,7 +65,7 @@ Documentation: https://docs.moonbeam.network/
 [Add Token Information on Moonscan](Tokens and Accounts, Ethereum Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/get-started/token-profile.md) (Add token information and create a token profile on Moonscan for ERC-20, ERC-721, and ERC-1155 tokens deployed to Moonbeam-based networks.)
 [A Hub for Developers Building on Moonbeam](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/index.md) (Guides for getting started and developing on Moonbeam. Learn how to use the Ethereum & Substrate APIs, XCM interoperability, and available integrations.)
 [Integrations on Moonbeam](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/index.md) (Learn about the available integrations on Moonbeam to ease your DApp development, including bridges, indexers, oracles, and wallets.)
-[GoldRush API](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/covalent.md) (Querying blockchain data such as balances, transactions, transfers, token holders, and event logs on Moonbeam with the GoldRush (formerly Covalent) API.)
+[GoldRush API](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/covalent.md) (Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related onchain data.)
 [Indexers and APIs](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/index.md) (Learn how to build your own API or consume API endpoints from any of the supported REST or GraphQL-based indexers on Moonbeam.)
 [Index Data with SubQuery & GraphQL](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/subquery.md) (Learn how to use SubQuery to index Substrate and EVM chain data for Moonbeam and Moonriver, and query the data using GraphQL.)
 [Index Data with SQD (formerly Subsquid)](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/subsquid.md) (Learn how to use SQD (Subsquid), a query node framework for Substrate-based chains, to index and process Substrate and EVM data for Moonbeam and Moonriver.)
@@ -16927,7 +16927,7 @@ Doc-Content: https://docs.moonbeam.network/builders/integrations/indexers/covale
 --- BEGIN CONTENT ---
 ---
 title: GoldRush API
-description: Querying blockchain data such as balances, transactions, transfers, token holders, and event logs on Moonbeam with the GoldRush (formerly Covalent) API.
+description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related onchain data.
 categories: Indexers and Queries
 ---
 
@@ -16935,1275 +16935,133 @@ categories: Indexers and Queries
 
 ## Introduction {: #introduction }
 
-[GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://goldrush.dev/docs/chains/overview#supported-chains){target=\_blank}, including [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. GoldRush maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
+[GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, provides structured blockchain data APIs for developers building wallets, dashboards, analytics, and automation tooling. Instead of stitching data from many RPC calls, you can query balances, transactions, token transfers, logs, and chain metadata through REST endpoints.
 
-- [Unified API](#unified-api-overview) - incorporate blockchain data into your app with a familiar REST API
-
-This guide will cover all of the details needed to get started with the [Foundational API](https://goldrush.dev/docs/goldrush-foundational-api/quickstart){target=\_blank} and how to access the API endpoints for Moonbeam using curl commands and JavaScript and Python snippets.
+On Moonbeam networks, GoldRush can be used to read both historical and current onchain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
 
 <div class="intro-disclaimer">
   The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
 </div>
 
-## Unified API Overview {: #unified-api-overview }
+## Quick Start {: #quick-start }
 
-GoldRush's Unified API is a powerful but easy-to-use REST API that offers visibility to assets across all blockchain networks. It features a consistent request and response object format across networks. For example, a user can fetch all the token balances for a wallet address across any supported blockchain by changing the unique blockchain name or ID path parameter in the request URL. GoldRush's Unified API can offer more data flexibility than JSON-RPC interfaces, which are typically limited to queries on a specific block. It also allows queries on multiple objects and batch exports of data.
+To begin using GoldRush, create an API key from the [GoldRush dashboard](https://goldrush.dev/platform/auth/register/){target=\_blank}. Requests use the base URL:
 
-### Querying the Unified API {: #querying-the-unified-api }
-
-It's easy to get started querying the Unified API after you've secured a GoldRush API Key. Make sure you have [your API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} which begins with `cqt_` or `ckey_`. 
-
-You can interact with any of the API methods in the web interface of the GoldRush docs. To try out the token balances API, head to the [token balances docs](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} and take the following steps:
-
-1. Paste in your API key
-2. Enter the desired `chainName`, such as `moonbeam-moonbase-alpha` for Moonbase Alpha. Reference the [Quick Start section](#quick-start) if you're unsure what the chainName should be for your desired network
-3. Enter the address you wish to check the token balances of
-4. Press **Send**
-
-[![Example API response in JSON](/images/builders/integrations/indexers/covalent/covalent-1.webp)](https://goldrush.mintlify.app/docs/api/balances/get-token-balances-for-address){target=\_blank}
-
-### Quick Start {: #quick-start }
-
-If you're familiar with GoldRush and ready to dive in, you need the chainID and network name to get started.
-
-=== "Moonbeam"
-    |  Parameter  |               Value                |
-    |:-----------:|:----------------------------------:|
-    | `chainName` |         `moonbeam-mainnet`         |
-    |  `chainID`  | `{{ networks.moonbeam.chain_id }}` |
-
-=== "Moonriver"
-    |  Parameter  |                Value                |
-    |:-----------:|:-----------------------------------:|
-    | `chainName` |        `moonbeam-moonriver`         |
-    |  `chainID`  | `{{ networks.moonriver.chain_id }}` |
-
-=== "Moonbase Alpha"
-    |  Parameter  |               Value                |
-    |:-----------:|:----------------------------------:|
-    | `chainName` |     `moonbeam-moonbase-alpha`      |
-    |  `chainID`  | `{{ networks.moonbase.chain_id }}` |
-
-### Fundamentals of the Unified API {: #fundamentals-of-the-unified-api }
-
- - The GoldRush API is RESTful and it is designed around the main resources that are available through the web interface
- - The current version of the API is version 1
- - The default return format for all endpoints is JSON
- - All requests require authentication; you will need [an API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} to use the GoldRush API
- - The cost of an API call is denominated in credits and varies depending on the particular call. Upon creating an API key, you're given a substantial amount of free credits to get started (25,000 at the time of writing). You can track your usage of these free credits on the [GoldRush Dashboard](https://goldrush.dev/platform/){target=\_blank}
- - Note that free development API keys are rate limited to `4` requests per second. Subscribers to a professional plan can make up to `50` requests per second.
- - The root URL of the API is: `https://api.covalenthq.com/v1/`
- - All requests are done over HTTPS (calls over plain HTTP will fail)
- - The refresh rate of the APIs is real-time: 30s or two blocks, and batch 30m or 40 blocks
-
-### Types of Endpoints {: #types-of-endpoints }
-
-The GoldRush API has three classes of endpoints:
-
- - **Class A** — endpoints that return enriched blockchain data applicable to all blockchain networks, eg: balances, transactions, log events, etc
- - **Class B** — endpoints that are for a specific protocol on a blockchain, e.g. Uniswap is Ethereum-only and is not applicable to other blockchain networks
- - **Class C** — endpoints that are community-built and maintained but powered by GoldRush infrastructure
-
-### Sample Supported Endpoints {: #sample-supported-endpoints }
-
-For a full list of supported endpoints, refer to the [GoldRush API reference](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank}. A subset of the supported endpoints include:
-
-- **Token balances**- get all token balances (native, ERC-20, ERC-721, ERC-1155) with current market prices for an address
-- **Native token balances**- retrieve native token balance for an address
-- **Get a transaction**- fetch and render a single transaction with decoded log events
-- **Transaction summary**- retrieve key wallet activity data for an address
-- **Earliest transactions**- get the earliest transactions for an address
-- **Recent transactions**- fetch the most recent transactions for an address
-- **Paginated transactions**- get paginated transactions for an address
-- **Bulk time bucket transactions**- fetch all transactions in 15-minute time buckets
-- **Block transactions**- get all transactions in a specific block
-- **ERC-20 token transfers**- fetch transfer history of a specific ERC-20 token for an address
-- **Cross-chain activity**- locate chains on which an address is active
-- **Token approvals**- get a list of token approvals for an address
-- **NFT approvals**- retrieve NFT approvals for an address
-
-## Unified API Methods {: #unified-api-methods }
-
-For more information on each of the methods of the Unified API and for an interactive interface to try out each of the methods, be sure to check out the [GoldRush docs](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=\_blank}.  
-
-### Balances {: #balances }
-
-???+ function "Token Balances"
-
-    The [token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank} retrieves native tokens, fungible (ERC-20) tokens, and non-fungible (ERC-721 & ERC-1155) tokens associated with a given address. The returned data includes current market prices and additional token metadata.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to check the token balances of
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/address/0x569BE8d8b04538318e1722f6e375FD381D2da865/balances_v2/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x569be8d8b04538318e1722f6e375fd381d2da865",
-    "updated_at": "2024-10-08T23:34:58.401269473Z",
-    "next_update_at": "2024-10-08T23:39:58.401269913Z",
-    "quote_currency": "USD",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "contract_decimals": 18,
-        "contract_name": "Mainnet2021",
-        "contract_ticker_symbol": "MN21",
-        "contract_address": "0xb59c01231fd65fb2da1e23a52abb946e2e13b333",
-        "supports_erc": [
-          "erc20"
-        ],
-        "logo_url": "https://logos.covalenthq.com/tokens/1287/0xb59c01231fd65fb2da1e23a52abb946e2e13b333.png",
-        "balance": "999999",
-        "quote_rate": null,
-        "quote": 0,
-        "pretty_quote": "$0.00"
-      },
-      {
-        "contract_decimals": 18,
-        "contract_name": "Dev",
-        "contract_ticker_symbol": "DEV",
-        "contract_address": "0x0000000000006d6f6f6e626173652d616c706861",
-        "supports_erc": [
-          "erc20"
-        ],
-        "logo_url": "https://www.datocms-assets.com/86369/1669924256-moonbeam-1.png",
-        "balance": "88335963638628211482",
-        "quote_rate": 0,
-        "quote": 0,
-        "pretty_quote": "$0.00"
-      }
-    ],
-    "pagination": null
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Native Token Balances"
-
-    The [native token balances endpoint](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-native-token-balance){target=\_blank} retrieves the native token balance for a given address in a streamlined manner. 
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to check the token balances of
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/address/0x569BE8d8b04538318e1722f6e375FD381D2da865/balances_native/ \
-  --header 'Authorization: Bearer INSERT-API-KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x569be8d8b04538318e1722f6e375fd381d2da865",
-    "updated_at": "2024-10-09T00:15:57.758041451Z",
-    "quote_currency": "USD",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "contract_decimals": 18,
-        "contract_name": "Dev",
-        "contract_ticker_symbol": "DEV",
-        "contract_address": "0x0000000000006d6f6f6e626173652d616c706861",
-        "supports_erc": [
-          "erc20"
-        ],
-        "logo_url": "https://www.datocms-assets.com/86369/1669924204-moonbeam.svg",
-        "block_height": 8959160,
-        "balance": "88335963638628211482",
-        "quote_rate": null,
-        "quote": null,
-        "pretty_quote": null
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get ERC-20 Token Transfers for Address"
-
-    [Get ERC-20 Token Transfers for Address](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-erc20-token-transfers-for-address){target=\_blank} is used to fetch the transfer-in and transfer-out of a token along with historical prices from an address, when provided both a wallet address and an ERC-20 token contract address
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-        - `contractAddress` *string* - the ERC-20 token contract to query
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url 'https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/address/0x3B939FeaD1557C741Ff06492FD0127bd287A421e/transfers_v2/?contract-address=0x37822de108AFFdd5cDCFDaAa2E32756Da284DB85' \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "updated_at": "2024-10-09T02:02:58.842706507Z",
-    "next_update_at": "2024-10-09T02:07:58.842707047Z",
-    "quote_currency": "USD",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "block_signed_at": "2022-04-29T17:41:36Z",
-        "block_height": 2075113,
-        "tx_hash": "0x7271982923345160707c397e412db1a75ceaa458fc1a5dc2c638dd60e58e60d2",
-        "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "to_address": "0x37822de108affdd5cdcfdaaa2e32756da284db85",
-        "value": "0",
-        "gas_offered": 35009,
-        "gas_spent": 32693,
-        "gas_price": 2500000000,
-        "fees_paid": "81732500000000",
-        "transfers": [
-          {
-            "tx_hash": "0x7271982923345160707c397e412db1a75ceaa458fc1a5dc2c638dd60e58e60d2",
-            "from_address": "0x0000000000000000000000000000000000000000",
-            "to_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-            "contract_name": "Mercury",
-            "contract_ticker_symbol": "MERC",
-            "contract_address": "0x37822de108affdd5cdcfdaaa2e32756da284db85",
-            "transfer_type": "IN",
-            "delta": "100000000000000000000"
-          }
-        ]
-      },
-      {
-        "block_signed_at": "2021-10-13T19:06:30Z",
-        "block_height": 954752,
-        "tx_hash": "0x7fb19c6b0ccf1dd87610c59a9cdc2f298ce6b39b32b396f900f1bf3c8f034b6b",
-        "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "to_address": "0x8a1932d6e26433f3037bd6c3a40c816222a6ccd4",
-        "value": "0",
-        "gas_offered": 369444,
-        "gas_spent": 99165,
-        "gas_price": 1000000000,
-        "fees_paid": "99165000000000",
-        "transfers": [
-          {
-            "tx_hash": "0x7fb19c6b0ccf1dd87610c59a9cdc2f298ce6b39b32b396f900f1bf3c8f034b6b",
-            "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-            "to_address": "0x573db48e758cbc07a99afe67b8b7b23f671902c0",
-            "contract_name": "Mercury",
-            "contract_ticker_symbol": "MERC",
-            "contract_address": "0x37822de108affdd5cdcfdaaa2e32756da284db85",
-            "transfer_type": "OUT",
-            "delta": "10000000000000000000000"
-          }
-        ]
-      }
-    ],
-    "pagination": {
-      "has_more": false,
-      "page_number": 0,
-      "page_size": 100,
-      "total_count": null
-    }
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-### Transactions {: #transactions }
-
-???+ function "Get a transaction"
-
-    [Get a transaction](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-a-transaction){target=\_blank} is used fetch and render a single transaction including its decoded log events. 
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `txHash` *string* - the transaction hash
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/transaction_v2/0xbbf16145833d6c906cd2e01254fabe17c59da711df9efacaacf50fc8453a2c60/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "updated_at": "2024-10-09T00:33:57.799418189Z",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "block_signed_at": "2024-09-27T22:23:54Z",
-        "block_height": 8816296,
-        "block_hash": "0x2f89cd5009b3c69de1eb4edf678a5dfb6c2366cb7da6945783a443133b3df44e",
-        "tx_hash": "0xbbf16145833d6c906cd2e01254fabe17c59da711df9efacaacf50fc8453a2c60",
-        "tx_offset": 1,
-        "successful": true,
-        "miner_address": "0xd34fedcefbaacbd74bd3d0bb80b3a67e6b2defb7",
-        "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "from_address_label": null,
-        "to_address": "0xffffffff1fcacbd218edc0eba20fc2308c778080",
-        "to_address_label": null,
-        "value": "0",
-        "value_quote": null,
-        "pretty_value_quote": null,
-        "gas_metadata": {
-          "contract_decimals": 18,
-          "contract_name": "Dev",
-          "contract_ticker_symbol": "DEV",
-          "contract_address": "0x0000000000006d6f6f6e626173652d616c706861",
-          "supports_erc": [
-            "erc20"
-          ],
-          "logo_url": "https://www.datocms-assets.com/86369/1669924204-moonbeam.svg"
-        },
-        "gas_offered": 169164,
-        "gas_spent": 110096,
-        "gas_price": 31250000,
-        "fees_paid": "13762000000000",
-        "gas_quote": null,
-        "pretty_gas_quote": null,
-        "gas_quote_rate": null,
-        "explorers": [
-          {
-            "label": null,
-            "url": "https://moonbase-blockscout.testnet.moonbeam.network/tx/0xbbf16145833d6c906cd2e01254fabe17c59da711df9efacaacf50fc8453a2c60"
-          }
-        ],
-        "log_events": [
-          {
-            "block_signed_at": "2024-09-27T22:23:54Z",
-            "block_height": 8816296,
-            "tx_offset": 1,
-            "log_offset": 1,
-            "tx_hash": "0xbbf16145833d6c906cd2e01254fabe17c59da711df9efacaacf50fc8453a2c60",
-            "raw_log_topics": [
-              "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-              "0x0000000000000000000000003b939fead1557c741ff06492fd0127bd287a421e",
-              "0x0000000000000000000000004b8c667590e6a28497ea4be5facb7e9869a64eae"
-            ],
-            "sender_contract_decimals": 12,
-            "sender_name": "xcUNIT",
-            "sender_contract_ticker_symbol": "xcUNIT",
-            "sender_address": "0xffffffff1fcacbd218edc0eba20fc2308c778080",
-            "sender_address_label": null,
-            "sender_logo_url": "https://logos.covalenthq.com/tokens/1287/0xffffffff1fcacbd218edc0eba20fc2308c778080.png",
-            "supports_erc": [
-              "erc20"
-            ],
-            "sender_factory_address": null,
-            "raw_log_data": "0x000000000000000000000000000000000000000000000000000000e8d4a51000",
-            "decoded": {
-              "name": "Transfer",
-              "signature": "Transfer(indexed address from, indexed address to, uint256 value)",
-              "params": [
-                {
-                  "name": "from",
-                  "type": "address",
-                  "indexed": true,
-                  "decoded": true,
-                  "value": "0x3b939fead1557c741ff06492fd0127bd287a421e"
-                },
-                {
-                  "name": "to",
-                  "type": "address",
-                  "indexed": true,
-                  "decoded": true,
-                  "value": "0x4b8c667590e6a28497ea4be5facb7e9869a64eae"
-                },
-                {
-                  "name": "value",
-                  "type": "uint256",
-                  "indexed": false,
-                  "decoded": true,
-                  "value": "1000000000000"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    "pagination": null
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get transaction summary for address"
-
-    [Get transaction summary for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-transaction-summary-for-address){target=\_blank} retrieves key wallet activity data, including the first and most recent transactions, and total transaction count. It enables quick analysis of wallet age, inactive periods, and overall Web3 engagement levels.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/address/0x3B939FeaD1557C741Ff06492FD0127bd287A421e/transactions_summary/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "updated_at": "2024-10-09T00:48:11.969915467Z",
-    "address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "total_count": 3066,
-        "latest_transaction": {
-          "block_signed_at": "2024-10-04T19:41:48Z",
-          "tx_hash": "0x0923932a55c4366288cfc7a970e1d04895551d11f64d8f183877e8f6c19360bc",
-          "tx_detail_link": "https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/transaction_v2/0x0923932a55c4366288cfc7a970e1d04895551d11f64d8f183877e8f6c19360bc/"
-        },
-        "earliest_transaction": {
-          "block_signed_at": "2021-05-27T18:13:12Z",
-          "tx_hash": "0xc94e0072477e2543d17662317d40e4785ac6bb327c2a7483021167684b8584f3",
-          "tx_detail_link": "https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/transaction_v2/0xc94e0072477e2543d17662317d40e4785ac6bb327c2a7483021167684b8584f3/"
-        }
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get earliest transactions for address (v3)"
-
-    [Get earliest transactions for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-earliest-transactions-for-address-v3){target=\_blank} retrieves the earliest transactions involving an address.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/bulk/transactions/0x3B939FeaD1557C741Ff06492FD0127bd287A421e/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "updated_at": "2024-10-09T01:12:17.851277100Z",
-    "next_update_at": "2024-10-09T01:17:17.851280680Z",
-    "quote_currency": "USD",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "block_signed_at": "2021-05-27T18:13:12Z",
-        "block_height": 6971,
-        "tx_hash": "0xc94e0072477e2543d17662317d40e4785ac6bb327c2a7483021167684b8584f3",
-        "from_address": "0xc10dc91c62c4854ffc0997776d495da3d8c79730",
-        "to_address": null,
-        "value": "0",
-        "fees_paid": "1044522000000000",
-        "gas_quote": null,
-        "gas_quote_rate": null,
-        "log_events": [
-          {
-            "sender_name": "Mercury",
-            "sender_contract_ticker_symbol": "MERC",
-            "sender_address": "0x37822de108affdd5cdcfdaaa2e32756da284db85",
-            "decoded": {
-              "name": "Transfer",
-              "params": [
-                {
-                  "name": "from",
-                  "value": "0x0000000000000000000000000000000000000000"
-                },
-                {
-                  "name": "to",
-                  "value": "0x3b939fead1557c741ff06492fd0127bd287a421e"
-                },
-                {
-                  "name": "value",
-                  "value": "100000000000000000000000"
-                }
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "block_signed_at": "2021-05-27T18:13:24Z",
-        "block_height": 6972,
-        "tx_hash": "0xc37137133cbb8b0810943a6625a7193b5b18d72b5e21a78103243f482c269e71",
-        "from_address": "0xc10dc91c62c4854ffc0997776d495da3d8c79730",
-        "to_address": null,
-        "value": "0",
-        "fees_paid": "1044486000000000",
-        "gas_quote": null,
-        "gas_quote_rate": null,
-        "log_events": [
-          {
-            "sender_name": "Venus",
-            "sender_contract_ticker_symbol": "VEN",
-            "sender_address": "0xcdf746c5c86df2c2772d2d36e227b4c0203cba25",
-            "decoded": {
-              "name": "Transfer",
-              "params": [
-                {
-                  "name": "from",
-                  "value": "0x0000000000000000000000000000000000000000"
-                },
-                {
-                  "name": "to",
-                  "value": "0x3b939fead1557c741ff06492fd0127bd287a421e"
-                },
-                {
-                  "name": "value",
-                  "value": "100000000000000000000000"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get recent transactions for address (v3)"
-
-    [Get recent transactions for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-recent-transactions-for-address-v3){target=\_blank} retrieves the most recent transactions involving an address.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/address/0x3B939FeaD1557C741Ff06492FD0127bd287A421e/transactions_v3/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "updated_at": "2024-10-09T01:16:10.410076422Z",
-    "next_update_at": "2024-10-09T01:21:10.410077022Z",
-    "quote_currency": "USD",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "block_signed_at": "2024-10-04T19:41:48Z",
-        "block_height": 8901780,
-        "tx_hash": "0x0923932a55c4366288cfc7a970e1d04895551d11f64d8f183877e8f6c19360bc",
-        "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "to_address": null,
-        "value": "0",
-        "fees_paid": "120825750000000",
-        "gas_offered": 1010593,
-        "gas_spent": 966606,
-        "gas_price": 31250000,
-        "gas_quote": null,
-        "gas_quote_rate": null
-      },
-      {
-        "block_signed_at": "2024-09-27T22:23:54Z",
-        "block_height": 8816296,
-        "tx_hash": "0xbbf16145833d6c906cd2e01254fabe17c59da711df9efacaacf50fc8453a2c60",
-        "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "to_address": "0xffffffff1fcacbd218edc0eba20fc2308c778080",
-        "value": "0",
-        "fees_paid": "13762000000000",
-        "gas_offered": 169164,
-        "gas_spent": 110096,
-        "gas_price": 31250000,
-        "gas_quote": null,
-        "gas_quote_rate": null,
-        "log_events": [
-          {
-            "sender_name": "xcUNIT",
-            "sender_contract_ticker_symbol": "xcUNIT",
-            "sender_address": "0xffffffff1fcacbd218edc0eba20fc2308c778080",
-            "decoded": {
-              "name": "Transfer",
-              "params": [
-                {
-                  "name": "from",
-                  "value": "0x3b939fead1557c741ff06492fd0127bd287a421e"
-                },
-                {
-                  "name": "to",
-                  "value": "0x4b8c667590e6a28497ea4be5facb7e9869a64eae"
-                },
-                {
-                  "name": "value",
-                  "value": "1000000000000"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get paginated transactions for address (v3)"
-
-    [Get paginated transactions for address (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-paginated-transactions-for-address-v3){target=\_blank} fetches the transactions involving an address and the specified page, starting from a 0 index.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-        - `page` *integer* - the requested page, 0-indexed. 
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/address/0x3B939FeaD1557C741Ff06492FD0127bd287A421e/transactions_v3/page/2/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "updated_at": "2024-10-09T01:37:36.277434751Z",
-    "next_update_at": "2024-10-09T01:42:36.277435481Z",
-    "quote_currency": "USD",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "block_signed_at": "2021-06-08T18:22:00Z",
-        "block_height": 93135,
-        "tx_hash": "0x802eab122522f1ae23b911e8045d9de128acaa5c790d5df0c389240f23b7e17d",
-        "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "to_address": null,
-        "value": "0",
-        "fees_paid": "1416680000000000",
-        "gas_offered": 1455080,
-        "gas_spent": 1416680,
-        "gas_price": 1000000000,
-        "gas_quote": null,
-        "gas_quote_rate": null
-      },
-      {
-        "block_signed_at": "2021-06-08T18:21:48Z",
-        "block_height": 93134,
-        "tx_hash": "0xe82d29e37e8d324a22ed9ce70d0c85258c420cf98cc4161c35f4edb7c9ba09c0",
-        "from_address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-        "to_address": null,
-        "value": "0",
-        "fees_paid": "1712047000000000",
-        "gas_offered": 1750447,
-        "gas_spent": 1712047,
-        "gas_price": 1000000000,
-        "gas_quote": null,
-        "gas_quote_rate": null
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get bulk time bucket transactions for address (v3)"
-
-    [Get bulk time bucket transactions for address (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-time-bucket-transactions-for-address-v3){target=\_blank} is used to fetch all transactions including their decoded log events in a 15-minute time bucket interval.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-        - `timeBucket` *integer* - The 0-indexed 15-minute time bucket. E.g. 8 9 Oct 2024 01:49 GMT = 1728420540 (Unix time). 1728420540/900 = 1920467 timeBucket.
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/bulk/transactions/0x28a2B98793Fd1E20Fd79824cd29D36D3eB9A8F0E/1920467/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x28a2b98793fd1e20fd79824cd29d36d3eb9a8f0e",
-    "updated_at": "2024-10-09T01:47:40.617173773Z",
-    "next_update_at": "2024-10-09T01:52:40.617176953Z",
-    "quote_currency": "USD",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "complete": true,
-    "current_bucket": 1920467,
-    "links": {
-      "prev": "https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/bulk/transactions/0x28a2b98793fd1e20fd79824cd29d36d3eb9a8f0e/1920466/",
-      "next": "https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/bulk/transactions/0x28a2b98793fd1e20fd79824cd29d36d3eb9a8f0e/1920468/"
-    },
-    "items": [
-      {
-        "block_signed_at": "2024-10-08T20:48:42Z",
-        "block_height": 8957260,
-        "tx_hash": "0x587f0121ea9c51b93e1915a20370f0a2f004adee99d00ef8d1c0f9cc681a9772",
-        "from_address": "0x28a2b98793fd1e20fd79824cd29d36d3eb9a8f0e",
-        "to_address": "0x916b54696a70588a716f899be1e8f2a5ffd5f135",
-        "value": "0",
-        "gas_offered": 582957,
-        "gas_spent": 551928,
-        "gas_price": 31250000,
-        "fees_paid": "68991000000000",
-        "log_events": [
-          {
-            "sender_address": "0x916b54696a70588a716f899be1e8f2a5ffd5f135",
-            "decoded": {
-              "name": "SessionStarted",
-              "signature": "SessionStarted(indexed uint64 chainId, indexed uint64 blockHeight, uint64 deadline)",
-              "params": [
-                {
-                  "name": "chainId",
-                  "type": "uint64",
-                  "value": "1"
-                },
-                {
-                  "name": "blockHeight",
-                  "type": "uint64",
-                  "value": "20923350"
-                },
-                {
-                  "name": "deadline",
-                  "type": "uint64",
-                  "value": "8957360"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get all transactions in a block by page (v3)"
-
-    [Get all transactions in a block by page (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block-by-page){target=\_blank} is used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `blockHeight` *integer* - the request block height. Also accepts the `latest` keyword
-        - `page` *integer* - the requested page, 0-indexed.
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/block/8960094/transactions_v3/page/0/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "updated_at": "2024-10-09T01:54:34.371150099Z",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "links": {
-      "prev": null,
-      "next": null
-    },
-    "items": [
-      {
-        "block_signed_at": "2024-10-09T01:51:42Z",
-        "block_height": 8960094,
-        "block_hash": "0x2a9cda3cfd23dffbe064932991568cae601d178717743eabc326222123d7ad44",
-        "tx_hash": "0x4abfef674580260d3c837e1dc5b17b8bf809e620518e40d3731c6c1cfa5346d9",
-        "tx_offset": 0,
-        "successful": true,
-        "miner_address": "0xeda33e2b5ffb97bb8b901b71b87e5791556fd46b",
-        "from_address": "0xf5e8a439c599205c1ab06b535de46681aed1007a",
-        "from_address_label": null,
-        "to_address": "0x21e612506ab4792a5d22466c0b529bb9afe4e42b",
-        "to_address_label": null,
-        "value": "0",
-        "value_quote": null,
-        "pretty_value_quote": null,
-        "gas_metadata": {
-          "contract_decimals": 18,
-          "contract_name": "Dev",
-          "contract_ticker_symbol": "DEV",
-          "contract_address": "0x0000000000006d6f6f6e626173652d616c706861",
-          "supports_erc": [
-            "erc20"
-          ],
-          "logo_url": "https://www.datocms-assets.com/86369/1669924204-moonbeam.svg"
-        },
-        "gas_offered": 505088,
-        "gas_spent": 184528,
-        "gas_price": 1200000000,
-        "fees_paid": "221433600000000",
-        "gas_quote": null,
-        "pretty_gas_quote": null,
-        "gas_quote_rate": null,
-        "explorers": [
-          {
-            "label": null,
-            "url": "https://moonbase-blockscout.testnet.moonbeam.network/tx/0x4abfef674580260d3c837e1dc5b17b8bf809e620518e40d3731c6c1cfa5346d9"
-          }
-        ]
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-??? function "Get all transactions in a block (v3)"
-
-    [Get all transactions in a block (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-all-transactions-in-a-block){target=\_blank} is used to used to fetch all transactions including their decoded log events in a block and further flag interesting wallets or transactions. It takes a blockhash as a parameter and it does not accept a page parameter.
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `blockHash` *integer* - the request block hash
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-moonbase-alpha/block_hash/0x2a9cda3cfd23dffbe064932991568cae601d178717743eabc326222123d7ad44/transactions_v3/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "updated_at": "2024-10-09T01:58:08.816101489Z",
-    "chain_id": 1287,
-    "chain_name": "moonbeam-moonbase-alpha",
-    "items": [
-      {
-        "block_signed_at": "2024-10-09T01:51:42Z",
-        "block_height": 8960094,
-        "block_hash": "0x2a9cda3cfd23dffbe064932991568cae601d178717743eabc326222123d7ad44",
-        "tx_hash": "0x4abfef674580260d3c837e1dc5b17b8bf809e620518e40d3731c6c1cfa5346d9",
-        "tx_offset": 0,
-        "successful": true,
-        "miner_address": "0xeda33e2b5ffb97bb8b901b71b87e5791556fd46b",
-        "from_address": "0xf5e8a439c599205c1ab06b535de46681aed1007a",
-        "from_address_label": null,
-        "to_address": "0x21e612506ab4792a5d22466c0b529bb9afe4e42b",
-        "to_address_label": null,
-        "value": "0",
-        "value_quote": null,
-        "pretty_value_quote": null,
-        "gas_metadata": {
-          "contract_decimals": 18,
-          "contract_name": "Dev",
-          "contract_ticker_symbol": "DEV",
-          "contract_address": "0x0000000000006d6f6f6e626173652d616c706861",
-          "supports_erc": [
-            "erc20"
-          ],
-          "logo_url": "https://www.datocms-assets.com/86369/1669924204-moonbeam.svg"
-        },
-        "gas_offered": 505088,
-        "gas_spent": 184528,
-        "gas_price": 1200000000,
-        "fees_paid": "221433600000000",
-        "gas_quote": null,
-        "pretty_gas_quote": null,
-        "gas_quote_rate": null,
-        "explorers": [
-          {
-            "label": null,
-            "url": "https://moonbase-blockscout.testnet.moonbeam.network/tx/0x4abfef674580260d3c837e1dc5b17b8bf809e620518e40d3731c6c1cfa5346d9"
-          }
-        ]
-      }
-    ],
-    "pagination": null
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-### Cross Chain {: #cross-chain }
-
-???+ function "Get cross-chain activity for address"
-
-    [Get cross-chain activity for address](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} is used to locate chains which an address is active on with a single API call
-
-    === "Parameters"
-
-        - `walletAddress` *string* - the address you wish to query
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/address/0x3B939FeaD1557C741Ff06492FD0127bd287A421e/activity/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "updated_at": "2024-10-09T02:08:22.594362014Z",
-    "address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "items": [
-      {
-        "name": "matic-mainnet",
-        "chain_id": "137",
-        "is_testnet": false,
-        "label": "Polygon Mainnet",
-        "category_label": "Polygon",
-        "logo_url": "https://www.datocms-assets.com/86369/1677870347-property-1-polygon-zkevm-icon-white.svg",
-        "color_theme": {
-          "hex": "#8247E5",
-          "css_rgb": "rgb(130 71 229)"
-        },
-        "last_seen_at": "2024-06-26T09:50:16Z"
-      },
-      {
-        "name": "moonbeam-mainnet",
-        "chain_id": "1284",
-        "is_testnet": false,
-        "label": "Moonbeam Mainnet",
-        "category_label": "Moonbeam",
-        "logo_url": "https://www.datocms-assets.com/86369/1669924204-moonbeam.svg",
-        "color_theme": {
-          "hex": "#54CBC8",
-          "css_rgb": "rgb(84 203 200)"
-        },
-        "last_seen_at": "2024-10-04T01:11:42Z"
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-
-### Security {: #security }
-
-???+ function "Get token approvals for address"
-
-    [Get token approvals for address](https://goldrush.dev/docs/api-reference/foundational-api/security/get-token-approvals-for-address){target=\_blank} is used to get a list of approvals across all token contracts categorized by spenders for a wallet’s assets
-
-    === "Parameters"
-
-        - `chainName` *string* - e.g. `moonbeam-mainnet`, `moonbeam-moonriver`, or `moonbeam-moonbase-alpha` 
-        - `walletAddress` *string* - the address you wish to query
-
-    === "Example Request"
-
-        ```bash
-        curl --request GET \
-  --url https://api.covalenthq.com/v1/moonbeam-mainnet/approvals/0x3B939FeaD1557C741Ff06492FD0127bd287A421e/ \
-  --header 'Authorization: Bearer INSERT_API_KEY'
-        ```
-
-    === "Example Response"
-
-        ```bash
-        {
-  "data": {
-    "address": "0x3b939fead1557c741ff06492fd0127bd287a421e",
-    "updated_at": "2024-10-09T02:11:10.587740726Z",
-    "quote_currency": "USD",
-    "chain_id": 1284,
-    "chain_name": "moonbeam-mainnet",
-    "items": [
-      {
-        "token_address": "0xffffffff1fcacbd218edc0eba20fc2308c778080",
-        "token_address_label": "xcDOT",
-        "ticker_symbol": "xcDOT",
-        "contract_decimals": 10,
-        "logo_url": "https://logos.covalenthq.com/tokens/1284/0xffffffff1fcacbd218edc0eba20fc2308c778080.png",
-        "quote_rate": 4.169,
-        "balance": "1655341603",
-        "balance_quote": 0.6901119142907,
-        "pretty_balance_quote": "$0.69",
-        "spenders": [
-          {
-            "spender_address": "0xbc7e02c4178a7df7d3e564323a5c359dc96c4db4",
-            "spender_address_label": "Stella stDOT",
-            "allowance": "UNLIMITED",
-            "value_at_risk_quote": 0.6901119142907,
-            "pretty_value_at_risk_quote": "$0.69",
-            "risk_factor": "LOW RISK"
-          }
-        ]
-      },
-      {
-        "token_address": "0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b",
-        "token_address_label": "USD Coin",
-        "ticker_symbol": "USDC",
-        "contract_decimals": 6,
-        "logo_url": "https://logos.covalenthq.com/tokens/1284/0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b.png",
-        "quote_rate": 0.09,
-        "balance": "1",
-        "balance_quote": 0,
-        "pretty_balance_quote": "$0.00",
-        "spenders": [
-          {
-            "spender_address": "0x70085a09d30d6f8c4ecf6ee10120d1847383bb57",
-            "spender_address_label": null,
-            "allowance": "UNLIMITED",
-            "value_at_risk_quote": 0,
-            "pretty_value_at_risk_quote": "$0.00",
-            "risk_factor": "LOW RISK"
-          }
-        ]
-      }
-    ]
-  },
-  "error": false,
-  "error_message": null,
-  "error_code": null
-}
-        ```
-
-The GoldRush API offers many additional methods, including NFT, price, Bitcoin, and utility methods. Be sure to check out the [GoldRush API](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain/get-address-activity){target=\_blank} for more information on each of these methods.  
-
-## API Parameters and Resources {: #api-parameters-and-resources }
-
-### API Parameters {: #api-parameters }
-
-=== "Moonbeam"
-    |       Parameter        |      Value      |
-    |:----------------------:|:---------------:|
-    |    Response Formats    |    JSON, CSV    |
-    | Real-Time Data Latency |    2 blocks     |
-    |   Batch Data Latency   |   30 minutes    |
-    |     API Free Tier      | Limit of 4 RPS  |
-    |    API Premium Tier    | Limit of 50 RPS |
-
-=== "Moonriver"
-    |       Parameter        |      Value      |
-    |:----------------------:|:---------------:|
-    |    Response Formats    |    JSON, CSV    |
-    | Real-Time Data Latency |    2 blocks     |
-    |   Batch Data Latency   |   30 minutes    |
-    |     API Free Tier      | Limit of 4 RPS  |
-    |    API Premium Tier    | Limit of 50 RPS |
-
-=== "Moonbase Alpha"
-    |       Parameter        |      Value      |
-    |:----------------------:|:---------------:|
-    |    Response Formats    |    JSON, CSV    |
-    | Real-Time Data Latency |    2 blocks     |
-    |   Batch Data Latency   |   30 minutes    |
-    |     API Free Tier      | Limit of 4 RPS  |
-    |    API Premium Tier    | Limit of 50 RPS |
-
-### API Resources {: #api-resources }
-
-- [API Reference and In-Browser Endpoint Demo](https://goldrush.mintlify.app/docs/api/overview){target=\_blank}
-- [GoldRush Quickstart](https://goldrush.mintlify.app/docs/quickstart){target=\_blank}
-- [Written Guides](https://goldrush.dev/docs/overview){target=\_blank}
-
-## How to Use the Unified API {: #how-to-use-the-unified-api }
-
-First, make sure you have [your API Key](https://goldrush.dev/platform/auth/register/){target=\_blank} which begins with `cqt_` or `ckey_`. Once you have your API key, you can access any of the supported endpoints. To get information for a specific network, you must provide the chain ID.
-
-### Checking Prerequisites {: #checking-prerequisites }
-
-To get started with the GoldRush API, you will need to have the following:
-
- - A free [GoldRush API Key](https://goldrush.dev/platform/auth/register/){target=\_blank}
- - MetaMask installed and [connected to Moonbase Alpha](/tokens/connect/metamask/){target=\_blank}
- - An account with funds.
-  You can get DEV tokens for testing on Moonbase Alpha once every 24 hours from the [Moonbase Alpha Faucet](https://faucet.moonbeam.network){target=\_blank}
-
-### Using Curl {: #using-curl }
-
-One of the supported endpoints is the token holders endpoint, which returns a list of all the token holders of a particular token. For this example, you can check the token holders for the ERTH token. The contract address for the ERTH token on Moonbase Alpha is `0x08B40414525687731C23F430CEBb424b332b3d35`.
-
-Try running the command below in a terminal window after replacing the placeholder with your API key.
-
-```bash
-curl https://api.covalenthq.com/v1/1287/tokens/\
-0x08B40414525687731C23F430CEBb424b332b3d35/token_holders/ \
--u INSERT_YOUR_API_KEY:
+```text
+https://api.covalenthq.com/v1/
 ```
 
-!!! note
-    The colon `:` after the API key is required to skip the password prompt.
+Use the following network values in path parameters:
 
-Unless you already owned some ERTH tokens, your address will be missing from that list. Head over to the [Moonbase Alpha ERC-20 Faucet](https://moonbase-minterc20.netlify.app){target=\_blank} to generate some ERTH tokens for yourself. Now repeat the same GoldRush API request as above. The GoldRush API updates in real-time, so you should now see your address in the list of token holders for the ERTH token.
+=== "Moonbeam"
 
-### Using Javascript {: #using-javascript }
+    |  Parameter  |                 Value                  |
+    |:-----------:|:--------------------------------------:|
+    | `chainName` |          `moonbeam-mainnet`            |
+    |  `chainID`  | `{{ networks.moonbeam.chain_id }}`     |
+    |  Explorer   | [Moonscan](https://moonscan.io/){target=\_blank} |
 
-Copy and paste the below code block into your preferred environment or [JSFiddle](https://jsfiddle.net){target=\_blank}. After setting the API key, set the address constant. Remember for Moonbase Alpha the chain ID is `{{ networks.moonbase.chain_id }}`.
+=== "Moonriver"
 
-=== "Using Fetch"
+    |  Parameter  |                  Value                   |
+    |:-----------:|:----------------------------------------:|
+    | `chainName` |          `moonbeam-moonriver`            |
+    |  `chainID`  | `{{ networks.moonriver.chain_id }}`      |
+    |  Explorer   | [Moonriver Moonscan](https://moonriver.moonscan.io/){target=\_blank} |
 
-    ```js
-    // Set your API key
-const apiKey = 'INSERT_YOUR_API_KEY';
+=== "Moonbase Alpha"
 
-function getData() {
-  const address = '0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8'; // example
-  const chainId = '1287'; // Moonbase Alpha TestNet chain ID
-  const url = new URL(
-    `https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/`
-  );
+    |  Parameter  |                    Value                    |
+    |:-----------:|:-------------------------------------------:|
+    | `chainName` |           `moonbeam-moonbase-alpha`         |
+    |  `chainID`  | `{{ networks.moonbase.chain_id }}`          |
+    |  Explorer   | [Moonbase Moonscan](https://moonbase.moonscan.io/){target=\_blank} |
 
-  url.search = new URLSearchParams({
-    key: apiKey,
-  });
+## API Usage {: #api-usage }
 
-  // Use fetch API to get Covalent data
-  fetch(url)
-    .then((resp) => resp.json())
-    .then(function (data) {
-      const result = data.data;
+The following examples show typical request patterns for Moonbeam and Moonriver. Replace `API_KEY` with your GoldRush key and update the sample wallet address as needed for your use case.
 
-      console.log(result);
-      return result;
+### Example API Calls {: #example-api-calls }
+
+Use these `curl` requests to quickly validate connectivity and response format before integrating in an application.
+
+=== "Moonbeam Mainnet"
+
+    ```bash
+    curl -X GET "https://api.covalenthq.com/v1/moonbeam-mainnet/address/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045/balances_v2/?key=API_KEY"
+    ```
+
+=== "Moonriver"
+
+    ```bash
+    curl -X GET "https://api.covalenthq.com/v1/moonbeam-moonriver/address/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045/balances_v2/?key=API_KEY"
+    ```
+
+### SDK Usage {: #sdk-usage }
+
+If you're building a service or frontend, the GoldRush SDK can simplify request construction and response handling.
+
+=== "Moonbeam TypeScript SDK"
+
+    ```typescript
+    import { GoldRushClient } from "@covalenthq/client-sdk";
+
+    const client = new GoldRushClient("API_KEY");
+    const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
+      chainName: "moonbeam-mainnet",
+      walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
     });
-}
-
-getData();
     ```
 
-=== "Using Async"
+=== "Moonriver TypeScript SDK"
 
-    ```js
-    // Set your API key
-const apiKey = 'INSERT_YOUR_API_KEY';
-const address = '0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8'; // Example
-const chainId = '1287'; // Moonbase Alpha TestNet chain ID
-const url = new URL(
-  `https://api.covalenthq.com/v1/${chainId}/address/${address}/balances_v2/`
-);
+    ```typescript
+    import { GoldRushClient } from "@covalenthq/client-sdk";
 
-url.search = new URLSearchParams({
-  key: apiKey,
-});
-
-async function getData() {
-  const response = await fetch(url);
-  const result = await response.json();
-  console.log(result);
-  return result;
-}
-
-getData();
+    const client = new GoldRushClient("API_KEY");
+    const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
+      chainName: "moonbeam-moonriver",
+      walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    });
     ```
 
-The balances endpoint returns a list of all ERC-20 and NFT token balances, including ERC-721 and ERC-1155 balances, along with their current spot prices (if available).
+## Supported Foundational API Categories {: #supported-foundational-api-categories }
 
-![JavaScript Console Output](/images/builders/integrations/indexers/covalent/covalent-2.webp)
+Moonbeam networks support a broad set of GoldRush Foundational API methods. Commonly used categories include:
 
-### Using Python {: #using-python }
+### Wallet APIs
 
-GoldRush doesn’t have an official API wrapper. To query the API directly, you will have to use the Python [requests library](https://pypi.org/project/requests){target=\_blank}. Install requests into your environment from the command line with `pip install requests`. Then import it and use it in your code. Use the HTTP verbs get methods to return the information from the API. Copy and paste the below code block into your preferred environment and run it. The output should look similar to the screenshot above, however the formatting may vary depending on your environment.
+- [Get token balances for address](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-token-balances-for-address){target=\_blank}
+- [Get native token balance for address](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-native-token-balance){target=\_blank}
+- [Get historical portfolio value over time](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-historical-portfolio-value-over-time){target=\_blank}
+- [Get ERC-20 token transfers for address](https://goldrush.dev/docs/api-reference/foundational-api/balances/get-erc20-token-transfers-for-address){target=\_blank}
 
-```python
-import requests
+### Activity APIs
 
-def fetch_wallet_balance(address):
-    api_url = "https://api.covalenthq.com"
-    endpoint = f"/v1/1287/address/{address}/balances_v2/"
-    url = api_url + endpoint
-    response = requests.get(url, auth=("INSERT_YOUR_API_KEY", ""))
-    print(response.json())
-    return response.json()
+- [Get a transaction](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-a-transaction){target=\_blank}
+- [Get transaction summary for address](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-transaction-summary-for-address){target=\_blank}
+- [Get recent transactions for address (v3)](https://goldrush.dev/docs/api-reference/foundational-api/transactions/get-recent-transactions-for-address-v3){target=\_blank}
 
-# Example address request
-fetch_wallet_balance("0xFEC4f9D5B322Aa834056E85946A32c35A3f5aDD8")
-```
+### Utility and Explorer APIs
 
-!!! note
-    The second parameter of `auth` is empty because no password is required—your API key is all that's needed.
+- [Get a block](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-a-block){target=\_blank}
+- [Get gas prices](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-gas-prices){target=\_blank}
+- [Get log events by contract address](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-log-events-by-contract-address){target=\_blank}
+
+### Pricing and Security APIs
+
+- [Get historical token prices](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-historical-token-prices){target=\_blank}
+- [Get token approvals for address](https://goldrush.dev/docs/api-reference/foundational-api/security/get-token-approvals-for-address){target=\_blank}
+
+For the complete and most current endpoint list, refer to the [Foundational API overview](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=\_blank} and [API reference](https://goldrush.dev/docs/api-reference/){target=\_blank}.
+
+## Additional Resources {: #additional-resources }
+
+- [GoldRush docs](https://goldrush.dev/docs/){target=\_blank}
+- [GoldRush supported chains](https://goldrush.dev/chains/){target=\_blank}
+- [Moonbeam chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}
+- [Moonriver chain page on GoldRush](https://goldrush.dev/docs/chains/moonriver){target=\_blank}
+- [Moonbase Alpha chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}
 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
