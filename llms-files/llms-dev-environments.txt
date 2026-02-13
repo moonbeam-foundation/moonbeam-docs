@@ -5242,9 +5242,9 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     The tail end of the console log should look like this:
 
     <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.50.0</span>
+  <span data-ty="input"><span class="file-path"></span>docker pull moonbeamfoundation/moonbeam:v0.50.2</span>
   <br>
-  <span data-ty>v0.50.0: Pulling from moonbeamfoundation/moonbeam
+  <span data-ty>v0.50.2: Pulling from moonbeamfoundation/moonbeam
     <br> b0a0cf830b12: Pull complete
     <br> fbff687640dd: Pull complete
     <br> 58ea427410e2: Pull complete
@@ -5253,8 +5253,8 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
     <br> 128693ce218e: Pull complete
     <br> a3ac90b88463: Pull complete
     <br> Digest: sha256:d2448058e383377052666b250dc32f2676062a11aea07c90578c2483c918a786
-    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.50.0
-    <br> docker.io/moonbeamfoundation/moonbeam:v0.50.0
+    <br> Status: Downloaded newer image for moonbeamfoundation/moonbeam:v0.50.2
+    <br> docker.io/moonbeamfoundation/moonbeam:v0.50.2
   </span>
 </div>
 
@@ -5303,13 +5303,13 @@ If successful, you should see an output showing an idle state waiting for blocks
 
 <div id="termynal" data-termynal>
   <span data-ty="input"><span class="file-path"></span>docker run --rm --name moonbeam_development --network host \
-    <br> moonbeamfoundation/moonbeam:v0.50.0 \
+    <br> moonbeamfoundation/moonbeam:v0.50.2 \
     <br> --dev --rpc-external
   </span>
   <br>
   <span data-ty>CLI parameter `--execution` has no effect anymore and will be removed in the future!
     <br> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.50.0
+    <br> 2025-07-10 09:04:26 ✌️  version 0.50.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
@@ -5437,7 +5437,7 @@ You should see an output that looks like the following, showing an idle state wa
   <span data-ty="input"><span class="file-path"></span>./target/release/moonbeam --dev</span>
   <br>
   <span data-ty> 2025-07-10 09:04:26 Moonbeam Parachain Collator
-    <br> 2025-07-10 09:04:26 ✌️  version 0.50.0
+    <br> 2025-07-10 09:04:26 ✌️  version 0.50.2
     <br> 2025-07-10 09:04:26 ❤️  by PureStake, 2019-2025
     <br> 2025-07-10 09:04:26 📋 Chain specification: Moonbase Development Testnet
     <br> 2025-07-10 09:04:26 🏷  Node name: black-and-white-sticks-9174
