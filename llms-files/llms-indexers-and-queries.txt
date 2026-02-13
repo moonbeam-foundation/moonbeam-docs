@@ -55,7 +55,6 @@ Use the following network values in path parameters:
     |:-----------:|:--------------------------------------:|
     | `chainName` |          `moonbeam-mainnet`            |
     |  `chainID`  | `{{ networks.moonbeam.chain_id }}`     |
-    |  Explorer   | [Moonscan](https://moonscan.io/){target=\_blank} |
 
 === "Moonriver"
 
@@ -63,7 +62,6 @@ Use the following network values in path parameters:
     |:-----------:|:----------------------------------------:|
     | `chainName` |          `moonbeam-moonriver`            |
     |  `chainID`  | `{{ networks.moonriver.chain_id }}`      |
-    |  Explorer   | [Moonriver Moonscan](https://moonriver.moonscan.io/){target=\_blank} |
 
 === "Moonbase Alpha"
 
@@ -71,42 +69,42 @@ Use the following network values in path parameters:
     |:-----------:|:-------------------------------------------:|
     | `chainName` |           `moonbeam-moonbase-alpha`         |
     |  `chainID`  | `{{ networks.moonbase.chain_id }}`          |
-    |  Explorer   | [Moonbase Moonscan](https://moonbase.moonscan.io/){target=\_blank} |
 
 ## API Usage {: #api-usage }
 
-The following examples show typical request patterns for Moonbeam and Moonriver. Replace `API_KEY` with your GoldRush key and update the sample wallet address as needed for your use case.
+The following examples show typical request patterns for Moonbeam and Moonriver. Replace `INSERT_API_KEY` with your GoldRush key and `INSERT_WALLET_ADDRESS` with a wallet address for your use case.
+You can use GoldRush through direct HTTP requests or through the TypeScript SDK, which wraps the same API endpoints.
 
-### Example API Calls {: #example-api-calls }
+### Direct API Calls (curl) {: #example-api-calls }
 
 Use these `curl` requests to quickly validate connectivity and response format before integrating in an application.
 
 === "Moonbeam Mainnet"
 
     ```bash
-    curl -X GET "https://api.covalenthq.com/v1/moonbeam-mainnet/address/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045/balances_v2/?key=API_KEY"
+    curl -X GET "https://api.covalenthq.com/v1/moonbeam-mainnet/address/INSERT_WALLET_ADDRESS/balances_v2/?key=INSERT_API_KEY"
     ```
 
 === "Moonriver"
 
     ```bash
-    curl -X GET "https://api.covalenthq.com/v1/moonbeam-moonriver/address/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045/balances_v2/?key=API_KEY"
+    curl -X GET "https://api.covalenthq.com/v1/moonbeam-moonriver/address/INSERT_WALLET_ADDRESS/balances_v2/?key=INSERT_API_KEY"
     ```
 
-### SDK Usage {: #sdk-usage }
+### TypeScript SDK Usage {: #sdk-usage }
 
 If you're building a service or frontend, the GoldRush SDK can simplify request construction and response handling.
 
 === "Moonbeam TypeScript SDK"
 
     ```typescript
-    import { GoldRushClient } from "@covalenthq/client-sdk";
+    import { GoldRushClient } from '@covalenthq/client-sdk';
 
     async function main() {
-      const client = new GoldRushClient("API_KEY");
+      const client = new GoldRushClient('INSERT_API_KEY');
       const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
-        chainName: "moonbeam-mainnet",
-        walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+        chainName: 'moonbeam-mainnet',
+        walletAddress: 'INSERT_WALLET_ADDRESS',
       });
       console.log(resp);
     }
@@ -117,13 +115,13 @@ If you're building a service or frontend, the GoldRush SDK can simplify request 
 === "Moonriver TypeScript SDK"
 
     ```typescript
-    import { GoldRushClient } from "@covalenthq/client-sdk";
+    import { GoldRushClient } from '@covalenthq/client-sdk';
 
     async function main() {
-      const client = new GoldRushClient("API_KEY");
+      const client = new GoldRushClient('INSERT_API_KEY');
       const resp = await client.BalanceService.getTokenBalancesForWalletAddress({
-        chainName: "moonbeam-moonriver",
-        walletAddress: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+        chainName: 'moonbeam-moonriver',
+        walletAddress: 'INSERT_WALLET_ADDRESS',
       });
       console.log(resp);
     }
@@ -133,7 +131,8 @@ If you're building a service or frontend, the GoldRush SDK can simplify request 
 
 ## Supported Foundational API Categories {: #supported-foundational-api-categories }
 
-Moonbeam networks support a broad set of GoldRush Foundational API methods. Commonly used categories include:
+Moonbeam networks support a broad set of GoldRush Foundational API methods. Commonly used categories are listed in the following sections.
+For the complete and most current endpoint list, refer to the [Foundational API overview](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=\_blank} and [API reference](https://goldrush.dev/docs/api-reference/){target=\_blank}.
 
 ### Wallet APIs
 
@@ -153,13 +152,11 @@ Moonbeam networks support a broad set of GoldRush Foundational API methods. Comm
 - [Get a block](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-a-block){target=\_blank}
 - [Get gas prices](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-gas-prices){target=\_blank}
 - [Get log events by contract address](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-log-events-by-contract-address){target=\_blank}
-
-### Pricing and Security APIs
-
 - [Get historical token prices](https://goldrush.dev/docs/api-reference/foundational-api/utility/get-historical-token-prices){target=\_blank}
-- [Get token approvals for address](https://goldrush.dev/docs/api-reference/foundational-api/security/get-token-approvals-for-address){target=\_blank}
 
-For the complete and most current endpoint list, refer to the [Foundational API overview](https://goldrush.dev/docs/goldrush-foundational-api/overview){target=\_blank} and [API reference](https://goldrush.dev/docs/api-reference/){target=\_blank}.
+### Security APIs
+
+- [Get token approvals for address](https://goldrush.dev/docs/api-reference/foundational-api/security/get-token-approvals-for-address){target=\_blank}
 
 ## Additional Resources {: #additional-resources }
 
