@@ -37573,7 +37573,7 @@ The Treasury address for each respective network can be found below:
 
 === "Moonbeam"
 
-    [0x6d6F646c70632f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank}
+    [0x6d6f646C70792f74727372790000000000000000](https://moonbeam.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank}
 
 === "Moonriver"
 
@@ -42484,7 +42484,7 @@ The Treasury address for each respective network can be found below:
 
 === "Moonbeam"
 
-    [0x6d6F646c70632f74727372790000000000000000](https://moonbase.subscan.io/account/0x6d6F646c70632f74727372790000000000000000){target=_blank}
+    [0x6d6f646C70792f74727372790000000000000000](https://moonbeam.subscan.io/account/0x6d6f646C70792f74727372790000000000000000){target=_blank}
 
 === "Moonriver"
 
