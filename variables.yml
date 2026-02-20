@@ -15,10 +15,10 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-4100
+    spec_version: runtime-4201
     parachain_release_tag: v0.50.2 # Required format for link generation system
     parachain_sha256sum: 46f4760cbd89e2f0de94f65ee448a8d457f6aa06361589429fca0c863c6c8f34
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.2-4201-dae9
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.2-4201-04d6  
     gas_block: 60,000,000
     gas_block_numbers_only: 60000000 # this should match gas_block, just with no commas
     gas_tx: 52,000,000 # EXTRINSIC_GAS_LIMIT in test/helpers/constants.ts
@@ -376,7 +376,7 @@ networks:
     node_directory: /var/lib/moonriver-data
     parachain_release_tag: v0.50.2
     parachain_sha256sum: 46f4760cbd89e2f0de94f65ee448a8d457f6aa06361589429fca0c863c6c8f34
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.2-4201-dae9
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.2-4201-04d6
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
     spec_version: runtime-4102
@@ -729,7 +729,7 @@ networks:
     node_directory: /var/lib/moonbeam-data
     parachain_release_tag: v0.50.2
     parachain_sha256sum: 46f4760cbd89e2f0de94f65ee448a8d457f6aa06361589429fca0c863c6c8f34
-    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.2-4201-dae9
+    tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.2-4201-04d6
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
     spec_version: runtime-4102
