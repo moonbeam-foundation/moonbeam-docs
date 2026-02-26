@@ -24,7 +24,7 @@ Please note that the examples in this section require installing [wscat](https:/
 
     === "Parameters"
 
-        - `subscription_name` *string* - the type of the event to subscribe to. The [supported subscription](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#supported-subscriptions){target=\_blank} types are:
+        - `subscription_name` *string* - the type of the event to subscribe to. The [supported subscription](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#supported-subscriptions){target=\_blank} types are:
             - [`newHeads`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newheads){target=\_blank} — triggers a notification each time a new header is appended to the chain
             - [`logs`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#logs){target=\_blank} — returns logs that are included in new imported blocks and match a given filter criteria
             - [`newPendingTransactions`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newpendingtransactions){target=\_blank} — returns the hash for all transactions that are added to the pending state

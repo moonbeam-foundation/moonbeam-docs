@@ -1,6 +1,6 @@
 ---
 title: GoldRush API
-description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related on-chain data.
+description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam and Moonriver for balances, transactions, logs, and related on-chain data.
 categories: Indexers and Queries
 ---
 
@@ -10,7 +10,7 @@ categories: Indexers and Queries
 
 [GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, provides structured blockchain data APIs for developers building wallets, dashboards, analytics, and automation tooling. Instead of stitching data from many RPC calls, you can query balances, transactions, token transfers, logs, and chain metadata through REST endpoints.
 
-On Moonbeam networks, GoldRush can be used to read both historical and current on-chain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
+On Moonbeam networks, GoldRush can be used to read both historical and current on-chain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank} and [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
 
 --8<-- 'text/_disclaimers/third-party-content-intro.md'
 
@@ -37,13 +37,6 @@ Use the following network values in path parameters:
     |:-----------:|:----------------------------------------:|
     | `chainName` |          `moonbeam-moonriver`            |
     |  `chainID`  | `{{ networks.moonriver.chain_id }}`      |
-
-=== "Moonbase Alpha"
-
-    |  Parameter  |                    Value                    |
-    |:-----------:|:-------------------------------------------:|
-    | `chainName` |           `moonbeam-moonbase-alpha`         |
-    |  `chainID`  | `{{ networks.moonbase.chain_id }}`          |
 
 ## API Usage {: #api-usage }
 
@@ -139,6 +132,5 @@ For the complete and most current endpoint list, refer to the [Foundational API 
 - [GoldRush supported chains](https://goldrush.dev/chains/){target=\_blank}
 - [Moonbeam chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}
 - [Moonriver chain page on GoldRush](https://goldrush.dev/docs/chains/moonriver){target=\_blank}
-- [Moonbase Alpha chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}
 
 --8<-- 'text/_disclaimers/third-party-content.md'
