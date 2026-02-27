@@ -30,7 +30,7 @@ jobs:
       checks: write
     outputs:
       triggered: ${{ steps.trigger_phrase.outputs.triggered || 'false' }}
-      commit_sha: ${{ steps.trigger_phrase.outputs.commit_sha || '' }}
+      commit_sha: ${{ steps.sha_guard.outputs.head_sha || steps.trigger_phrase.outputs.commit_sha || '' }}
       filtered_file_count: ${{ steps.filter_files.outputs.file_count || '0' }}
       filtered_addition_count: ${{ steps.filter_files.outputs.addition_count || '0' }}
       should_send: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && (steps.filter_files.outputs.addition_count || '0') != '0' && steps.send_payload.outputs.cancelled != 'true' && steps.send_payload.outputs.error != 'true' }}
@@ -46,11 +46,6 @@ jobs:
       IS_MANUAL_RUN: ${{ github.event_name == 'workflow_dispatch' && github.actor != 'github-actions[bot]' }}
       N8N_ROSE_LANGUAGES: ${{ vars.N8N_ROSE_LANGUAGES }}
     steps:
-      # Step 2: Generate unique run token
-      - name: Generate Run UUID
-        id: uuid
-        run: echo run_token=$(uuidgen) >> $GITHUB_OUTPUT
-
       # Step 2b: Require dispatcher to have access
       - name: Validate dispatcher permissions
         if: ${{ github.event_name == 'workflow_dispatch' && github.actor != 'github-actions[bot]' }}
@@ -1112,22 +1107,22 @@ jobs:
           CUR="${CUR_ATTEMPT:-1}"
           if [[ ! "$CUR" =~ ^[0-9]+$ ]]; then CUR=1; fi
 
-            best="$(
-              gh api -H "Accept: application/vnd.github+json" "repos/${REPO}/actions/runs/${RUN_ID}/artifacts" 2>/dev/null \
-                | jq -c --argjson cur "$CUR" '
-                    [
-                      .artifacts[]?
-                      | select((.expired | not) and (.name | test("^n8n-response-[0-9]+$")))
-                      | .name as $name
-                      | ($name | capture("^n8n-response-(?<n>[0-9]+)$").n | tonumber) as $n
-                      | {name:$name, n:$n}
-                      | select(.n == $cur)
-                    ]
-                    | sort_by(.n)
-                    | last // empty
-                  ' 2>/dev/null \
-                || true
-            )"
+          best="$(
+            gh api -H "Accept: application/vnd.github+json" "repos/${REPO}/actions/runs/${RUN_ID}/artifacts" 2>/dev/null \
+              | jq -c --argjson cur "$CUR" '
+                  [
+                    .artifacts[]?
+                    | select((.expired | not) and (.name | test("^n8n-response-[0-9]+$")))
+                    | .name as $name
+                    | ($name | capture("^n8n-response-(?<n>[0-9]+)$").n | tonumber) as $n
+                    | {name:$name, n:$n}
+                    | select(.n == $cur)
+                  ]
+                  | sort_by(.n)
+                  | last // empty
+                ' 2>/dev/null \
+              || true
+          )"
 
           if [[ -z "${best:-}" ]]; then
             echo "has_response_artifact=false" >> "$GITHUB_OUTPUT"

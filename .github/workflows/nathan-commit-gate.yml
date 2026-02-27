@@ -73,6 +73,7 @@ jobs:
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          DISPATCH_REF: ${{ github.event.repository.default_branch }}
         shell: bash
         run: |
           set -euo pipefail
@@ -81,12 +82,16 @@ jobs:
             echo "Missing PR head ref; cannot dispatch."
             exit 1
           fi
+          if [[ -z "${DISPATCH_REF:-}" ]]; then
+            echo "Missing repository default branch; cannot dispatch."
+            exit 1
+          fi
 
-          echo "Dispatching trigger-n8n-workflow.yml for PR #${PR_NUMBER} on ref ${HEAD_REF}"
+          echo "Dispatching trigger-n8n-workflow.yml for PR #${PR_NUMBER} (workflow ref=${DISPATCH_REF}, PR ref=${HEAD_REF})"
           dispatch_output=""
           if dispatch_output="$(
             gh api -X POST "repos/${REPO}/actions/workflows/trigger-n8n-workflow.yml/dispatches" \
-              -f ref="${HEAD_REF}" \
+              -f ref="${DISPATCH_REF}" \
               -f inputs[pr_number]="${PR_NUMBER}" 2>&1
           )"; then
             exit 0
@@ -99,7 +104,7 @@ jobs:
             sleep 2
             if dispatch_output="$(
               gh api -X POST "repos/${REPO}/actions/workflows/trigger-n8n-workflow.yml/dispatches" \
-                -f ref="${HEAD_REF}" \
+                -f ref="${DISPATCH_REF}" \
                 -f inputs[pr_number]="${PR_NUMBER}" 2>&1
             )"; then
               exit 0
