@@ -37,10 +37,6 @@ jobs:
       pr_number: ${{ steps.run_context.outputs.pr_number }}
       repository: ${{ steps.run_context.outputs.repository }}
       run_url: ${{ steps.run_context.outputs.run_url }}
-      response_payload: ${{ steps.send_payload.outputs.response_payload }}
-      response_signature: ${{ steps.send_payload.outputs.response_signature }}
-      response_body_raw: ${{ steps.send_payload.outputs.response_body_raw }}
-      response_body_len: ${{ steps.send_payload.outputs.response_body_len || '0' }}
       cancelled: ${{ steps.send_payload.outputs.cancelled }}
       send_executed: ${{ steps.send_payload.outputs.executed }}
       send_error: ${{ steps.send_payload.outputs.error }}
@@ -274,31 +270,37 @@ jobs:
       - name: Capture run context
         id: run_context
         run: |
-          echo pr_number=${PR_NUMBER} >> $GITHUB_OUTPUT
-          echo repository=${GITHUB_REPOSITORY} >> $GITHUB_OUTPUT
-          echo run_url=${GITHUB_SERVER_URL:-https://github.com}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID} >> $GITHUB_OUTPUT
+          echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
+          echo "repository=${GITHUB_REPOSITORY}" >> "$GITHUB_OUTPUT"
+          echo "run_url=${GITHUB_SERVER_URL:-https://github.com}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> "$GITHUB_OUTPUT"
 
       # Step 3: Pre-flight validation
       - name: Validate setup
         if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN }}
+        shell: bash
         run: |
-          if [[ -z ${{ secrets.GITHUB_TOKEN }} ]]; then
-            echo Missing GITHUB_TOKEN secret.
+          set -euo pipefail
+
+          if [[ -z "${GH_TOKEN:-}" ]]; then
+            echo "Missing GITHUB_TOKEN secret."
             exit 1
           fi
 
-          if [[ -z ${PR_NUMBER} ]]; then
-            echo No PR number provided. For manual runs, supply pr_number input.
+          if [[ -z "${PR_NUMBER:-}" ]]; then
+            echo "No PR number provided. For manual runs, supply pr_number input."
             exit 1
           fi
 
-          if [[ -z ${{ secrets.N8N_SENDING_TOKEN }} ]]; then
-            echo Missing N8N_SENDING_TOKEN secret.
+          if [[ -z "${N8N_SENDING_TOKEN:-}" ]]; then
+            echo "Missing N8N_SENDING_TOKEN secret."
             exit 1
           fi
 
           if [[ ${IS_MANUAL_RUN} == true ]]; then
-            echo ℹ️ Maintainer-triggered run for PR #${PR_NUMBER}
+            echo "ℹ️ Maintainer-triggered run for PR #${PR_NUMBER}"
           fi
 
       # Step 4: Fetch PR metadata, files, commits
@@ -741,9 +743,6 @@ jobs:
             echo "executed=true"
             echo "error=false"
             echo "skip_reason="
-            echo "response_signature="
-            echo "response_body_raw="
-            echo "response_body_len=0"
           } >> "$GITHUB_OUTPUT"
 
           EXPECTED_SHA="$(printf '%s' "${COMMIT_SHA:-}" | tr -d '\r\n')"
@@ -906,11 +905,6 @@ jobs:
           # Remove payload quickly (after retries)
           if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
 
-          RAW_BODY_LEN="$(printf '%s' "$HTTP_BODY" | wc -c | tr -d '[:space:]')"
-          echo "response_body_len=${RAW_BODY_LEN:-0}" >> "$GITHUB_OUTPUT"
-          RAW_BODY_B64="$(printf '%s' "$HTTP_BODY" | base64 -w 0)"
-          echo "response_body_raw=${RAW_BODY_B64}" >> "$GITHUB_OUTPUT"
-
           HEADER_SIG="$(python3 - <<'PY' "$HEADER_FILE"
           import sys
           from pathlib import Path
@@ -924,7 +918,6 @@ jobs:
           print(sig, end="")
           PY
           )"
-          echo "response_signature=${HEADER_SIG}" >> "$GITHUB_OUTPUT"
 
           if [[ "$STATUS" == "cancelled" ]]; then
             echo "n8n workflow reported cancellation; skipping downstream processing."
@@ -963,9 +956,6 @@ jobs:
               fi
             fi
           fi
-
-          BODY_B64=$(printf '%s' "$SANITIZED_BODY" | base64 -w 0)
-          echo "response_payload=${BODY_B64}" >> "$GITHUB_OUTPUT"
 
           # Persist response for downstream job via artifact (job outputs are often suppressed as "may contain secret").
           printf '%s' "$SANITIZED_BODY" > response_body_sanitized.json
@@ -1100,7 +1090,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - gather-and-send
-    if: ${{ needs.gather-and-send.result == 'success' }}
+    if: ${{ needs.gather-and-send.result == 'success' && needs.gather-and-send.outputs.should_send == 'true' }}
     permissions:
       actions: read
     outputs:
@@ -1122,22 +1112,22 @@ jobs:
           CUR="${CUR_ATTEMPT:-1}"
           if [[ ! "$CUR" =~ ^[0-9]+$ ]]; then CUR=1; fi
 
-          best="$(
-            gh api -H "Accept: application/vnd.github+json" "repos/${REPO}/actions/runs/${RUN_ID}/artifacts" 2>/dev/null \
-              | jq -c --argjson cur "$CUR" '
-                  [
-                    .artifacts[]?
-                    | select((.expired | not) and (.name | test("^n8n-response-[0-9]+$")))
-                    | .name as $name
-                    | ($name | capture("^n8n-response-(?<n>[0-9]+)$").n | tonumber) as $n
-                    | {name:$name, n:$n}
-                    | select(.n <= $cur)
-                  ]
-                  | sort_by(.n)
-                  | last // empty
-                ' 2>/dev/null \
-              || true
-          )"
+            best="$(
+              gh api -H "Accept: application/vnd.github+json" "repos/${REPO}/actions/runs/${RUN_ID}/artifacts" 2>/dev/null \
+                | jq -c --argjson cur "$CUR" '
+                    [
+                      .artifacts[]?
+                      | select((.expired | not) and (.name | test("^n8n-response-[0-9]+$")))
+                      | .name as $name
+                      | ($name | capture("^n8n-response-(?<n>[0-9]+)$").n | tonumber) as $n
+                      | {name:$name, n:$n}
+                      | select(.n == $cur)
+                    ]
+                    | sort_by(.n)
+                    | last // empty
+                  ' 2>/dev/null \
+                || true
+            )"
 
           if [[ -z "${best:-}" ]]; then
             echo "has_response_artifact=false" >> "$GITHUB_OUTPUT"
@@ -1161,7 +1151,7 @@ jobs:
     needs:
       - gather-and-send
       - detect-n8n-response
-    if: ${{ needs.gather-and-send.result == 'success' && needs.detect-n8n-response.outputs.has_response_artifact == 'true' }}
+    if: ${{ needs.gather-and-send.result == 'success' && needs.gather-and-send.outputs.should_send == 'true' && needs.detect-n8n-response.outputs.has_response_artifact == 'true' }}
     environment: n8n-receiving
     permissions:
       contents: read
@@ -1199,12 +1189,12 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [[ -z "${N8N_RECEIVING_TOKEN:-}" ]]; then
-            echo "Missing N8N_RECEIVING_TOKEN secret in the n8n-receiving environment; cannot verify response signature."
-            exit 1
-          fi
-
           echo "verified=false" >> "$GITHUB_OUTPUT"
+
+          if [[ -z "${N8N_RECEIVING_TOKEN:-}" ]]; then
+            echo "Missing N8N_RECEIVING_TOKEN secret in the n8n-receiving environment; skipping commenting (response not authenticated)."
+            exit 0
+          fi
 
           if [[ ! -s response_signature.txt ]]; then
             echo "Missing response signature from artifact while N8N_RECEIVING_TOKEN is configured; failing response signature verification."
