@@ -23,7 +23,7 @@ Doc-Content: https://docs.moonbeam.network/builders/integrations/indexers/covale
 --- BEGIN CONTENT ---
 ---
 title: GoldRush API
-description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related on-chain data.
+description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam and Moonriver for balances, transactions, logs, and related on-chain data.
 categories: Indexers and Queries
 ---
 
@@ -33,7 +33,7 @@ categories: Indexers and Queries
 
 [GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, provides structured blockchain data APIs for developers building wallets, dashboards, analytics, and automation tooling. Instead of stitching data from many RPC calls, you can query balances, transactions, token transfers, logs, and chain metadata through REST endpoints.
 
-On Moonbeam networks, GoldRush can be used to read both historical and current on-chain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
+On Moonbeam networks, GoldRush can be used to read both historical and current on-chain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank} and [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
 
 <div class="intro-disclaimer">
   The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
@@ -62,13 +62,6 @@ Use the following network values in path parameters:
     |:-----------:|:----------------------------------------:|
     | `chainName` |          `moonbeam-moonriver`            |
     |  `chainID`  | `{{ networks.moonriver.chain_id }}`      |
-
-=== "Moonbase Alpha"
-
-    |  Parameter  |                    Value                    |
-    |:-----------:|:-------------------------------------------:|
-    | `chainName` |           `moonbeam-moonbase-alpha`         |
-    |  `chainID`  | `{{ networks.moonbase.chain_id }}`          |
 
 ## API Usage {: #api-usage }
 
@@ -164,7 +157,6 @@ For the complete and most current endpoint list, refer to the [Foundational API 
 - [GoldRush supported chains](https://goldrush.dev/chains/){target=\_blank}
 - [Moonbeam chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}
 - [Moonriver chain page on GoldRush](https://goldrush.dev/docs/chains/moonriver){target=\_blank}
-- [Moonbase Alpha chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}
 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
