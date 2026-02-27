@@ -198,17 +198,65 @@ jobs:
           fi
 
           existing=""
+          queried=false
           for attempt in 1 2; do
-            if existing="$(gh api -H "Accept: application/vnd.github+json" "repos/${REPO}/commits/${COMMIT_SHA}/check-runs" 2>/dev/null)"; then
+            ok=true
+            matches_ndjson=""
+            page=1
+            total_count=0
+            max_pages=1
+
+            while :; do
+              resp="$(gh api -H "Accept: application/vnd.github+json" \
+                "repos/${REPO}/commits/${COMMIT_SHA}/check-runs" \
+                -f per_page=100 -f page="$page" 2>/dev/null)" || {
+                  ok=false
+                  break
+                }
+
+              if [[ "$page" -eq 1 ]]; then
+                total_count="$(printf '%s' "$resp" | jq -r '.total_count // 0' 2>/dev/null || echo 0)"
+                if [[ ! "${total_count:-}" =~ ^[0-9]+$ ]]; then total_count=0; fi
+                max_pages=$(( (total_count + 99) / 100 ))
+                if [[ "$max_pages" -lt 1 ]]; then max_pages=1; fi
+              fi
+
+              page_matches="$(
+                printf '%s' "$resp" \
+                  | jq -c --arg n "$CHECK_NAME" \
+                      '.check_runs[]? | select(.name==$n)
+                       | {id:(.id//0), status:(.status//""), conclusion:(.conclusion//""), summary:(.output.summary // "")}' \
+                      2>/dev/null \
+                  || true
+              )"
+              if [[ -n "${page_matches:-}" ]]; then
+                matches_ndjson+="${page_matches}"$'\n'
+              fi
+
+              if [[ "$page" -ge "$max_pages" ]]; then
+                break
+              fi
+              page=$((page + 1))
+            done
+
+            if [[ "$ok" == "true" ]]; then
+              queried=true
+              existing="$(printf '%s' "${matches_ndjson:-}" | jq -s 'max_by(.id) // empty' 2>/dev/null || true)"
               break
             fi
+
             sleep 2
           done
 
+          if [[ "${queried}" != "true" ]]; then
+            echo "⚠️ Unable to query existing check-runs; proceeding without one-shot enforcement."
+            exit 0
+          fi
+
           if [[ -n "${existing:-}" ]]; then
-            status="$(printf '%s' "$existing" | jq -r --arg n "$CHECK_NAME" '.check_runs[]? | select(.name==$n) | .status' | tail -n1)"
-            conclusion="$(printf '%s' "$existing" | jq -r --arg n "$CHECK_NAME" '.check_runs[]? | select(.name==$n) | .conclusion // ""' | tail -n1)"
-            summary="$(printf '%s' "$existing" | jq -r --arg n "$CHECK_NAME" '.check_runs[]? | select(.name==$n) | .output.summary // ""' | tail -n1)"
+            status="$(printf '%s' "$existing" | jq -r '.status // ""' 2>/dev/null || echo "")"
+            conclusion="$(printf '%s' "$existing" | jq -r '.conclusion // ""' 2>/dev/null || echo "")"
+            summary="$(printf '%s' "$existing" | jq -r '.summary // ""' 2>/dev/null || echo "")"
 
             if [[ -n "${status:-}" ]]; then
               if [[ "$status" == "in_progress" || "$status" == "queued" ]]; then
@@ -234,9 +282,6 @@ jobs:
                 echo "Previous run failed for ${COMMIT_SHA}; allowing retry."
               fi
             fi
-          else
-            echo "⚠️ Unable to query existing check-runs; proceeding without one-shot enforcement."
-            exit 0
           fi
 
           started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -913,6 +958,11 @@ jobs:
           print(sig, end="")
           PY
           )"
+          if [[ -z "${HEADER_SIG:-}" ]]; then
+            echo "Missing X-Response-Signature header from n8n; treating as error and skipping downstream processing."
+            echo "error=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
           if [[ "$STATUS" == "cancelled" ]]; then
             echo "n8n workflow reported cancellation; skipping downstream processing."
