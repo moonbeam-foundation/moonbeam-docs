@@ -83,6 +83,28 @@ jobs:
           fi
 
           echo "Dispatching trigger-n8n-workflow.yml for PR #${PR_NUMBER} on ref ${HEAD_REF}"
-          gh api -X POST "repos/${REPO}/actions/workflows/trigger-n8n-workflow.yml/dispatches" \
-            -f ref="${HEAD_REF}" \
-            -f inputs[pr_number]="${PR_NUMBER}"
+          dispatch_output=""
+          if dispatch_output="$(
+            gh api -X POST "repos/${REPO}/actions/workflows/trigger-n8n-workflow.yml/dispatches" \
+              -f ref="${HEAD_REF}" \
+              -f inputs[pr_number]="${PR_NUMBER}" 2>&1
+          )"; then
+            exit 0
+          fi
+
+          rc=$?
+          echo "$dispatch_output"
+          if [[ "$dispatch_output" == *"Failed to run workflow dispatch"* && "$dispatch_output" == *"\"status\":500"* ]]; then
+            echo "Transient GitHub 500 while dispatching workflow; retrying once..."
+            sleep 2
+            if dispatch_output="$(
+              gh api -X POST "repos/${REPO}/actions/workflows/trigger-n8n-workflow.yml/dispatches" \
+                -f ref="${HEAD_REF}" \
+                -f inputs[pr_number]="${PR_NUMBER}" 2>&1
+            )"; then
+              exit 0
+            fi
+            echo "$dispatch_output"
+          fi
+
+          exit $rc

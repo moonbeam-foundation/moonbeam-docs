@@ -1001,7 +1001,7 @@ jobs:
           echo "ok=true" >> "$GITHUB_OUTPUT"
 
       - name: Upload n8n response artifact
-        if: ${{ steps.send_payload.outputs.executed == 'true' && steps.send_payload.outputs.error != 'true' }}
+        if: ${{ steps.send_payload.outputs.executed == 'true' && steps.send_payload.outputs.error != 'true' && steps.send_payload.outputs.ok == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: n8n-response-${{ github.run_attempt }}
@@ -1191,6 +1191,7 @@ jobs:
           echo "restored=true" >> "$GITHUB_OUTPUT"
 
       - name: Verify n8n response signature
+        id: verify_sig
         if: ${{ steps.restore_payload.outputs.restored == 'true' }}
         env:
           N8N_RECEIVING_TOKEN: ${{ secrets.N8N_RECEIVING_TOKEN }}
@@ -1198,16 +1199,19 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [[ ! -s response_signature.txt ]]; then
-            echo "Missing response signature from artifact; skipping response signature verification."
-            exit 0
-          fi
-          if [[ ! -f payload_for_sig.txt ]]; then
-            echo "Missing payload_for_sig.txt from artifact; skipping response signature verification."
-            exit 0
-          fi
           if [[ -z "${N8N_RECEIVING_TOKEN:-}" ]]; then
             echo "Missing N8N_RECEIVING_TOKEN secret in the n8n-receiving environment; cannot verify response signature."
+            exit 1
+          fi
+
+          echo "verified=false" >> "$GITHUB_OUTPUT"
+
+          if [[ ! -s response_signature.txt ]]; then
+            echo "Missing response signature from artifact while N8N_RECEIVING_TOKEN is configured; failing response signature verification."
+            exit 1
+          fi
+          if [[ ! -f payload_for_sig.txt ]]; then
+            echo "Missing payload_for_sig.txt from artifact while N8N_RECEIVING_TOKEN is configured; failing response signature verification."
             exit 1
           fi
 
@@ -1225,9 +1229,11 @@ jobs:
             exit 1
           fi
 
+          echo "verified=true" >> "$GITHUB_OUTPUT"
+
       - name: Summarize n8n response
         id: response_summary
-        if: ${{ steps.restore_payload.outputs.restored == 'true' }}
+        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -1280,11 +1286,11 @@ jobs:
 
       - name: Guard PR head SHA before commenting
         id: comment_guard
-        if: ${{ steps.restore_payload.outputs.restored == 'true' }}
+        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          PR: ${{ github.event.inputs.pr_number }}
+          PR: ${{ needs.gather-and-send.outputs.pr_number || github.event.inputs.pr_number }}
           EXPECTED_SHA_FROM_SEND: ${{ needs.gather-and-send.outputs.commit_sha }}
           EXPECTED_SHA_FROM_N8N: ${{ steps.response_summary.outputs.head_sha }}
         shell: bash
@@ -1321,11 +1327,11 @@ jobs:
           echo "should_post=true" >> "$GITHUB_OUTPUT"
 
       - name: Post skip notice when PR head changed
-        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.comment_guard.outputs.should_post != 'true' }}
+        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post != 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          PR: ${{ github.event.inputs.pr_number }}
+          PR: ${{ needs.gather-and-send.outputs.pr_number || github.event.inputs.pr_number }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           EXPECTED_SHA: ${{ steps.comment_guard.outputs.expected_sha }}
           CURRENT_SHA: ${{ steps.comment_guard.outputs.current_sha }}
@@ -1362,11 +1368,11 @@ jobs:
             -d "$PAYLOAD" >/dev/null
 
       - name: Post ack when n8n returned no suggestions
-        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions != 'true' }}
+        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions != 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          PR: ${{ github.event.inputs.pr_number }}
+          PR: ${{ needs.gather-and-send.outputs.pr_number || github.event.inputs.pr_number }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           COMMIT_SHA: ${{ steps.comment_guard.outputs.expected_sha }}
         shell: bash
@@ -1400,7 +1406,7 @@ jobs:
 
       # Step 16: Prepare grouped review batches
       - name: Prepare batched review payloads
-        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions == 'true' }}
+        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions == 'true' }}
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -1499,7 +1505,7 @@ jobs:
 
       # Step 17: Post grouped inline suggestions
       - name: Post batched inline suggestions
-        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions == 'true' }}
+        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -1579,7 +1585,7 @@ jobs:
 
       # Step 18: Publish any verification reviews
       - name: Post verification comments
-        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.comment_guard.outputs.should_post == 'true' }}
+        if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
