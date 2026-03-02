@@ -12,7 +12,7 @@
     |    Moonscan    |    EVM    |                                [https://moonriver.moonscan.io/](https://moonriver.moonscan.io){target=\_blank}                                 |
     |   Expedition   |    EVM    |      [https://moonbeam-explorer.netlify.app/?network=Moonriver](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=\_blank}      |
     |    Subscan     | Substrate |                                 [https://moonriver.subscan.io/](https://moonriver.subscan.io){target=\_blank}                                  |
-    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonrvier.moonbeam.network#/explorer){target=\_blank} |
+    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/explorer){target=\_blank} |
 
 === "Moonbase Alpha"
     | Block Explorer |   Type    |                                                                      URL                                                                       |

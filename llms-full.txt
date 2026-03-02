@@ -65,7 +65,7 @@ Documentation: https://docs.moonbeam.network/
 [Add Token Information on Moonscan](Tokens and Accounts, Ethereum Toolkit): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/get-started/token-profile.md) (Add token information and create a token profile on Moonscan for ERC-20, ERC-721, and ERC-1155 tokens deployed to Moonbeam-based networks.)
 [A Hub for Developers Building on Moonbeam](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/index.md) (Guides for getting started and developing on Moonbeam. Learn how to use the Ethereum & Substrate APIs, XCM interoperability, and available integrations.)
 [Integrations on Moonbeam](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/index.md) (Learn about the available integrations on Moonbeam to ease your DApp development, including bridges, indexers, oracles, and wallets.)
-[GoldRush API](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/covalent.md) (Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related on-chain data.)
+[GoldRush API](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/covalent.md) (Learn how to use the GoldRush (formerly Covalent) API on Moonbeam and Moonriver for balances, transactions, logs, and related on-chain data.)
 [Indexers and APIs](No categories available.): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/index.md) (Learn how to build your own API or consume API endpoints from any of the supported REST or GraphQL-based indexers on Moonbeam.)
 [Index Data with SubQuery & GraphQL](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/subquery.md) (Learn how to use SubQuery to index Substrate and EVM chain data for Moonbeam and Moonriver, and query the data using GraphQL.)
 [Index Data with SQD (formerly Subsquid)](Indexers and Queries): (https://raw.githubusercontent.com/moonbeam-foundation/moonbeam-docs/refs/heads/master/builders/integrations/indexers/subsquid.md) (Learn how to use SQD (Subsquid), a query node framework for Substrate-based chains, to index and process Substrate and EVM data for Moonbeam and Moonriver.)
@@ -3870,7 +3870,7 @@ Please note that the examples in this section require installing [wscat](https:/
 
     === "Parameters"
 
-        - `subscription_name` *string* - the type of the event to subscribe to. The [supported subscription](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#create-subscriptions#supported-subscriptions){target=\_blank} types are:
+        - `subscription_name` *string* - the type of the event to subscribe to. The [supported subscription](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#supported-subscriptions){target=\_blank} types are:
             - [`newHeads`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newheads){target=\_blank} — triggers a notification each time a new header is appended to the chain
             - [`logs`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#logs){target=\_blank} — returns logs that are included in new imported blocks and match a given filter criteria
             - [`newPendingTransactions`](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub#newpendingtransactions){target=\_blank} — returns the hash for all transactions that are added to the pending state
@@ -15682,7 +15682,7 @@ Moonbeam provides two different kinds of explorers: ones to query the Ethereum A
     |    Moonscan    |    EVM    |                                [https://moonriver.moonscan.io/](https://moonriver.moonscan.io){target=\_blank}                                 |
     |   Expedition   |    EVM    |      [https://moonbeam-explorer.netlify.app/?network=Moonriver](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=\_blank}      |
     |    Subscan     | Substrate |                                 [https://moonriver.subscan.io/](https://moonriver.subscan.io){target=\_blank}                                  |
-    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonrvier.moonbeam.network#/explorer){target=\_blank} |
+    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/explorer){target=\_blank} |
 
 === "Moonbase Alpha"
     | Block Explorer |   Type    |                                                                      URL                                                                       |
@@ -15735,7 +15735,7 @@ By default, the explorer is connected to Moonbeam. However, you can switch to Mo
 
 ### Polkadot.js {: #polkadotjs }
 
-While not a full-featured block explorer, Polkadot.js Apps is a convenient option especially for users running local development nodes to view events and query transaction hashes. Polkadot.js Apps uses the WebSocket endpoint to interact with the Network. You can easily connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/explorer){target=\_blank}, [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbase.moonbeam.network#/explorer){target=\_blank}, or [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank}.
+While not a full-featured block explorer, Polkadot.js Apps is a convenient option especially for users running local development nodes to view events and query transaction hashes. Polkadot.js Apps uses the WebSocket endpoint to interact with the Network. You can easily connect to [Moonbeam](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbeam.network#/explorer){target=\_blank}, [Moonriver](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/explorer){target=\_blank}, or [Moonbase Alpha](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonbase.moonbeam.network#/explorer){target=\_blank}.
 
 ![Polkadot.js Moonbeam](/images/builders/get-started/explorers/explorers-4.webp)
 
@@ -16686,7 +16686,7 @@ Moonbeam provides two different kinds of explorers: ones to query the Ethereum A
     |    Moonscan    |    EVM    |                                [https://moonriver.moonscan.io/](https://moonriver.moonscan.io){target=\_blank}                                 |
     |   Expedition   |    EVM    |      [https://moonbeam-explorer.netlify.app/?network=Moonriver](https://moonbeam-explorer.netlify.app/?network=Moonriver){target=\_blank}      |
     |    Subscan     | Substrate |                                 [https://moonriver.subscan.io/](https://moonriver.subscan.io){target=\_blank}                                  |
-    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonrvier.moonbeam.network#/explorer){target=\_blank} |
+    |  Polkadot.js   | Substrate | [https://polkadot.js.org/apps/#/explorer](https://polkadot.js.org/apps/?rpc=wss://wss.api.moonriver.moonbeam.network#/explorer){target=\_blank} |
 
 === "Moonbase Alpha"
     | Block Explorer |   Type    |                                                                      URL                                                                       |
@@ -16927,7 +16927,7 @@ Doc-Content: https://docs.moonbeam.network/builders/integrations/indexers/covale
 --- BEGIN CONTENT ---
 ---
 title: GoldRush API
-description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam, Moonriver, and Moonbase Alpha for balances, transactions, logs, and related on-chain data.
+description: Learn how to use the GoldRush (formerly Covalent) API on Moonbeam and Moonriver for balances, transactions, logs, and related on-chain data.
 categories: Indexers and Queries
 ---
 
@@ -16937,7 +16937,7 @@ categories: Indexers and Queries
 
 [GoldRush](https://goldrush.dev/){target=\_blank}, formerly known as Covalent, provides structured blockchain data APIs for developers building wallets, dashboards, analytics, and automation tooling. Instead of stitching data from many RPC calls, you can query balances, transactions, token transfers, logs, and chain metadata through REST endpoints.
 
-On Moonbeam networks, GoldRush can be used to read both historical and current on-chain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}, [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}, and [Moonbase Alpha](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
+On Moonbeam networks, GoldRush can be used to read both historical and current on-chain data for [Moonbeam](https://goldrush.dev/docs/chains/moonbeam){target=\_blank} and [Moonriver](https://goldrush.dev/docs/chains/moonriver){target=\_blank}. This page is a concise integration guide focused on the most common setup values and endpoint groups.
 
 <div class="intro-disclaimer">
   The information presented herein is for informational purposes only and has been provided by third parties. Moonbeam does not endorse any project listed and described on the Moonbeam docs website (https://docs.moonbeam.network/).
@@ -16966,13 +16966,6 @@ Use the following network values in path parameters:
     |:-----------:|:----------------------------------------:|
     | `chainName` |          `moonbeam-moonriver`            |
     |  `chainID`  | `{{ networks.moonriver.chain_id }}`      |
-
-=== "Moonbase Alpha"
-
-    |  Parameter  |                    Value                    |
-    |:-----------:|:-------------------------------------------:|
-    | `chainName` |           `moonbeam-moonbase-alpha`         |
-    |  `chainID`  | `{{ networks.moonbase.chain_id }}`          |
 
 ## API Usage {: #api-usage }
 
@@ -17068,7 +17061,6 @@ For the complete and most current endpoint list, refer to the [Foundational API 
 - [GoldRush supported chains](https://goldrush.dev/chains/){target=\_blank}
 - [Moonbeam chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam){target=\_blank}
 - [Moonriver chain page on GoldRush](https://goldrush.dev/docs/chains/moonriver){target=\_blank}
-- [Moonbase Alpha chain page on GoldRush](https://goldrush.dev/docs/chains/moonbeam-moonbase-alpha){target=\_blank}
 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
@@ -19184,7 +19176,7 @@ categories: GMP Providers
 
 [Hyperlane](https://hyperlane.xyz/){target=\_blank} is a security-modular cross-chain communication protocol for Web3. Hyperlane enables dApp users to interact with any asset or application, on any connected chain, with one click. It supports general asset transfer as well as custom cross-chain messaging.  
 
-Using [Interchain Security Modules (ISMs)](https://docs.hyperlane.xyz/docs/protocol/ISM/modular-security){target=\_blank}, Hyperlane allows developers to configure the method by which messages are sent and validated across chains. Hyperlane is composed of validators, relayers, and watchtowers. [Validators](https://v2.hyperlane.xyz/docs/protocol/agents/validators){target=\_blank} will watch for and confirm cross-chain messages. [Relayers](https://v2.hyperlane.xyz/docs/protocol/agents/relayer){target=\_blank} spend the gas to send messages across chains. [Watchtowers](https://v2.hyperlane.xyz/docs/protocol/agents/processor){target=\_blank} perform checks to ensure that validators are good-faith actors, securing the protocol. Take a look at the tech stack diagram and their [protocol documentation](https://docs.hyperlane.xyz/docs/protocol/protocol-overview){target=\_blank} for more details.
+Using [Interchain Security Modules (ISMs)](https://docs.hyperlane.xyz/docs/protocol/ISM/modular-security){target=\_blank}, Hyperlane allows developers to configure the method by which messages are sent and validated across chains. Hyperlane is composed of validators, relayers, and watchtowers. [Validators](https://docs.hyperlane.xyz/docs/protocol/agents/validators){target=\_blank} will watch for and confirm cross-chain messages. [Relayers](https://docs.hyperlane.xyz/docs/protocol/agents/relayer){target=\_blank} spend the gas to send messages across chains. [Watchtowers](https://docs.hyperlane.xyz/docs/protocol/agents/overview){target=\_blank} perform checks to ensure that validators are good-faith actors, securing the protocol. Take a look at the tech stack diagram and their [protocol documentation](https://docs.hyperlane.xyz/docs/protocol/protocol-overview){target=\_blank} for more details.
 
 ![Hyperlane Technology Stack diagram](/images/builders/interoperability/protocols/hyperlane/hyperlane-1.webp)
 
@@ -19198,14 +19190,14 @@ The Hyperlane APIs provide a rich suite for developing Web3 applications, ensuri
 
 There are a couple of resources to get you started building cross-chain applications with Hyperlane:
 
-- **[Developer documentation](https://v2.hyperlane.xyz/docs/build-with-hyperlane/guides){target=\_blank}** - for technical guides
+- **[Developer documentation](https://docs.hyperlane.xyz/docs/get-started-building){target=\_blank}** - for technical guides
 - **[Hyperlane Explorer](https://explorer.hyperlane.xyz){target=\_blank}** - to track cross-chain transfers
 
 ## Contracts {: #contracts }
 
 See the list of Hyperlane contracts deployed to Moonbeam, and the networks connected to Moonbeam through Hyperlane.
 
-- [MainNet and TestNet Contracts](https://v2.hyperlane.xyz/docs/resources/addresses/permissionless){target=\_blank}
+- [MainNet and TestNet Contracts](https://docs.hyperlane.xyz/docs/reference/addresses/validators/mainnet-default-ism-validators#moonbeam-1284){target=\_blank}
 
 <div class="page-disclaimer">
   The information presented herein has been provided by third parties and is made available solely for general information purposes. Moonbeam does not endorse any project listed and described on the Moonbeam Doc Website (https://docs.moonbeam.network/). Moonbeam Foundation does not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. Moonbeam Foundation disclaims all liability and responsibility arising from any reliance placed on this information by you or by anyone who may be informed of any of its contents. All statements and/or opinions expressed in these materials are solely the responsibility of the person or entity providing those materials and do not necessarily represent the opinion of Moonbeam Foundation. The information should not be construed as professional or financial advice of any kind. Advice from a suitably qualified professional should always be sought in relation to any particular matter or circumstance. The information herein may link to or integrate with other websites operated or content provided by third parties, and such other websites may link to this website. Moonbeam Foundation has no control over any such other websites or their content and will have no liability arising out of or related to such websites or their content. The existence of any such link does not constitute an endorsement of such websites, the content of the websites, or the operators of the websites. These links are being provided to you only as a convenience and you release and hold Moonbeam Foundation harmless from any and all liability arising from your use of this information or the information provided by any third-party website or service.
@@ -31680,7 +31672,7 @@ Therefore, Ethereum has two main types of accounts: user-owned and contract-owne
 
 An account on Moonbeam is also an entity with a token balance (the token will depend on the network). Like on Ethereum, account holders can send token transactions on the Moonbeam Network they are connected to. In addition, accounts can be controlled by users (with the private key for signing) or smart contracts.
 
-As with Ethereum, there are two main types of accounts: user-owned and contract owned. However, on Moonbeam, within both account types, there are also [proxy accounts](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank}, which can perform a limited number of actions on behalf of another account. In terms of balances, all of Moonbeam account types have five (5) different [balance types](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=\_blank}:
+As with Ethereum, there are two main types of accounts: user-owned and contract owned. However, on Moonbeam, within both account types, there are also [proxy accounts](https://wiki.polkadot.com/learn/learn-proxies/){target=\_blank}, which can perform a limited number of actions on behalf of another account. In terms of balances, all of Moonbeam account types have five (5) different [balance types](https://wiki.polkadot.com/learn/learn-accounts/#balance-types){target=\_blank}:
 
  - **Free** — refers to the balance that can be used (not locked/frozen) from the Substrate API. The concept of `free` balance depends on the action to be executed. For example, voting in democracy will not subtract the allocated balance to the vote from `free` balance, but token holders won't be able to transfer that balance
  - **Reducible** — refers to the balance that can be used (not locked/frozen) through the Ethereum API on Moonbeam. For example, this is the balance displayed by MetaMask. It is the real spendable balance, accounting for all democracy locks (displayed as transferable in Polkadot.js Apps)
@@ -32397,7 +32389,7 @@ One of the key network participants needed to support parachains within the Polk
 
 ### Delegators {: #delegators }
 
-Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types){target=\_blank} can become a delegator by staking their tokens.
+Moonbeam token holders who stake tokens, vouching for specific collator candidates on the parachain. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types){target=\_blank} can become a delegator by staking their tokens.
 
 ### Nominators {: #nominators }
 
@@ -37389,7 +37381,7 @@ Some important parameters to understand in relation to the staking system on Moo
  - **Round** — a specific number of blocks around which staking actions are enforced. For example, new delegations are enacted when the next round starts. When bonding less or revoking delegations, funds are returned after a specified number of rounds
  - **Candidates** - node operators that are eligible to become block producers if they can acquire enough stake to be in the active set
  - **Collators** — active set of candidates that are selected to be block producers. They collect transactions from users and produce state transition proofs for the relay chain to validate
- - **Delegators** — token holders who stake tokens, vouching for specific collator candidates. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types#balance-types) can become a delegator
+ - **Delegators** — token holders who stake tokens, vouching for specific collator candidates. Any user that holds a minimum amount of tokens as [free balance](https://wiki.polkadot.com/learn/learn-accounts/#balance-types) can become a delegator
  - **Minimum delegation per candidate** — minimum amount of tokens to delegate candidates once a user is in the set of delegators
  - **Maximum delegators per candidate** — maximum number of delegators, by staked amount, that a candidate can have which are eligible to receive staking rewards
  - **Maximum delegations** — maximum number of candidates a delegator can delegate
