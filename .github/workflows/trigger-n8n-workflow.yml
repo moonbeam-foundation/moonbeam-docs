@@ -17,10 +17,13 @@ permissions:
   pull-requests: read
   checks: write
 
+concurrency:
+  group: nathan-${{ github.repository }}-${{ github.event.inputs.pr_number || github.event.inputs.pr_selector || 'unknown' }}
+  cancel-in-progress: false
+
 
 jobs:
   gather-and-send:
-    # Runs via workflow_dispatch only (dispatched by the commit-gate workflow or a maintainer).
     if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     environment: n8n-sending
@@ -33,7 +36,7 @@ jobs:
       commit_sha: ${{ steps.sha_guard.outputs.head_sha || steps.trigger_phrase.outputs.commit_sha || '' }}
       filtered_file_count: ${{ steps.filter_files.outputs.file_count || '0' }}
       filtered_addition_count: ${{ steps.filter_files.outputs.addition_count || '0' }}
-      should_send: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && (steps.filter_files.outputs.addition_count || '0') != '0' && steps.send_payload.outputs.cancelled != 'true' && steps.send_payload.outputs.error != 'true' }}
+      should_send: ${{ steps.send_payload.outputs.ok == 'true' }}
       pr_number: ${{ steps.run_context.outputs.pr_number }}
       repository: ${{ steps.run_context.outputs.repository }}
       run_url: ${{ steps.run_context.outputs.run_url }}
@@ -46,7 +49,6 @@ jobs:
       IS_MANUAL_RUN: ${{ github.event_name == 'workflow_dispatch' && github.actor != 'github-actions[bot]' }}
       N8N_ROSE_LANGUAGES: ${{ vars.N8N_ROSE_LANGUAGES }}
     steps:
-      # Step 2b: Require dispatcher to have access
       - name: Validate dispatcher permissions
         if: ${{ github.event_name == 'workflow_dispatch' && github.actor != 'github-actions[bot]' }}
         env:
@@ -81,7 +83,6 @@ jobs:
 
           selector="${PR_SELECTOR:-}"
 
-          # If pr_number was provided but isn't numeric (e.g., a URL), treat it like pr_selector.
           if [[ -n "${PR_NUMBER:-}" ]]; then
             if [[ "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
               echo "PR_NUMBER already set to ${PR_NUMBER}"
@@ -314,7 +315,6 @@ jobs:
           echo "repository=${GITHUB_REPOSITORY}" >> "$GITHUB_OUTPUT"
           echo "run_url=${GITHUB_SERVER_URL:-https://github.com}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> "$GITHUB_OUTPUT"
 
-      # Step 3: Pre-flight validation
       - name: Validate setup
         if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' }}
         env:
@@ -343,7 +343,6 @@ jobs:
             echo "ℹ️ Maintainer-triggered run for PR #${PR_NUMBER}"
           fi
 
-      # Step 4: Fetch PR metadata, files, commits
       - name: Fetch PR metadata
         if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' }}
         run: |
@@ -412,7 +411,6 @@ jobs:
           echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
           echo "BASE_SHA=$base_sha" >> "$GITHUB_ENV"
 
-      # Step 1 (moved): Checkout repository at the triggering commit SHA
       - name: Checkout repository
         id: checkout
         continue-on-error: true
@@ -439,6 +437,7 @@ jobs:
           cp "$pr_json_path" pr.json
 
       - name: Fetch PR files and commits (stable compare)
+        id: fetch_compare
         if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -448,6 +447,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          {
+            echo "ok=false"
+            echo "skip_reason="
+          } >> "$GITHUB_OUTPUT"
 
           compare_json=""
           for attempt in 1 2 3; do
@@ -459,15 +462,19 @@ jobs:
 
           if [[ -z "${compare_json:-}" ]]; then
             echo "Unable to fetch compare JSON; skipping gracefully."
+            printf '%s\n' '[]' > files.json
+            printf '%s\n' '[]' > commits.json
+            echo "skip_reason=compare_fetch_failed" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           printf '%s' "$compare_json" | jq '.files // []' > files.json
           printf '%s' "$compare_json" | jq '.commits // []' > commits.json
+          echo "ok=true" >> "$GITHUB_OUTPUT"
 
-      # Step 5: Download stable diff for BASE_SHA...COMMIT_SHA
       - name: Fetch PR diff
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' }}
+        id: fetch_diff
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_compare.outputs.ok == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -476,6 +483,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          {
+            echo "ok=false"
+            echo "skip_reason="
+          } >> "$GITHUB_OUTPUT"
 
           ok=false
           for attempt in 1 2 3; do
@@ -488,13 +499,16 @@ jobs:
 
           if [[ "$ok" != "true" ]]; then
             echo "Unable to fetch compare diff; skipping gracefully."
+            : > pr.diff
+            echo "skip_reason=diff_fetch_failed" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          echo "ok=true" >> "$GITHUB_OUTPUT"
 
       - name: Filter excluded files
         id: filter_files
         shell: bash
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' }}
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_compare.outputs.ok == 'true' }}
         run: |
           set -euo pipefail
 
@@ -521,9 +535,8 @@ jobs:
               print(raw)
               data = []
 
-          # Exclude paths under ".ai" directory (any depth) or any filename containing "llms"
           pattern_ai_dir = re.compile(r'(^|/)\.ai(/|$)', re.IGNORECASE)
-          pattern_llms   = re.compile(r'llms', re.IGNORECASE)
+          pattern_llms_base = re.compile(r'llms', re.IGNORECASE)
 
           langs_raw = (os.environ.get("N8N_ROSE_LANGUAGES") or "").strip()
           excluded_langs = set()
@@ -534,11 +547,22 @@ jobs:
                       continue
                   excluded_langs.add(code)
 
+          _i18n_parents = {
+              "i18n", "l10n", "locale", "locales", "lang",
+              "langs", "messages", "translations", "translation",
+          }
+
           def is_excluded_language_path(path: str) -> bool:
               if not excluded_langs:
                   return False
-              for part in path.split("/"):
-                  if part.lower() in excluded_langs:
+              parts = path.split("/")
+              for idx, part in enumerate(parts):
+                  code = part.lower()
+                  if code not in excluded_langs:
+                      continue
+                  if idx == 0:
+                      return True
+                  if parts[idx - 1].lower() in _i18n_parents:
                       return True
               return False
 
@@ -548,10 +572,11 @@ jobs:
               if not isinstance(item, dict):
                   continue
               filename = item.get("filename") or ""
+              basename = filename.rsplit("/", 1)[-1]
               status = (item.get("status") or "").lower()
               if status == "removed":
                   continue
-              if pattern_ai_dir.search(filename) or pattern_llms.search(filename):
+              if pattern_ai_dir.search(filename) or pattern_llms_base.search(basename):
                   continue
               if is_excluded_language_path(filename):
                   continue
@@ -564,24 +589,23 @@ jobs:
           Path("file_count.txt").write_text(str(len(filtered)), encoding="utf-8")
           Path("addition_count.txt").write_text(str(total_additions), encoding="utf-8")
           PY
-              FILE_COUNT=$(<file_count.txt)
-              ADDITION_COUNT=$(<addition_count.txt)
-              {
-                echo "file_count=${FILE_COUNT}"
-                echo "addition_count=${ADDITION_COUNT}"
-              } >> "$GITHUB_OUTPUT"
-              echo "Remaining files after filter: ${FILE_COUNT}"
-              echo "Total additions after filter: ${ADDITION_COUNT}"
+          FILE_COUNT=$(<file_count.txt)
+          ADDITION_COUNT=$(<addition_count.txt)
+          {
+            echo "file_count=${FILE_COUNT}"
+            echo "addition_count=${ADDITION_COUNT}"
+          } >> "$GITHUB_OUTPUT"
+          echo "Remaining files after filter: ${FILE_COUNT}"
+          echo "Total additions after filter: ${ADDITION_COUNT}"
 
-      # Step 7: Strip excluded paths from diff payload
       - name: Filter diff to excluded paths
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' }}
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_diff.outputs.ok == 'true' }}
         run: |
           python3 - <<'PY'
-          import pathlib, textwrap; exec(textwrap.dedent('''\
           from pathlib import Path
           import os
           import re
+          import shlex
 
           diff_path = Path('pr.diff')
           if not diff_path.exists():
@@ -590,19 +614,33 @@ jobs:
           langs_raw = (os.environ.get("N8N_ROSE_LANGUAGES") or "").strip()
           excluded_langs = set()
           if langs_raw:
-            for tok in re.split(r"[\\s,;]+", langs_raw):
+            for tok in re.split(r"[\s,;]+", langs_raw):
               code = tok.strip().lower()
               if not code or code == "en":
                 continue
               excluded_langs.add(code)
 
+          _i18n_parents = {
+            "i18n", "l10n", "locale", "locales", "lang",
+            "langs", "messages", "translations", "translation",
+          }
+
           def is_excluded_language_path(path: str) -> bool:
             if not excluded_langs:
               return False
-            for part in path.split('/'):
-              if part.lower() in excluded_langs:
+            parts = path.split('/')
+            for idx, part in enumerate(parts):
+              code = part.lower()
+              if code not in excluded_langs:
+                continue
+              if idx == 0:
+                return True
+              if parts[idx - 1].lower() in _i18n_parents:
                 return True
             return False
+
+          def has_llms_in_basename(path: str) -> bool:
+            return "llms" in (path.rsplit("/", 1)[-1].lower())
 
           def is_excluded(path: str) -> bool:
             lower = path.lower()
@@ -610,9 +648,18 @@ jobs:
               '/.ai/' in lower
               or lower.startswith('.ai/')
               or lower.endswith('/.ai')
-              or 'llms' in lower
+              or has_llms_in_basename(path)
               or is_excluded_language_path(path)
             )
+
+          def parse_diff_git_line(line):
+            try:
+              toks = shlex.split(line.strip())
+            except ValueError:
+              return None, None
+            if len(toks) < 4 or toks[0] != "diff" or toks[1] != "--git":
+              return None, None
+            return toks[2], toks[3]
 
           out_lines = []
           current_chunk = []
@@ -625,10 +672,10 @@ jobs:
                           out_lines.extend(current_chunk)
                       current_chunk = [line]
                       exclude_chunk = False
-                      parts = line.strip().split()
-                      if len(parts) >= 4:
-                          a_path = parts[2][2:]
-                          b_path = parts[3][2:]
+                      a_raw, b_raw = parse_diff_git_line(line)
+                      if a_raw and b_raw:
+                          a_path = a_raw[2:] if a_raw.startswith("a/") else a_raw
+                          b_path = b_raw[2:] if b_raw.startswith("b/") else b_raw
                           if is_excluded(a_path) or is_excluded(b_path):
                               exclude_chunk = True
                   else:
@@ -638,44 +685,73 @@ jobs:
               out_lines.extend(current_chunk)
 
           diff_path.write_text(''.join(out_lines), encoding='utf-8')
-          '''))
           PY
 
-      # Step 8: Compress & encode diff for payload
       - name: Compress filtered diff
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' }}
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_diff.outputs.ok == 'true' }}
         run: |
           gzip -c pr.diff > pr.diff.gz
           base64 -w 0 pr.diff.gz > diff.b64
 
+      # FIX #3 — Size guard on pr.diff before parsing (DoS prevention)
+      - name: Guard diff size before processing
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_diff.outputs.ok == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          DIFF_SIZE=$(stat -c%s pr.diff 2>/dev/null || echo 0)
+          MAX_DIFF_BYTES=$((5 * 1024 * 1024))  # 5MB
+          if (( DIFF_SIZE > MAX_DIFF_BYTES )); then
+            echo "⚠️ pr.diff is ${DIFF_SIZE} bytes, exceeding ${MAX_DIFF_BYTES} byte limit. Skipping added_lines build to prevent OOM."
+            # Write empty added_lines so downstream steps don't fail on missing file
+            echo "[]" > added_lines.json
+            echo "diff_too_large=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "diff_too_large=false" >> "$GITHUB_OUTPUT"
+            echo "Diff size ${DIFF_SIZE} bytes is within limit."
+          fi
+        id: diff_size_guard
+
       - name: Build added_lines from diff
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.filter_files.outputs.addition_count != '0' }}
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_diff.outputs.ok == 'true' && steps.filter_files.outputs.addition_count != '0' && steps.diff_size_guard.outputs.diff_too_large != 'true' }}
         run: |
           set -euo pipefail
           python3 - <<'PY'
           import re
+          import shlex
           from pathlib import Path
 
           diff_path = Path("pr.diff")
           if not diff_path.exists():
               raise SystemExit("pr.diff missing")
 
-          # Parse unified diff and extract added lines with their new-file line numbers.
           added_by_file = {}
           current_file = None
           in_hunk = False
           new_line = 0
 
-          diff_git_re = re.compile(r"^diff --git a/(.+?) b/(.+?)\\s*$")
-          hunk_re = re.compile(r"^@@ -\\d+(?:,\\d+)? \\+(\\d+)(?:,\\d+)? @@")
+          hunk_re = re.compile(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@")
 
           for raw in diff_path.read_text(encoding="utf-8", errors="replace").splitlines():
-              m = diff_git_re.match(raw)
-              if m:
-                  current_file = m.group(2)
-                  added_by_file.setdefault(current_file, [])
-                  in_hunk = False
-                  new_line = 0
+              if raw.startswith("diff --git "):
+                  try:
+                      toks = shlex.split(raw.strip())
+                  except ValueError:
+                      current_file = None
+                      in_hunk = False
+                      new_line = 0
+                      continue
+                  if len(toks) >= 4 and toks[0] == "diff" and toks[1] == "--git":
+                      b_raw = toks[3]
+                      if b_raw == "/dev/null":
+                          current_file = None
+                          in_hunk = False
+                          new_line = 0
+                          continue
+                      current_file = b_raw[2:] if b_raw.startswith("b/") else b_raw
+                      added_by_file.setdefault(current_file, [])
+                      in_hunk = False
+                      new_line = 0
                   continue
 
               if current_file is None:
@@ -708,13 +784,10 @@ jobs:
                   )
                   new_line += 1
               elif raw.startswith("-") and not raw.startswith("---"):
-                  # deletion: only old line advances
                   continue
               else:
-                  # context line: both sides advance
                   new_line += 1
 
-          # Convert to added_lines schema (used in n8n payload)
           added_files = []
           file_index = 0
           for file_path, lines in added_by_file.items():
@@ -743,36 +816,52 @@ jobs:
           Path("added_lines.json").write_text(json.dumps(added_files, indent=2), encoding="utf-8")
           PY
 
-      # Step 9: Inspect payload sizes for debugging
       - name: Debug payload size
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' }}
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_compare.outputs.ok == 'true' && steps.fetch_diff.outputs.ok == 'true' }}
         run: |
           echo PR metadata size: $(stat -c%s pr.json) bytes
           echo Files metadata size: $(stat -c%s files.json) bytes
           echo Commits metadata size: $(stat -c%s commits.json) bytes
           echo Compressed diff size: $(stat -c%s pr.diff.gz) bytes
+
+      # FIX #8 — Explicit failure if UUID generation produces empty token
       - name: Generate Run UUID
         id: run_uuid
         shell: bash
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.filter_files.outputs.addition_count != '0' }}
-        run: echo "run_token=$(uuidgen)" >> "$GITHUB_OUTPUT"
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_diff.outputs.ok == 'true' && steps.filter_files.outputs.addition_count != '0' }}
+        run: |
+          set -euo pipefail
+          token=""
+          if command -v uuidgen >/dev/null 2>&1; then
+            token="$(uuidgen)"
+          else
+            token="$(python3 -c 'import uuid; print(uuid.uuid4())')"
+          fi
+          # FIX #8: Explicit guard — empty token would bypass HMAC validation downstream
+          if [[ -z "${token:-}" ]]; then
+            echo "❌ UUID generation failed — both uuidgen and python3 uuid returned empty."
+            exit 1
+          fi
+          echo "run_token=$token" >> "$GITHUB_OUTPUT"
 
       - name: Mask run token
         if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.run_uuid.outputs.run_token != '' }}
         env:
           RUN_TOKEN: ${{ steps.run_uuid.outputs.run_token }}
         run: echo "::add-mask::$RUN_TOKEN"
-        
-      - name: Combine and send to n8n webhook 
+
+      # BLOCKING SEND — no --max-time set, so curl waits as long as n8n needs to respond.
+      # Only --connect-timeout is set to fail fast if n8n is unreachable.
+      # GitHub Actions job timeout (default 6h) is the only ceiling.
+      - name: Combine and send to n8n webhook
         id: send_payload
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.filter_files.outputs.addition_count != '0' }}
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_compare.outputs.ok == 'true' && steps.fetch_diff.outputs.ok == 'true' && steps.filter_files.outputs.addition_count != '0' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
-          # Reused as HMAC secret ONLY (not sent in any header directly)
           N8N_SENDING_TOKEN: ${{ secrets.N8N_SENDING_TOKEN }}
-          RUN_TOKEN: ${{ steps.run_uuid.outputs.run_token }}   # UUID, not GITHUB_TOKEN
+          RUN_TOKEN: ${{ steps.run_uuid.outputs.run_token }}
           N8N_ALLOWED_HOST: ${{ secrets.N8N_ALLOWED_HOST }}
         shell: bash
         run: |
@@ -809,7 +898,7 @@ jobs:
             fi
           }
 
-          # 1) Validate URL & host
+          # Validate webhook URL and allowed host
           HOST="$(python3 -c 'from urllib.parse import urlparse; import sys; u=urlparse(sys.argv[1]); print(u.hostname or "")' "$N8N_WEBHOOK_URL")"
           SCHEME="$(python3 -c 'from urllib.parse import urlparse; import sys; u=urlparse(sys.argv[1]); print(u.scheme or "")' "$N8N_WEBHOOK_URL")"
           if [[ -z "$HOST" || "$SCHEME" != "https" ]]; then
@@ -829,15 +918,20 @@ jobs:
             exit 0
           fi
 
-          # 2) Inputs check
-          for f in pr.json files.json commits.json diff.b64 added_lines.json; do
+          # Validate required files exist
+          for f in pr.json files.json commits.json pr.diff diff.b64 added_lines.json; do
             [[ -f "$f" ]] || { echo "$f missing"; echo "error=true" >> "$GITHUB_OUTPUT"; exit 0; }
           done
+          if [[ ! -s pr.diff ]]; then
+            echo "pr.diff is empty; skipping send."
+            echo "skip_reason=empty_diff" >> "$GITHUB_OUTPUT"
+            echo "cancelled=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
-          # 2b) Skip if PR head moved since we started (after guards)
           guard_head_sha_unchanged
 
-          # 3) Build payload.json (no secrets)
+          # Build payload
           DIFF_BASE64="$(tr -d '\n' < diff.b64)"
           if [[ -z "$DIFF_BASE64" ]]; then
             echo "diff.b64 is empty"
@@ -855,7 +949,6 @@ jobs:
             '{pr: $pr[0], files: $files[0], commits: $commits[0], added_lines: $added[0], diff_base64: $diff_base64, commit_sha: $commit_sha}' \
             > payload.json
 
-          # 4) Size guard
           PAYLOAD_SIZE=$(stat -c%s payload.json)
           MAX_BYTES=$((10*1024*1024))
           if (( PAYLOAD_SIZE > MAX_BYTES )); then
@@ -865,7 +958,6 @@ jobs:
             exit 0
           fi
 
-          # 5) Compute HMAC over payload.json using N8N_SENDING_TOKEN (base64)
           if ! command -v openssl >/dev/null 2>&1; then
             echo "openssl not available for HMAC signing."
             echo "error=true" >> "$GITHUB_OUTPUT"
@@ -874,38 +966,44 @@ jobs:
           fi
           SIG="$(openssl dgst -sha256 -hmac "$N8N_SENDING_TOKEN" -binary < payload.json | base64 | tr -d '\n')"
 
-          # 6) Send (NO Authorization header)
           HEADER_FILE=$(mktemp)
-          trap 'rm -f "$HEADER_FILE"' EXIT
+          BODY_FILE=$(mktemp)
+          trap 'rm -f "$HEADER_FILE" "$BODY_FILE"' EXIT
 
-          # 6a) App-level retry: sometimes n8n returns HTTP 200 but omits status/token (transient).
           max_app_attempts=3
           app_attempt=1
           HTTP_BODY=""
           HTTP_STATUS=""
+
           while (( app_attempt <= max_app_attempts )); do
-            # Skip if PR head moved right before sending
             guard_head_sha_unchanged
 
             : > "$HEADER_FILE"
-            RESPONSE="$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
-              --retry 1 --retry-all-errors \
+
+            # No --max-time set — curl waits indefinitely for n8n to respond.
+            # Only --connect-timeout is set to fail fast if n8n is unreachable.
+            # GitHub Actions job timeout (default 6h) is the only ceiling.
+            HTTP_STATUS="$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+              --connect-timeout 10 \
               --no-progress-meter --http1.1 --noproxy '*' \
-              -D "$HEADER_FILE" -w $'\n%{http_code}' -X POST \
+              -D "$HEADER_FILE" \
+              -o "$BODY_FILE" \
+              -w '%{http_code}' \
+              -X POST \
               -H "Content-Type: application/json" \
               -H "X-Run-Token: $RUN_TOKEN" \
               -H "X-Signature: sha256=${SIG}" \
               --data-binary @payload.json \
               "$N8N_WEBHOOK_URL")" || {
+                rm -f "$BODY_FILE"
                 echo "Request failed."
                 echo "error=true" >> "$GITHUB_OUTPUT"
                 if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
                 rm -f "$HEADER_FILE"
                 exit 0
               }
+            HTTP_BODY="$(cat "$BODY_FILE")"
 
-            HTTP_BODY="$(printf '%s\n' "$RESPONSE" | sed '$d')"
-            HTTP_STATUS="$(printf '%s\n' "$RESPONSE" | tail -n1)"
             echo "http_status=${HTTP_STATUS}" >> "$GITHUB_OUTPUT"
             echo "n8n responded with status: $HTTP_STATUS (attempt $app_attempt/$max_app_attempts)"
 
@@ -928,7 +1026,6 @@ jobs:
             STATUS="$(jq -r '.status // empty' <<< "$HTTP_BODY" 2>/dev/null || true)"
             MATCHED="$(jq -r '.token // empty'  <<< "$HTTP_BODY" 2>/dev/null || true)"
 
-            # If 200 but missing fields, retry a couple times (transient).
             if [[ -z "$STATUS" || -z "$MATCHED" ]]; then
               if [[ "$HTTP_STATUS" == "200" && "$app_attempt" -lt "$max_app_attempts" ]]; then
                 echo "n8n returned HTTP 200 but missing status/token; retrying..."
@@ -938,11 +1035,9 @@ jobs:
               fi
             fi
 
-            # Break out of the loop and continue normal validation with this response.
             break
           done
 
-          # Remove payload quickly (after retries)
           if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
 
           HEADER_SIG="$(python3 - <<'PY' "$HEADER_FILE"
@@ -959,18 +1054,17 @@ jobs:
           PY
           )"
           if [[ -z "${HEADER_SIG:-}" ]]; then
-            echo "Missing X-Response-Signature header from n8n; treating as error and skipping downstream processing."
+            echo "Missing X-Response-Signature header from n8n; treating as error."
             echo "error=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           if [[ "$STATUS" == "cancelled" ]]; then
-            echo "n8n workflow reported cancellation; skipping downstream processing."
+            echo "n8n workflow reported cancellation."
             echo "cancelled=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          # RUN_TOKEN only in header; n8n should echo it back in .token
           if [[ -z "$MATCHED" || "$MATCHED" != "$RUN_TOKEN" || "$STATUS" != "completed" ]]; then
             echo "n8n workflow failed or token mismatch (status='$STATUS')."
             echo "error=true" >> "$GITHUB_OUTPUT"
@@ -1002,20 +1096,17 @@ jobs:
             fi
           fi
 
-          # Persist response for downstream job via artifact (job outputs are often suppressed as "may contain secret").
           printf '%s' "$SANITIZED_BODY" > response_body_sanitized.json
           printf '%s' "$HEADER_SIG" > response_signature.txt
+
           PAYLOAD_FOR_SIG="$(
             HTTP_BODY_VAR="$HTTP_BODY" python3 - <<'PY'
-          import json
-          import os
-
+          import json, os
           body = os.environ.get("HTTP_BODY_VAR", "")
           try:
               data = json.loads(body)
           except json.JSONDecodeError:
               data = None
-
           payload = data.get("payload") if isinstance(data, dict) else None
           if (
               not isinstance(payload, list)
@@ -1024,7 +1115,6 @@ jobs:
               or not isinstance(payload[0].get("payload"), str)
           ):
               raise SystemExit(0)
-
           print(payload[0]["payload"], end="")
           PY
           )"
@@ -1036,7 +1126,7 @@ jobs:
           echo "ok=true" >> "$GITHUB_OUTPUT"
 
       - name: Upload n8n response artifact
-        if: ${{ steps.send_payload.outputs.executed == 'true' && steps.send_payload.outputs.error != 'true' && steps.send_payload.outputs.ok == 'true' }}
+        if: ${{ steps.send_payload.outputs.ok == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: n8n-response-${{ github.run_attempt }}
@@ -1047,23 +1137,22 @@ jobs:
             response_signature.txt
             payload_for_sig.txt
 
-
       - name: Enforce n8n send failure
         if: ${{ steps.send_payload.outputs.error == 'true' }}
         run: |
-          echo n8n send step reported failure. Marking job as failed.
+          echo "n8n send step reported failure. Marking job as failed."
           exit 1
 
-      # Step 11: Short-circuit when nothing qualifies
       - name: No eligible files to send
-        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.filter_files.outputs.addition_count == '0' }}
+        if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_compare.outputs.ok == 'true' && steps.fetch_diff.outputs.ok == 'true' && steps.filter_files.outputs.addition_count == '0' }}
         run: echo ℹ️ No eligible additions after filtering llms/.ai paths. Skipping n8n send.
 
-      - name: Securely delete diff artifacts
+      # FIX #6 — Expanded secure deletion covering all sensitive intermediate files
+      - name: Securely delete diff and sensitive artifacts
         if: ${{ always() }}
         run: |
           set -euo pipefail
-          for target in pr.diff pr.diff.gz diff.b64; do
+          for target in pr.diff pr.diff.gz diff.b64 payload.json added_lines.json files.json commits.json pr.json; do
             if [[ -f "$target" ]]; then
               if command -v shred >/dev/null 2>&1; then
                 shred -u "$target" || rm -f "$target"
@@ -1086,6 +1175,10 @@ jobs:
           SKIP_REASON: ${{ steps.oneshot.outputs.skip_reason }}
           SHA_OK: ${{ steps.sha_guard.outputs.sha_ok }}
           CHECKOUT_OK: ${{ steps.checkout.outcome == 'success' && 'true' || 'false' }}
+          COMPARE_OK: ${{ steps.fetch_compare.outputs.ok || 'false' }}
+          COMPARE_SKIP_REASON: ${{ steps.fetch_compare.outputs.skip_reason || '' }}
+          DIFF_OK: ${{ steps.fetch_diff.outputs.ok || 'false' }}
+          DIFF_SKIP_REASON: ${{ steps.fetch_diff.outputs.skip_reason || '' }}
           ADDITION_COUNT: ${{ steps.filter_files.outputs.addition_count || '0' }}
           SEND_EXECUTED: ${{ steps.send_payload.outputs.executed || 'false' }}
           SEND_ERROR: ${{ steps.send_payload.outputs.error || 'false' }}
@@ -1105,6 +1198,10 @@ jobs:
             reason="head_sha_changed_or_missing"
           elif [[ "${CHECKOUT_OK}" != "true" ]]; then
             reason="checkout_failed"
+          elif [[ "${COMPARE_OK}" != "true" ]]; then
+            reason="${COMPARE_SKIP_REASON:-compare_fetch_failed}"
+          elif [[ "${DIFF_OK}" != "true" ]]; then
+            reason="${DIFF_SKIP_REASON:-diff_fetch_failed}"
           elif [[ "${ADDITION_COUNT}" == "0" ]]; then
             reason="no_eligible_additions"
           elif [[ -n "${SEND_SKIP_REASON:-}" ]]; then
@@ -1130,6 +1227,7 @@ jobs:
             -f conclusion="${conclusion}" \
             -f output[title]="${title}" \
             -f output[summary]="${summary}" >/dev/null
+
 
   detect-n8n-response:
     runs-on: ubuntu-latest
@@ -1191,6 +1289,7 @@ jobs:
           echo "artifact_name=${name}" >> "$GITHUB_OUTPUT"
           echo "artifact_attempt=${num}" >> "$GITHUB_OUTPUT"
 
+
   receive-validate-and-comment:
     runs-on: ubuntu-latest
     needs:
@@ -1225,6 +1324,7 @@ jobs:
           cp response_body_sanitized.json response_body.json
           echo "restored=true" >> "$GITHUB_OUTPUT"
 
+      # FIX #2 — Constant-time HMAC comparison using Python hmac.compare_digest()
       - name: Verify n8n response signature
         id: verify_sig
         if: ${{ steps.restore_payload.outputs.restored == 'true' }}
@@ -1255,14 +1355,38 @@ jobs:
             exit 1
           fi
 
-          RESPONSE_SIG="$(cat response_signature.txt)"
-          PAYLOAD_FOR_SIG="$(cat payload_for_sig.txt)"
+          # FIX #2: Use Python hmac.compare_digest() for constant-time comparison
+          # instead of bash string equality which is vulnerable to timing attacks.
+          # Encoding: base64 (matching n8n and the original openssl dgst | base64 output).
+          # Payload: read as text and rstrip newline to match original printf '%s' behaviour.
+          python3 - <<'PY'
+          import base64
+          import hmac
+          import hashlib
+          import os
+          import sys
+          from pathlib import Path
 
-          EXPECTED_SIG="sha256=$(printf '%s' "$PAYLOAD_FOR_SIG" | openssl dgst -binary -sha256 -hmac "$N8N_RECEIVING_TOKEN" | base64 | tr -d '\n')"
-          if [[ "$RESPONSE_SIG" != "$EXPECTED_SIG" ]]; then
-            echo "Response signature mismatch."
-            exit 1
-          fi
+          token = os.environ.get("N8N_RECEIVING_TOKEN", "").encode()
+          if not token:
+              print("N8N_RECEIVING_TOKEN is empty", file=sys.stderr)
+              sys.exit(1)
+
+          response_sig = Path("response_signature.txt").read_text().strip()
+          # rstrip newline to match original `printf '%s'` behaviour which strips trailing newlines
+          payload = Path("payload_for_sig.txt").read_text().rstrip('\n').encode()
+
+          # base64 encoding to match n8n and original: openssl dgst -sha256 -hmac ... | base64
+          expected_sig = "sha256=" + base64.b64encode(
+              hmac.new(token, payload, hashlib.sha256).digest()
+          ).decode().strip()
+
+          if not hmac.compare_digest(response_sig, expected_sig):
+              print("Response signature mismatch.", file=sys.stderr)
+              sys.exit(1)
+
+          print("✅ Signature verified.")
+          PY
 
           echo "verified=true" >> "$GITHUB_OUTPUT"
 
@@ -1319,13 +1443,15 @@ jobs:
           echo "has_suggestions=${HAS}" >> "$GITHUB_OUTPUT"
           echo "head_sha=${SHA}" >> "$GITHUB_OUTPUT"
 
+      # FIX #4 — Pin OWNER/REPO/PR to workflow context, not n8n response data
       - name: Guard PR head SHA before commenting
         id: comment_guard
         if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # FIX #4: Use workflow context for repo identity — never trust n8n response for these
           REPO: ${{ github.repository }}
-          PR: ${{ needs.gather-and-send.outputs.pr_number || github.event.inputs.pr_number }}
+          PR: ${{ needs.gather-and-send.outputs.pr_number }}
           EXPECTED_SHA_FROM_SEND: ${{ needs.gather-and-send.outputs.commit_sha }}
           EXPECTED_SHA_FROM_N8N: ${{ steps.response_summary.outputs.head_sha }}
         shell: bash
@@ -1365,8 +1491,9 @@ jobs:
         if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post != 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # FIX #4: REPO and PR from workflow context only
           REPO: ${{ github.repository }}
-          PR: ${{ needs.gather-and-send.outputs.pr_number || github.event.inputs.pr_number }}
+          PR: ${{ needs.gather-and-send.outputs.pr_number }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           EXPECTED_SHA: ${{ steps.comment_guard.outputs.expected_sha }}
           CURRENT_SHA: ${{ steps.comment_guard.outputs.current_sha }}
@@ -1394,6 +1521,7 @@ jobs:
           PAYLOAD="$(jq -n --arg body "$BODY" '{event:"COMMENT", body:$body}')"
 
           curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+            --connect-timeout 10 --max-time 30 \
             --retry 1 --retry-all-errors \
             --no-progress-meter --http1.1 --noproxy '*' \
             -X POST \
@@ -1406,8 +1534,9 @@ jobs:
         if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions != 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # FIX #4: REPO and PR from workflow context only
           REPO: ${{ github.repository }}
-          PR: ${{ needs.gather-and-send.outputs.pr_number || github.event.inputs.pr_number }}
+          PR: ${{ needs.gather-and-send.outputs.pr_number }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           COMMIT_SHA: ${{ steps.comment_guard.outputs.expected_sha }}
         shell: bash
@@ -1431,6 +1560,7 @@ jobs:
           PAYLOAD="$(jq -n --arg body "$BODY" '{event:"COMMENT", body:$body}')"
 
           curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+            --connect-timeout 10 --max-time 30 \
             --retry 1 --retry-all-errors \
             --no-progress-meter --http1.1 --noproxy '*' \
             -X POST \
@@ -1439,7 +1569,6 @@ jobs:
             "https://api.github.com/repos/${OWNER}/${NAME}/pulls/${PR}/reviews" \
             -d "$PAYLOAD" >/dev/null
 
-      # Step 16: Prepare grouped review batches
       - name: Prepare batched review payloads
         if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions == 'true' }}
         run: |
@@ -1524,25 +1653,24 @@ jobs:
               batches.append(batch)
 
           status = data.get('status') or primary_payload.get('status')
-          owner = data.get('repo_owner') or primary_payload.get('repo_owner')
-          repo = data.get('repo_name') or primary_payload.get('repo_name')
-          pr_number = data.get('pr_number') or primary_payload.get('pr_number')
 
+          # FIX #4: owner/repo/pr sourced from n8n response only for non-routing use
+          # (summary text). Actual API routing uses workflow context env vars set below.
           output = {
               'status': status,
-              'owner': owner,
-              'repo': repo,
-              'pr': pr_number,
               'batches': batches
           }
           Path('review_batches.json').write_text(json.dumps(output, indent=2))
           PY
 
-      # Step 17: Post grouped inline suggestions
+      # FIX #4 + FIX #5 — OWNER/REPO/PR from workflow context; curl body/status separated
       - name: Post batched inline suggestions
         if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # FIX #4: Pinned to workflow context — not extracted from n8n response
+          WORKFLOW_REPO: ${{ github.repository }}
+          WORKFLOW_PR: ${{ needs.gather-and-send.outputs.pr_number }}
         run: |
           set -euo pipefail
 
@@ -1557,11 +1685,13 @@ jobs:
             exit 1
           fi
 
-          OWNER=$(jq -r '.owner // empty' review_batches.json)
-          REPO=$(jq -r '.repo // empty' review_batches.json)
-          PR=$(jq -r '.pr // empty' review_batches.json)
-          if [ -z "$OWNER" ] || [ -z "$REPO" ] || [ -z "$PR" ]; then
-            echo "Missing repo context."
+          # FIX #4: Use workflow context values, not n8n response data
+          OWNER="${WORKFLOW_REPO%%/*}"
+          REPO_NAME="${WORKFLOW_REPO#*/}"
+          PR="${WORKFLOW_PR}"
+
+          if [ -z "$OWNER" ] || [ -z "$REPO_NAME" ] || [ -z "$PR" ]; then
+            echo "Missing repo context from workflow."
             exit 1
           fi
 
@@ -1571,7 +1701,7 @@ jobs:
             exit 0
           fi
 
-          echo "Posting $BATCH_COUNT suggestion batch(es) to $OWNER/$REPO#$PR"
+          echo "Posting $BATCH_COUNT suggestion batch(es) to $OWNER/$REPO_NAME#$PR"
 
           for index in $(jq -r '.batches | keys[]' review_batches.json); do
             BODY_SUMMARY=$(jq -r ".batches[$index].body" review_batches.json)
@@ -1584,28 +1714,33 @@ jobs:
               PAYLOAD=$(jq -n --arg body "$BODY_SUMMARY" --argjson comments "$COMMENTS" '{event:"COMMENT", body:$body, comments:$comments}')
             fi
 
-            RESP=$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+            # FIX #5: Separate body and HTTP status using -o and -w instead of string slicing
+            BODY_FILE=$(mktemp)
+            HTTP_CODE="$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+              --connect-timeout 10 --max-time 30 \
               --retry 1 --retry-all-errors \
               --no-progress-meter --http1.1 --noproxy '*' \
-              -w '%{http_code}' -X POST \
+              -o "$BODY_FILE" \
+              -w '%{http_code}' \
+              -X POST \
               -H "Authorization: Bearer ${GH_TOKEN}" \
               -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PR}/reviews" \
-              -d "$PAYLOAD") || {
+              "https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls/${PR}/reviews" \
+              -d "$PAYLOAD")" || {
+                rm -f "$BODY_FILE"
                 echo "curl failed while posting review batch"
                 exit 1
               }
+            RESP_BODY="$(cat "$BODY_FILE")"
+            rm -f "$BODY_FILE"
 
-            CODE=${RESP:(-3)}
-            BODY=${RESP%$CODE}
-
-            if [[ "$CODE" -lt 200 || "$CODE" -ge 300 ]]; then
-              echo "❌ Failed to post review batch (HTTP $CODE)"
-              echo "$BODY"
+            if [[ "$HTTP_CODE" -lt 200 || "$HTTP_CODE" -ge 300 ]]; then
+              echo "❌ Failed to post review batch (HTTP $HTTP_CODE)"
+              echo "$RESP_BODY"
               exit 1
             fi
 
-            URL=$(echo "$BODY" | jq -r '.html_url // empty')
+            URL=$(echo "$RESP_BODY" | jq -r '.html_url // empty')
             if [ -n "$URL" ]; then
               echo "✅ Posted review batch ${index} → $URL"
             else
@@ -1618,11 +1753,14 @@ jobs:
 
           echo "✅ Done. Suggestions posted."
 
-      # Step 18: Publish any verification reviews
+      # FIX #4 — Post verification comments using workflow context for OWNER/REPO/PR
       - name: Post verification comments
         if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # FIX #4: Pinned to workflow context — not extracted from n8n response
+          WORKFLOW_REPO: ${{ github.repository }}
+          WORKFLOW_PR: ${{ needs.gather-and-send.outputs.pr_number }}
         run: |
           set -euo pipefail
 
@@ -1644,11 +1782,9 @@ jobs:
                 (to_arr($o.review) // []) as $r2
                   | ($r2 | map(select(((.type? | tostring | ascii_downcase) == "verification")))
                             | map(.formattedReview // .review // .body // .comment // .text // .content // "")),
-
                 ($o | .. | objects
                   | select(((.type? | tostring | ascii_downcase) == "verification"))
                   | (.formattedReview // .review // .body // .comment // .text // .content // ""))
-
               ]
               | flatten
               | map(select(type == "string" and (length > 0)))
@@ -1662,12 +1798,13 @@ jobs:
             exit 0
           fi
 
-          OWNER=$(printf '%s' "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].repo_owner else .repo_owner end // empty')
-          REPO=$(printf '%s' "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].repo_name else .repo_name end // empty')
-          PR=$(printf '%s' "$RESPONSE_BODY" | jq -r 'if type=="array" then .[0].pr_number else .pr_number end // empty')
+          # FIX #4: Use workflow context for OWNER/REPO/PR — never trust n8n response
+          OWNER="${WORKFLOW_REPO%%/*}"
+          NAME="${WORKFLOW_REPO#*/}"
+          PR="${WORKFLOW_PR}"
 
-          if [ -z "$OWNER" ] || [ -z "$REPO" ] || [ -z "$PR" ]; then
-            echo "Missing repo context; skipping verification comments."
+          if [ -z "$OWNER" ] || [ -z "$NAME" ] || [ -z "$PR" ]; then
+            echo "Missing repo context from workflow; skipping verification comments."
             exit 0
           fi
 
@@ -1681,23 +1818,29 @@ jobs:
             fi
 
             JSON_PAYLOAD=$(jq -nc --arg b "$BODY" '{body:$b}')
-            RESP=$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+
+            # FIX #5: Separate body and HTTP status using -o and -w
+            BODY_FILE=$(mktemp)
+            HTTP_CODE="$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+              --connect-timeout 10 --max-time 30 \
               --retry 1 --retry-all-errors \
               --no-progress-meter --http1.1 --noproxy '*' \
-              -w '%{http_code}' -X POST \
+              -o "$BODY_FILE" \
+              -w '%{http_code}' \
+              -X POST \
               -H "Authorization: Bearer ${GH_TOKEN}" \
               -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${OWNER}/${REPO}/issues/${PR}/comments" \
-              -d "$JSON_PAYLOAD") || {
+              "https://api.github.com/repos/${OWNER}/${NAME}/issues/${PR}/comments" \
+              -d "$JSON_PAYLOAD")" || {
+                rm -f "$BODY_FILE"
                 echo "curl failed while posting verification comment"
                 exit 1
               }
+            RBODY="$(cat "$BODY_FILE")"
+            rm -f "$BODY_FILE"
 
-            CODE=${RESP:(-3)}
-            RBODY=${RESP%$CODE}
-
-            if [[ "$CODE" -lt 200 || "$CODE" -ge 300 ]]; then
-              echo "❌ Failed to post verification comment (HTTP $CODE)"
+            if [[ "$HTTP_CODE" -lt 200 || "$HTTP_CODE" -ge 300 ]]; then
+              echo "❌ Failed to post verification comment (HTTP $HTTP_CODE)"
               echo "$RBODY"
               exit 1
             fi
@@ -1712,11 +1855,11 @@ jobs:
 
           echo ✅ Done posting verification reviews.
 
-      # Step 18b: Clean up response artifacts
       - name: Remove response payload
         if: ${{ always() }}
         run: |
           rm -f response_body.json review_batches.json || true
+
 
   notify-on-failure:
     runs-on: ubuntu-latest
@@ -1783,6 +1926,7 @@ jobs:
             '{repository:$repo, pr_number:$pr, gather_status:$gather_status, receive_status:$receive_status, run_url:$run_url, workflow:$workflow, run_id:$run_id, run_attempt:$run_attempt, actor:$actor}')
 
           curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+            --connect-timeout 10 --max-time 30 \
             --retry 1 --retry-all-errors \
             --no-progress-meter --http1.1 --noproxy '*' \
             -X POST \
