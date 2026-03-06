@@ -121,23 +121,42 @@ jobs:
         run: |
           set -euo pipefail
 
-          commits_json=""
-          for attempt in 1 2; do
-            if commits_json="$(gh api --paginate "repos/${REPO}/pulls/${PR_NUMBER}/commits" 2>/dev/null | jq -s 'add' 2>/dev/null)"; then
-              break
+          # Fetch only the PR head SHA from PR metadata — single API call, no pagination.
+          # Then fetch just that one commit directly instead of all commits with --paginate.
+          # Reduces API calls from O(n pages) to O(2) regardless of PR size.
+          head_sha=""
+          for attempt in 1 2 3; do
+            if head_sha="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}" \
+              --jq '.head.sha // ""' 2>/dev/null)"; then
+              [[ -n "$head_sha" ]] && break
             fi
-            sleep 2
+            sleep $((attempt * 2))
           done
 
-          if [[ -z "${commits_json:-}" ]]; then
-            echo "⚠️ Unable to fetch PR commits to evaluate trigger phrase; skipping run gracefully."
+          if [[ -z "${head_sha:-}" ]]; then
+            echo "⚠️ Unable to fetch PR head SHA to evaluate trigger phrase; skipping run gracefully."
             echo "triggered=false" >> "$GITHUB_OUTPUT"
             echo "commit_sha=" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          sha="$(printf '%s' "$commits_json" | jq -r '.[-1].sha // ""')"
-          msg="$(printf '%s' "$commits_json" | jq -r '.[-1].commit.message // ""')"
+          commit_json=""
+          for attempt in 1 2 3; do
+            if commit_json="$(gh api "repos/${REPO}/commits/${head_sha}" 2>/dev/null)"; then
+              [[ -n "$commit_json" ]] && break
+            fi
+            sleep $((attempt * 2))
+          done
+
+          if [[ -z "${commit_json:-}" ]]; then
+            echo "⚠️ Unable to fetch latest commit to evaluate trigger phrase; skipping run gracefully."
+            echo "triggered=false" >> "$GITHUB_OUTPUT"
+            echo "commit_sha=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          sha="$(printf '%s' "$commit_json" | jq -r '.sha // ""')"
+          msg="$(printf '%s' "$commit_json" | jq -r '.commit.message // ""')"
 
           shopt -s nocasematch
           if [[ "$msg" == *"+nathan"* ]]; then
@@ -512,7 +531,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          python3 - <<'PY'
+          python3 -I - <<'PY'
           from pathlib import Path
           import json, os, re, sys
 
@@ -601,7 +620,7 @@ jobs:
       - name: Filter diff to excluded paths
         if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_diff.outputs.ok == 'true' }}
         run: |
-          python3 - <<'PY'
+          python3 -I - <<'PY'
           from pathlib import Path
           import os
           import re
@@ -716,7 +735,7 @@ jobs:
         if: ${{ steps.trigger_phrase.outputs.triggered == 'true' && steps.oneshot.outputs.proceed == 'true' && steps.sha_guard.outputs.sha_ok == 'true' && steps.checkout.outcome == 'success' && steps.fetch_diff.outputs.ok == 'true' && steps.filter_files.outputs.addition_count != '0' && steps.diff_size_guard.outputs.diff_too_large != 'true' }}
         run: |
           set -euo pipefail
-          python3 - <<'PY'
+          python3 -I - <<'PY'
           import re
           import shlex
           from pathlib import Path
@@ -835,7 +854,7 @@ jobs:
           if command -v uuidgen >/dev/null 2>&1; then
             token="$(uuidgen)"
           else
-            token="$(python3 -c 'import uuid; print(uuid.uuid4())')"
+            token="$(python3 -I -c 'import uuid; print(uuid.uuid4())')"
           fi
           # FIX #8: Explicit guard — empty token would bypass HMAC validation downstream
           if [[ -z "${token:-}" ]]; then
@@ -899,8 +918,8 @@ jobs:
           }
 
           # Validate webhook URL and allowed host
-          HOST="$(python3 -c 'from urllib.parse import urlparse; import sys; u=urlparse(sys.argv[1]); print(u.hostname or "")' "$N8N_WEBHOOK_URL")"
-          SCHEME="$(python3 -c 'from urllib.parse import urlparse; import sys; u=urlparse(sys.argv[1]); print(u.scheme or "")' "$N8N_WEBHOOK_URL")"
+          HOST="$(python3 -I -c 'from urllib.parse import urlparse; import sys; u=urlparse(sys.argv[1]); print(u.hostname or "")' "$N8N_WEBHOOK_URL")"
+          SCHEME="$(python3 -I -c 'from urllib.parse import urlparse; import sys; u=urlparse(sys.argv[1]); print(u.scheme or "")' "$N8N_WEBHOOK_URL")"
           if [[ -z "$HOST" || "$SCHEME" != "https" ]]; then
             echo "Invalid or non-https N8N_WEBHOOK_URL."
             echo "error=true" >> "$GITHUB_OUTPUT"
@@ -979,11 +998,15 @@ jobs:
             guard_head_sha_unchanged
 
             : > "$HEADER_FILE"
+            : > "$BODY_FILE"
 
             # No --max-time set — curl waits indefinitely for n8n to respond.
-            # Only --connect-timeout is set to fail fast if n8n is unreachable.
-            # GitHub Actions job timeout (default 6h) is the only ceiling.
-            HTTP_STATUS="$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+            # No --fail-with-body — curl must return 0 even on HTTP errors so the retry
+            # loop can evaluate the status and decide whether to retry or exit.
+            # --fail-with-body would trigger the || fallback and exit the step immediately,
+            # bypassing all retry logic.
+            curl_exit=0
+            HTTP_STATUS="$(curl -sS --proto '=https' --tlsv1.2 \
               --connect-timeout 10 \
               --no-progress-meter --http1.1 --noproxy '*' \
               -D "$HEADER_FILE" \
@@ -994,21 +1017,44 @@ jobs:
               -H "X-Run-Token: $RUN_TOKEN" \
               -H "X-Signature: sha256=${SIG}" \
               --data-binary @payload.json \
-              "$N8N_WEBHOOK_URL")" || {
-                rm -f "$BODY_FILE"
-                echo "Request failed."
-                echo "error=true" >> "$GITHUB_OUTPUT"
-                if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
-                rm -f "$HEADER_FILE"
-                exit 0
-              }
-            HTTP_BODY="$(cat "$BODY_FILE")"
+              "$N8N_WEBHOOK_URL")" || curl_exit=$?
 
-            echo "http_status=${HTTP_STATUS}" >> "$GITHUB_OUTPUT"
+            if (( curl_exit != 0 )); then
+              # Network-level failure (DNS, connection refused, timeout, etc.)
+              echo "⚠️ curl exited with code ${curl_exit} on attempt ${app_attempt}/${max_app_attempts}."
+              if (( app_attempt < max_app_attempts )); then
+                echo "Retrying in $((2 * app_attempt))s..."
+                sleep $((2 * app_attempt))
+                app_attempt=$((app_attempt + 1))
+                continue
+              fi
+              echo "Request failed after ${max_app_attempts} attempts."
+              echo "error=true" >> "$GITHUB_OUTPUT"
+              if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
+              exit 0
+            fi
+
+            HTTP_BODY="$(cat "$BODY_FILE")"
             echo "n8n responded with status: $HTTP_STATUS (attempt $app_attempt/$max_app_attempts)"
 
+            # Retry on 5xx server errors — these are transient
+            if [[ "$HTTP_STATUS" -ge 500 ]]; then
+              echo "⚠️ n8n returned HTTP $HTTP_STATUS on attempt ${app_attempt}/${max_app_attempts}."
+              if (( app_attempt < max_app_attempts )); then
+                echo "Retrying in $((2 * app_attempt))s..."
+                sleep $((2 * app_attempt))
+                app_attempt=$((app_attempt + 1))
+                continue
+              fi
+              echo "n8n returned HTTP $HTTP_STATUS after ${max_app_attempts} attempts."
+              echo "error=true" >> "$GITHUB_OUTPUT"
+              if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
+              exit 0
+            fi
+
+            # Non-retryable HTTP error (4xx) — exit immediately, no point retrying
             if [[ "$HTTP_STATUS" -lt 200 || "$HTTP_STATUS" -ge 300 ]]; then
-              echo "n8n workflow failed (HTTP $HTTP_STATUS)"
+              echo "n8n returned HTTP $HTTP_STATUS (non-retryable)."
               echo "error=true" >> "$GITHUB_OUTPUT"
               if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
               exit 0
@@ -1026,8 +1072,9 @@ jobs:
             STATUS="$(jq -r '.status // empty' <<< "$HTTP_BODY" 2>/dev/null || true)"
             MATCHED="$(jq -r '.token // empty'  <<< "$HTTP_BODY" 2>/dev/null || true)"
 
+            # Retry if n8n returned 200 but body is missing expected fields (transient)
             if [[ -z "$STATUS" || -z "$MATCHED" ]]; then
-              if [[ "$HTTP_STATUS" == "200" && "$app_attempt" -lt "$max_app_attempts" ]]; then
+              if (( app_attempt < max_app_attempts )); then
                 echo "n8n returned HTTP 200 but missing status/token; retrying..."
                 sleep $((2 * app_attempt))
                 app_attempt=$((app_attempt + 1))
@@ -1040,7 +1087,7 @@ jobs:
 
           if command -v shred >/dev/null 2>&1; then shred -u payload.json 2>/dev/null || true; else rm -f payload.json || true; fi
 
-          HEADER_SIG="$(python3 - <<'PY' "$HEADER_FILE"
+          HEADER_SIG="$(python3 -I - <<'PY' "$HEADER_FILE"
           import sys
           from pathlib import Path
 
@@ -1100,7 +1147,7 @@ jobs:
           printf '%s' "$HEADER_SIG" > response_signature.txt
 
           PAYLOAD_FOR_SIG="$(
-            HTTP_BODY_VAR="$HTTP_BODY" python3 - <<'PY'
+            HTTP_BODY_VAR="$HTTP_BODY" python3 -I - <<'PY'
           import json, os
           body = os.environ.get("HTTP_BODY_VAR", "")
           try:
@@ -1359,7 +1406,7 @@ jobs:
           # instead of bash string equality which is vulnerable to timing attacks.
           # Encoding: base64 (matching n8n and the original openssl dgst | base64 output).
           # Payload: read as text and rstrip newline to match original printf '%s' behaviour.
-          python3 - <<'PY'
+          python3 -I - <<'PY'
           import base64
           import hmac
           import hashlib
@@ -1396,7 +1443,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
+          python3 -I - <<'PY'
           import json
           from pathlib import Path
 
@@ -1572,7 +1619,7 @@ jobs:
       - name: Prepare batched review payloads
         if: ${{ steps.restore_payload.outputs.restored == 'true' && steps.verify_sig.outputs.verified == 'true' && steps.comment_guard.outputs.should_post == 'true' && steps.response_summary.outputs.has_suggestions == 'true' }}
         run: |
-          python3 - <<'PY'
+          python3 -I - <<'PY'
           from pathlib import Path
           import json
 
@@ -1714,11 +1761,13 @@ jobs:
               PAYLOAD=$(jq -n --arg body "$BODY_SUMMARY" --argjson comments "$COMMENTS" '{event:"COMMENT", body:$body, comments:$comments}')
             fi
 
-            # FIX #5: Separate body and HTTP status using -o and -w instead of string slicing
+            # FIX #5: Separate body and HTTP status using -o and -w instead of string slicing.
+            # No --fail-with-body — curl must return 0 even on HTTP errors so the detailed
+            # error logging block below is reachable (--fail-with-body would trigger the ||
+            # fallback and delete the body before we can log the GitHub API error response).
             BODY_FILE=$(mktemp)
-            HTTP_CODE="$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+            HTTP_CODE="$(curl -sS --proto '=https' --tlsv1.2 \
               --connect-timeout 10 --max-time 30 \
-              --retry 1 --retry-all-errors \
               --no-progress-meter --http1.1 --noproxy '*' \
               -o "$BODY_FILE" \
               -w '%{http_code}' \
@@ -1728,7 +1777,7 @@ jobs:
               "https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls/${PR}/reviews" \
               -d "$PAYLOAD")" || {
                 rm -f "$BODY_FILE"
-                echo "curl failed while posting review batch"
+                echo "curl failed while posting review batch (network error)"
                 exit 1
               }
             RESP_BODY="$(cat "$BODY_FILE")"
@@ -1819,11 +1868,12 @@ jobs:
 
             JSON_PAYLOAD=$(jq -nc --arg b "$BODY" '{body:$b}')
 
-            # FIX #5: Separate body and HTTP status using -o and -w
+            # FIX #5: Separate body and HTTP status using -o and -w.
+            # No --fail-with-body — curl must return 0 even on HTTP errors so the detailed
+            # error logging block below is reachable.
             BODY_FILE=$(mktemp)
-            HTTP_CODE="$(curl -sS --fail-with-body --proto '=https' --tlsv1.2 \
+            HTTP_CODE="$(curl -sS --proto '=https' --tlsv1.2 \
               --connect-timeout 10 --max-time 30 \
-              --retry 1 --retry-all-errors \
               --no-progress-meter --http1.1 --noproxy '*' \
               -o "$BODY_FILE" \
               -w '%{http_code}' \
@@ -1833,7 +1883,7 @@ jobs:
               "https://api.github.com/repos/${OWNER}/${NAME}/issues/${PR}/comments" \
               -d "$JSON_PAYLOAD")" || {
                 rm -f "$BODY_FILE"
-                echo "curl failed while posting verification comment"
+                echo "curl failed while posting verification comment (network error)"
                 exit 1
               }
             RBODY="$(cat "$BODY_FILE")"
