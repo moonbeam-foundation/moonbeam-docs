@@ -116,9 +116,27 @@
 
   // ---------- Dropdown Helpers ----------
 
+  function positionDropdownFixed(trigger, menu) {
+    const rect = trigger.getBoundingClientRect();
+    menu.style.position = 'fixed';
+    menu.style.top = rect.bottom + 4 + 'px';
+    menu.style.right = window.innerWidth - rect.right + 'px';
+    menu.style.left = 'auto';
+    menu.style.bottom = 'auto';
+  }
+
+  function resetDropdownPosition(menu) {
+    menu.style.position = '';
+    menu.style.top = '';
+    menu.style.right = '';
+    menu.style.left = '';
+    menu.style.bottom = '';
+  }
+
   function closeDropdown(menu) {
     if (!menu) return;
     menu.classList.remove('show');
+    resetDropdownPosition(menu);
     const trigger = menu.parentElement.querySelector(
       '.ai-file-actions-trigger',
     );
@@ -153,8 +171,11 @@
         toggleBtn.setAttribute('aria-expanded', isExpanded);
         toggleBtn.classList.toggle('active', isExpanded);
         if (isExpanded) {
+          positionDropdownFixed(toggleBtn, dropdown);
           const first = dropdown.querySelector('.ai-file-actions-item');
           if (first) first.focus();
+        } else {
+          resetDropdownPosition(dropdown);
         }
       }
       return;
@@ -206,6 +227,14 @@
       closeAllDropdowns();
     }
   });
+
+  // Reposition fixed dropdown on scroll so it tracks the button
+  window.addEventListener('scroll', function () {
+    const openMenu = document.querySelector('.ai-file-actions-menu.show');
+    if (!openMenu) return;
+    const trigger = openMenu.parentElement.querySelector('.ai-file-actions-trigger');
+    if (trigger) positionDropdownFixed(trigger, openMenu);
+  }, { passive: true, capture: true });
 
   // ---------- Keyboard Navigation ----------
 
