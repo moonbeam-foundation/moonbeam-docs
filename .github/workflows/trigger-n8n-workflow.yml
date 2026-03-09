@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       pr_number:
-        description: PR number to process (maintainer-triggered runs)
+        description: PR number to process 
         required: false
         type: string
       pr_selector:
@@ -63,11 +63,11 @@ jobs:
             --jq '.permission // ""')
 
           case $PERMISSION in
-            admin|maintain)
+            admin|maintain|write)
               echo "✅ ${ACTOR} has ${PERMISSION} permission."
               ;;
             *)
-              echo "❌ ${ACTOR} is not a maintainer (permission='${PERMISSION}')."
+              echo "❌ ${ACTOR} does not have sufficient permission (permission='${PERMISSION}')."
               exit 1
               ;;
           esac
@@ -359,7 +359,7 @@ jobs:
           fi
 
           if [[ ${IS_MANUAL_RUN} == true ]]; then
-            echo "ℹ️ Maintainer-triggered run for PR #${PR_NUMBER}"
+            echo "ℹ️ run for PR #${PR_NUMBER}"
           fi
 
       - name: Fetch PR metadata

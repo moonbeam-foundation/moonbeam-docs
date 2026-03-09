@@ -15,7 +15,7 @@ jobs:
     if: ${{ github.event.pull_request != null && github.event.pull_request.head.repo.fork == false }}
     runs-on: ubuntu-latest
     steps:
-      - name: Validate dispatcher permissions (maintainers only)
+      - name: Validate dispatcher permissions
         id: perm
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,13 +30,13 @@ jobs:
             --jq '.permission // ""' 2>/dev/null || true)"
 
           case "${permission}" in
-            admin|maintain)
+            admin|maintain|write)
               echo "allowed=true" >> "$GITHUB_OUTPUT"
               echo "✅ ${ACTOR} has ${permission} permission."
               ;;
             *)
               echo "allowed=false" >> "$GITHUB_OUTPUT"
-              echo "⏭️ ${ACTOR} is not a maintainer (permission='${permission:-none}'); skipping dispatch."
+              echo "⏭️ ${ACTOR} does not have sufficient permission (permission='${permission:-none}'); skipping dispatch."
               ;;
           esac
 
