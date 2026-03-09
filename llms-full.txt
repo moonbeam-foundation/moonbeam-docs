@@ -18212,7 +18212,7 @@ While MRL intends to encompass many different GMP providers, Wormhole is the fir
 
 ### Send Tokens Through Wormhole to a Parachain {: #sending-tokens-through-wormhole }
 
-MRL provides a one-click solution that allows you to define a multilocation as the final destination for your assets arriving from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/products/connect){target=\_blank}.
+MRL provides a one-click solution that allows you to define a multilocation as the final destination for your assets arriving from any Wormhole chain with a [Wormhole Connect integration](https://wormhole.com/docs/products/connect/get-started/){target=\_blank}.
 
 To send tokens through Wormhole and MRL, user interfaces will use a mixture of the [Wormhole TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/interfaces/ITokenBridge.sol){target=\_blank} and [Moonbeam’s GMP Precompile](/builders/ethereum/precompiles/interoperability/gmp/){target=\_blank}.
 
