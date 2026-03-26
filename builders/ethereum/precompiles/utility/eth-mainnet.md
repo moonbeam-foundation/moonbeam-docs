@@ -127,8 +127,6 @@ Currently there is no Identity Function support in Solidity, so it needs to be c
 --8<-- 'code/builders/ethereum/precompiles/utility/eth-mainnet/identity.sol'
 ```
 
-You can use this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com){target=\_blank} to get bytes from any string, as this is the input of the `callDataCopy()` method.
-
 With the contract deployed, you can call the `callDataCopy()` method and verify if `memoryStored` matches the bytes that you pass in as an input of the function.
 
 ## Modular Exponentiation {: #modular-exponentiation }
