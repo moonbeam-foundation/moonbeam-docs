@@ -142,7 +142,7 @@ As there are a total of three topics (the maximum is four), this corresponds to 
 
 Indexed topics, such as the `from` and `to` addresses, are typically represented by 256-bit (64 hexadecimal character) values. If necessary, they are padded with zeros to reach the full length.
 
-Unindexed data, such as the value of tokens transferred, is not included in the `topics` array. Instead, it is returned within the logs' `data` field, encoded in bytes32/hex format. To decode it, you can use, for example, this [Web3 Type Converter tool](https://web3-type-converter.onbrn.com){target=\_blank} and verify that the `data` is 1 DEV token formatted in Wei.
+Unindexed data, such as the value of tokens transferred, is not included in the `topics` array. Instead, it is returned within the logs' `data` field, encoded in bytes32/hex format. You can decode this value using Ethereum libraries such as Ethers.js (for example, with `AbiCoder`) and verify that the `data` corresponds to 1 DEV token formatted in Wei.
 
 If the event returns multiple unindexed values, they will be appended one after the other in the same order the event emits them. Therefore, each value is obtained by deconstructing data into separate 32-byte (or 64-hex-character-long) pieces.
 
