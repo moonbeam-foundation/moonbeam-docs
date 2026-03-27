@@ -16,7 +16,7 @@ This page will outline the steps for using these API-based tools for verifying s
 
 [Moonscan](https://moonscan.io){target=\_blank} is an official fork of Etherscan that can be used to view and search on-chain data, and comes with a suite of developer tools and analytics to interact with data on Moonbeam networks.
 
-The [Etherscan API](https://docs.etherscan.io){target=\_blank} provides a variety of endpoints for verifying smart contracts, retrieving verified contract ABI and source code, and interacting with verified contracts on Moonbeam networks.
+The [Etherscan API](https://docs.etherscan.io/introduction){target=\_blank} provides a variety of endpoints for verifying smart contracts, retrieving verified contract ABI and source code, and interacting with verified contracts on Moonbeam networks.
 
 ### Generating an Etherscan API Key {: #generating-an-etherscan-api-key }
 
