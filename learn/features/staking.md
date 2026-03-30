@@ -96,7 +96,7 @@ There are a few resources you can check out to help you select a collator to del
 === "Moonriver"
     |           Variable           |                                      Value                                       |
     |:----------------------------:|:--------------------------------------------------------------------------------:|
-    |     Stake MOVR Dashboard     |               [Stake MOVR](https://stakemovr.com/){target=\_blank}               |
+    |     Stake MOVR Dashboard     |               [Stake MOVR](https://www.stakemovr.com/){target=\_blank}               |
     |    Collators Leaderboard     |       [Moonscan](https://moonriver.moonscan.io/collators){target=\_blank}       |
     |      Collator Dashboard      | [DappLooker](https://dapplooker.com/dashboard/moonriver-collator-dashboard-28){target=\_blank} |
 
