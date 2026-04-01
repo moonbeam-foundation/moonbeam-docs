@@ -134,8 +134,7 @@ Upon running the script, you'll see output that looks like the following:
 
 Since the gasless transaction we initiated interacts with an [Incrementer](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract){target=\_blank} smart contract on Moonbeam, it's easy to check to see if the transaction was initiated successfully. You can return to [Read Contract section of the Incrementer contract on Moonscan](https://moonscan.io/address/0x3ae26f2c909eb4f1edf97bf60b36529744b09213#readContract) and check the number stored in the contract. Alternatively, you can head to the **Internal Transactions** tab and toggle advanced mode **ON** to see the contract call incrementing the contract. 
 
-For more information about integrating support for gasless transactions into your dApp, be sure to check out the [0xGasless docs](https://gitbook.0xgasless.com/){target=\_blank}.
-
+For more information about integrating support for gasless transactions into your dApp, be sure to check out the [0xGasless docs](https://docs.0xgasless.com/){target=\_blank}.
 
 --8<-- 'text/_disclaimers/educational-tutorial.md'
 
