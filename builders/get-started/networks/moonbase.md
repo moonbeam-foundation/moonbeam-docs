@@ -63,8 +63,6 @@ There are a variety of DApps deployed to Moonbase Alpha enabling you to experime
 |:------------------------------------------------------------------------------------------:|:------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |     [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank}      |   ERC-20 Faucet    |                 [https://github.com/papermoonio/moonbase-mintableERC20](https://github.com/papermoonio/moonbase-mintableERC20){target=\_blank}                  |
 |        [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}        |  Uniswap V2 Fork   |                       [https://github.com/papermoonio/moonbeam-uniswap](https://github.com/papermoonio/moonbeam-uniswap){target=\_blank}                        |
-
-|        [MoonLotto Lottery](https://moonbase-moonlotto.netlify.app){target=\_blank}        |   TheGraph Demo    | [Interface](https://github.com/papermoonio/moonlotto-interface){target=\_blank}, [Subgraph](https://github.com/papermoonio/moonlotto-subgraph){target=\_blank} |
 | [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} | WalletConnect Demo |            [https://github.com/papermoonio/moonbeam-walletconnect-demo](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}             |
 |              [MoonGas](https://moonbeam-gasinfo.netlify.app){target=\_blank}              | Gas Price Tracker  |                    [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=\_blank}                     |
 
@@ -91,18 +89,6 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 
 !!! note
     If you see only a partial list of assets under **Moon Menu**, your browser may have cached an older version of **Moon Menu**. Clearing the cache and re-adding **Moon Menu** will resolve this.
-
-
-
-### MoonLotto Lottery {: #moonlotto-lottery }
-
-[MoonLotto](https://moonbase-moonlotto.netlify.app){target=\_blank} is a simple lottery game on Moonbase Alpha derived from [The Graph's Example Subgraph](https://github.com/graphprotocol/example-subgraph){target=\_blank}.  Purchasing a ticket costs 1 DEV and a winner is chosen each half hour if there are at least 10 participants. [MoonLotto.sol](https://github.com/papermoonio/moonlotto-subgraph/blob/main/contracts/MoonLotto.sol){target=\_blank} holds the contract logic for the lottery. To participate, take the following steps:
-
-1. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
-2. Enter the address of the recipient of lotto ticket or check **I want to buy a ticket for my address**
-3. Press **Submit on MetaMask** and confirm the transaction in MetaMask
-
-![MoonLotto Lottery](/images/builders/get-started/networks/moonbase/moonbase-5.webp)
 
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect }
 

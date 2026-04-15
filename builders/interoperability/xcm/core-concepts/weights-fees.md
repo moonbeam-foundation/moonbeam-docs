@@ -72,7 +72,7 @@ On Polkadot, the benchmarked base weights are broken up into two categories: fun
 
 With the instruction weight cost established, you can calculate the cost of each instruction in DOT.
 
-In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=\_blank} is set to `{{ networks.polkadot.extrinsic_base_weight.display }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/lib.rs#L92){target=\_blank} of a cent. Where 1 cent is `10^10 / 100`.
+In Polkadot, the [`ExtrinsicBaseWeight`](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/weights/extrinsic_weights.rs#L56){target=\_blank} is set to `{{ networks.polkadot.extrinsic_base_weight }}` which is [mapped to 1/10th](https://github.com/polkadot-fellows/runtimes/blob/{{ networks.polkadot.spec_version }}/relay/polkadot/constants/src/lib.rs#L92){target=\_blank} of a cent. Where 1 cent is `10^10 / 100`.
 
 Therefore, to calculate the cost of executing an XCM instruction, you can use the following formula:
 
@@ -124,20 +124,20 @@ XCM-KSM-Cost = XCM-Planck-KSM-Cost / KSMDecimalConversion
 
 Substrate has introduced a weight system that determines how heavy or, in other words, how expensive an extrinsic is from a computational cost perspective. One unit of weight is defined as one picosecond of execution time. When it comes to paying fees, users will pay a transaction fee based on the weight of the call being made, and each parachain can decide how to convert weight to fee. For example, this may account for additional costs related to transaction size and storage.
 
-For all Moonbeam-based networks, the generic XCM instructions are benchmarked, while the fungible XCM instructions still use a fixed amount of weight per instruction. Consequently, the total weight cost of the benchmarked XCM instructions considers the number of database reads and writes in addition to the weight required for a given instruction. The Polkadot SDK has a breakdown of the relevant [RocksDB database weights](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=\_blank}.
+For all Moonbeam-based networks, both the generic and fungible XCM instructions are benchmarked. The total weight cost of each XCM instruction considers the number of database reads and writes in addition to the base execution time determined by the benchmark. The Polkadot SDK has a breakdown of the relevant [RocksDB database weights](https://github.com/paritytech/polkadot-sdk/blob/{{polkadot_sdk}}/substrate/frame/support/src/weights/rocksdb_weights.rs#L27-L28){target=\_blank}.
 
 Now you can calculate the weight cost for both fungible and generic XCM instructions using the base weight for instruction and the extra database reads and writes if applicable.
 
-For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions. Therefore, it is not benchmarked, and the total weight cost of the [`WithdrawAsset` instruction](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/fungible.rs#L36){target=\_blank} is `{{ xcm.fungible_weights.display }}`, except for when transferring local XC-20s. The total weight cost for the `WithdrawAsset` instruction for local XC-20s is based on converting Ethereum gas to Substrate weight.
+For example, the `WithdrawAsset` instruction is part of the fungible XCM instructions. Its benchmarked weight can be found in the [Moonbeam runtime source code](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=\_blank} and includes a base execution time plus the cost of database reads and writes. The exception is when transferring local XC-20s, where the total weight cost for the `WithdrawAsset` instruction is based on converting Ethereum gas to Substrate weight.
 
-The `BuyExecution` instruction is generic and therefore has a predefined benchmarked weight. You can view its current base weight in the [Moonbeam runtime source code](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/generic.rs#L132-L133){target=\_blank}. In addition to the base weight, the instruction performs four database reads, which are added to calculate the total weight.
+The `BuyExecution` instruction is generic and therefore has a predefined benchmarked weight. You can view its current base weight in the [Moonbeam runtime source code](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/pallet_xcm_benchmarks_generic.rs#L101-L103){target=\_blank}. In addition to the base weight, the instruction performs 14 database reads and 4 writes, which are added to calculate the total weight.
 
 
 You can find all the weight values for all the XCM instructions in the following table, which apply to all Moonbeam-based networks:
 
-|                                                                                     Benchmarked Instructions                                                                                     |                                                                                    Non-Benchmarked Instructions                                                                                    |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| [Generic XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/generic.rs){target=\_blank} | [Fungible XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/fungible.rs){target=\_blank} |
+|                                                                                     Benchmarked Generic Instructions                                                                                     |                                                                                    Benchmarked Fungible Instructions                                                                                    |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [Generic XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/pallet_xcm_benchmarks_generic.rs){target=\_blank} | [Fungible XCM Instructions](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/runtime/moonbeam/src/weights/xcm/pallet_xcm_benchmarks_fungible.rs){target=\_blank} |
 
 The following sections will break down how to calculate XCM fees for Moonbeam-based networks. There are two main scenarios:
 
@@ -150,7 +150,7 @@ For each XCM instruction, the weight units are converted to balance units as par
 
 |                                                                                                  Moonbeam                                                                                                   |                                                                                                   Moonriver                                                                                                    |                                                                                               Moonbase Alpha                                                                                                |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbeam.spec_version}}/runtime/moonbeam/src/lib.rs#L163){target=\_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight.display }}](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonriver.spec_version}}/runtime/moonriver/src/lib.rs#L171){target=\_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight.display }}](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/runtime/moonbase/src/lib.rs#L163){target=\_blank} |
+| [{{ networks.moonbeam.xcm.instructions.wei_per_weight.display }}](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbeam.spec_version}}/runtime/moonbeam/src/lib.rs#L168){target=\_blank} | [{{ networks.moonriver.xcm.instructions.wei_per_weight }}](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonriver.spec_version}}/runtime/moonriver/src/lib.rs#L171){target=\_blank} | [{{ networks.moonbase.xcm.instructions.wei_per_weight }}](https://github.com/moonbeam-foundation/moonbeam/blob/{{networks.moonbase.spec_version}}/runtime/moonbase/src/lib.rs#L163){target=\_blank} |
 
 This means that on Moonbeam, for example, the formula to calculate the cost of one XCM instruction in the reserve asset is as follows:
 
@@ -159,10 +159,10 @@ XCM-Wei-Cost = XCMInstrWeight * WeiPerWeight
 XCM-GLMR-Cost = XCM-Wei-Cost / 10^18
 ```
 
-Therefore, the actual calculation for fungible instructions, for example, is:
+Therefore, taking a single fungible instruction as an example, the calculation is:
 
 ```text
-XCM-Wei-Cost = {{ xcm.fungible_weights.numbers_only }} * {{ networks.moonbeam.xcm.instructions.wei_per_weight.numbers_only }}
+XCM-Wei-Cost = {{ xcm.fungible_weights }} * {{ networks.moonbeam.xcm.instructions.wei_per_weight.numbers_only }}
 XCM-GLMR-Cost = {{ networks.moonbeam.xcm.transfer_glmr.wei_cost }} / 10^18
 ```
 
@@ -186,18 +186,18 @@ For calls that are derived from EVM operations, such as the `DepositAsset` instr
 To determine the total weight for Alice's transfer of DOT to Moonbeam, you'll need the weight for each of the four XCM instructions required for the transfer. Note that while the first three instructions have specific `refTime` and `proofSize` values corresponding to these instructions that can be retrieved via [`queryXcmWeight` method of the `xcmPaymentApi`](#query-xcm-weight), `DepositAsset` relies on the EVM operation [`MintInto`](https://github.com/moonbeam-foundation/moonbeam/blob/{{ networks.moonbeam.spec_version }}/pallets/moonbeam-foreign-assets/src/evm.rs#L40){target=\_blank} and a `WeightPerGas` conversion of `{{ xcm.generic_weights.weight_per_gas.display }}` per gas. The `refTime` of `DepositAsset` can thus be calculated as: 
 
 ```text
-{{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.ref_time.deposit_asset.numbers_only }}
+{{ xcm.generic_weights.ref_time.mint_into_gas }} gas * {{ xcm.generic_weights.weight_per_gas.numbers_only }} weight per gas = {{ xcm.generic_weights.ref_time.deposit_asset }}
 ```
 
 And the `proofSize` of `DepositAsset` can be calculated as:
 
 ```text
-{{ xcm.generic_weights.ref_time.mint_into_gas.numbers_only }} gas * {{ xcm.generic_weights.proof_size.weight_per_gas }} weight per gas = {{ xcm.generic_weights.proof_size.deposit_asset.numbers_only }}
+{{ xcm.generic_weights.ref_time.mint_into_gas }} gas * {{ xcm.generic_weights.proof_size.weight_per_gas }} weight per gas = {{ xcm.generic_weights.proof_size.deposit_asset }}
 ```
 
 ### Weight to Asset Fee Conversion {: #weight-to-asset-fee-conversion} 
 
-Once you have the sum of the `refTime` and `proofSize` values, you can easily retrieve the required commensurate fee amount. The [`queryWeightToAssetFee` method of the `xcmPaymentApi`](#weight-to-asset-fee-conversion) takes a `refTime`, `proofSize`, and asset multilocation as parameters and returns the commensurate fee. By providing the amounts obtained above of `{{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}` `refTime` and `{{ xcm.generic_weights.proof_size.transfer_dot_total.display }}` `proofSize`, and the asset multilocation for DOT, we get a fee amount of `88,920,522` Plank, which is the smallest unit in Polkadot. We can convert this to DOT by dividing by `10^10` which gets us a DOT fee amount of `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }}` DOT. 
+Once you have the sum of the `refTime` and `proofSize` values, you can easily retrieve the required commensurate fee amount. The [`queryWeightToAssetFee` method of the `xcmPaymentApi`](#weight-to-asset-fee-conversion) takes a `refTime`, `proofSize`, and asset multilocation as parameters and returns the commensurate fee. By providing the amounts obtained above of `{{ networks.moonbeam.xcm.transfer_dot.total_weight.display }}` `refTime` and `{{ xcm.generic_weights.proof_size.transfer_dot_total }}` `proofSize`, and the asset multilocation for DOT, we get a fee amount of `88,920,522` Plank, which is the smallest unit in Polkadot. We can convert this to DOT by dividing by `10^10` which gets us a DOT fee amount of `{{ networks.moonbeam.xcm.transfer_dot.xcdot_cost }}` DOT. 
 
 ## XCM Payment API Expanded Examples {: #xcm-payment-api-exanded-examples }
 
