@@ -8,7 +8,7 @@ categories: Indexers and Queries
 
 ## Introduction {: #introduction }
 
-[SQD (formerly Subsquid)](https://www.sqd.ai/){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using SQD’s decentralized data lake and open-source SDK. In very simple terms, SQD can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
+[SQD (formerly Subsquid)](https://sqd.dev/){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 100+ chains using SQD’s decentralized data lake and open-source SDK. In very simple terms, SQD can be thought of as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
 
 SQD has native and full support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contact platform that is EVM-compatible, SQD can be used to index both EVM and Substrate-based data. SQD offers a Substrate Archive and Processor and an EVM Archive and Processor. The Substrate Archive and Processor can be used to index both Substrate and EVM data. This allows developers to extract on-chain data from any of the Moonbeam networks and process EVM logs as well as Substrate entities (events, extrinsics, and storage items) in one single project and serve the resulting data with one single GraphQL endpoint. If you exclusively want to index EVM data, it is recommended to use the EVM Archive and Processor.
 
@@ -20,7 +20,7 @@ This quick-start guide will show you how to create Substrate and EVM projects wi
 
 To get started with SQD, you'll need to have the following:
 
-- [Node.js](https://nodejs.org/en/download/package-manager){target=\_blank} version 16 or newer
+- [Node.js](https://nodejs.org/en/download){target=\_blank} version 16 or newer
 - [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
 - [Squid CLI](https://docs.sqd.ai/squid-cli/installation/){target=\_blank}
 
