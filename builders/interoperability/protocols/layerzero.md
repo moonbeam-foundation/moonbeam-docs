@@ -22,7 +22,7 @@ The LayerZero APIs provide a rich suite for developing Web3 applications, ensuri
 
 There are a couple of resources to get you started building cross-chain applications with LayerZero:
 
-- **[Developer documentation](https://docs.layerzero.network/v2){target=\_blank}**: For technical guides.
+- **[Developer documentation](https://docs.layerzero.network/v2/get-started/overview){target=\_blank}**: For technical guides.
 - **[Stargate](https://stargate.finance){target=\_blank}**: A bridging UI that uses LayerZero, built by the Stargate team.
 
 ## Contracts {: #contracts }

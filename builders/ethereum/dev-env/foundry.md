@@ -12,10 +12,10 @@ categories: Dev Environments, Ethereum Toolkit
 
 Four tools make up Foundry:  
 
-- **[Forge](https://getfoundry.sh/forge/overview/){target=\_blank}**: Compiles, tests, and deploys contracts.
-- **[Cast](https://getfoundry.sh/cast/overview/){target=\_blank}**: A command line interface for interacting with contracts.
-- **[Anvil](https://getfoundry.sh/anvil/overview/){target=\_blank}**: A local TestNet node for development purposes that can fork preexisting networks.
-- **[Chisel](https://getfoundry.sh/chisel/overview/){target=\_blank}**: A Solidity REPL for quickly testing Solidity snippets.
+- **[Forge](https://www.getfoundry.sh/forge){target=\_blank}**: Compiles, tests, and deploys contracts.
+- **[Cast](https://www.getfoundry.sh/cast){target=\_blank}**: A command line interface for interacting with contracts.
+- **[Anvil](https://www.getfoundry.sh/anvil){target=\_blank}**: A local TestNet node for development purposes that can fork preexisting networks.
+- **[Chisel](https://www.getfoundry.sh/chisel){target=\_blank}**: A Solidity REPL for quickly testing Solidity snippets.
 
 This guide will cover how to use Foundry to compile, deploy, and debug Ethereum smart contracts on the Moonbase Alpha TestNet. This guide can also be adapted for Moonbeam, Moonriver, or a Moonbeam development node.
 
@@ -27,7 +27,7 @@ To get started, you will need the following:
   --8<-- 'text/_common/faucet/faucet-sentence.md'
  - 
 --8<-- 'text/_common/endpoint-examples.md'
- - Have [Foundry installed](https://getfoundry.sh/introduction/installation/){target=\_blank}
+ - Have [Foundry installed](https://www.getfoundry.sh/introduction/installation){target=\_blank}
 
 ## Creating a Foundry Project {: #creating-a-foundry-project }
 
@@ -286,7 +286,7 @@ Congratulations, you have successfully deployed and interacted with a contract u
 
 ## Forking with Anvil {: #forking-with-cast-anvil }
 
-As previously mentioned, [Anvil](https://getfoundry.sh/anvil/overview/#anvil){target=\_blank} is a local TestNet node for development purposes that can fork preexisting networks. Forking Moonbeam allows you to interact with live contracts deployed on the network.
+As previously mentioned, [Anvil](https://www.getfoundry.sh/anvil#anvil){target=\_blank} is a local TestNet node for development purposes that can fork preexisting networks. Forking Moonbeam allows you to interact with live contracts deployed on the network.
 
 There are some limitations to be aware of when forking with Anvil. Since Anvil is based on an EVM implementation, you cannot interact with any of the Moonbeam precompiled contracts and their functions. Precompiles are a part of the Substrate implementation and therefore cannot be replicated in the simulated EVM environment. This prohibits you from interacting with cross-chain assets on Moonbeam and Substrate-based functionality such as staking and governance.
 
@@ -449,7 +449,7 @@ Then, for example, you can query the balance of one of Moonbase Alpha's collator
 
 --8<-- 'code/builders/ethereum/dev-env/foundry/terminal/query-balance.md'
 
-If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://getfoundry.sh/chisel/reference/){target=\_blank}.
+If you want to learn more about Chisel, download Foundry and refer to its [official reference page](https://www.getfoundry.sh/reference/chisel/chisel){target=\_blank}.
 
 ## Foundry With Hardhat {: #foundry-with-hardhat }  
 
