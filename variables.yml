@@ -1,7 +1,6 @@
 networks:
   development:
-    build_tag: v0.50.3
-    build_version: 0.50.3
+    build_tag: 0.50.3
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.3-4202-c023
     rpc_url: http://127.0.0.1:9944
     wss_url: ws://127.0.0.1:9944
@@ -17,8 +16,7 @@ networks:
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
     spec_version: runtime-4300
-    parachain_release_tag: v0.50.3 # Required format for link generation system
-    parachain_version: 0.50.3
+    parachain_release_tag: 0.50.3 # Required format for link generation system
     parachain_sha256sum: 46f4760cbd89e2f0de94f65ee448a8d457f6aa06361589429fca0c863c6c8f34
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.3-4202-c023 
     gas_block: 60,000,000
@@ -350,8 +348,7 @@ networks:
     chain_id: 1285
     hex_chain_id: '0x505'
     node_directory: /var/lib/moonriver-data
-    parachain_release_tag: v0.50.3
-    parachain_version: 0.50.3
+    parachain_release_tag: 0.50.3
     parachain_sha256sum: 46f4760cbd89e2f0de94f65ee448a8d457f6aa06361589429fca0c863c6c8f34
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.3-4202-c023
     chain_spec: moonriver
@@ -677,8 +674,7 @@ networks:
     chain_id: 1284
     hex_chain_id: '0x504'
     node_directory: /var/lib/moonbeam-data
-    parachain_release_tag: v0.50.3
-    parachain_version: 0.50.3
+    parachain_release_tag: 0.50.3
     parachain_sha256sum: 46f4760cbd89e2f0de94f65ee448a8d457f6aa06361589429fca0c863c6c8f34
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.50.3-4202-c023
     chain_spec: moonbeam

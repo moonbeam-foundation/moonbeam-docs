@@ -90,7 +90,7 @@ For an overview of the flags used in the following start-up commands, plus addit
     If Docker commands fail or behave unexpectedly on Apple Silicon, enable **Use Rosetta for x86_64/amd64 emulation on Apple Silicon** in Docker Desktop settings and use the `amd64` platform for both pull and run commands. For example:
 
     ```bash
-    docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }}
+    docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }}
     ```
 
     ```bash
@@ -106,7 +106,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -124,7 +124,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash
         docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonriver.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonriver.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -142,7 +142,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash
         docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbase.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonbase.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -162,7 +162,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain moonbeam \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -179,7 +179,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonriver.parachain_release_tag }} \
         --base-path /data \
         --chain moonriver \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -196,7 +196,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash
         docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbase.parachain_release_tag }} \
         --base-path /data \
         --chain alphanet \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -217,7 +217,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash hl_lines="11"
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -236,7 +236,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash hl_lines="10"
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain moonbeam \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -258,7 +258,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash hl_lines="12"
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -278,7 +278,7 @@ For an overview of the flags used in the following start-up commands, plus addit
         ```bash hl_lines="10"
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain moonbeam \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -303,7 +303,7 @@ When setting up a new node, run the following command to generate and store on d
 
     docker run --network="host" -v "/var/lib/moonbeam-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam 
+     moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonbeam-data --chain moonbeam
     
     ```
 
@@ -313,7 +313,7 @@ When setting up a new node, run the following command to generate and store on d
 
     docker run --network="host" -v "/var/lib/moonriver-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver 
+     moonbeamfoundation/moonbeam:v{{ networks.moonriver.parachain_release_tag }} key generate-node-key --base-path /var/lib/moonriver-data --chain moonriver
 
     ```
 
@@ -323,7 +323,7 @@ When setting up a new node, run the following command to generate and store on d
 
     docker run --network="host" -v "/var/lib/alphanet-data:/data" \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-     moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet && sudo chown -R moonbase_service  /var/lib/alphanet-data
+     moonbeamfoundation/moonbeam:v{{ networks.moonbase.parachain_release_tag }} key generate-node-key --base-path /var/lib/alphanet-data --chain alphanet && sudo chown -R moonbase_service  /var/lib/alphanet-data
 
     ```
 
@@ -339,7 +339,7 @@ Now you can run your Docker start up commands:
         ```bash
         docker run --network="host" -v "{{ networks.moonbeam.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonbeam.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -357,7 +357,7 @@ Now you can run your Docker start up commands:
         ```bash
         docker run --network="host" -v "{{ networks.moonriver.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonriver.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonriver.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -375,7 +375,7 @@ Now you can run your Docker start up commands:
         ```bash
         docker run --network="host" -v "{{ networks.moonbase.node_directory }}:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbase.parachain_release_tag }} \
         --base-path /data \
         --chain {{ networks.moonbase.chain_spec }} \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -395,7 +395,7 @@ Now you can run your Docker start up commands:
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonbeam-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbeam.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbeam.parachain_release_tag }} \
         --base-path /data \
         --chain moonbeam \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -412,7 +412,7 @@ Now you can run your Docker start up commands:
         ```bash
         docker run -p 9944:9944 -v "/var/lib/moonriver-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonriver.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonriver.parachain_release_tag }} \
         --base-path /data \
         --chain moonriver \
         --name "INSERT_YOUR_NODE_NAME" \
@@ -429,7 +429,7 @@ Now you can run your Docker start up commands:
         ```bash
         docker run -p 9944:9944 -v "/var/lib/alphanet-data:/data" \
         -u $(id -u ${USER}):$(id -g ${USER}) \
-        moonbeamfoundation/moonbeam:{{ networks.moonbase.parachain_release_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.moonbase.parachain_release_tag }} \
         --base-path /data \
         --chain alphanet \
         --name "INSERT_YOUR_NODE_NAME" \
