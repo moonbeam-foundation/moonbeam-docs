@@ -16,7 +16,7 @@ A Moonbeam development node is your own personal development environment for bui
 If you follow this guide to the end, you will have a Moonbeam development node running in your local environment with 10 prefunded [accounts](#pre-funded-development-accounts).
 
 !!! note
-    This tutorial was created using the {{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/{{ networks.development.build_tag }}){target=\_blank}. The Moonbeam platform and the [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
+    This tutorial was created using the v{{ networks.development.build_tag }} tag of [Moonbase Alpha](https://github.com/moonbeam-foundation/moonbeam/releases/tag/v{{ networks.development.build_tag }}){target=\_blank}. The Moonbeam platform and the [Frontier](https://github.com/polkadot-evm/frontier){target=\_blank} components it relies on for Substrate-based Ethereum compatibility are still under very active development.
     --8<-- 'text/_common/assumes-mac-or-ubuntu-env.md'
 
 ## Spin Up a Moonbeam Development Node {: #spin-up-a-node }
@@ -30,7 +30,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 1. Execute the following command to download the latest Moonbeam image:
 
     ```bash
-    docker pull moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+    docker pull moonbeamfoundation/moonbeam:v{{ networks.development.build_tag }}
     ```
 
     The tail end of the console log should look like this:
@@ -43,7 +43,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
         ```bash
         docker run --rm --name {{ networks.development.container_name }} --network host \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.development.build_tag }} \
         --dev --rpc-external
         ```
 
@@ -51,7 +51,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.development.build_tag }} \
         --dev --rpc-external
         ```
 
@@ -59,7 +59,7 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
 
         ```bash
         docker run --rm --name {{ networks.development.container_name }} -p 9944:9944 ^
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} ^
+        moonbeamfoundation/moonbeam:v{{ networks.development.build_tag }} ^
         --dev --rpc-external
         ```
 
@@ -67,12 +67,12 @@ Using Docker enables you to spin up a node in a matter of seconds. Once you have
         If the Docker commands fail or behave unexpectedly on Apple Silicon, enable **Use Rosetta for x86_64/amd64 emulation on Apple Silicon** in Docker Desktop settings and use the `amd64` platform for both pull and run commands:
 
         ```bash
-        docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:{{ networks.development.build_tag }}
+        docker pull --platform=linux/amd64 moonbeamfoundation/moonbeam:v{{ networks.development.build_tag }}
         ```
 
         ```bash
         docker run --rm --platform=linux/amd64 --name {{ networks.development.container_name }} -p 9944:9944 \
-        moonbeamfoundation/moonbeam:{{ networks.development.build_tag }} \
+        moonbeamfoundation/moonbeam:v{{ networks.development.build_tag }} \
         --dev --rpc-external
         ```
 
@@ -104,7 +104,7 @@ To build the binary file, you can take the following steps:
 1. Clone a specific tag of the Moonbeam repo, which you can find on the [Moonbeam GitHub repository](https://github.com/moonbeam-foundation/moonbeam){target=\_blank}:
 
     ```bash
-    git clone -b {{ networks.development.build_tag }} https://github.com/moonbeam-foundation/moonbeam
+    git clone -b v{{ networks.development.build_tag }} https://github.com/moonbeam-foundation/moonbeam
     cd moonbeam
     ```
 
