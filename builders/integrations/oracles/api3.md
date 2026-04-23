@@ -137,7 +137,7 @@ The callback to the requester contract contains two parameters:
 
 ## dAPIs: API3 Data Feeds {: #dapis }
 
-[dAPIs](https://docs.api3.org/oev-searchers/in-depth/data-feeds/){target=\_blank} are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock, and commodity prices. They can power decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs, and more.
+[dAPIs](https://docs.api3.org/oev/in-depth/data-feeds/#data-feeds){target=\_blank} are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock, and commodity prices. They can power decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs, and more.
 
 The data feeds are continuously updated by first-party oracles using signed data. DApp owners can read the on-chain value of any dAPI in real-time.
 
