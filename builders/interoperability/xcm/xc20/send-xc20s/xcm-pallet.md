@@ -200,7 +200,7 @@ The Polkadot XCM Pallet includes the following read-only storage methods. Note, 
 
 There are no constants part of the Polkadot XCM pallet.
 
-## Building an XCM Message with the Polkadot XCM Pallet {: #build-with-PolkadotXCM-pallet}
+## Building an XCM Message with the Polkadot XCM Pallet {: #build-with-polkadotxcm-pallet}
 
 This guide covers the process of building an XCM message using the Polkadot XCM Pallet, specifically the `transferAssets` function.
 
@@ -215,7 +215,7 @@ To follow along with the examples in this guide, you need to have the following:
 
 - An account with funds.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- Some xcUNIT tokens
+- Some xcUNIT tokens. To obtain xcUNIT tokens, contact us on Discord and we will be happy to help you
 
     !!! note
         You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
