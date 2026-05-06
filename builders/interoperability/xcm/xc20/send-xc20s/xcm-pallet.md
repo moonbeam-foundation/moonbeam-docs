@@ -200,7 +200,7 @@ The Polkadot XCM Pallet includes the following read-only storage methods. Note, 
 
 There are no constants part of the Polkadot XCM pallet.
 
-## Building an XCM Message with the Polkadot XCM Pallet {: #build-with-PolkadotXCM-pallet}
+## Building an XCM Message with the Polkadot XCM Pallet {: #build-with-polkadotxcm-pallet}
 
 This guide covers the process of building an XCM message using the Polkadot XCM Pallet, specifically the `transferAssets` function.
 
@@ -215,12 +215,10 @@ To follow along with the examples in this guide, you need to have the following:
 
 - An account with funds.
  --8<-- 'text/_common/faucet/faucet-list-item.md'
-- Some xcUNIT tokens. You can swap DEV tokens (Moonbase Alpha's native token) for xcUNITs on [Moonbeam-Swap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}, a demo Uniswap-V2 clone on Moonbase Alpha
+- Some xcUNIT tokens. To obtain xcUNIT tokens, contact us on Discord and we will be happy to help you
 
     !!! note
         You can adapt this guide to transfer another [external XC-20 or a local XC-20](/builders/interoperability/xcm/xc20/overview/){target=\_blank}. For external XC-20s, you'll need the asset ID and the number of decimals the asset has. For local XC-20s, you'll need the contract address.
-
-    ![Moonbeam Swap xcUNIT](/images/builders/interoperability/xcm/xc20/send-xc20s/xcm-pallet/xtokens-1.webp)
 
 To check your xcUNIT balance, you can add the XC-20's [precompile address](/builders/interoperability/xcm/xc20/overview/#calculate-xc20-address){target=\_blank} to MetaMask with the following address:
 

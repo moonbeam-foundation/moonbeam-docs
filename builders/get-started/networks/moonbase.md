@@ -55,14 +55,13 @@ To request DEV tokens from the faucet, you can enter your address on the [Moonba
 
 ## Demo DApps {: #Demo-DApps }
 
-There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank} or [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} DApps. For example, [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} can help you acquire cross-chain assets such as xcUNIT or xcKarura for testing XCM related functions. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
+There are a variety of DApps deployed to Moonbase Alpha enabling you to experiment with various apps and integrations. You can also acquire a variety of test tokens through the [Moonbase ERC20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank}. In the below table, you'll find each sample DApp, its associated URL, and GitHub repository.
 
 ### Quick Links {: #quick-links }
 
 |                                            DApp                                            |    Description     |                                                                            Repository                                                                            |
 |:------------------------------------------------------------------------------------------:|:------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |     [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_blank}      |   ERC-20 Faucet    |                 [https://github.com/papermoonio/moonbase-mintableERC20](https://github.com/papermoonio/moonbase-mintableERC20){target=\_blank}                  |
-|        [Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank}        |  Uniswap V2 Fork   |                       [https://github.com/papermoonio/moonbeam-uniswap](https://github.com/papermoonio/moonbeam-uniswap){target=\_blank}                        |
 | [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} | WalletConnect Demo |            [https://github.com/papermoonio/moonbeam-walletconnect-demo](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank}             |
 |              [MoonGas](https://moonbeam-gasinfo.netlify.app){target=\_blank}              | Gas Price Tracker  |                    [https://github.com/albertov19/moonbeam-gas-station](https://github.com/albertov19/moonbeam-gas-station){target=\_blank}                     |
 
@@ -75,21 +74,6 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 
 ![ERC20 Minter](/images/builders/get-started/networks/moonbase/moonbase-2.webp)
 
-### Moonbeam Uniswap {: #moonbeam-uniswap }
-
-[Moonbeam Uniswap](https://moonbeam-swap.netlify.app/#/swap){target=\_blank} is a fork of [Uniswap-V2](https://blog.uniswap.org/uniswap-v2){target=\_blank} deployed to Moonbase Alpha. Notably, Moonbeam Uniswap allows developers to easily make a swap to acquire [cross-chain assets](/builders/interoperability/xcm/xc20/){target=\_blank} such as xcKarura or xcUNIT for XCM testing purposes. To perform your first swap, take the following steps:
-
-1. Press **Select a token**
-2. Connect your MetaMask wallet and ensure you're on the Moonbase Alpha network
-3. Press **Choose a List** on the prompt
-4. Select **Moon Menu**
-5. Search for or select your desired asset from the list then continue with the swap
-
-![Moonbeam Swap](/images/builders/get-started/networks/moonbase/moonbase-3.webp)
-
-!!! note
-    If you see only a partial list of assets under **Moon Menu**, your browser may have cached an older version of **Moon Menu**. Clearing the cache and re-adding **Moon Menu** will resolve this.
-
 ### Moonbeam WalletConnect {: #moonbeam-walletconnect }
 
 [Moonbeam WalletConnect](https://moonbeam-walletconnect-demo.netlify.app){target=\_blank} shows how easy it is to integrate [WalletConnect](https://walletconnect.com){target=\_blank} into your DApps and unlock support for a great variety of crypto wallets. Be sure to check out the [demo app repository](https://github.com/papermoonio/moonbeam-walletconnect-demo){target=\_blank} to see exactly how the WalletConnect integration works. To get started, you can take the following steps:
@@ -97,7 +81,7 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 1. Press **Connect Wallet**
 2. Scan the QR code using a [wallet compatible with WalletConnect](https://walletguide.walletconnect.network/){target=\_blank}
 
-![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-6.webp)
+![Moonbeam WalletConnect](/images/builders/get-started/networks/moonbase/moonbase-3.webp)
 
 ### MoonGas {: #moongas }
 
@@ -105,4 +89,4 @@ The [Moonbase ERC-20 Minter](https://moonbase-minterc20.netlify.app){target=\_bl
 
 You'll notice that the minimum gas price for Moonbeam is {{ networks.moonbeam.min_gas_price }} Gwei, while the minimum for Moonriver is {{ networks.moonriver.min_gas_price }} Gwei and Moonbase Alpha is {{ networks.moonbase.min_gas_price }} Gwei. This difference stems from the [100 to 1 re-denomination of GLMR](https://moonbeam.network/news/moonbeam-foundation-announces-liquidity-programs-a-new-token-event-and-glmr-redenomination){target=\_blank} and thus the {{ networks.moonbeam.min_gas_price }} Gwei minimum on Moonbeam corresponds to a {{ networks.moonriver.min_gas_price }} Gwei minimum on Moonriver and a {{ networks.moonbase.min_gas_price }} Gwei on Moonbase.
 
-![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-7.webp)
+![MoonGas](/images/builders/get-started/networks/moonbase/moonbase-4.webp)
