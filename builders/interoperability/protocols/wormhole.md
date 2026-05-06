@@ -70,7 +70,6 @@ To deploy on each chain, you will need the local instance of the Wormhole core b
 |:--------------------------------------------------------------------:|:------------------------------------------:|:-----------------:|
 | [Polygon Mumbai](https://faucet.polygon.technology){target=\_blank} | 0x0CBE91CF822c73C2315FB05100C2F714765d5c20 |         5         |
 |    [Avalanche Fuji](https://faucet.avax.network){target=\_blank}    | 0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C |         6         |
-|   [Fantom TestNet](https://faucet.fantom.network){target=\_blank}   | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |        10         |
 |       [Sepolia](https://www.sepoliafaucet.io){target=\_blank}       | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |       10002       |
 |  [Moonbase Alpha](https://faucet.moonbeam.network){target=\_blank}  | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 |        16         |
 
@@ -282,10 +281,10 @@ Please manage your keys with care, as exposing them can result in loss of funds.
 
 Remove any entries from the `privateKeys` object if their key belongs to a chain that you are not using.  
 
-If you are using a chain that wasn’t listed in the EVM TestNet table above, you will have to add your own array. The key for this array should be the Wormhole chain ID of the other EVM that you chose to deploy on before. For example, if you deployed on the Fantom TestNet, you would add the following object, since the Wormhole chain ID of the Fantom TestNet is `10`.
+If you are using a chain that wasn’t listed in the EVM TestNet table above, you will have to add your own array. The key for this array should be the Wormhole chain ID of the other EVM that you chose to deploy on before. For example, if you deployed on the Avalanche Fuji TestNet, you would add the following object, since the Wormhole chain ID of the Avalanche Fuji TestNet is `6`.
 
 ```json
-"10": [
+"6": [
     "INSERT_YOUR_PRIVATE_KEY"
 ]
 ```
@@ -400,7 +399,7 @@ You should see something similar to the logs below in the console.
 
 Now, to send a cross-chain message, you just need to call the `sendMessage(string memory message, address destAddress, uint16 destChainId)` function.
 
-Use the Remix interface. This example is going to send a cross-chain message to the Fantom TestNet, but you can substitute the `destChainId` for whichever EVM you desire. Check the following things:
+Use the Remix interface. This example is going to send a cross-chain message to the Avalanche Fuji TestNet, but you can substitute the `destChainId` for whichever EVM you desire. Check the following things:
 
 1. The environment is **Injected Provider** on network 1287 (Moonbase Alpha)
 2. You have substantial funds in your wallet from [the faucet](https://faucet.moonbeam.network){target=\_blank} to cover the transaction gas cost on both the origin and destination chains
