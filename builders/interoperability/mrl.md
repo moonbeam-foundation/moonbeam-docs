@@ -183,7 +183,7 @@ For now, you'll focus on generating the calldata for the EVM transaction. For th
 
 To create the batch transaction and wrap it in a remote EVM call to be executed on Moonbeam, you'll need to take the following steps:
 
-1. Create contract instances of the local XC-20, [the Wormhole relayer](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol){target=\_blank}, and the [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}. For this, you'll need the ABI for each contract and the address of a Wormhole relayer. You can use the [xLabs relayer](https://xlabs.xyz/){target=\_blank}:
+1. Create contract instances of the local XC-20, [the Wormhole relayer](https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/evm/src/token-bridge-relayer/TokenBridgeRelayer.sol){target=\_blank}, and the [Batch Precompile](https://github.com/moonbeam-foundation/moonbeam/blob/master/precompiles/batch/Batch.sol){target=\_blank}. For this, you'll need the ABI for each contract and the address of a Wormhole relayer. You can use the xLabs relayer:
 
     === "Moonbeam"
 
@@ -232,7 +232,7 @@ It's important to note that not every parachain will have X-Tokens and the other
 
 ### Tokens Available Through Wormhole {: #tokens-available-through-wormhole }
 
-While Wormhole has the technical capability to bridge any token across chains, relayers will not support every token for fees. The ERC-20 assets that can be bridged through Wormhole's MRL solution depend on the tokens the [xLabs relayer](https://xlabs.xyz){target=\_blank} takes in. The tokens that are available to Moonbeam and Moonbase Alpha are listed in the table below:
+While Wormhole has the technical capability to bridge any token across chains, relayers will not support every token for fees. The ERC-20 assets that can be bridged through Wormhole's MRL solution depend on the tokens the xLabs relayer takes in. The tokens that are available to Moonbeam and Moonbase Alpha are listed in the table below:
 
 === "Moonbeam"
 
