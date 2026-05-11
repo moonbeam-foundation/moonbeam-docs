@@ -1,5 +1,6 @@
 ---
 description: Check for the latest Moonbeam client release, update version tags and sha256sum in variables.yml
+disable-model-invocation: true
 ---
 
 Follow these steps exactly:
