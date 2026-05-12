@@ -1146,7 +1146,8 @@ def create_repo_pr(
         return
     run_cmd(["git", "commit", "-m", title], repo)
     head = push_branch(repo, target_repo, branch)
-    run_cmd(["gh", "pr", "create", "--repo", target_repo, "--base", "master", "--head", head, "--title", title, "--body", body], repo)
+    default_branch = repo_default_branch(target_repo)
+    run_cmd(["gh", "pr", "create", "--repo", target_repo, "--base", default_branch, "--head", head, "--title", title, "--body", body], repo)
 
 
 def push_branch(repo: Path, target_repo: str, branch: str) -> str:
@@ -1156,9 +1157,29 @@ def push_branch(repo: Path, target_repo: str, branch: str) -> str:
         if pushed.returncode == 0:
             return branch
     run_cmd(["gh", "repo", "fork", target_repo, "--remote", "--remote-name", "fork", "--clone=false"], repo, check=False)
+    if not remote_exists(repo, "fork"):
+        user = run_cmd(["gh", "api", "user", "-q", ".login"], repo, capture=True).stdout.strip()
+        fork_repo = target_repo.split("/")[1]
+        run_cmd(["git", "remote", "add", "fork", f"https://github.com/{user}/{fork_repo}.git"], repo)
     run_cmd(["git", "push", "-u", "fork", branch], repo)
     user = run_cmd(["gh", "api", "user", "-q", ".login"], repo, capture=True).stdout.strip()
     return f"{user}:{branch}"
+
+
+def remote_exists(repo: Path, name: str) -> bool:
+    result = run_cmd(["git", "remote", "get-url", name], repo, check=False, capture=True)
+    return result.returncode == 0
+
+
+def repo_default_branch(target_repo: str) -> str:
+    result = run_cmd(
+        ["gh", "repo", "view", target_repo, "--json", "defaultBranchRef", "--jq", ".defaultBranchRef.name"],
+        Path.cwd(),
+        capture=True,
+        check=False,
+    )
+    branch = result.stdout.strip()
+    return branch if branch else "main"
 
 
 def remote_for_repo(repo: Path, target_repo: str) -> str | None:
