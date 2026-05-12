@@ -3,67 +3,105 @@ description: Detect Moonbeam network runtime upgrades and update variables, runt
 disable-model-invocation: true
 ---
 
-# Runtime Bump
+Follow these steps exactly:
 
-Use this skill when the runtime upgrade test fails and the docs need to be synchronized with on-chain Moonbeam, Moonriver, or Moonbase Alpha runtimes.
+1. **Confirm prerequisites before making changes.**
+   - `SUBSCAN_API_KEY` must be set for live runtime and block detection.
+   - Use an existing `moonbeam-docs` checkout; the skill lives in this repo and the CLI resolves it from `CLAUDE_SKILL_DIR`.
+   - Use an existing `papermoonio/moonbeam-docs-test-suite` checkout if available. Set `MOONBEAM_DOCS_TEST_SUITE_DIR` only when the test suite is not next to the docs checkout.
+   - Only check `gh auth status` when the user asks to create PRs.
+   - Runtime plan JSON files are temporary artifacts. They must stay outside every repo, normally at `/tmp/moonbeam-runtime-bump/runtime-bump-plan.json`.
 
-This workflow updates both repositories:
+2. **Run a dry run first. Do not apply changes yet.**
+   ```bash
+   "${CLAUDE_SKILL_DIR}/scripts/runtime-bump" run --dry-run
+   ```
+   Read and report (top-level fields unless noted):
+   - `changed_networks`
+   - `review_items`
+   - for each changed network — `networks.<network>.docs_runtime`, `networks.<network>.detected_runtime`, `networks.<network>.upgrade_block`, `networks.<network>.upgrade_block_confirmed`, `networks.<network>.forum_url`
 
-- `moonbeam-docs`: `variables.yml` and `builders/build/runtime-upgrades.md`.
-- `papermoonio/moonbeam-docs-test-suite`: `test/builders/build/runtime-upgrades.js`.
+3. **Stop if the dry run reports blocking review items.**
+   - Do not run `--apply` if any blocking review items remain. Blocking items are those about a missing upgrade block — the apply cannot produce a correct runtime table row without one.
+   - A missing forum URL is non-blocking: the runtime table will use plain text and apply can proceed. Ask the user if they want to provide `--forum-url` before continuing.
+   - Upgrade blocks should be detected automatically from Subscan/RPC. Ask the user for a block only if every automated method fails.
+   - If the dry run shows no changed networks, report that docs and tests are already aligned and stop.
 
-It also reviews docs links/snippets affected by `spec_version` changes through the `verify` command. The runtime test suite PR is only one output of the workflow; the docs PR is equally required.
+4. **Apply only after the dry run is clean and the user approves.** Ask explicitly: "The dry run is clean. Ready to apply changes?" before running `--apply`.
+   ```bash
+   "${CLAUDE_SKILL_DIR}/scripts/runtime-bump" run --apply
+   ```
+   This must update:
+   - `variables.yml` in `moonbeam-docs`
+   - `builders/build/runtime-upgrades.md` in `moonbeam-docs`
+   - `test/builders/build/runtime-upgrades.js` in `moonbeam-docs-test-suite`
+   It must write the plan JSON outside the repo, normally `/tmp/moonbeam-runtime-bump/runtime-bump-plan.json`.
 
-Always start with a dry run:
+5. **Review the docs diff.**
+   In `moonbeam-docs`, inspect:
+   ```bash
+   git diff -- variables.yml builders/build/runtime-upgrades.md
+   git status --short
+   ```
+   Confirm:
+   - only networks that changed have updated `spec_version` values;
+   - `builders/build/runtime-upgrades.md` has the correct runtime row, Subscan block link, and forum link when one clear match exists;
+   - no `runtime-bump-plan.json` or other temporary JSON file is present in the repo;
+   - any additional modified docs files are intentional follow-up edits for links/snippets.
 
-```bash
-"${CLAUDE_SKILL_DIR}/scripts/runtime-bump" run --dry-run
-```
+6. **Review the test suite diff.**
+   In `moonbeam-docs-test-suite`, inspect:
+   ```bash
+   git diff -- test/builders/build/runtime-upgrades.js
+   git status --short
+   ```
+   The expected default test suite diff is only the runtime assertion update in `test/builders/build/runtime-upgrades.js`. If files such as `.gitignore` appear, treat them as unexpected and do not include them unless the user explicitly approves.
 
-Only make changes when the user explicitly asks to apply them:
+7. **Run verification after apply.**
+   ```bash
+   "${CLAUDE_SKILL_DIR}/scripts/runtime-bump" verify --plan /tmp/moonbeam-runtime-bump/runtime-bump-plan.json
+   ```
+   Review:
+   - docs git diff summary;
+   - test suite git diff summary;
+   - links that interpolate `networks.<network>.spec_version`;
+   - MkDocs build result when available.
 
-```bash
-"${CLAUDE_SKILL_DIR}/scripts/runtime-bump" run --apply
-```
+8. **Handle affected `spec_version` links before PRs.**
+   If `verify` reports GitHub links using `networks.<network>.spec_version`, open the listed files and inspect the target in the new runtime. Update line anchors or nearby text when needed. Do not assume snippets are safe only because variables changed; use `git diff` and `verify` output as the source of truth.
 
-Create pull requests only after reviewing the applied diff:
+9. **Confirm temporary artifacts are absent from repos.**
+   Before creating PRs, check both repos:
+   ```bash
+   git status --short
+   ```
+   No `runtime-bump-plan.json` or generated temporary JSON file should appear. If a plan JSON appears inside a repo, remove it before continuing.
 
-```bash
-"${CLAUDE_SKILL_DIR}/scripts/runtime-bump" create-prs --plan /tmp/moonbeam-runtime-bump/runtime-bump-plan.json
-```
+10. **Create PRs only after diffs and verification are clean.**
+    First check GitHub CLI auth:
+    ```bash
+    gh auth status
+    ```
+    Then create PRs:
+    ```bash
+    "${CLAUDE_SKILL_DIR}/scripts/runtime-bump" create-prs --plan /tmp/moonbeam-runtime-bump/runtime-bump-plan.json
+    ```
+    This creates two PRs:
+    - one PR in `moonbeam-docs` for variables, runtime upgrades docs, and any verified link/snippet follow-ups;
+    - one PR in `papermoonio/moonbeam-docs-test-suite` for runtime test assertions.
+    The CLI should use direct push when available and fork fallback otherwise.
 
-## Requirements
+11. **Report the final result.**
+    Include:
+    - changed networks and runtime versions;
+    - upgrade block and whether it was confirmed;
+    - forum URL or note that no forum URL was used;
+    - docs files changed;
+    - test suite files changed;
+    - verification result;
+    - PR URLs if PRs were created.
 
-- Set `SUBSCAN_API_KEY` before live detection. The script uses Subscan to find runtime events and blocks.
-- Authenticate GitHub CLI with `gh auth login` before using `create-prs`.
-- Optionally set `MOONBEAM_DOCS_TEST_SUITE_DIR` to an existing checkout of `papermoonio/moonbeam-docs-test-suite`.
-- Optionally set `RUNTIME_BUMP_WORKDIR` for temporary checkouts.
-- Runtime plan JSON files are temporary artifacts. Keep them outside the repo, preferably under `RUNTIME_BUMP_WORKDIR` or `/tmp/moonbeam-runtime-bump`.
-
-## Workflow
-
-1. Run the dry run and inspect the detected network runtimes, candidate upgrade blocks, forum matches, affected docs files, and test suite update.
-2. If the dry run reports ambiguous forum matches or GitHub line anchors, resolve those manually or rerun with overrides shown by the CLI. Upgrade blocks should be detected automatically from Subscan/RPC; only ask the user for a block if every automated method fails.
-3. Run `--apply` only after the dry run looks correct. This updates `variables.yml`, `builders/build/runtime-upgrades.md`, and the test suite runtime assertions.
-4. Run `verify --plan /tmp/moonbeam-runtime-bump/runtime-bump-plan.json` to review:
-   - Git diff in `moonbeam-docs` and `moonbeam-docs-test-suite`.
-   - GitHub links that interpolate `networks.<network>.spec_version`.
-   - Snippet-related diffs and any rendered docs/build result available locally.
-5. Do not assume snippets are safe only because variables changed. Use the verify output and `git diff` to decide whether line anchors or snippet content need follow-up edits.
-6. Run `create-prs --plan /tmp/moonbeam-runtime-bump/runtime-bump-plan.json` only after the docs diff and test suite diff are acceptable. It creates one PR for docs and one PR for the test suite, using direct push when available and fork fallback otherwise. Do not commit runtime plan JSON files.
-
-## Expected Outputs
-
-- A docs branch named `runtime-bump/rt-<runtime>` with:
-  - updated `spec_version` values in `variables.yml` for only the networks that changed;
-  - an inserted or updated row in `builders/build/runtime-upgrades.md`, including Subscan block links and a forum link when one clear match exists;
-  - any necessary follow-up edits for GitHub line anchors or snippets surfaced by verification.
-- A test suite branch with updated runtime assertions in `test/builders/build/runtime-upgrades.js`.
-- A temporary `runtime-bump-plan.json` file outside the repo describing detected runtimes, changed networks, candidate blocks, forum URL, files to edit, and review items.
-
-## Useful Overrides
-
-Use overrides when Subscan data is incomplete or human confirmation is needed:
+Useful overrides when Subscan data is incomplete or human confirmation is needed:
 
 ```bash
 "${CLAUDE_SKILL_DIR}/scripts/runtime-bump" run --dry-run \
@@ -72,4 +110,4 @@ Use overrides when Subscan data is incomplete or human confirmation is needed:
   --forum-url 4301=https://forum.moonbeam.network/t/example/1234
 ```
 
-The default branch name is `runtime-bump/rt-<runtime>`.
+Default branch name: `runtime-bump/rt-<runtime>`.

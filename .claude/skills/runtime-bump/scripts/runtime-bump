@@ -24,6 +24,8 @@ from pathlib import Path
 from typing import Any
 
 
+MAX_BINARY_SEARCH_STEPS = 30
+
 NETWORKS = {
     "moonbase": {
         "display": "Moonbase Alpha",
@@ -288,6 +290,7 @@ def build_plan(config: RuntimeConfig) -> dict[str, Any]:
         detected = detect_runtime(config, network)
         changed = detected != current
         block = None
+        block_confirmed = False
         forum_url = None
         review_items: list[str] = []
         if changed:
@@ -336,7 +339,10 @@ def build_plan(config: RuntimeConfig) -> dict[str, Any]:
 
 
 def has_complete_overrides(config: RuntimeConfig) -> bool:
-    return bool(config.runtime_overrides)
+    return all(
+        network in config.runtime_overrides and network in config.block_overrides
+        for network in NETWORKS
+    )
 
 
 def read_docs_versions(path: Path) -> dict[str, int]:
@@ -536,7 +542,7 @@ def subscan_validation_events(network: str, api_key: str) -> list[dict[str, Any]
                     headers={"X-API-Key": api_key},
                     payload=body,
                 )
-            except urllib.error.HTTPError:
+            except (urllib.error.URLError, json.JSONDecodeError):
                 continue
             raw_events = data.get("data", {}).get("events") or data.get("data", {}).get("list") or []
             if isinstance(raw_events, list):
@@ -622,7 +628,11 @@ def subscan_find_runtime_transition(
     if low_runtime is not None and low_runtime >= runtime:
         low = 1
 
+    steps = 0
     while low + 1 < high:
+        if steps >= MAX_BINARY_SEARCH_STEPS:
+            return None, False
+        steps += 1
         mid = (low + high) // 2
         try:
             mid_runtime = subscan_block_runtime(network, api_key, mid)
@@ -711,7 +721,11 @@ def rpc_find_runtime_transition(network: str, runtime: int, lower_bound: int | N
     if low_runtime is not None and low_runtime >= runtime:
         low = 1
 
+    steps = 0
     while low + 1 < high:
+        if steps >= MAX_BINARY_SEARCH_STEPS:
+            return None, False
+        steps += 1
         mid = (low + high) // 2
         try:
             mid_runtime = rpc_runtime_at_block(network, mid)
@@ -798,17 +812,25 @@ def collect_plan_review_items(network_plans: dict[str, dict[str, Any]]) -> list[
 
 
 def emit_plan(plan: dict[str, Any], out: Path | None) -> None:
-    print(json.dumps(plan, indent=2, sort_keys=True))
+    if not plan["changed_networks"]:
+        print("No runtime changes detected.")
+        return
+    print("Changed networks:")
+    for network in plan["changed_networks"]:
+        item = plan["networks"][network]
+        print(f"  {network}: runtime-{item['docs_runtime']} -> runtime-{item['detected_runtime']}")
+        print(f"    upgrade_block: {item['upgrade_block']} (confirmed: {item['upgrade_block_confirmed']})")
+        print(f"    forum_url: {item['forum_url']}")
+    if plan["review_items"]:
+        print("Review items:")
+        for item in plan["review_items"]:
+            print(f"  - {item}")
     if out:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        print(f"Wrote plan to {out}")
-    if not plan["changed_networks"]:
-        print("No runtime changes detected.")
-    elif plan["review_items"]:
-        print("Review required before apply:")
-        for item in plan["review_items"]:
-            print(f"- {item}")
+        print(f"Full plan written to {out}")
+    else:
+        print("Pass --plan-out <path> to save the full plan JSON.")
 
 
 def load_plan(path: Path) -> dict[str, Any]:
@@ -1058,14 +1080,14 @@ def create_prs(config: RuntimeConfig, plan: dict[str, Any], plan_path: Path) -> 
         print("Plan has no changes; no PRs to create.")
         return
     branch = plan["branch"]
-    max_runtime = branch.rsplit("-", 1)[-1]
+    title_suffix = pr_title_suffix(plan)
     docs_paths = [config.docs_repo / rel for rel in plan["docs_files"]]
     create_repo_pr(
         repo=config.docs_repo,
         target_repo=DOCS_REPO,
         branch=branch,
         paths=docs_paths,
-        title=f"Bump runtime docs to rt{max_runtime}",
+        title=f"Bump runtime docs {title_suffix}",
         body=pr_body(plan, "docs"),
     )
     test_repo = config.test_suite_repo or Path(plan.get("test_suite_repo") or "")
@@ -1077,7 +1099,7 @@ def create_prs(config: RuntimeConfig, plan: dict[str, Any], plan_path: Path) -> 
         target_repo=TEST_SUITE_REPO,
         branch=branch,
         paths=test_paths,
-        title=f"Bump runtime test suite to rt{max_runtime}",
+        title=f"Bump runtime test suite {title_suffix}",
         body=pr_body(plan, "test-suite"),
     )
     cleanup_plan_file(plan_path)
@@ -1108,7 +1130,12 @@ def create_repo_pr(
     title: str,
     body: str,
 ) -> None:
-    run_cmd(["git", "switch", "-C", branch], repo)
+    branch_check = run_cmd(["git", "rev-parse", "--verify", branch], repo, check=False, capture=True)
+    if branch_check.returncode == 0:
+        raise RuntimeBumpError(
+            f"branch {branch!r} already exists in {repo}; delete it first or rename the plan branch"
+        )
+    run_cmd(["git", "switch", "-c", branch], repo)
     rel_paths = [str(path.relative_to(repo)) for path in paths if path.exists()]
     if not rel_paths:
         raise RuntimeBumpError(f"no paths to commit in {repo}")
@@ -1140,7 +1167,17 @@ def remote_for_repo(repo: Path, target_repo: str) -> str | None:
         parts = line.split()
         if len(parts) >= 2 and target_repo in parts[1] and "(push)" in line:
             return parts[0]
-    return "origin"
+    return None
+
+
+def pr_title_suffix(plan: dict[str, Any]) -> str:
+    changed = plan["changed_networks"]
+    if len(changed) == 1:
+        network = changed[0]
+        runtime = plan["networks"][network]["detected_runtime"]
+        return f"to rt{runtime}"
+    parts = [f"{network} rt{plan['networks'][network]['detected_runtime']}" for network in changed]
+    return ": " + ", ".join(parts)
 
 
 def pr_body(plan: dict[str, Any], repo_type: str) -> str:
