@@ -1,0 +1,1188 @@
+#!/usr/bin/env python3
+"""Runtime bump helper for Moonbeam docs.
+
+This script intentionally uses only Python's standard library so the skill can
+run from any checkout without installing dependencies.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import textwrap
+import urllib.error
+import urllib.parse
+import urllib.request
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+
+NETWORKS = {
+    "moonbase": {
+        "display": "Moonbase Alpha",
+        "subscan": "moonbase",
+        "rpc": "https://rpc.api.moonbase.moonbeam.network",
+        "subscan_web": "https://moonbase.subscan.io",
+        "test_label": "Moonbase Alpha",
+    },
+    "moonriver": {
+        "display": "Moonriver",
+        "subscan": "moonriver",
+        "rpc": "https://rpc.api.moonriver.moonbeam.network",
+        "subscan_web": "https://moonriver.subscan.io",
+        "test_label": "Moonriver",
+    },
+    "moonbeam": {
+        "display": "Moonbeam",
+        "subscan": "moonbeam",
+        "rpc": "https://rpc.api.moonbeam.network",
+        "subscan_web": "https://moonbeam.subscan.io",
+        "test_label": "Moonbeam",
+    },
+}
+
+DOCS_REPO = "moonbeam-foundation/moonbeam-docs"
+TEST_SUITE_REPO = "papermoonio/moonbeam-docs-test-suite"
+
+
+@dataclass
+class RuntimeConfig:
+    docs_repo: Path
+    test_suite_repo: Path | None
+    workdir: Path
+    subscan_api_key: str | None
+    runtime_overrides: dict[str, int]
+    block_overrides: dict[str, int]
+    forum_overrides: dict[int, str]
+
+
+class RuntimeBumpError(RuntimeError):
+    pass
+
+
+def main(argv: list[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] in {"--dry-run", "--apply"}:
+        argv = ["run", *argv]
+    if not argv:
+        argv = ["run", "--dry-run"]
+
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    config = build_config(args)
+
+    try:
+        if args.command == "plan":
+            plan = build_plan(config)
+            emit_plan(plan, validate_plan_output_path(args.out, config) if args.out else None)
+            return 0
+        if args.command == "apply":
+            plan = load_plan(args.plan)
+            apply_plan(config, plan)
+            emit_apply_summary(plan)
+            return 0
+        if args.command == "verify":
+            plan = load_plan(args.plan)
+            verify_plan(config, plan)
+            return 0
+        if args.command == "create-prs":
+            plan = load_plan(args.plan)
+            create_prs(config, plan, args.plan)
+            return 0
+        if args.command == "run":
+            plan = build_plan(config)
+            if args.apply:
+                apply_plan(config, plan)
+                out = (
+                    validate_plan_output_path(Path(args.plan_out), config)
+                    if args.plan_out
+                    else default_plan_path(config)
+                )
+                out.parent.mkdir(parents=True, exist_ok=True)
+                out.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+                print(f"Wrote plan to {out}")
+                emit_apply_summary(plan)
+            else:
+                emit_plan(plan, None)
+            return 0
+    except RuntimeBumpError as error:
+        print(f"ERROR: {error}", file=sys.stderr)
+        return 1
+    except urllib.error.URLError as error:
+        print(f"ERROR: network request failed: {error}", file=sys.stderr)
+        return 1
+
+    parser.print_help()
+    return 2
+
+
+def build_parser() -> argparse.ArgumentParser:
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--docs-repo", type=Path, help="Path to moonbeam-docs checkout")
+    common.add_argument("--test-suite-repo", type=Path, help="Path to moonbeam-docs-test-suite checkout")
+    common.add_argument("--workdir", type=Path, help="Temporary workdir for cloned repos")
+    common.add_argument("--subscan-api-key", help="Subscan API key; defaults to SUBSCAN_API_KEY")
+    common.add_argument(
+        "--runtime",
+        action="append",
+        default=[],
+        metavar="NETWORK=VERSION",
+        help="Override detected runtime, for example moonbeam=4301",
+    )
+    common.add_argument(
+        "--upgrade-block",
+        action="append",
+        default=[],
+        metavar="NETWORK=BLOCK",
+        help="Override candidate upgrade block, for example moonbeam=15423985",
+    )
+    common.add_argument(
+        "--forum-url",
+        action="append",
+        default=[],
+        metavar="VERSION=URL",
+        help="Override forum URL, for example 4301=https://forum...",
+    )
+
+    parser = argparse.ArgumentParser(description="Detect and apply Moonbeam docs runtime bumps")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    plan = subparsers.add_parser("plan", parents=[common], help="Detect changes without editing files")
+    plan.add_argument("--dry-run", action="store_true", help="Accepted for readability; plan is non-mutating")
+    plan.add_argument("--out", type=Path, help="Optional path to write the generated plan JSON")
+
+    apply = subparsers.add_parser("apply", parents=[common], help="Apply an existing plan")
+    apply.add_argument("--plan", type=Path, required=True, help="Path to runtime-bump plan JSON")
+
+    verify = subparsers.add_parser("verify", parents=[common], help="Verify an applied plan")
+    verify.add_argument("--plan", type=Path, required=True, help="Path to runtime-bump plan JSON")
+
+    prs = subparsers.add_parser("create-prs", parents=[common], help="Create branches, commits, and PRs")
+    prs.add_argument("--plan", type=Path, required=True, help="Path to runtime-bump plan JSON")
+
+    run = subparsers.add_parser("run", parents=[common], help="Plan and optionally apply")
+    mode = run.add_mutually_exclusive_group()
+    mode.add_argument("--dry-run", action="store_true", help="Detect and report only")
+    mode.add_argument("--apply", action="store_true", help="Apply detected changes")
+    run.add_argument("--plan-out", help="Plan JSON path written during --apply; defaults to RUNTIME_BUMP_WORKDIR")
+
+    return parser
+
+
+def default_plan_path(config: RuntimeConfig) -> Path:
+    return config.workdir / "runtime-bump-plan.json"
+
+
+def validate_plan_output_path(path: Path, config: RuntimeConfig) -> Path:
+    resolved = path.expanduser().resolve()
+    blocked_roots = [config.docs_repo]
+    if config.test_suite_repo:
+        blocked_roots.append(config.test_suite_repo)
+    for root in blocked_roots:
+        try:
+            resolved.relative_to(root)
+        except ValueError:
+            continue
+        raise RuntimeBumpError(
+            f"plan JSON files are temporary artifacts; write the plan outside repository paths: {resolved}"
+        )
+    return resolved
+
+
+def build_config(args: argparse.Namespace) -> RuntimeConfig:
+    docs_repo = args.docs_repo.resolve() if args.docs_repo else default_docs_repo()
+    if not (docs_repo / "variables.yml").exists():
+        raise RuntimeBumpError(f"could not find variables.yml in docs repo: {docs_repo}")
+
+    test_suite_repo = resolve_test_suite_repo(args.test_suite_repo, docs_repo)
+    env_workdir = os.environ.get("RUNTIME_BUMP_WORKDIR")
+    workdir = args.workdir or (Path(env_workdir) if env_workdir else Path(tempfile.gettempdir()) / "moonbeam-runtime-bump")
+    workdir = workdir.expanduser().resolve()
+
+    return RuntimeConfig(
+        docs_repo=docs_repo,
+        test_suite_repo=test_suite_repo.resolve() if test_suite_repo else None,
+        workdir=workdir,
+        subscan_api_key=args.subscan_api_key or os.environ.get("SUBSCAN_API_KEY"),
+        runtime_overrides=parse_network_int_overrides(args.runtime, "--runtime"),
+        block_overrides=parse_network_int_overrides(args.upgrade_block, "--upgrade-block"),
+        forum_overrides=parse_version_url_overrides(args.forum_url),
+    )
+
+
+def default_docs_repo() -> Path:
+    skill_dir = Path(__file__).resolve().parents[1]
+    docs_repo = skill_dir.parents[2]
+    if (docs_repo / "variables.yml").exists():
+        return docs_repo
+
+    cwd = Path.cwd().resolve()
+    candidates = [cwd, cwd / "moonbeam-docs", cwd.parent / "moonbeam-docs"]
+    for candidate in candidates:
+        if (candidate / "variables.yml").exists():
+            return candidate
+    raise RuntimeBumpError("could not resolve moonbeam-docs checkout")
+
+
+def resolve_test_suite_repo(arg_path: Path | None, docs_repo: Path) -> Path | None:
+    env_path = os.environ.get("MOONBEAM_DOCS_TEST_SUITE_DIR")
+    candidates = []
+    if arg_path:
+        candidates.append(arg_path)
+    if env_path:
+        candidates.append(Path(env_path))
+    candidates.extend(
+        [
+            docs_repo.parent / "moonbeam-docs-test-suite",
+            docs_repo.parent.parent / "moonbeam-docs-test-suite",
+        ]
+    )
+    for candidate in candidates:
+        if candidate and (candidate / "test/builders/build/runtime-upgrades.js").exists():
+            return candidate
+    return None
+
+
+def parse_network_int_overrides(values: list[str], flag: str) -> dict[str, int]:
+    parsed: dict[str, int] = {}
+    for value in values:
+        if "=" not in value:
+            raise RuntimeBumpError(f"{flag} expects NETWORK=NUMBER, got {value!r}")
+        network, number = value.split("=", 1)
+        network = network.strip()
+        if network not in NETWORKS:
+            raise RuntimeBumpError(f"unknown network in {flag}: {network}")
+        parsed[network] = int(number)
+    return parsed
+
+
+def parse_version_url_overrides(values: list[str]) -> dict[int, str]:
+    parsed: dict[int, str] = {}
+    for value in values:
+        if "=" not in value:
+            raise RuntimeBumpError(f"--forum-url expects VERSION=URL, got {value!r}")
+        version, url = value.split("=", 1)
+        parsed[int(version)] = url.strip()
+    return parsed
+
+
+def build_plan(config: RuntimeConfig) -> dict[str, Any]:
+    docs_versions = read_docs_versions(config.docs_repo / "variables.yml")
+    if not config.subscan_api_key and not has_complete_overrides(config):
+        raise RuntimeBumpError(
+            "SUBSCAN_API_KEY is required for live detection. Set it or provide "
+            "--runtime and --upgrade-block overrides for every network that changed."
+        )
+
+    network_plans = {}
+    changed_versions: set[int] = set()
+    for network in NETWORKS:
+        current = docs_versions[network]
+        detected = detect_runtime(config, network)
+        changed = detected != current
+        block = None
+        forum_url = None
+        review_items: list[str] = []
+        if changed:
+            block, block_confirmed = detect_upgrade_block(config, network, current, detected)
+            forum_url = detect_forum_url(config, detected)
+            changed_versions.add(detected)
+            if block is None:
+                review_items.append("Upgrade block could not be detected; rerun with --upgrade-block.")
+            elif not block_confirmed:
+                review_items.append("Upgrade block found but not confirmed by historical RPC; verify manually.")
+            if forum_url is None:
+                review_items.append("No clear forum post match; runtime table will use plain text.")
+        network_plans[network] = {
+            "display": NETWORKS[network]["display"],
+            "docs_runtime": current,
+            "detected_runtime": detected,
+            "changed": changed,
+            "upgrade_block": block,
+            "upgrade_block_confirmed": block_confirmed if changed else None,
+            "forum_url": forum_url,
+            "review_items": review_items,
+        }
+
+    changed_networks = [network for network, item in network_plans.items() if item["changed"]]
+    max_runtime = max(changed_versions) if changed_versions else max(docs_versions.values())
+    branch = f"runtime-bump/rt-{max_runtime}"
+    docs_files = []
+    test_files = []
+    if changed_networks:
+        docs_files = ["variables.yml", "builders/build/runtime-upgrades.md"]
+        test_files = ["test/builders/build/runtime-upgrades.js"]
+
+    plan = {
+        "schema_version": 1,
+        "docs_repo": str(config.docs_repo),
+        "test_suite_repo": str(config.test_suite_repo) if config.test_suite_repo else None,
+        "test_suite_repo_status": "found" if config.test_suite_repo else "missing",
+        "branch": branch,
+        "changed_networks": changed_networks,
+        "networks": network_plans,
+        "docs_files": docs_files,
+        "test_suite_files": test_files,
+        "review_items": collect_plan_review_items(network_plans),
+    }
+    return plan
+
+
+def has_complete_overrides(config: RuntimeConfig) -> bool:
+    return bool(config.runtime_overrides)
+
+
+def read_docs_versions(path: Path) -> dict[str, int]:
+    versions: dict[str, int] = {}
+    current_network = None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        match = re.match(r"^  ([A-Za-z0-9_]+):\s*$", line)
+        if match:
+            current_network = match.group(1)
+            continue
+        if current_network in NETWORKS:
+            spec = re.match(r"^    spec_version:\s*runtime-(\d+)\s*$", line)
+            if spec:
+                versions[current_network] = int(spec.group(1))
+    missing = sorted(set(NETWORKS) - set(versions))
+    if missing:
+        raise RuntimeBumpError(f"missing spec_version for networks: {', '.join(missing)}")
+    return versions
+
+
+def detect_runtime(config: RuntimeConfig, network: str) -> int:
+    if network in config.runtime_overrides:
+        return config.runtime_overrides[network]
+
+    api_key = require_subscan_key(config)
+    runtime = subscan_runtime(network, api_key)
+    if runtime is not None:
+        return runtime
+
+    rpc_runtime = rpc_runtime_version(network)
+    if rpc_runtime is not None:
+        return rpc_runtime
+    raise RuntimeBumpError(f"could not detect runtime for {network}")
+
+
+def detect_upgrade_block(
+    config: RuntimeConfig,
+    network: str,
+    previous_runtime: int,
+    runtime: int,
+) -> tuple[int | None, bool]:
+    if network in config.block_overrides:
+        return config.block_overrides[network], True
+
+    lower_bound = previous_runtime_block(config.docs_repo / "builders/build/runtime-upgrades.md", network, previous_runtime)
+    if config.subscan_api_key:
+        subscan_block, subscan_confirmed = subscan_find_runtime_transition(
+            network,
+            config.subscan_api_key,
+            runtime,
+            lower_bound,
+        )
+        if subscan_block is not None:
+            return subscan_block, subscan_confirmed
+
+        runtime_list_block = subscan_runtime_block(network, config.subscan_api_key, runtime)
+        if runtime_list_block is not None:
+            confirmed_block, is_confirmed = confirm_runtime_transition(network, runtime, runtime_list_block)
+            return confirmed_block or runtime_list_block, is_confirmed
+
+    rpc_block, rpc_confirmed = rpc_find_runtime_transition(network, runtime, lower_bound)
+    if rpc_block is not None:
+        return rpc_block, rpc_confirmed
+
+    if not config.subscan_api_key:
+        return None, False
+
+    events = subscan_validation_events(network, config.subscan_api_key)
+    for event in events:
+        block = event.get("block_num") or event.get("block") or event.get("block_number")
+        if block is None:
+            continue
+        block_number = int(block)
+        confirmed_block, is_confirmed = confirm_runtime_transition(network, runtime, block_number)
+        if confirmed_block is not None:
+            return confirmed_block, is_confirmed
+    return None, False
+
+
+def previous_runtime_block(path: Path, network: str, runtime: int) -> int | None:
+    if not path.exists():
+        return None
+    column = {"moonbeam": 1, "moonriver": 2, "moonbase": 3}[network]
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = split_table_row(line)
+        if len(cells) <= column:
+            continue
+        runtime_match = re.search(r"\b(\d{4})\b", cells[0])
+        if not runtime_match or int(runtime_match.group(1)) != runtime:
+            continue
+        block_match = re.search(r"/block/(\d+)", cells[column])
+        if block_match:
+            return int(block_match.group(1))
+    return None
+
+
+def detect_forum_url(config: RuntimeConfig, runtime: int) -> str | None:
+    if runtime in config.forum_overrides:
+        return config.forum_overrides[runtime]
+
+    queries = [f"rt{runtime}", f"runtime rt{runtime}", f"runtime-{runtime}"]
+    matches: list[str] = []
+    for query in queries:
+        matches.extend(forum_search(query, runtime))
+    unique = sorted(set(matches))
+    return unique[0] if len(unique) == 1 else None
+
+
+def require_subscan_key(config: RuntimeConfig) -> str:
+    if not config.subscan_api_key:
+        raise RuntimeBumpError("SUBSCAN_API_KEY is required unless --runtime overrides are provided")
+    return config.subscan_api_key
+
+
+def subscan_runtime(network: str, api_key: str) -> int | None:
+    for item in subscan_runtime_items(network, api_key):
+        version = extract_runtime_version(item)
+        if version is not None:
+            return version
+    return None
+
+
+def subscan_runtime_block(network: str, api_key: str, runtime: int) -> int | None:
+    for item in subscan_runtime_items(network, api_key):
+        version = extract_runtime_version(item)
+        if version != runtime:
+            continue
+        block = extract_block_number(item)
+        if block is not None:
+            return block
+    return None
+
+
+def subscan_runtime_items(network: str, api_key: str) -> list[dict[str, Any]]:
+    host = NETWORKS[network]["subscan"]
+    payload = {"row": 20, "page": 0}
+    data = http_json(
+        f"https://{host}.api.subscan.io/api/scan/runtime/list",
+        method="POST",
+        headers={"X-API-Key": api_key},
+        payload=payload,
+    )
+    items: list[dict[str, Any]] = []
+    candidates = [
+        data.get("data", {}).get("list", []),
+        data.get("data", {}).get("runtimes", []),
+        data.get("data", {}).get("items", []),
+    ]
+    for candidate in candidates:
+        if not isinstance(candidate, list):
+            continue
+        items.extend(item for item in candidate if isinstance(item, dict))
+    return items
+
+
+def extract_runtime_version(item: dict[str, Any]) -> int | None:
+    for key in ("spec_version", "runtime_version", "specVersion", "spec"):
+        value = item.get(key)
+        if value is not None:
+            return int(value)
+    return None
+
+
+def extract_block_number(item: dict[str, Any]) -> int | None:
+    for key in ("block_num", "block_number", "block", "height"):
+        value = item.get(key)
+        if value is not None and int(value) > 0:
+            return int(value)
+    for key in ("event_index", "extrinsic_index"):
+        value = item.get(key)
+        if isinstance(value, str) and "-" in value:
+            first = value.split("-", 1)[0]
+            if first.isdigit() and int(first) > 0:
+                return int(first)
+    return None
+
+
+def subscan_validation_events(network: str, api_key: str) -> list[dict[str, Any]]:
+    host = NETWORKS[network]["subscan"]
+    bodies = [
+        {"row": 20, "page": 0, "module": "parachainSystem", "event_id": "ValidationFunctionApplied"},
+        {"row": 20, "page": 0, "module": "ParachainSystem", "event_id": "ValidationFunctionApplied"},
+        {"row": 20, "page": 0, "module": "parachainsystem", "event_id": "validationfunctionapplied"},
+        {"row": 20, "page": 0, "module_id": "parachainsystem", "event_id": "validationfunctionapplied"},
+        {"row": 20, "page": 0, "module_id": "parachainsystem", "event_id": "ValidationFunctionApplied"},
+    ]
+    endpoints = ["/api/v2/scan/events", "/api/scan/events"]
+    events: list[dict[str, Any]] = []
+    for endpoint in endpoints:
+        for body in bodies:
+            try:
+                data = http_json(
+                    f"https://{host}.api.subscan.io{endpoint}",
+                    method="POST",
+                    headers={"X-API-Key": api_key},
+                    payload=body,
+                )
+            except urllib.error.HTTPError:
+                continue
+            raw_events = data.get("data", {}).get("events") or data.get("data", {}).get("list") or []
+            if isinstance(raw_events, list):
+                events.extend([event for event in raw_events if isinstance(event, dict)])
+    return events
+
+
+def subscan_latest_block_number(network: str, api_key: str) -> int | None:
+    host = NETWORKS[network]["subscan"]
+    metadata = http_json(
+        f"https://{host}.api.subscan.io/api/scan/metadata",
+        method="POST",
+        headers={"X-API-Key": api_key},
+        payload={},
+    )
+    data = metadata.get("data", {})
+    for key in ("blockNum", "block_num", "block_number", "finalized_block"):
+        value = data.get(key)
+        if value is not None:
+            return int(value)
+
+    blocks = http_json(
+        f"https://{host}.api.subscan.io/api/scan/blocks",
+        method="POST",
+        headers={"X-API-Key": api_key},
+        payload={"row": 1, "page": 0},
+    )
+    raw_blocks = blocks.get("data", {}).get("blocks") or blocks.get("data", {}).get("list") or []
+    if raw_blocks:
+        return extract_block_number(raw_blocks[0])
+    return None
+
+
+def subscan_block_runtime(network: str, api_key: str, block_number: int) -> int | None:
+    if block_number <= 0:
+        return None
+    host = NETWORKS[network]["subscan"]
+    data = http_json(
+        f"https://{host}.api.subscan.io/api/scan/block",
+        method="POST",
+        headers={"X-API-Key": api_key},
+        payload={"block_num": block_number},
+    )
+    block = data.get("data", {})
+    version = extract_runtime_version(block)
+    if version is not None:
+        return version
+    for key in ("spec", "runtime", "metadata"):
+        value = block.get(key)
+        if isinstance(value, dict):
+            version = extract_runtime_version(value)
+            if version is not None:
+                return version
+    return None
+
+
+def subscan_find_runtime_transition(
+    network: str,
+    api_key: str,
+    runtime: int,
+    lower_bound: int | None,
+) -> tuple[int | None, bool]:
+    try:
+        latest = subscan_latest_block_number(network, api_key)
+    except (urllib.error.URLError, RuntimeBumpError, ValueError):
+        return None, False
+    if latest is None:
+        return None, False
+
+    low = max(1, lower_bound or 1)
+    high = latest
+    try:
+        high_runtime = subscan_block_runtime(network, api_key, high)
+    except (urllib.error.URLError, RuntimeBumpError, ValueError):
+        return None, False
+    if high_runtime != runtime:
+        return None, False
+
+    try:
+        low_runtime = subscan_block_runtime(network, api_key, low)
+    except (urllib.error.URLError, RuntimeBumpError, ValueError):
+        low_runtime = None
+    if low_runtime is not None and low_runtime >= runtime:
+        low = 1
+
+    while low + 1 < high:
+        mid = (low + high) // 2
+        try:
+            mid_runtime = subscan_block_runtime(network, api_key, mid)
+        except (urllib.error.URLError, RuntimeBumpError, ValueError):
+            return None, False
+        if mid_runtime is not None and mid_runtime >= runtime:
+            high = mid
+        else:
+            low = mid
+
+    try:
+        current = subscan_block_runtime(network, api_key, high)
+        previous = subscan_block_runtime(network, api_key, high - 1)
+    except (urllib.error.URLError, RuntimeBumpError, ValueError):
+        return high, False
+    return high, current == runtime and previous != runtime
+
+
+def rpc_runtime_version(network: str, block_hash: str | None = None) -> int | None:
+    params = [block_hash] if block_hash else []
+    data = http_json(
+        NETWORKS[network]["rpc"],
+        method="POST",
+        payload={"jsonrpc": "2.0", "id": 1, "method": "state_getRuntimeVersion", "params": params},
+    )
+    result = data.get("result") or {}
+    version = result.get("specVersion") or result.get("spec_version")
+    return int(version) if version is not None else None
+
+
+def rpc_latest_block_number(network: str) -> int | None:
+    data = http_json(
+        NETWORKS[network]["rpc"],
+        method="POST",
+        payload={"jsonrpc": "2.0", "id": 1, "method": "chain_getHeader", "params": []},
+    )
+    result = data.get("result") or {}
+    number = result.get("number")
+    if number is None:
+        return None
+    return int(str(number), 16)
+
+
+def rpc_block_hash(network: str, block_number: int) -> str | None:
+    data = http_json(
+        NETWORKS[network]["rpc"],
+        method="POST",
+        payload={"jsonrpc": "2.0", "id": 1, "method": "chain_getBlockHash", "params": [block_number]},
+    )
+    return data.get("result")
+
+
+def rpc_runtime_at_block(network: str, block_number: int) -> int | None:
+    if block_number <= 0:
+        return None
+    block_hash = rpc_block_hash(network, block_number)
+    if not block_hash:
+        return None
+    return rpc_runtime_version(network, block_hash)
+
+
+def rpc_find_runtime_transition(network: str, runtime: int, lower_bound: int | None) -> tuple[int | None, bool]:
+    try:
+        latest = rpc_latest_block_number(network)
+    except (urllib.error.URLError, TimeoutError, RuntimeBumpError):
+        return None, False
+    if latest is None:
+        return None, False
+
+    low = max(1, lower_bound or 1)
+    high = latest
+    try:
+        high_runtime = rpc_runtime_at_block(network, high)
+    except (urllib.error.URLError, TimeoutError, RuntimeBumpError):
+        return None, False
+    if high_runtime != runtime:
+        return None, False
+
+    try:
+        low_runtime = rpc_runtime_at_block(network, low)
+    except (urllib.error.URLError, TimeoutError, RuntimeBumpError):
+        low_runtime = None
+
+    # If the docs table lower bound is already on the new runtime, fall back to
+    # a wider binary search. This can happen when the table has missing rows.
+    if low_runtime is not None and low_runtime >= runtime:
+        low = 1
+
+    while low + 1 < high:
+        mid = (low + high) // 2
+        try:
+            mid_runtime = rpc_runtime_at_block(network, mid)
+        except (urllib.error.URLError, TimeoutError, RuntimeBumpError):
+            return None, False
+        if mid_runtime is not None and mid_runtime >= runtime:
+            high = mid
+        else:
+            low = mid
+
+    try:
+        current = rpc_runtime_at_block(network, high)
+        previous = rpc_runtime_at_block(network, high - 1)
+    except (urllib.error.URLError, TimeoutError, RuntimeBumpError):
+        return high, False
+    return high, current == runtime and previous != runtime
+
+
+def confirm_runtime_transition(network: str, runtime: int, block_number: int) -> tuple[int | None, bool]:
+    fallback = block_number if block_number > 0 else None
+    observed: dict[int, int] = {}
+    for candidate in (block_number, block_number - 1, block_number - 2):
+        try:
+            current = rpc_runtime_at_block(network, candidate)
+            previous = rpc_runtime_at_block(network, candidate - 1)
+        except (RuntimeBumpError, urllib.error.URLError, TimeoutError):
+            continue
+        if current is not None:
+            observed[candidate] = current
+        if current == runtime and previous != runtime:
+            return candidate, True
+    for candidate, observed_runtime in observed.items():
+        if observed_runtime == runtime:
+            return candidate, False
+    return fallback, False
+
+
+def forum_search(query: str, runtime: int) -> list[str]:
+    params = urllib.parse.urlencode({"q": query})
+    url = f"https://forum.moonbeam.network/search.json?{params}"
+    try:
+        data = http_json(url, method="GET")
+    except (urllib.error.URLError, json.JSONDecodeError):
+        return []
+
+    topics = data.get("topics") or []
+    matches = []
+    for topic in topics:
+        title = str(topic.get("title", "")).lower()
+        slug = topic.get("slug")
+        topic_id = topic.get("id")
+        if not slug or not topic_id:
+            continue
+        needle = str(runtime)
+        if needle in title or f"rt{needle}" in title or needle in str(slug):
+            matches.append(f"https://forum.moonbeam.network/t/{slug}/{topic_id}")
+    return matches
+
+
+def http_json(
+    url: str,
+    *,
+    method: str,
+    payload: dict[str, Any] | None = None,
+    headers: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    data = None
+    request_headers = {"Content-Type": "application/json"}
+    if headers:
+        request_headers.update(headers)
+    if payload is not None:
+        data = json.dumps(payload).encode("utf-8")
+    request = urllib.request.Request(url, data=data, headers=request_headers, method=method)
+    with urllib.request.urlopen(request, timeout=20) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def collect_plan_review_items(network_plans: dict[str, dict[str, Any]]) -> list[str]:
+    items = []
+    for network, plan in network_plans.items():
+        for item in plan["review_items"]:
+            items.append(f"{network}: {item}")
+    return items
+
+
+def emit_plan(plan: dict[str, Any], out: Path | None) -> None:
+    print(json.dumps(plan, indent=2, sort_keys=True))
+    if out:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"Wrote plan to {out}")
+    if not plan["changed_networks"]:
+        print("No runtime changes detected.")
+    elif plan["review_items"]:
+        print("Review required before apply:")
+        for item in plan["review_items"]:
+            print(f"- {item}")
+
+
+def load_plan(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        raise RuntimeBumpError(f"plan file does not exist: {path}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def apply_plan(config: RuntimeConfig, plan: dict[str, Any]) -> None:
+    if not plan.get("changed_networks"):
+        print("Plan has no changes; nothing to apply.")
+        return
+    update_variables(config.docs_repo / "variables.yml", plan)
+    update_runtime_upgrades(config.docs_repo / "builders/build/runtime-upgrades.md", plan)
+    test_repo = config.test_suite_repo or ensure_test_suite_repo(config)
+    update_test_suite(test_repo / "test/builders/build/runtime-upgrades.js", plan)
+
+
+def update_variables(path: Path, plan: dict[str, Any]) -> None:
+    changed = set(plan["changed_networks"])
+    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    output = []
+    current_network = None
+    for line in lines:
+        match = re.match(r"^  ([A-Za-z0-9_]+):\s*$", line)
+        if match:
+            current_network = match.group(1)
+        if current_network in changed and re.match(r"^    spec_version:\s*runtime-\d+\s*$", line):
+            runtime = plan["networks"][current_network]["detected_runtime"]
+            output.append(f"    spec_version: runtime-{runtime}\n")
+        else:
+            output.append(line)
+    path.write_text("".join(output), encoding="utf-8")
+
+
+def update_runtime_upgrades(path: Path, plan: dict[str, Any]) -> None:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    changed_networks = plan["changed_networks"]
+    runtime_versions = sorted({plan["networks"][network]["detected_runtime"] for network in changed_networks})
+    for runtime in runtime_versions:
+        lines = upsert_runtime_row(lines, runtime, plan)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def upsert_runtime_row(lines: list[str], runtime: int, plan: dict[str, Any]) -> list[str]:
+    existing_index = find_runtime_row(lines, runtime)
+    if existing_index is not None:
+        cells = split_table_row(lines[existing_index])
+        while len(cells) < 4:
+            cells.append("-")
+        cells[0] = runtime_cell(runtime, plan)
+        for network, column in (("moonbeam", 1), ("moonriver", 2), ("moonbase", 3)):
+            if network in plan["changed_networks"]:
+                cells[column] = block_cell(network, plan)
+        lines[existing_index] = join_table_row(cells[:4])
+        return lines
+
+    insert_at = find_insert_index(lines, runtime)
+    row = join_table_row(
+        [
+            runtime_cell(runtime, plan),
+            block_cell("moonbeam", plan) if "moonbeam" in plan["changed_networks"] else "-",
+            block_cell("moonriver", plan) if "moonriver" in plan["changed_networks"] else "-",
+            block_cell("moonbase", plan) if "moonbase" in plan["changed_networks"] else "-",
+        ]
+    )
+    lines.insert(insert_at, row)
+    return lines
+
+
+def find_runtime_row(lines: list[str], runtime: int) -> int | None:
+    for index, line in enumerate(lines):
+        if not line.startswith("|"):
+            continue
+        cells = split_table_row(line)
+        if cells and re.search(rf"\b{runtime}\b", cells[0]):
+            return index
+    return None
+
+
+def find_insert_index(lines: list[str], runtime: int) -> int:
+    last_table_index = None
+    for index, line in enumerate(lines):
+        if not line.startswith("|"):
+            continue
+        cells = split_table_row(line)
+        if not cells or not re.search(r"\d{4}", cells[0]):
+            continue
+        last_table_index = index
+        match = re.search(r"\b(\d{4})\b", cells[0])
+        if match and int(match.group(1)) > runtime:
+            return index
+    if last_table_index is not None:
+        return last_table_index + 1
+    return len(lines)
+
+
+def split_table_row(line: str) -> list[str]:
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def join_table_row(cells: list[str]) -> str:
+    return "| " + " | ".join(cells) + " |"
+
+
+def runtime_cell(runtime: int, plan: dict[str, Any]) -> str:
+    url = None
+    for network in plan["changed_networks"]:
+        if plan["networks"][network]["detected_runtime"] == runtime:
+            url = plan["networks"][network].get("forum_url")
+            break
+    if url:
+        return f"[{runtime}]({url}){{target=\\_blank}}"
+    return str(runtime)
+
+
+def block_cell(network: str, plan: dict[str, Any]) -> str:
+    block = plan["networks"][network].get("upgrade_block")
+    if not block:
+        return "-"
+    base = NETWORKS[network]["subscan_web"]
+    return f"[{block}]({base}/block/{block}){{target=\\_blank}}"
+
+
+def ensure_test_suite_repo(config: RuntimeConfig) -> Path:
+    target = config.workdir / "moonbeam-docs-test-suite"
+    if (target / "test/builders/build/runtime-upgrades.js").exists():
+        return target
+    target.parent.mkdir(parents=True, exist_ok=True)
+    run_cmd(["git", "clone", f"https://github.com/{TEST_SUITE_REPO}.git", str(target)], Path.cwd())
+    return target
+
+
+def update_test_suite(path: Path, plan: dict[str, Any]) -> None:
+    if not path.exists():
+        raise RuntimeBumpError(f"test suite file not found: {path}")
+    changed = set(plan["changed_networks"])
+    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    output = []
+    current_network = None
+    for line in lines:
+        test_match = re.search(r"latest runtime version for (Moonbase Alpha|Moonriver|Moonbeam)", line)
+        if test_match:
+            current_network = label_to_network(test_match.group(1))
+        if current_network in changed and "assert.equal(runtime.toJSON().specVersion" in line:
+            runtime = plan["networks"][current_network]["detected_runtime"]
+            indent = re.match(r"^(\s*)", line).group(1)
+            output.append(f"{indent}assert.equal(runtime.toJSON().specVersion, {runtime});\n")
+        else:
+            output.append(line)
+    path.write_text("".join(output), encoding="utf-8")
+
+
+def label_to_network(label: str) -> str:
+    for network, data in NETWORKS.items():
+        if data["test_label"] == label:
+            return network
+    raise RuntimeBumpError(f"unknown test label: {label}")
+
+
+def emit_apply_summary(plan: dict[str, Any]) -> None:
+    print("Applied runtime bump changes:")
+    for network in plan["changed_networks"]:
+        item = plan["networks"][network]
+        print(f"- {network}: runtime-{item['docs_runtime']} -> runtime-{item['detected_runtime']}")
+    if plan["review_items"]:
+        print("Review items remain:")
+        for item in plan["review_items"]:
+            print(f"- {item}")
+
+
+def verify_plan(config: RuntimeConfig, plan: dict[str, Any]) -> None:
+    print("Verification report")
+    verify_git_diff(config.docs_repo, "docs")
+    test_repo = config.test_suite_repo or Path(plan.get("test_suite_repo") or "")
+    if test_repo and test_repo.exists():
+        verify_git_diff(test_repo, "test-suite")
+    else:
+        print("- test-suite: checkout not found; skipping git diff")
+    verify_affected_links(config.docs_repo, plan)
+    verify_mkdocs_build(config.docs_repo)
+
+
+def verify_git_diff(repo: Path, label: str) -> None:
+    git_check = run_cmd(["git", "rev-parse", "--is-inside-work-tree"], repo, check=False, capture=True)
+    if git_check.returncode != 0:
+        print(f"- {label}: not a git repo; skipping git diff")
+        return
+    result = run_cmd(["git", "diff", "--name-only"], repo, check=False, capture=True)
+    files = [line for line in result.stdout.splitlines() if line.strip()]
+    if files:
+        print(f"- {label}: modified files: {', '.join(files)}")
+    else:
+        print(f"- {label}: no local diff")
+
+
+def verify_affected_links(docs_repo: Path, plan: dict[str, Any]) -> None:
+    changed = set(plan["changed_networks"])
+    if not changed:
+        print("- links: no changed networks")
+        return
+    pattern = re.compile(
+        r"github\.com/moonbeam-foundation/moonbeam/blob/\{\{\s*networks\."
+        r"(moonbeam|moonriver|moonbase)\.spec_version\s*\}\}([^)#]+)(#L\d+(?:-L\d+)?)?"
+    )
+    affected = []
+    for path in docs_repo.rglob("*.md"):
+        if ".git" in path.parts:
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        for match in pattern.finditer(text):
+            network = match.group(1)
+            if network in changed:
+                affected.append((path.relative_to(docs_repo), network, match.group(2), match.group(3)))
+    if not affected:
+        print("- links: no affected GitHub links found")
+        return
+    print("- links: affected GitHub links that need review:")
+    for rel_path, network, source_path, anchor in affected:
+        suffix = anchor or ""
+        print(f"  {rel_path}: {network} {source_path}{suffix}")
+
+
+def verify_mkdocs_build(docs_repo: Path) -> None:
+    candidates = [docs_repo / "mkdocs.yml", docs_repo.parent / "mkdocs.yml"]
+    mkdocs_root = next((path.parent for path in candidates if path.exists()), None)
+    if mkdocs_root is None:
+        print("- mkdocs: mkdocs.yml not found; skipping build")
+        return
+    mkdocs = shutil.which("mkdocs")
+    if not mkdocs:
+        print("- mkdocs: command not found; skipping build")
+        return
+    site_dir = Path(tempfile.mkdtemp(prefix="runtime-bump-mkdocs-"))
+    result = run_cmd([mkdocs, "build", "-d", str(site_dir)], mkdocs_root, check=False, capture=True)
+    if result.returncode == 0:
+        print("- mkdocs: build passed")
+    else:
+        print("- mkdocs: build failed")
+        print(result.stdout[-4000:])
+        print(result.stderr[-4000:])
+
+
+def create_prs(config: RuntimeConfig, plan: dict[str, Any], plan_path: Path) -> None:
+    require_gh_auth()
+    if not plan.get("changed_networks"):
+        print("Plan has no changes; no PRs to create.")
+        return
+    branch = plan["branch"]
+    max_runtime = branch.rsplit("-", 1)[-1]
+    docs_paths = [config.docs_repo / rel for rel in plan["docs_files"]]
+    create_repo_pr(
+        repo=config.docs_repo,
+        target_repo=DOCS_REPO,
+        branch=branch,
+        paths=docs_paths,
+        title=f"Bump runtime docs to rt{max_runtime}",
+        body=pr_body(plan, "docs"),
+    )
+    test_repo = config.test_suite_repo or Path(plan.get("test_suite_repo") or "")
+    if not test_repo.exists():
+        raise RuntimeBumpError("test suite repo not found; apply the plan first or set --test-suite-repo")
+    test_paths = [test_repo / rel for rel in plan["test_suite_files"]]
+    create_repo_pr(
+        repo=test_repo,
+        target_repo=TEST_SUITE_REPO,
+        branch=branch,
+        paths=test_paths,
+        title=f"Bump runtime test suite to rt{max_runtime}",
+        body=pr_body(plan, "test-suite"),
+    )
+    cleanup_plan_file(plan_path)
+
+
+def cleanup_plan_file(plan_path: Path) -> None:
+    plan_path = plan_path.expanduser().resolve()
+    try:
+        if plan_path.exists():
+            plan_path.unlink()
+            print(f"Removed temporary plan file: {plan_path}")
+    except OSError as error:
+        print(f"Warning: could not remove temporary plan file {plan_path}: {error}", file=sys.stderr)
+
+
+def require_gh_auth() -> None:
+    result = run_cmd(["gh", "auth", "status"], Path.cwd(), check=False, capture=True)
+    if result.returncode != 0:
+        raise RuntimeBumpError("GitHub CLI is not authenticated. Run `gh auth login` first.")
+
+
+def create_repo_pr(
+    *,
+    repo: Path,
+    target_repo: str,
+    branch: str,
+    paths: list[Path],
+    title: str,
+    body: str,
+) -> None:
+    run_cmd(["git", "switch", "-C", branch], repo)
+    rel_paths = [str(path.relative_to(repo)) for path in paths if path.exists()]
+    if not rel_paths:
+        raise RuntimeBumpError(f"no paths to commit in {repo}")
+    run_cmd(["git", "add", *rel_paths], repo)
+    diff_result = run_cmd(["git", "diff", "--cached", "--quiet"], repo, check=False)
+    if diff_result.returncode == 0:
+        print(f"No staged changes in {repo}; skipping PR.")
+        return
+    run_cmd(["git", "commit", "-m", title], repo)
+    head = push_branch(repo, target_repo, branch)
+    run_cmd(["gh", "pr", "create", "--repo", target_repo, "--base", "master", "--head", head, "--title", title, "--body", body], repo)
+
+
+def push_branch(repo: Path, target_repo: str, branch: str) -> str:
+    remote = remote_for_repo(repo, target_repo)
+    if remote:
+        pushed = run_cmd(["git", "push", "-u", remote, branch], repo, check=False)
+        if pushed.returncode == 0:
+            return branch
+    run_cmd(["gh", "repo", "fork", target_repo, "--remote", "--remote-name", "fork", "--clone=false"], repo, check=False)
+    run_cmd(["git", "push", "-u", "fork", branch], repo)
+    user = run_cmd(["gh", "api", "user", "-q", ".login"], repo, capture=True).stdout.strip()
+    return f"{user}:{branch}"
+
+
+def remote_for_repo(repo: Path, target_repo: str) -> str | None:
+    result = run_cmd(["git", "remote", "-v"], repo, capture=True)
+    for line in result.stdout.splitlines():
+        parts = line.split()
+        if len(parts) >= 2 and target_repo in parts[1] and "(push)" in line:
+            return parts[0]
+    return "origin"
+
+
+def pr_body(plan: dict[str, Any], repo_type: str) -> str:
+    changed = ", ".join(
+        f"{network} runtime-{plan['networks'][network]['detected_runtime']}"
+        for network in plan["changed_networks"]
+    )
+    review = "\n".join(f"- {item}" for item in plan.get("review_items", [])) or "- None"
+    return textwrap.dedent(
+        f"""
+        Automated runtime bump for {repo_type}.
+
+        Updated networks: {changed}
+
+        Review items:
+        {review}
+        """
+    ).strip()
+
+
+def run_cmd(
+    cmd: list[str],
+    cwd: Path,
+    *,
+    check: bool = True,
+    capture: bool = False,
+) -> subprocess.CompletedProcess[str]:
+    result = subprocess.run(
+        cmd,
+        cwd=str(cwd),
+        text=True,
+        stdout=subprocess.PIPE if capture else None,
+        stderr=subprocess.PIPE if capture else None,
+        check=False,
+    )
+    if check and result.returncode != 0:
+        details = ""
+        if capture:
+            details = f"\nstdout:\n{result.stdout}\nstderr:\n{result.stderr}"
+        raise RuntimeBumpError(f"command failed: {' '.join(cmd)}{details}")
+    return result
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
