@@ -16,10 +16,11 @@ Follow these steps exactly:
    ```bash
    "${CLAUDE_SKILL_DIR}/scripts/runtime-bump" run --dry-run
    ```
-   Read and report (top-level fields unless noted):
-   - `changed_networks`
-   - `review_items`
-   - for each changed network — `networks.<network>.docs_runtime`, `networks.<network>.detected_runtime`, `networks.<network>.upgrade_block`, `networks.<network>.upgrade_block_confirmed`, `networks.<network>.forum_url`
+   The command prints a human-readable summary. Read and report:
+   - whether any networks changed (listed under `Changed networks:`)
+   - for each changed network: the old and new runtime, upgrade block and whether it was confirmed, forum URL
+   - any `Review items:` listed at the end
+   - if no networks changed, the output is `No runtime changes detected.`
 
 3. **Stop if the dry run reports blocking review items.**
    - Do not run `--apply` if any blocking review items remain. Blocking items are those about a missing upgrade block — the apply cannot produce a correct runtime table row without one.
