@@ -6,9 +6,9 @@ disable-model-invocation: true
 Follow these steps exactly:
 
 1. **Confirm prerequisites before making changes.**
-   - `SUBSCAN_API_KEY` must be set for live runtime and block detection.
    - Use an existing `moonbeam-docs` checkout; the skill lives in this repo and the CLI resolves it from `CLAUDE_SKILL_DIR`.
    - Use an existing `papermoonio/moonbeam-docs-test-suite` checkout if available. Set `MOONBEAM_DOCS_TEST_SUITE_DIR` only when the test suite is not next to the docs checkout.
+   - Runtime and block detection uses the public RPC endpoints — no API key required.
    - Only check `gh auth status` when the user asks to create PRs.
    - Runtime plan JSON files are temporary artifacts. They must stay outside every repo, normally at `/tmp/moonbeam-runtime-bump/runtime-bump-plan.json`.
 
@@ -102,7 +102,7 @@ Follow these steps exactly:
     - verification result;
     - PR URLs if PRs were created.
 
-Useful overrides when Subscan data is incomplete or human confirmation is needed:
+Useful overrides when RPC detection is incomplete or human confirmation is needed:
 
 ```bash
 "${CLAUDE_SKILL_DIR}/scripts/runtime-bump" run --dry-run \

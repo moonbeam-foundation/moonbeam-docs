@@ -28,21 +28,18 @@ MAX_BINARY_SEARCH_STEPS = 30
 NETWORKS = {
     "moonbase": {
         "display": "Moonbase Alpha",
-        "subscan": "moonbase",
         "rpc": "https://rpc.api.moonbase.moonbeam.network",
         "subscan_web": "https://moonbase.subscan.io",
         "test_label": "Moonbase Alpha",
     },
     "moonriver": {
         "display": "Moonriver",
-        "subscan": "moonriver",
         "rpc": "https://rpc.api.moonriver.moonbeam.network",
         "subscan_web": "https://moonriver.subscan.io",
         "test_label": "Moonriver",
     },
     "moonbeam": {
         "display": "Moonbeam",
-        "subscan": "moonbeam",
         "rpc": "https://rpc.api.moonbeam.network",
         "subscan_web": "https://moonbeam.subscan.io",
         "test_label": "Moonbeam",
@@ -58,7 +55,6 @@ class RuntimeConfig:
     docs_repo: Path
     test_suite_repo: Path | None
     workdir: Path
-    subscan_api_key: str | None
     runtime_overrides: dict[str, int]
     block_overrides: dict[str, int]
     forum_overrides: dict[int, str]
@@ -129,7 +125,6 @@ def build_parser() -> argparse.ArgumentParser:
     common.add_argument("--docs-repo", type=Path, help="Path to moonbeam-docs checkout")
     common.add_argument("--test-suite-repo", type=Path, help="Path to moonbeam-docs-test-suite checkout")
     common.add_argument("--workdir", type=Path, help="Temporary workdir for cloned repos")
-    common.add_argument("--subscan-api-key", help="Subscan API key; defaults to SUBSCAN_API_KEY")
     common.add_argument(
         "--runtime",
         action="append",
@@ -211,7 +206,6 @@ def build_config(args: argparse.Namespace) -> RuntimeConfig:
         docs_repo=docs_repo,
         test_suite_repo=test_suite_repo.resolve() if test_suite_repo else None,
         workdir=workdir,
-        subscan_api_key=args.subscan_api_key or os.environ.get("SUBSCAN_API_KEY"),
         runtime_overrides=parse_network_int_overrides(args.runtime, "--runtime"),
         block_overrides=parse_network_int_overrides(args.upgrade_block, "--upgrade-block"),
         forum_overrides=parse_version_url_overrides(args.forum_url),
@@ -276,12 +270,6 @@ def parse_version_url_overrides(values: list[str]) -> dict[int, str]:
 
 def build_plan(config: RuntimeConfig) -> dict[str, Any]:
     docs_versions = read_docs_versions(config.docs_repo / "variables.yml")
-    if not config.subscan_api_key and not has_complete_overrides(config):
-        raise RuntimeBumpError(
-            "SUBSCAN_API_KEY is required for live detection. Set it or provide "
-            "--runtime and --upgrade-block overrides for every network that changed."
-        )
-
     network_plans = {}
     changed_versions: set[int] = set()
     for network in NETWORKS:
@@ -337,13 +325,6 @@ def build_plan(config: RuntimeConfig) -> dict[str, Any]:
     return plan
 
 
-def has_complete_overrides(config: RuntimeConfig) -> bool:
-    return all(
-        network in config.runtime_overrides and network in config.block_overrides
-        for network in NETWORKS
-    )
-
-
 def read_docs_versions(path: Path) -> dict[str, int]:
     versions: dict[str, int] = {}
     current_network = None
@@ -366,15 +347,10 @@ def detect_runtime(config: RuntimeConfig, network: str) -> int:
     if network in config.runtime_overrides:
         return config.runtime_overrides[network]
 
-    api_key = require_subscan_key(config)
-    runtime = subscan_runtime(network, api_key)
-    if runtime is not None:
-        return runtime
-
     rpc_runtime = rpc_runtime_version(network)
     if rpc_runtime is not None:
         return rpc_runtime
-    raise RuntimeBumpError(f"could not detect runtime for {network}")
+    raise RuntimeBumpError(f"could not detect runtime for {network} via RPC")
 
 
 def detect_upgrade_block(
@@ -387,37 +363,10 @@ def detect_upgrade_block(
         return config.block_overrides[network], True
 
     lower_bound = previous_runtime_block(config.docs_repo / "builders/build/runtime-upgrades.md", network, previous_runtime)
-    if config.subscan_api_key:
-        subscan_block, subscan_confirmed = subscan_find_runtime_transition(
-            network,
-            config.subscan_api_key,
-            runtime,
-            lower_bound,
-        )
-        if subscan_block is not None:
-            return subscan_block, subscan_confirmed
-
-        runtime_list_block = subscan_runtime_block(network, config.subscan_api_key, runtime)
-        if runtime_list_block is not None:
-            confirmed_block, is_confirmed = confirm_runtime_transition(network, runtime, runtime_list_block)
-            return confirmed_block or runtime_list_block, is_confirmed
-
     rpc_block, rpc_confirmed = rpc_find_runtime_transition(network, runtime, lower_bound)
     if rpc_block is not None:
         return rpc_block, rpc_confirmed
 
-    if not config.subscan_api_key:
-        return None, False
-
-    events = subscan_validation_events(network, config.subscan_api_key)
-    for event in events:
-        block = event.get("block_num") or event.get("block") or event.get("block_number")
-        if block is None:
-            continue
-        block_number = int(block)
-        confirmed_block, is_confirmed = confirm_runtime_transition(network, runtime, block_number)
-        if confirmed_block is not None:
-            return confirmed_block, is_confirmed
     return None, False
 
 
@@ -452,204 +401,6 @@ def detect_forum_url(config: RuntimeConfig, runtime: int) -> str | None:
     if len(unique) != 1:
         return None
     return forum_post_url(unique[0])
-
-
-def require_subscan_key(config: RuntimeConfig) -> str:
-    if not config.subscan_api_key:
-        raise RuntimeBumpError("SUBSCAN_API_KEY is required unless --runtime overrides are provided")
-    return config.subscan_api_key
-
-
-def subscan_runtime(network: str, api_key: str) -> int | None:
-    for item in subscan_runtime_items(network, api_key):
-        version = extract_runtime_version(item)
-        if version is not None:
-            return version
-    return None
-
-
-def subscan_runtime_block(network: str, api_key: str, runtime: int) -> int | None:
-    for item in subscan_runtime_items(network, api_key):
-        version = extract_runtime_version(item)
-        if version != runtime:
-            continue
-        block = extract_block_number(item)
-        if block is not None:
-            return block
-    return None
-
-
-def subscan_runtime_items(network: str, api_key: str) -> list[dict[str, Any]]:
-    host = NETWORKS[network]["subscan"]
-    payload = {"row": 20, "page": 0}
-    data = http_json(
-        f"https://{host}.api.subscan.io/api/scan/runtime/list",
-        method="POST",
-        headers={"X-API-Key": api_key},
-        payload=payload,
-    )
-    items: list[dict[str, Any]] = []
-    candidates = [
-        data.get("data", {}).get("list", []),
-        data.get("data", {}).get("runtimes", []),
-        data.get("data", {}).get("items", []),
-    ]
-    for candidate in candidates:
-        if not isinstance(candidate, list):
-            continue
-        items.extend(item for item in candidate if isinstance(item, dict))
-    return items
-
-
-def extract_runtime_version(item: dict[str, Any]) -> int | None:
-    for key in ("spec_version", "runtime_version", "specVersion", "spec"):
-        value = item.get(key)
-        if value is not None:
-            return int(value)
-    return None
-
-
-def extract_block_number(item: dict[str, Any]) -> int | None:
-    for key in ("block_num", "block_number", "block", "height"):
-        value = item.get(key)
-        if value is not None and int(value) > 0:
-            return int(value)
-    for key in ("event_index", "extrinsic_index"):
-        value = item.get(key)
-        if isinstance(value, str) and "-" in value:
-            first = value.split("-", 1)[0]
-            if first.isdigit() and int(first) > 0:
-                return int(first)
-    return None
-
-
-def subscan_validation_events(network: str, api_key: str) -> list[dict[str, Any]]:
-    host = NETWORKS[network]["subscan"]
-    bodies = [
-        {"row": 20, "page": 0, "module": "parachainSystem", "event_id": "ValidationFunctionApplied"},
-        {"row": 20, "page": 0, "module": "ParachainSystem", "event_id": "ValidationFunctionApplied"},
-        {"row": 20, "page": 0, "module": "parachainsystem", "event_id": "validationfunctionapplied"},
-        {"row": 20, "page": 0, "module_id": "parachainsystem", "event_id": "validationfunctionapplied"},
-        {"row": 20, "page": 0, "module_id": "parachainsystem", "event_id": "ValidationFunctionApplied"},
-    ]
-    endpoints = ["/api/v2/scan/events", "/api/scan/events"]
-    events: list[dict[str, Any]] = []
-    for endpoint in endpoints:
-        for body in bodies:
-            try:
-                data = http_json(
-                    f"https://{host}.api.subscan.io{endpoint}",
-                    method="POST",
-                    headers={"X-API-Key": api_key},
-                    payload=body,
-                )
-            except (urllib.error.URLError, json.JSONDecodeError):
-                continue
-            raw_events = data.get("data", {}).get("events") or data.get("data", {}).get("list") or []
-            if isinstance(raw_events, list):
-                events.extend([event for event in raw_events if isinstance(event, dict)])
-    return events
-
-
-def subscan_latest_block_number(network: str, api_key: str) -> int | None:
-    host = NETWORKS[network]["subscan"]
-    metadata = http_json(
-        f"https://{host}.api.subscan.io/api/scan/metadata",
-        method="POST",
-        headers={"X-API-Key": api_key},
-        payload={},
-    )
-    data = metadata.get("data", {})
-    for key in ("blockNum", "block_num", "block_number", "finalized_block"):
-        value = data.get(key)
-        if value is not None:
-            return int(value)
-
-    blocks = http_json(
-        f"https://{host}.api.subscan.io/api/scan/blocks",
-        method="POST",
-        headers={"X-API-Key": api_key},
-        payload={"row": 1, "page": 0},
-    )
-    raw_blocks = blocks.get("data", {}).get("blocks") or blocks.get("data", {}).get("list") or []
-    if raw_blocks:
-        return extract_block_number(raw_blocks[0])
-    return None
-
-
-def subscan_block_runtime(network: str, api_key: str, block_number: int) -> int | None:
-    if block_number <= 0:
-        return None
-    host = NETWORKS[network]["subscan"]
-    data = http_json(
-        f"https://{host}.api.subscan.io/api/scan/block",
-        method="POST",
-        headers={"X-API-Key": api_key},
-        payload={"block_num": block_number},
-    )
-    block = data.get("data", {})
-    version = extract_runtime_version(block)
-    if version is not None:
-        return version
-    for key in ("spec", "runtime", "metadata"):
-        value = block.get(key)
-        if isinstance(value, dict):
-            version = extract_runtime_version(value)
-            if version is not None:
-                return version
-    return None
-
-
-def subscan_find_runtime_transition(
-    network: str,
-    api_key: str,
-    runtime: int,
-    lower_bound: int | None,
-) -> tuple[int | None, bool]:
-    try:
-        latest = subscan_latest_block_number(network, api_key)
-    except (urllib.error.URLError, RuntimeBumpError, ValueError):
-        return None, False
-    if latest is None:
-        return None, False
-
-    low = max(1, lower_bound or 1)
-    high = latest
-    try:
-        high_runtime = subscan_block_runtime(network, api_key, high)
-    except (urllib.error.URLError, RuntimeBumpError, ValueError):
-        return None, False
-    if high_runtime != runtime:
-        return None, False
-
-    try:
-        low_runtime = subscan_block_runtime(network, api_key, low)
-    except (urllib.error.URLError, RuntimeBumpError, ValueError):
-        low_runtime = None
-    if low_runtime is not None and low_runtime >= runtime:
-        low = 1
-
-    steps = 0
-    while low + 1 < high:
-        if steps >= MAX_BINARY_SEARCH_STEPS:
-            return None, False
-        steps += 1
-        mid = (low + high) // 2
-        try:
-            mid_runtime = subscan_block_runtime(network, api_key, mid)
-        except (urllib.error.URLError, RuntimeBumpError, ValueError):
-            return None, False
-        if mid_runtime is not None and mid_runtime >= runtime:
-            high = mid
-        else:
-            low = mid
-
-    try:
-        current = subscan_block_runtime(network, api_key, high)
-        previous = subscan_block_runtime(network, api_key, high - 1)
-    except (urllib.error.URLError, RuntimeBumpError, ValueError):
-        return high, False
-    return high, current == runtime and previous != runtime
 
 
 def rpc_runtime_version(network: str, block_hash: str | None = None) -> int | None:
@@ -818,7 +569,7 @@ def http_json(
     headers: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     data = None
-    request_headers = {"Content-Type": "application/json"}
+    request_headers = {"Content-Type": "application/json", "User-Agent": "moonbeam-docs-runtime-bump/1.0"}
     if headers:
         request_headers.update(headers)
     if payload is not None:
@@ -957,18 +708,23 @@ def upsert_runtime_row(lines: list[str], runtime: int, plan: dict[str, Any]) -> 
             cells.append("-")
         cells[0] = runtime_cell(runtime, plan)
         for network, column in (("moonbeam", 1), ("moonriver", 2), ("moonbase", 3)):
-            if network in plan["changed_networks"]:
+            if plan["networks"].get(network, {}).get("detected_runtime") == runtime:
                 cells[column] = block_cell(network, plan)
         lines[existing_index] = join_table_row(cells[:4])
         return lines
+
+    def _net_block(network: str) -> str:
+        if plan["networks"].get(network, {}).get("detected_runtime") == runtime:
+            return block_cell(network, plan)
+        return "-"
 
     insert_at = find_insert_index(lines, runtime)
     row = join_table_row(
         [
             runtime_cell(runtime, plan),
-            block_cell("moonbeam", plan) if "moonbeam" in plan["changed_networks"] else "-",
-            block_cell("moonriver", plan) if "moonriver" in plan["changed_networks"] else "-",
-            block_cell("moonbase", plan) if "moonbase" in plan["changed_networks"] else "-",
+            _net_block("moonbeam"),
+            _net_block("moonriver"),
+            _net_block("moonbase"),
         ]
     )
     lines.insert(insert_at, row)
