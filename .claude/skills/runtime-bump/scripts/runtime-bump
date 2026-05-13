@@ -1081,28 +1081,35 @@ def create_prs(config: RuntimeConfig, plan: dict[str, Any], plan_path: Path) -> 
         return
     branch = plan["branch"]
     title_suffix = pr_title_suffix(plan)
-    docs_paths = [config.docs_repo / rel for rel in plan["docs_files"]]
+    test_repo = config.test_suite_repo or Path(plan.get("test_suite_repo") or "")
+    if not test_repo.exists():
+        raise RuntimeBumpError("test suite repo not found; apply the plan first or set --test-suite-repo")
+    test_paths = [test_repo / rel for rel in plan["test_suite_files"]]
+    test_pr_url = create_repo_pr(
+        repo=test_repo,
+        target_repo=TEST_SUITE_REPO,
+        branch=branch,
+        paths=test_paths,
+        title=f"Bump runtime test suite {title_suffix}",
+        body=test_suite_pr_body(plan),
+    )
+    extra_docs_files = extra_modified_files(config.docs_repo, plan["docs_files"])
+    docs_paths = [config.docs_repo / rel for rel in plan["docs_files"]] + [config.docs_repo / f for f in extra_docs_files]
     create_repo_pr(
         repo=config.docs_repo,
         target_repo=DOCS_REPO,
         branch=branch,
         paths=docs_paths,
         title=f"Bump runtime docs {title_suffix}",
-        body=pr_body(plan, "docs"),
-    )
-    test_repo = config.test_suite_repo or Path(plan.get("test_suite_repo") or "")
-    if not test_repo.exists():
-        raise RuntimeBumpError("test suite repo not found; apply the plan first or set --test-suite-repo")
-    test_paths = [test_repo / rel for rel in plan["test_suite_files"]]
-    create_repo_pr(
-        repo=test_repo,
-        target_repo=TEST_SUITE_REPO,
-        branch=branch,
-        paths=test_paths,
-        title=f"Bump runtime test suite {title_suffix}",
-        body=pr_body(plan, "test-suite"),
+        body=docs_pr_body(plan, extra_docs_files, test_pr_url),
     )
     cleanup_plan_file(plan_path)
+
+
+def extra_modified_files(repo: Path, expected: list[str]) -> list[str]:
+    result = run_cmd(["git", "diff", "--name-only"], repo, check=False, capture=True)
+    modified = {line.strip() for line in result.stdout.splitlines() if line.strip()}
+    return sorted(modified - set(expected))
 
 
 def cleanup_plan_file(plan_path: Path) -> None:
@@ -1129,7 +1136,7 @@ def create_repo_pr(
     paths: list[Path],
     title: str,
     body: str,
-) -> None:
+) -> str | None:
     branch_check = run_cmd(["git", "rev-parse", "--verify", branch], repo, check=False, capture=True)
     if branch_check.returncode == 0:
         raise RuntimeBumpError(
@@ -1143,11 +1150,18 @@ def create_repo_pr(
     diff_result = run_cmd(["git", "diff", "--cached", "--quiet"], repo, check=False)
     if diff_result.returncode == 0:
         print(f"No staged changes in {repo}; skipping PR.")
-        return
+        return None
     run_cmd(["git", "commit", "-m", title], repo)
     head = push_branch(repo, target_repo, branch)
     default_branch = repo_default_branch(target_repo)
-    run_cmd(["gh", "pr", "create", "--repo", target_repo, "--base", default_branch, "--head", head, "--title", title, "--body", body], repo)
+    result = run_cmd(
+        ["gh", "pr", "create", "--repo", target_repo, "--base", default_branch, "--head", head, "--title", title, "--body", body],
+        repo,
+        capture=True,
+    )
+    pr_url = result.stdout.strip()
+    print(pr_url)
+    return pr_url
 
 
 def push_branch(repo: Path, target_repo: str, branch: str) -> str:
@@ -1201,22 +1215,73 @@ def pr_title_suffix(plan: dict[str, Any]) -> str:
     return ": " + ", ".join(parts)
 
 
-def pr_body(plan: dict[str, Any], repo_type: str) -> str:
-    changed = ", ".join(
-        f"{network} runtime-{plan['networks'][network]['detected_runtime']}"
-        for network in plan["changed_networks"]
+def docs_pr_body(plan: dict[str, Any], extra_files: list[str], test_pr_url: str | None) -> str:
+    changed = plan["changed_networks"]
+    network_labels = _network_runtime_label(plan)
+    intro = (
+        f"This pull request updates the documentation and configuration to reflect the "
+        f"{network_labels} runtime upgrade."
     )
-    review = "\n".join(f"- {item}" for item in plan.get("review_items", [])) or "- None"
-    return textwrap.dedent(
-        f"""
-        Automated runtime bump for {repo_type}.
+    lines = [intro, ""]
+    lines.append(f"**{network_labels} Upgrade Updates:**")
+    for network in changed:
+        item = plan["networks"][network]
+        display = item["display"]
+        old_rt = item["docs_runtime"]
+        new_rt = item["detected_runtime"]
+        block = item.get("upgrade_block")
+        block_str = f" at block {block}" if block else ""
+        lines.append(
+            f"- Updated `spec_version` for {display} in `variables.yml` "
+            f"from `runtime-{old_rt}` to `runtime-{new_rt}`."
+        )
+        lines.append(
+            f"- Updated the runtime upgrades content page with the new {display} "
+            f"entry{block_str}."
+        )
+    if extra_files:
+        lines.append("")
+        lines.append("**Documentation Link Adjustments:**")
+        for f in extra_files:
+            lines.append(f"- Updated source links in `{f}`.")
+    if test_pr_url:
+        lines.append("")
+        lines.append(f"**Test suite PR:** {test_pr_url}")
+    return "\n".join(lines)
 
-        Updated networks: {changed}
 
-        Review items:
-        {review}
-        """
-    ).strip()
+def test_suite_pr_body(plan: dict[str, Any]) -> str:
+    changed = plan["changed_networks"]
+    network_labels = _network_runtime_label(plan)
+    intro = (
+        f"This pull request updates the runtime test suite assertions to reflect the "
+        f"{network_labels} runtime upgrade."
+    )
+    lines = [intro, ""]
+    lines.append(f"**{network_labels} Upgrade Updates:**")
+    for network in changed:
+        item = plan["networks"][network]
+        display = item["display"]
+        old_rt = item["docs_runtime"]
+        new_rt = item["detected_runtime"]
+        lines.append(
+            f"- Updated the {display} runtime assertion from `{old_rt}` to `{new_rt}`."
+        )
+    return "\n".join(lines)
+
+
+def _network_runtime_label(plan: dict[str, Any]) -> str:
+    changed = plan["changed_networks"]
+    if len(changed) == 1:
+        network = changed[0]
+        display = plan["networks"][network]["display"]
+        runtime = plan["networks"][network]["detected_runtime"]
+        return f"{display} {runtime}"
+    parts = [
+        f"{plan['networks'][n]['display']} {plan['networks'][n]['detected_runtime']}"
+        for n in changed
+    ]
+    return ", ".join(parts)
 
 
 def run_cmd(
