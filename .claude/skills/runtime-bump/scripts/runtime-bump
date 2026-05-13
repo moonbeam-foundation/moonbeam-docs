@@ -450,7 +450,9 @@ def detect_forum_url(config: RuntimeConfig, runtime: int) -> str | None:
     for query in queries:
         matches.extend(forum_search(query, runtime))
     unique = sorted(set(matches))
-    return unique[0] if len(unique) == 1 else None
+    if len(unique) != 1:
+        return None
+    return forum_post_url(unique[0])
 
 
 def require_subscan_key(config: RuntimeConfig) -> str:
@@ -785,6 +787,30 @@ def forum_search(query: str, runtime: int) -> list[str]:
     return matches
 
 
+def forum_post_url(topic_url: str) -> str:
+    """Return the URL for the summary post in a Discourse topic if one is found, else the topic URL.
+
+    Looks for a post whose HTML content contains 'summary', which matches the
+    'summary-of-changes' heading Moonbeam uses in runtime upgrade announcements.
+    """
+    try:
+        parts = topic_url.rstrip("/").split("/")
+        topic_id = parts[-1]
+        if not topic_id.isdigit():
+            return topic_url
+        data = http_json(f"https://forum.moonbeam.network/t/{topic_id}.json", method="GET")
+        posts = data.get("post_stream", {}).get("posts", [])
+        for post in posts:
+            if post.get("post_number") == 2:
+                cooked = post.get("cooked", "")
+                if "summary" in cooked.lower():
+                    return f"{topic_url}/2"
+                break
+    except (urllib.error.URLError, json.JSONDecodeError, KeyError):
+        pass
+    return topic_url
+
+
 def http_json(
     url: str,
     *,
@@ -872,7 +898,56 @@ def update_runtime_upgrades(path: Path, plan: dict[str, Any]) -> None:
     runtime_versions = sorted({plan["networks"][network]["detected_runtime"] for network in changed_networks})
     for runtime in runtime_versions:
         lines = upsert_runtime_row(lines, runtime, plan)
+    lines = reformat_table_alignment(lines)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def reformat_table_alignment(lines: list[str]) -> list[str]:
+    result = list(lines)
+    i = 0
+    while i < len(lines):
+        if lines[i].startswith("|"):
+            j = i
+            while j < len(lines) and lines[j].startswith("|"):
+                j += 1
+            result[i:j] = _reformat_table_block(result[i:j])
+            i = j
+        else:
+            i += 1
+    return result
+
+
+def _reformat_table_block(rows: list[str]) -> list[str]:
+    col_widths: list[int] = []
+    for row in rows:
+        if _is_table_separator(row):
+            continue
+        for j, cell in enumerate(split_table_row(row)):
+            if j >= len(col_widths):
+                col_widths.extend([0] * (j + 1 - len(col_widths)))
+            col_widths[j] = max(col_widths[j], len(cell))
+    if not col_widths:
+        return rows
+    result = []
+    for row in rows:
+        if _is_table_separator(row):
+            result.append("|" + "|".join(f":{'-' * w}:" for w in col_widths) + "|")
+        else:
+            cells = split_table_row(row)
+            padded = [
+                cells[j].center(col_widths[j]) if j < len(cells) else " " * col_widths[j]
+                for j in range(len(col_widths))
+            ]
+            result.append(join_table_row(padded))
+    return result
+
+
+def _is_table_separator(line: str) -> bool:
+    if not line.startswith("|"):
+        return False
+    return bool(split_table_row(line)) and all(
+        re.match(r"^:?-+:?$", cell) for cell in split_table_row(line)
+    )
 
 
 def upsert_runtime_row(lines: list[str], runtime: int, plan: dict[str, Any]) -> list[str]:
