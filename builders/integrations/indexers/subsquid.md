@@ -168,14 +168,14 @@ To index EVM data on Moonbeam, create a SQD project and configure it for Moonbea
           .setGateway('https://v2.archive.subsquid.io/network/moonbase-testnet')
         ```
 
-    !!! note
-        SQD requires an API key for self-hosted Squid SDK projects that use legacy `https://v2.archive.subsquid.io` gateways. SQD Cloud squids that rely on legacy gateways are not affected. See the [Accessing SQD data with API keys](https://docs.sqd.dev/en/data/api-keys){target=\_blank} guide for more information.
-
 After you configure your SQD project to index EVM data on Moonbeam, update the `schema.graphql`, `src/main.ts`, and `src/processor.ts` files to index the data you need for your project. Continue with the steps in the following section to run your indexer and query your Squid.
 
 ## Run Your Indexer {: #run-your-indexer }
 
 These steps apply to both Substrate and EVM indexers. After you configure your SQD indexer, run it by taking the following steps:
+
+!!! note
+    The `setGateway()` examples in this guide use legacy `https://v2.archive.subsquid.io` gateways. SQD requires an API key for self-hosted Squid SDK projects that use these legacy gateways. SQD Cloud squids that rely on legacy gateways are not affected. See the [Accessing SQD data with API keys](https://docs.sqd.dev/en/data/api-keys){target=\_blank} guide for more information.
 
 1. Build the project by running:
 
