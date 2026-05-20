@@ -143,9 +143,9 @@ To index EVM data on Moonbeam, create a SQD project and configure it for Moonbea
     npx squid-gen config squidgen.yaml
     ```
 
-    The `squidgen.yaml` configuration includes the `archive` field for the SQD Network gateway, the target data store, and the contracts, ABIs, events, and functions to index. For the `archive` value, use the corresponding Moonbeam EVM gateway from the next step.
+    The `squidgen.yaml` configuration includes the `archive` field for the SQD Network gateway, the target data store, and the contracts, ABIs, events, and functions to index. For the `archive` value, use the corresponding Moonbeam EVM gateway used in the next step.
 
-4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor can fetch historical on-chain data from a SQD Network gateway. Configure your processor to pull data from the [EVM dataset](https://docs.sqd.dev/en/data/evm){target=\_blank} that corresponds to the network you are indexing data on:
+4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from a SQD Network gateway. Configure your processor to pull data from the [EVM dataset](https://docs.sqd.dev/en/data/evm){target=\_blank} that corresponds to the network you are indexing data on:
 
     === "Moonbeam"
 
@@ -168,7 +168,7 @@ To index EVM data on Moonbeam, create a SQD project and configure it for Moonbea
           .setGateway('https://v2.archive.subsquid.io/network/moonbase-testnet')
         ```
 
-After you configure your SQD project to index EVM data on Moonbeam, update the `schema.graphql`, `src/main.ts`, and `src/processor.ts` files to index the data you need for your project. Continue with the steps in the following section to run your indexer and query your Squid.
+Now that you've configured your SQD project to index EVM data on Moonbeam, update the `schema.graphql`, `src/main.ts`, and `src/processor.ts` files to index the data you need for your project. Continue with the steps in the following section to run your indexer and query your Squid.
 
 ## Run Your Indexer {: #run-your-indexer }
 
