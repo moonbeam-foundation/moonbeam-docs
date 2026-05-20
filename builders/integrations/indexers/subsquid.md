@@ -95,7 +95,7 @@ To index Substrate data on Moonbeam, create a SQD project and configure it for M
     !!! note
         For the Moonbeam or Moonriver RPC endpoint passed to `setRpcEndpoint()`, use your own endpoint from one of the supported [Endpoint Providers](/builders/get-started/endpoints/){target=\_blank}. This RPC endpoint is separate from the SQD gateway configured with `setGateway()`.
 
-5. Make one more quick change to the template. The SQD Substrate template processes Substrate account types by default, but Moonbeam uses Ethereum-style accounts. The `getTransferEvents` function in the `src/main.ts` file iterates through the events ingested by `processor.ts` and stores the relevant `transfer` events in the database. In the `getTransferEvents` function, remove the ss58 encoding of the `from` and `to` fields. An unmodified Substrate template ss58 encodes the `from` and `to` fields as shown:
+5. The SQD Substrate template uses Substrate-style accounts by default, but Moonbeam uses Ethereum-style accounts, so you'll need to remove the ss58 encoding from the account fields. The `getTransferEvents` function in `src/main.ts` is responsible for iterating through the events ingested by `processor.ts` and saving the relevant transfer events to the database — this is where you'll make that change. Remove the ss58 encoding from the `from` and `to` fields. The default, unmodified Substrate template encodes these fields as shown:
 
     ```ts
     from: ss58.codec('kusama').encode(rec.from),
