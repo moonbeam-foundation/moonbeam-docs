@@ -280,9 +280,12 @@ def build_plan(config: RuntimeConfig) -> dict[str, Any]:
         block_confirmed = False
         forum_url = None
         review_items: list[str] = []
+        forum_title = None
         if changed:
             block, block_confirmed = detect_upgrade_block(config, network, current, detected)
-            forum_url = detect_forum_url(config, detected)
+            forum_result = detect_forum_url(config, detected)
+            forum_url = forum_result[0] if forum_result else None
+            forum_title = forum_result[1] if forum_result else None
             changed_versions.add(detected)
             if block is None:
                 review_items.append("Upgrade block could not be detected; rerun with --upgrade-block.")
@@ -298,6 +301,7 @@ def build_plan(config: RuntimeConfig) -> dict[str, Any]:
             "upgrade_block": block,
             "upgrade_block_confirmed": block_confirmed if changed else None,
             "forum_url": forum_url,
+            "forum_title": forum_title,
             "review_items": review_items,
         }
 
@@ -389,18 +393,22 @@ def previous_runtime_block(path: Path, network: str, runtime: int) -> int | None
     return None
 
 
-def detect_forum_url(config: RuntimeConfig, runtime: int) -> str | None:
+def detect_forum_url(config: RuntimeConfig, runtime: int) -> tuple[str, str] | None:
     if runtime in config.forum_overrides:
-        return config.forum_overrides[runtime]
+        return config.forum_overrides[runtime], ""
 
     queries = [f"rt{runtime}", f"runtime rt{runtime}", f"runtime-{runtime}"]
-    matches: list[str] = []
+    matches: list[tuple[str, str]] = []
     for query in queries:
         matches.extend(forum_search(query, runtime))
-    unique = sorted(set(matches))
-    if len(unique) != 1:
+    seen: dict[str, str] = {}
+    for url, title in matches:
+        if url not in seen:
+            seen[url] = title
+    if len(seen) != 1:
         return None
-    return forum_post_url(unique[0])
+    url, title = next(iter(seen.items()))
+    return forum_post_url(url), title
 
 
 def rpc_runtime_version(network: str, block_hash: str | None = None) -> int | None:
@@ -515,7 +523,7 @@ def confirm_runtime_transition(network: str, runtime: int, block_number: int) ->
     return fallback, False
 
 
-def forum_search(query: str, runtime: int) -> list[str]:
+def forum_search(query: str, runtime: int) -> list[tuple[str, str]]:
     params = urllib.parse.urlencode({"q": query})
     url = f"https://forum.moonbeam.network/search.json?{params}"
     try:
@@ -526,14 +534,14 @@ def forum_search(query: str, runtime: int) -> list[str]:
     topics = data.get("topics") or []
     matches = []
     for topic in topics:
-        title = str(topic.get("title", "")).lower()
+        title = str(topic.get("title", ""))
         slug = topic.get("slug")
         topic_id = topic.get("id")
         if not slug or not topic_id:
             continue
         needle = str(runtime)
-        if needle in title or f"rt{needle}" in title or needle in str(slug):
-            matches.append(f"https://forum.moonbeam.network/t/{slug}/{topic_id}")
+        if needle in title.lower() or f"rt{needle}" in title.lower() or needle in str(slug):
+            matches.append((f"https://forum.moonbeam.network/t/{slug}/{topic_id}", title))
     return matches
 
 
@@ -597,6 +605,8 @@ def emit_plan(plan: dict[str, Any], out: Path | None) -> None:
         print(f"  {network}: runtime-{item['docs_runtime']} -> runtime-{item['detected_runtime']}")
         print(f"    upgrade_block: {item['upgrade_block']} (confirmed: {item['upgrade_block_confirmed']})")
         print(f"    forum_url: {item['forum_url']}")
+        if item.get("forum_title"):
+            print(f"    forum_title: {item['forum_title']}")
     if plan["review_items"]:
         print("Review items:")
         for item in plan["review_items"]:
@@ -708,7 +718,7 @@ def upsert_runtime_row(lines: list[str], runtime: int, plan: dict[str, Any]) -> 
             cells.append("-")
         cells[0] = runtime_cell(runtime, plan)
         for network, column in (("moonbeam", 1), ("moonriver", 2), ("moonbase", 3)):
-            if plan["networks"].get(network, {}).get("detected_runtime") == runtime:
+            if network in plan["changed_networks"] and plan["networks"].get(network, {}).get("detected_runtime") == runtime:
                 cells[column] = block_cell(network, plan)
         lines[existing_index] = join_table_row(cells[:4])
         return lines
@@ -972,6 +982,10 @@ def create_repo_pr(
         raise RuntimeBumpError(
             f"branch {branch!r} already exists in {repo}; delete it first or rename the plan branch"
         )
+    default_branch = repo_default_branch(target_repo)
+    current_branch = run_cmd(["git", "rev-parse", "--abbrev-ref", "HEAD"], repo, capture=True).stdout.strip()
+    if current_branch != default_branch:
+        run_cmd(["git", "switch", default_branch], repo)
     run_cmd(["git", "switch", "-c", branch], repo)
     rel_paths = [str(path.relative_to(repo)) for path in paths if path.exists()]
     if not rel_paths:
@@ -983,7 +997,6 @@ def create_repo_pr(
         return None
     run_cmd(["git", "commit", "-m", title], repo)
     head = push_branch(repo, target_repo, branch)
-    default_branch = repo_default_branch(target_repo)
     result = run_cmd(
         ["gh", "pr", "create", "--repo", target_repo, "--base", default_branch, "--head", head, "--title", title, "--body", body],
         repo,
