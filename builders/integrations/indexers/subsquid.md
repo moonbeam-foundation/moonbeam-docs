@@ -115,7 +115,7 @@ Now that your SQD project is configured to index Substrate data on Moonbeam, upd
 
 To index EVM data on Moonbeam, create a SQD project and configure it for Moonbeam by taking the following steps:
 
-1. Create a SQD project for EVM data by using the generic EVM template or the ABI template. The EVM template is a minimal Squid SDK project for EVM data. Use the ABI template with [Squid generation tools](https://docs.sqd.dev/en/sdk/squid-sdk/resources/tools/squid-gen){target=\_blank} to generate a squid from contract ABIs:
+1. Create a SQD project for EVM data by using the generic EVM or ABI template, which works with [Squid generation tools](https://docs.sqd.dev/en/sdk/squid-sdk/resources/tools/squid-gen){target=\_blank} to generate a squid from contract ABIs:
 
     === "EVM"
 
