@@ -109,7 +109,7 @@ To index Substrate data on Moonbeam, create a SQD project and configure it for M
     to: rec.to, 
     ```
 
-After you configure your SQD project to index Substrate data on Moonbeam, update the `schema.graphql`, `typegen.json`, `src/main.ts`, and `src/processor.ts` files to index the data you need for your project. Next, take the steps in the [Run Your Indexer](#run-your-indexer) section to run your indexer and query your Squid.
+Now that your SQD project is configured to index Substrate data on Moonbeam, update the `schema.graphql`, `typegen.json`, `src/main.ts`, and `src/processor.ts` files to index the data you need for your project. Next, take the steps in the [Run Your Indexer](#run-your-indexer) section to run your indexer and query your Squid.
 
 ## Index Ethereum Data on Moonbeam {: #index-ethereum-contracts }
 
