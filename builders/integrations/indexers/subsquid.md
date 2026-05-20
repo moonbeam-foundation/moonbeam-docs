@@ -21,7 +21,6 @@ This quick-start guide shows you how to create Substrate and EVM Squid SDK proje
 Before you get started with SQD, install the following:
 
 - [Node.js](https://nodejs.org/en/download){target=\_blank} version 18 or newer
-- [Git](https://git-scm.com/downloads){target=\_blank}
 - [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
 - [Squid CLI](https://docs.sqd.dev/en/cloud/reference/cli/installation){target=\_blank}
 
