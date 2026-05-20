@@ -10,7 +10,7 @@ categories: Indexers and Queries
 
 [SQD (formerly Subsquid)](https://sqd.dev/){target=\_blank} is a data network that allows rapid and cost-efficient retrieval of blockchain data from 200+ chains using the decentralized data lake and open-source SDK from SQD. In very simple terms, you can think of SQD as an ETL (extract, transform, and load) tool with a GraphQL server included. It enables comprehensive filtering, pagination, and even full-text search capabilities.
 
-SQD has native support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contract platform that is EVM-compatible, you can use SQD to index both EVM and Substrate-based data. The Squid SDK currently offers specialized processors for EVM (`EvmBatchProcessor`) and Substrate (`SubstrateBatchProcessor`) networks. If you exclusively want to index EVM data, use the EVM processor. If you need Substrate events or calls, or Frontier EVM data alongside Substrate context, use the Substrate processor and the Frontier EVM utilities.
+SQD has native support for both Ethereum Virtual Machine (EVM) and Substrate data. Since Moonbeam is a Substrate-based smart contract platform that is EVM-compatible, you can use SQD to index both EVM and Substrate-based data. If you exclusively want to index EVM data, use the EVM processor. If you need Substrate events or calls, or Frontier EVM data alongside Substrate context, use the Substrate processor and the Frontier EVM utilities.
 
 This quick-start guide shows you how to create Substrate and EVM Squid SDK projects with SQD and configure them to index data on Moonbeam.
 
