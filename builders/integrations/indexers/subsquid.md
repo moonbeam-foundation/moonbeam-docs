@@ -24,9 +24,6 @@ Before you get started with SQD, install the following:
 - [Docker](https://docs.docker.com/get-started/get-docker/){target=\_blank}
 - [Squid CLI](https://docs.sqd.dev/en/cloud/reference/cli/installation){target=\_blank}
 
-!!! note
-    The commands in this guide use `npm`, matching the current Squid SDK templates and quick-start docs from SQD.
-
 ## Index Substrate Data on Moonbeam {: #index-substrate-calls-events }
 
 To index Substrate data on Moonbeam, create a SQD project and configure it for Moonbeam by taking the following steps:
@@ -42,7 +39,7 @@ To index Substrate data on Moonbeam, create a SQD project and configure it for M
 2. Navigate into the root directory of your Squid project and install dependencies by running:  
 
     ```bash
-    npm ci
+    npm i
     ```
 
 3. To configure your SQD project to run on Moonbeam, update the `typegen.json` file. The `typegen.json` file generates TypeScript interface classes for your data. Depending on the network you index data on, set the `specVersions` value in the `typegen.json` file as follows:
@@ -114,7 +111,7 @@ Now that your SQD project is configured to index Substrate data on Moonbeam, upd
 
 To index EVM data on Moonbeam, create a SQD project and configure it for Moonbeam by taking the following steps:
 
-1. Create a SQD project for EVM data by using the generic EVM or ABI template, which works with [Squid generation tools](https://docs.sqd.dev/en/sdk/squid-sdk/resources/tools/squid-gen){target=\_blank} to generate a squid from contract ABIs:
+1. Create a SQD project for EVM data by using the generic EVM or ABI template:
 
     === "EVM"
 
@@ -128,21 +125,23 @@ To index EVM data on Moonbeam, create a SQD project and configure it for Moonbea
         sqd init INSERT_SQUID_NAME --template abi
         ```
 
-    For more information on getting started with Squid SDK templates, check out the [Development flow](https://docs.sqd.dev/en/sdk/squid-sdk/how-to-start/squid-development){target=\_blank} and [Squid SDK Quickstart](https://docs.sqd.dev/en/sdk/squid-sdk/quickstart){target=\_blank} guides on the SQD documentation site.
+    For more information on getting started with Squid SDK templates, check out the [Development flow](https://docs.sqd.dev/en/sdk/squid-sdk/how-to-start/squid-development){target=\_blank}.
 
 2. Navigate into the root directory of your Squid project and install dependencies by running:
 
     ```bash
-    npm ci
+    npm i
     ```
 
-3. If you use the ABI template, configure the contracts and events you want to index in `squidgen.yaml` and generate the squid code:
+3. If you use the ABI template, generate the squid code for the contract and events or functions you want to index:
 
     ```bash
-    npx squid-gen config squidgen.yaml
+    sqd generate \
+      --address INSERT_CONTRACT_ADDRESS \
+      --archive INSERT_EVM_GATEWAY_URL \
+      --abi ./abi/INSERT_ABI_FILE.json \
+      --event INSERT_EVENT_NAME
     ```
-
-    The `squidgen.yaml` configuration includes the `archive` field for the SQD Network gateway, the target data store, and the contracts, ABIs, events, and functions to index. For the `archive` value, use the corresponding Moonbeam EVM gateway used in the next step.
 
 4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from a SQD Network gateway. Configure your processor to pull data from the [EVM dataset](https://docs.sqd.dev/en/data/evm){target=\_blank} that corresponds to the network you are indexing data on:
 
@@ -174,46 +173,41 @@ Now that you've configured your SQD project to index EVM data on Moonbeam, updat
 These steps apply to both Substrate and EVM indexers. After you configure your SQD indexer, run it by taking the following steps:
 
 !!! note
-    The `setGateway()` examples in this guide use legacy `https://v2.archive.subsquid.io` gateways. SQD requires an API key for self-hosted Squid SDK projects that use these legacy gateways. SQD Cloud squids that rely on legacy gateways are not affected. See the [Accessing SQD data with API keys](https://docs.sqd.dev/en/data/api-keys){target=\_blank} guide for more information.
+    The `setGateway()` examples in this guide use legacy `https://v2.archive.subsquid.io` gateways. If you self-host a Squid SDK project with these gateways, you need a SQD API key. This requirement applies to self-hosted projects, not squids deployed on SQD Cloud. See the [Accessing SQD data with API keys](https://docs.sqd.dev/en/data/api-keys){target=\_blank} guide for more information.
 
 1. Build the project by running:
 
     ```bash
-    npm run build
+    sqd build
     ```
 
 2. Launch Postgres by running:
 
     ```bash
-    docker compose up -d
+    sqd up
     ```
 
 3. Apply database migrations:
 
     ```bash
-    npx squid-typeorm-migration apply
+    sqd migration:apply
     ```
 
-    If you changed the schema or generated an ABI-based squid, generate migrations before applying them:
+    If you changed `schema.graphql` or generated an ABI-based squid, clean and regenerate migrations before applying them:
 
     ```bash
-    npx squid-typeorm-migration generate
-    npx squid-typeorm-migration apply
+    sqd migration:clean
+    sqd migration:generate
+    sqd migration:apply
     ```
 
-4. Inspect and run the processor:
+4. Run the services defined in `squid.yaml` locally:
 
     ```bash
-    node -r dotenv/config lib/main.js
+    sqd run .
     ```
 
-5. Open a separate terminal window in the same directory, then start the GraphQL server:
-
-    ```bash
-    npx squid-graphql-server
-    ```
-
-6. Query your template Substrate or EVM Squid with the following sample queries. If you modified the template Squid to index different data, modify this query accordingly.
+5. Query your template Substrate or EVM Squid with the following sample queries. If you modified the template Squid to index different data, modify this query accordingly.
 
     === "Substrate Indexer"
 
