@@ -64,7 +64,52 @@ class RuntimeBumpError(RuntimeError):
     pass
 
 
+def _in_venv() -> bool:
+    return hasattr(sys, "real_prefix") or (
+        hasattr(sys, "base_prefix") and sys.base_prefix != sys.prefix
+    )
+
+
+def _default_workdir() -> Path:
+    env_workdir = os.environ.get("RUNTIME_BUMP_WORKDIR")
+    if env_workdir:
+        return Path(env_workdir).expanduser().resolve()
+    return Path(tempfile.gettempdir()) / "moonbeam-runtime-bump"
+
+
+def ensure_substrate_interface() -> None:
+    try:
+        import substrateinterface  # noqa: F401
+        return
+    except ImportError:
+        pass
+
+    if _in_venv():
+        print("Installing substrate-interface...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "substrate-interface"])
+        os.execv(sys.executable, [sys.executable] + sys.argv)
+
+    workdir = _default_workdir()
+    venv_path = workdir / ".venv"
+    venv_python = venv_path / "bin" / "python"
+
+    if not venv_path.exists():
+        print("substrate-interface is required but not installed, and no virtual environment is active.")
+        answer = input(f"Create a venv at {venv_path}? [y/N] ").strip().lower()
+        if answer != "y":
+            print("Aborted. Activate a venv or re-run and agree to create one.", file=sys.stderr)
+            sys.exit(1)
+        workdir.mkdir(parents=True, exist_ok=True)
+        subprocess.check_call([sys.executable, "-m", "venv", str(venv_path)])
+
+    print(f"Installing substrate-interface into {venv_path}...")
+    subprocess.check_call([str(venv_python), "-m", "pip", "install", "substrate-interface"])
+    print("Re-starting with venv Python...")
+    os.execv(str(venv_python), [str(venv_python)] + sys.argv)
+
+
 def main(argv: list[str] | None = None) -> int:
+    ensure_substrate_interface()
     argv = list(sys.argv[1:] if argv is None else argv)
     if argv and argv[0] in {"--dry-run", "--apply"}:
         argv = ["run", *argv]
@@ -198,9 +243,7 @@ def build_config(args: argparse.Namespace) -> RuntimeConfig:
         raise RuntimeBumpError(f"could not find variables.yml in docs repo: {docs_repo}")
 
     test_suite_repo = resolve_test_suite_repo(args.test_suite_repo, docs_repo)
-    env_workdir = os.environ.get("RUNTIME_BUMP_WORKDIR")
-    workdir = args.workdir or (Path(env_workdir) if env_workdir else Path(tempfile.gettempdir()) / "moonbeam-runtime-bump")
-    workdir = workdir.expanduser().resolve()
+    workdir = args.workdir.expanduser().resolve() if args.workdir else _default_workdir()
 
     return RuntimeConfig(
         docs_repo=docs_repo,
@@ -357,6 +400,46 @@ def detect_runtime(config: RuntimeConfig, network: str) -> int:
     raise RuntimeBumpError(f"could not detect runtime for {network} via RPC")
 
 
+def event_find_upgrade_block(network: str, runtime: int, candidate: int) -> tuple[int | None, bool]:
+    try:
+        from substrateinterface import SubstrateInterface
+    except ImportError:
+        return None, False
+
+    rpc_url = NETWORKS[network]["rpc"]
+    try:
+        substrate = SubstrateInterface(url=rpc_url)
+
+        event_block = None
+        for offset in range(4):
+            check_block = candidate - offset
+            if check_block <= 0:
+                break
+            block_hash = substrate.get_block_hash(check_block)
+            if not block_hash:
+                continue
+            for event in substrate.get_events(block_hash):
+                ev = event.value.get("event", {})
+                if ev.get("module_id") == "ParachainSystem" and ev.get("event_id") == "ValidationFunctionApplied":
+                    event_block = check_block
+                    break
+            if event_block is not None:
+                break
+
+        if event_block is None:
+            return None, False
+
+        for offset in range(1, 5):
+            upgrade_block = event_block + offset
+            if rpc_runtime_at_block(network, upgrade_block) == runtime:
+                return upgrade_block, True
+
+        return event_block + 1, False
+
+    except Exception:
+        return None, False
+
+
 def detect_upgrade_block(
     config: RuntimeConfig,
     network: str,
@@ -369,6 +452,9 @@ def detect_upgrade_block(
     lower_bound = previous_runtime_block(config.docs_repo / "builders/build/runtime-upgrades.md", network, previous_runtime)
     rpc_block, rpc_confirmed = rpc_find_runtime_transition(network, runtime, lower_bound)
     if rpc_block is not None:
+        event_block, event_confirmed = event_find_upgrade_block(network, runtime, rpc_block)
+        if event_block is not None:
+            return event_block, event_confirmed
         return rpc_block, rpc_confirmed
 
     return None, False
