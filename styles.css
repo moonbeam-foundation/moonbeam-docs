@@ -1,0 +1,57 @@
+import requests
+from typing import Dict, List, Optional
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+class LinkChecker:
+    """
+    A class to check the validity of URLs.
+    """
+
+    def __init__(self):
+        self.excluded_urls = set()
+
+    def load_excluded_urls(self, file_path: str) -> None:
+        """
+        Load excluded URLs from a file.
+
+        :param file_path: Path to the file containing excluded URLs.
+        """
+        with open(file_path, 'r') as file:
+            for line in file:
+                self.excluded_urls.add(line.strip())
+
+    def check_links(self, urls: List[str]) -> Dict[str, str]:
+        """
+        Check the validity of a list of URLs.
+
+        :param urls: List of URLs to check.
+        :return: Dictionary with URL as key and status as value.
+        """
+        results = {}
+        for url in urls:
+            if url in self.excluded_urls:
+                results[url] = "👍 Excluded"
+                continue
+            try:
+                response = requests.get(url, timeout=5)
+                response.raise_for_status()
+                results[url] = "✅ Successful" if response.status_code == 200 else f"⚠️ Status Code: {response.status_code}"
+            except requests.exceptions.RequestException as e:
+                logging.error(f"Error checking URL {url}: {str(e)}")
+                results[url] = f"🚫 Error: {str(e)}"
+        return results
+
+# Usage
+if __name__ == "__main__":
+    checker = LinkChecker()
+    checker.load_excluded_urls("excluded_urls.txt")
+    urls_to_check = [
+        "https://wiki.polkadot.com/learn/learn-account-balances/",
+        "https://immunefi.com/bug-bounty/moonbeamnetwork/information/"
+    ]
+    results = checker.check_links(urls_to_check)
+    for url, status in results.items():
+        print(f"{url}: {status}")
