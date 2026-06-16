@@ -1,0 +1,42 @@
+import requests
+from typing import Dict, List, Optional
+import logging
+
+# Setup logging configuration
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
+
+class LinkChecker:
+    def __init__(self, urls: List[str]):
+        self.urls = urls
+
+    def check_links(self) -> Dict[str, str]:
+        results = {}
+        for url in self.urls:
+            try:
+                response = requests.get(url, timeout=5)
+                if response.status_code == 200:
+                    results[url] = "✅ Successful"
+                elif response.status_code == 404:
+                    results[url] = "[404] Not Found"
+                else:
+                    results[url] = f"❌ Error: {response.status_code}"
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Network error for URL {url}: {e}")
+                results[url] = f"[ERROR] Network error: {e}"
+        return results
+
+def main():
+    urls_to_check = [
+        "https://wiki.polkadot.com/learn/learn-account-balances/",
+        "https://immunefi.com/bug-bounty/moonbeamnetwork/information/"
+    ]
+    
+    checker = LinkChecker(urls_to_check)
+    link_results = checker.check_links()
+    
+    for url, result in link_results.items():
+        print(f"{result} | {url}")
+
+if __name__ == "__main__":
+    main()
