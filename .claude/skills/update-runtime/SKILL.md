@@ -6,7 +6,8 @@ disable-model-invocation: true
 Follow these steps exactly:
 
 1. **Confirm prerequisites before making changes.**
-   - Use an existing `moonbeam-docs` checkout; the skill lives in this repo and the CLI resolves it from `CLAUDE_SKILL_DIR`.
+   - Use an existing `moonbeam-docs` checkout; the skill lives in this repo, and the script resolves the docs checkout itself from its own location.
+   - The commands below reference the script via `${CLAUDE_SKILL_DIR}`, which Claude Code sets to this skill's directory when the skill is invoked. Always invoke this skill explicitly (for example `/update-runtime`) so the variable is set; if a command fails with exit code 127 and a path like `/scripts/runtime-bump`, the variable expanded empty because the skill was not invoked through the skill mechanism.
    - Use an existing `papermoonio/moonbeam-docs-test-suite` checkout if available. Set `MOONBEAM_DOCS_TEST_SUITE_DIR` only when the test suite is not next to the docs checkout.
    - Runtime and block detection uses the public RPC endpoints — no API key required.
    - Only check `gh auth status` when the user asks to create PRs.
@@ -24,7 +25,7 @@ Follow these steps exactly:
 
 3. **Stop if the dry run reports blocking review items.**
    - Do not run `--apply` if any blocking review items remain. Blocking items are those about a missing upgrade block — the apply cannot produce a correct runtime table row without one.
-   - A missing forum URL is non-blocking: the runtime table will use plain text and apply can proceed. Ask the user if they want to provide `--forum-url` before continuing.
+   - A missing forum URL is non-blocking: the runtime table will use plain text and apply can proceed. Ask the user if they want to provide `--forum-url` before continuing. If they decline, **omit `--forum-url` entirely — never pass a placeholder such as `none`, `null`, or an empty value.** A placeholder would otherwise be embedded as the link target (for example `[4303](none)`).
    - Upgrade blocks should be detected automatically from Subscan/RPC. Ask the user for a block only if every automated method fails.
    - If the dry run shows no changed networks, report that docs and tests are already aligned and stop.
 

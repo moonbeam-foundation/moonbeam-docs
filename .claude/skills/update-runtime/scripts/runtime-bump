@@ -307,7 +307,17 @@ def parse_version_url_overrides(values: list[str]) -> dict[int, str]:
         if "=" not in value:
             raise RuntimeBumpError(f"--forum-url expects VERSION=URL, got {value!r}")
         version, url = value.split("=", 1)
-        parsed[int(version)] = url.strip()
+        url = url.strip()
+        # Treat placeholders as "no forum URL" so the table falls back to plain
+        # text instead of emitting a broken link such as [4303](none).
+        if url.lower() in {"", "none", "null", "skip", "false", "n/a"}:
+            continue
+        if not url.startswith(("http://", "https://")):
+            raise RuntimeBumpError(
+                f"--forum-url value must be an http(s) URL; got {url!r}. "
+                "To skip the forum link, omit --forum-url entirely."
+            )
+        parsed[int(version)] = url
     return parsed
 
 
@@ -868,7 +878,7 @@ def runtime_cell(runtime: int, plan: dict[str, Any]) -> str:
         if plan["networks"][network]["detected_runtime"] == runtime:
             url = plan["networks"][network].get("forum_url")
             break
-    if url:
+    if isinstance(url, str) and url.startswith(("http://", "https://")):
         return f"[{runtime}]({url}){{target=\\_blank}}"
     return str(runtime)
 
