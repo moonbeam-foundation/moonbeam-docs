@@ -15,7 +15,7 @@ networks:
     hex_chain_id: '0x507'
     chain_spec: alphanet
     block_explorer: https://moonbase.moonscan.io/
-    spec_version: runtime-4300
+    spec_version: runtime-4302
     parachain_release_tag: 0.51.2 # Required format for link generation system
     parachain_sha256sum: 58b5f7c87b338202dcecbb558fc6f0fdd861f64ba68acfc025acb1b2d4e7d2b3
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.51.2-4301-2fd9
@@ -353,7 +353,7 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.51.2-4301-2fd9
     chain_spec: moonriver
     block_explorer: https://moonriver.moonscan.io/
-    spec_version: runtime-4300
+    spec_version: runtime-4303
     binary_name: moonbeam
     min_gas_price: 0.3125
     block_time: 6
@@ -679,7 +679,7 @@ networks:
     tracing_tag: moonbeamfoundation/moonbeam-tracing:v0.51.2-4301-2fd9
     chain_spec: moonbeam
     block_explorer: https://moonscan.io
-    spec_version: runtime-4203
+    spec_version: runtime-4303
     binary_name: moonbeam
     min_gas_price: 31.25
     block_time: 6
