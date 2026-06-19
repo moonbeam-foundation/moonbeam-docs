@@ -117,7 +117,7 @@ To index EVM data on Moonbeam, create a SQD project and configure it for Moonbea
     sqd init INSERT_SQUID_NAME --template evm
     ```
 
-    For more information on getting started with Squid SDK templates, check out the [Development flow](https://docs.sqd.dev/en/sdk/squid-sdk/how-to-start/squid-development){target=\_blank}.
+    For more information on getting started with Squid SDK templates, check out the [Development flow](https://docs.sqd.dev/en/sdk/squid-sdk/how-to-start/squid-development){target=\_blank} guide.
 
 2. Navigate into the root directory of your Squid project and install dependencies by running:
 
