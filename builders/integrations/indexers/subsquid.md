@@ -111,19 +111,11 @@ Now that your SQD project is configured to index Substrate data on Moonbeam, upd
 
 To index EVM data on Moonbeam, create a SQD project and configure it for Moonbeam by taking the following steps:
 
-1. Create a SQD project for EVM data by using the generic EVM or ABI template:
+1. Create a SQD project for EVM data by using the generic EVM template:
 
-    === "EVM"
-
-        ```bash
-        sqd init INSERT_SQUID_NAME --template evm
-        ```
-
-    === "ABI"
-
-        ```bash
-        sqd init INSERT_SQUID_NAME --template abi
-        ```
+    ```bash
+    sqd init INSERT_SQUID_NAME --template evm
+    ```
 
     For more information on getting started with Squid SDK templates, check out the [Development flow](https://docs.sqd.dev/en/sdk/squid-sdk/how-to-start/squid-development){target=\_blank}.
 
@@ -133,17 +125,7 @@ To index EVM data on Moonbeam, create a SQD project and configure it for Moonbea
     npm i
     ```
 
-3. If you use the ABI template, generate the squid code for the contract and events or functions you want to index:
-
-    ```bash
-    sqd generate \
-      --address INSERT_CONTRACT_ADDRESS \
-      --archive INSERT_EVM_GATEWAY_URL \
-      --abi ./abi/INSERT_ABI_FILE.json \
-      --event INSERT_EVENT_NAME
-    ```
-
-4. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from a SQD Network gateway. Configure your processor to pull data from the [EVM dataset](https://docs.sqd.dev/en/data/evm){target=\_blank} that corresponds to the network you are indexing data on:
+3. Modify the `src/processor.ts` file, which is where Squids instantiate the processor, configure it, and attach handler functions. The processor fetches historical on-chain data from a SQD Network gateway. Configure your processor to pull data from the [EVM dataset](https://docs.sqd.dev/en/data/evm){target=\_blank} that corresponds to the network you are indexing data on:
 
     === "Moonbeam"
 
@@ -193,7 +175,7 @@ These steps apply to both Substrate and EVM indexers. After you configure your S
     sqd migration:apply
     ```
 
-    If you changed `schema.graphql` or generated an ABI-based squid, clean and regenerate migrations before applying them:
+    If you changed `schema.graphql`, clean and regenerate migrations before applying them:
 
     ```bash
     sqd migration:clean
