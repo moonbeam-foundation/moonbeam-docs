@@ -1,6 +1,6 @@
 ---
 title: How to use Web3.py Ethereum Library
-description: Follow this tutorial to learn how to use the Ethereum Web3 Python Library to to send transactions and deploy Solidity smart contracts to Moonbeam.
+description: Follow this tutorial to learn how to use the Ethereum Web3 Python Library to send transactions and deploy Solidity smart contracts to Moonbeam.
 categories: Libraries and SDKs, Ethereum Toolkit
 ---
 
