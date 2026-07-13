@@ -26,6 +26,8 @@ If you are looking for an API provider suitable for production use, you can chec
 
 --8<-- 'text/builders/get-started/endpoints/moonbase.md'
 
+You can compare live latency of these public endpoints on [OpenChainBench — Moonbeam RPC](https://openchainbench.com/benchmarks/moonbeam-rpc){target=_blank}, an open, third-party benchmark that probes each endpoint from three regions every minute.
+
 ## RPC Endpoint Providers {: #endpoint-providers }
 
 You can create your own endpoint suitable for development or production use using any of the following API providers:
