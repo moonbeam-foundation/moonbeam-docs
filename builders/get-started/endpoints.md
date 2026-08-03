@@ -440,3 +440,7 @@ The following providers provide tracing RPC endpoints:
 To use the Trace API, you simply call the trace method of your choice from your [private RPC endpoint](#onfinality). For a list of the supported networks and trace methods, please check out [OnFinality's Trace API documentation](https://documentation.onfinality.io/support/trace-api#TraceAPI-SupportedNetworks){target=_blank}.
 
 Please note that if you are tracing historic blocks, it is recommended to use your own dedicated trace node to backfill any data, and then once you're caught up, you can switch to using the Trace API. You can check out the [How to Deploy a Trace Node for Moonbeam on OnFinality](https://onfinality.medium.com/how-to-deploy-a-trace-node-for-moonbeam-on-onfinality-85683181d290){target=-_blank} post for more information on how to spin up your own dedicated trace node.
+
+## Compare Public RPC Latency
+
+For live latency comparisons across public RPC endpoints for Moonbeam and Moonriver, see [OpenChainBench](https://openchainbench.com/benchmarks/moonriver-rpc) — an open benchmark that continuously measures free keyless endpoints so you can pick the fastest for your region.
