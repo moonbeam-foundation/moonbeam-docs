@@ -35,6 +35,7 @@ You can create your own endpoint suitable for development or production use usin
 - [dRPC NodeCloud](#drpc)
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
+- [NOWNodes](#nownodes)
 - [OnFinality](#onfinality)
 - [UnitedBloc](#unitedbloc)
 
@@ -97,6 +98,17 @@ Creating a new API/add-on based endpoint is simple, all you have to do is:
 4. Click the **Get** button at the far right and you're all set to go! 
 
 ![GetBlock](/images/builders/get-started/endpoints/endpoints-4.webp)
+
+### NOWNodes {: #nownodes }
+
+[NOWNodes](https://nownodes.io/){target=_blank} provides managed RPC access to Moonbeam for development and production applications, including archive access to historical blockchain state.
+
+To get started with NOWNodes:
+
+1. Create a NOWNodes account and obtain an API key
+2. Select Moonbeam (GLMR)
+3. Connect your application to `https://moonbeam.nownodes.io`
+4. Refer to the [NOWNodes Moonbeam API documentation](https://docs.nownodes.io/glmr.html){target=_blank} for supported methods and request examples
 
 ### OnFinality {: #onfinality }
 
