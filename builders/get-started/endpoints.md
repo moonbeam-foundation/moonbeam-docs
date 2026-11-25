@@ -113,7 +113,7 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 
 ### Spectrum Nodes {: #spectrum-nodes }
 
-[Spectrum Nodes](https://spectrumnodes.com/networks/moonbeam-rpc){target=_blank} serves Moonbeam, Moonriver, and Moonbase Alpha RPC from its own bare metal servers. Its Moonriver and Moonbase Alpha endpoints include archive data and debug tracing.
+[Spectrum Nodes](https://spectrumnodes.com/networks/moonbeam-rpc){target=_blank} serves Moonbeam, Moonriver, and Moonbase Alpha RPC from its self operated Tier III data centers. Its Moonriver and Moonbase Alpha endpoints include archive data and debug tracing.
 
 To create an endpoint:
 
