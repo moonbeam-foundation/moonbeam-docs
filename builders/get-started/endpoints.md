@@ -36,6 +36,7 @@ You can create your own endpoint suitable for development or production use usin
 - [Dwellir](#dwellir)
 - [GetBlock](#getblock)
 - [OnFinality](#onfinality)
+- [Spectrum Nodes](#spectrum-nodes)
 - [UnitedBloc](#unitedbloc)
 
 ### 1RPC {: #1rpc}
@@ -109,6 +110,15 @@ To create a custom OnFinality endpoint, go to [OnFinality](https://onfinality.io
 3. Your custom API endpoint will be generated automatically
 
 ![OnFinality](/images/builders/get-started/endpoints/endpoints-5.webp)
+
+### Spectrum Nodes {: #spectrum-nodes }
+
+[Spectrum Nodes](https://spectrumnodes.com/networks/moonbeam-rpc){target=_blank} serves Moonbeam, Moonriver, and Moonbase Alpha RPC from its own bare metal servers. Its Moonriver and Moonbase Alpha endpoints include archive data and debug tracing.
+
+To create an endpoint:
+
+1. Visit [Spectrum Nodes](https://dashboard.spectrumnodes.com/auth/signup){target=_blank} and sign up
+2. Create an endpoint and select Moonbeam, Moonriver, or Moonbase Alpha
 
 ### UnitedBloc {: #unitedbloc }
 
